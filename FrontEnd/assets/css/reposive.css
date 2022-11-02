@@ -1,0 +1,276 @@
+/* Medium Device = 1200px */
+
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+
+	/* HEADER */
+
+	.hero__categories__all {
+		padding: 10px 25px 10px 20px;
+	}
+
+	.hero__categories ul {
+		padding-left: 20px;
+	}
+
+
+
+	/* /HEADER */
+
+}
+
+/* Tablet Device = 768px */
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+
+	/* HEADER */
+	.hero__categories {
+		margin-bottom: 30px;
+	}
+
+	.header__menu--ul {
+		display: flex;
+		justify-content: center;
+	}
+
+	.header__top__right {
+		display: none;
+	}
+
+
+	/* END HEADER */
+}
+
+/* Wide Mobile = 480px */
+
+@media only screen and (max-width: 767px) {
+
+	/* HEADER */
+	.header-mid-side {
+		display: none;
+	}
+
+	.hero__categories {
+		margin-bottom: 30px;
+	}
+
+	.header__menu {
+		display: none;
+	}
+
+	.header__top__right {
+		display: none;
+	}
+
+	.header__top__left ul li {
+		font-size: 0.8rem;
+	}
+
+	/* mobile nav - overlay */
+	.mobile__open {
+		display: block;
+		font-size: 22px;
+		color: #1c1c1c;
+		height: 35px;
+		width: 35px;
+		line-height: 33px;
+		text-align: center;
+		border: 1px solid #1c1c1c;
+		cursor: pointer;
+		position: absolute;
+		right: 15px;
+		top: 1px;
+	}
+
+	.header .container {
+		position: relative;
+	}
+
+	.mobile__menu__wrapper {
+		width: 300px;
+		background: #ffffff;
+		position: fixed;
+		left: -300px;
+		top: 0;
+		height: 100%;
+		overflow-y: auto;
+		z-index: 99;
+		padding: 30px;
+		padding-top: 50px;
+		opacity: 0;
+		display: block;
+		-webkit-transition: all, 0.6s;
+		-moz-transition: all, 0.6s;
+		-ms-transition: all, 0.6s;
+		-o-transition: all, 0.6s;
+		transition: all, 0.6s;
+	}
+
+	.mobile__menu__wrapper.show__mobile__menu__wrapper {
+		opacity: 1;
+		left: 0;
+	}
+
+	.mobile__menu__logo {
+		margin-bottom: 30px;
+	}
+
+	.mobile__menu__logo a {
+		display: inline-block;
+		font-size: 2.8rem;
+	}
+
+	.mobile__menu__contact {
+		padding: 10px 0 13px;
+	}
+
+	.mobile__menu__contact ul li {
+		font-size: 1.2rem;
+		color: #1c1c1c;
+		position: relative;
+		line-height: 30px;
+		list-style: none;
+	}
+
+	.mobile__menu__contact ul li i {
+		color: #252525;
+		margin-right: 5px;
+	}
+
+	.header__top__right__social li i {
+		font-size: 1.2rem;
+	}
+
+	.mobile__menu__cart ul {
+		display: inline-block;
+		margin-right: 25px;
+	}
+
+	.mobile__menu__cart ul li {
+		list-style: none;
+		display: inline-block;
+		margin-right: 15px;
+	}
+
+	.mobile__menu__cart ul li:last-child {
+		margin-right: 0;
+	}
+
+	.mobile__menu__cart ul li a {
+		position: relative;
+	}
+
+	.mobile__menu__cart ul li a i {
+		font-size: 1.4rem;
+		color: var(--primary-color);
+	}
+
+	.mobile__menu__cart {
+		margin-bottom: 25px;
+	}
+
+	.mobile__menu__widget {
+		margin-bottom: 20px;
+	}
+
+	.header__top__right__auth a {
+		font-size: 1.4rem;
+	}
+	.header__top__right__auth a i {
+		font-size: 1.8rem;
+		padding-right: 10px;
+	}
+
+	.mobile__menu__nav {
+		display: none;
+	}
+
+	.mobile__menu__wrapper .header__top__right__social {
+		display: block;
+		margin-right: 0;
+		margin-bottom: 20px;
+	}
+
+
+	.mobile__menu__wrapper .slicknav_btn {
+		display: none;
+	}
+
+	.mobile__menu__wrapper .slicknav_nav .slicknav_item a {
+		border-bottom: none !important;
+	}
+
+	.mobile__menu__wrapper .slicknav_nav {
+		display: block !important;
+	}
+
+	.mobile__menu__wrapper .slicknav_menu {
+		background: transparent;
+		padding: 0;
+		margin-bottom: 30px;
+	}
+
+	.mobile__menu__wrapper .slicknav_nav ul {
+		margin: 0;
+	}
+
+	.mobile__menu__wrapper .slicknav_nav ul li {
+		margin: 15px 0;
+
+	}
+
+	.mobile__menu__wrapper .slicknav_nav a {
+		color: #1c1c1c;
+		font-size: 1.4rem;
+		font-weight: 300;
+		margin: 100px 0;
+		/* border-bottom: 1px solid #e1e1e1; */
+		text-decoration: none;
+
+	}
+
+	.mobile__menu__wrapper .slicknav_nav a:hover {
+		-webkit-border-radius: 0;
+		border-radius: 0;
+		background: transparent;
+		color: var(--primary-color);
+	}
+
+	.mobile__menu__wrapper .slicknav_nav .slicknav_row,
+	.mobile__menu__wrapper .slicknav_nav a {
+		padding: 8px 5px;
+	}
+
+	.mobile__menu__overlay {
+		position: fixed;
+		left: 0;
+		top: 0;
+		height: 100%;
+		width: 100%;
+		background: rgba(0, 0, 0, 0.5);
+		content: "";
+		z-index: 98;
+		visibility: hidden;
+		-webkit-transition: all, 0.6s;
+		-moz-transition: all, 0.6s;
+		-ms-transition: all, 0.6s;
+		-o-transition: all, 0.6s;
+		transition: all, 0.6s;
+	}
+
+	.mobile__menu__overlay.active {
+		visibility: visible;
+	}
+}
+
+/* Small Device = 320px */
+
+@media only screen and (max-width: 479px) {
+
+
+	/* HEADER */
+	.header-mid-side {
+		display: none;
+	}
+
+	/* HẾT HEADER */
+}

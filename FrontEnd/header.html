@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Header</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="./assets/css/base.css">
+    <link rel="stylesheet" href="./assets/css/main.css">
+    <link rel="stylesheet" href="./assets/css/reposive.css">
+</head>
+
+<body>
+
+    <!-- Mobie Responsive Begin -->
+    <!-- Overlay for mobile -->
+    <div class="mobile__menu__overlay"></div>
+
+    <!-- Wrapper for mobile -->
+    <div class="mobile__menu__wrapper">
+        <div class="mobile__menu__logo">
+            <a href="#">LOGO</a>
+        </div>
+        <div class="mobile__menu__widget">
+            <div class="header__top__right__auth">
+                <a href="#"><i class="fa fa-user"></i> Đăng nhập</a>
+            </div>
+        </div>
+        <div class="mobile__menu__cart">
+            <ul>
+                <li><a href=""><i class="header-notify-icon fa-solid fa-bell"></i></a></li>
+                <li><a href=""><i class="header-cart-icon fa-solid fa-cart-shopping"></i></a></li>
+            </ul>
+        </div>
+
+        <nav class="mobile__menu__nav mobile-menu">
+            <ul>
+                <li class="active"><a href="">Trang chủ</a></li>
+                <li class=""><a href="#">Sản phẩm</a>
+                    <ul class="header__menu__dropdown">
+                        <li><a href="#">MainBoard</a></li>
+                        <li><a href="#">Bộ nhớ</a></li>
+                        <li><a href="#">Ram</a></li>
+                        <li><a href="#">CPU</a></li>
+                        <li><a href="#">VGA Card</a></li>
+                        <li><a href="#">Keo tản nhiệt</a></li>
+                    </ul>
+                </li>
+                <li class=""><a href="">Liên hệ</a></li>
+                <li class=""><a href="">Về chúng tôi</a></li>
+            </ul>
+        </nav>
+        <div id="mobile-menu-wrap"></div>
+        <div class="header__top__right__social">
+            <li><a href=""><i class="fa-brands fa-facebook-f"></i></a></li>
+            <li><a href=""><i class="fa-brands fa-twitter"></i></a></li>
+            <li style="margin:0;"><a href=""><i class="fa-brands fa-discord"></i></a></li>
+        </div>
+        <div class="mobile__menu__contact">
+            <ul>
+                <li><i class="fa fa-envelope"></i> 4-2.group@gmail.com</li>
+                <li><i class="fa-solid fa-phone"></i>0123456789</li>
+            </ul>
+        </div>
+    </div>
+    <!-- Mobie Responsive End -->
+
+    <!-- Header -->
+    <!-- Top header -->
+    <header class="header">
+        <div class="header__top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6">
+                        <div class="header__top__left">
+                            <ul>
+                                <li><i class="fa fa-envelope"></i> 4-2.group@gmail.com</li>
+                                <li><i class="fa-solid fa-phone"></i>0123456789</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                        <div class="header__top__right">
+                            <div class="header__top-icon header__top__right__social">
+                                <li><a href=""><i class="fa-brands fa-facebook-f"></i></a></li>
+                                <li><a href=""><i class="fa-brands fa-twitter"></i></a></li>
+                                <li style="margin:0;"><a href=""><i class="fa-brands fa-discord"></i></a></i></li>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End top header -->
+
+        <div class="header__mid">
+            <div class="container">
+                <div class="row">
+                    <!-- Header logo -->
+                    <div class="col-lg-3 col-md-3">
+                        <div class="header__logo">
+                            <h3>LOGO</h3>
+                        </div>
+                    </div>
+
+                    <!-- SEARCH BAR -->
+                    <div class="col-lg-6 col-md-6">
+                        <div class="header__search">
+                            <form role="search" id="form">
+                                <input type="search" id="query" name="search" placeholder="Tìm kiếm sản phẩm">
+                                <!-- aria-label="Search through site content"> -->
+
+                                <button>
+                                    <svg viewBox="0 0 1024 1024">
+                                        <path class="path1"
+                                            d="M848.471 928l-263.059-263.059c-48.941 36.706-110.118 55.059-177.412 55.059-171.294 0-312-140.706-312-312s140.706-312 312-312c171.294 0 312 140.706 312 312 0 67.294-24.471 128.471-55.059 177.412l263.059 263.059-79.529 79.529zM189.623 408.078c0 121.364 97.091 218.455 218.455 218.455s218.455-97.091 218.455-218.455c0-121.364-103.159-218.455-218.455-218.455-121.364 0-218.455 97.091-218.455 218.455z">
+                                        </path>
+                                    </svg>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- header-mid-side -->
+                    <div class="col-lg-3  col-md-3">
+                        <div class="header-mid-side">
+                            <ul>
+                                <li><a href=""><i class="header-notify-icon fa-solid fa-bell"></i></a></li>
+                                <li><a href=""><i class="header-cart-icon fa-solid fa-cart-shopping"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Icon nav mobie -->
+            <div class="mobile__open">
+                <i class="fa fa-bars"></i>
+            </div>
+        </div>
+        <!-- end mid-header -->
+
+        <!-- divider -->
+        <hr>
+
+        <!-- hero section -->
+        <!-- WARING: add class hero-normal if u dont code for homepage -->
+        <section class="hero hero-normal">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3">
+                        <!-- category  -->
+                        <div class="hero__categories">
+                            <div class="hero__categories__all">
+                                <i class="fa fa-bars"></i>
+                                <span>Danh mục</span>
+                            </div>
+                            <ul>
+                                <li><a href="#">MainBoard</a></li>
+                                <li><a href="#">Bộ nhớ</a></li>
+                                <li><a href="#">Ram</a></li>
+                                <li><a href="#">CPU</a></li>
+                                <li><a href="#">VGA Card</a></li>
+                                <li><a href="#">Keo tản nhiệt</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- header_menu -->
+                    <div class="col-lg-9">
+                        <nav class="header__menu">
+                            <ul class="header__menu--ul">
+                                <li class="active"><a href="">Trang chủ</a></li>
+                                <li class=""><a href="#">Sản phẩm</a>
+                                    <ul class="header__menu__dropdown">
+                                        <li><a href="#">MainBoard</a></li>
+                                        <li><a href="#">Bộ nhớ</a></li>
+                                        <li><a href="#">Ram</a></li>
+                                        <li><a href="#">CPU</a></li>
+                                        <li><a href="#">VGA Card</a></li>
+                                        <li><a href="#">Keo tản nhiệt</a></li>
+                                    </ul>
+                                </li>
+                                <li class=""><a href="">Liên hệ</a></li>
+                                <li class=""><a href="">Về chúng tôi</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Hero Section End -->
+    </header>
+    <!-- Header Section End -->
+
+
+    <!-- Javascript -->
+    <script src="./assets/js/jquery-3.3.1.min.js"></script>
+    <script src="./assets/js/bootstrap.min.js"></script>
+    <script src="./assets/js/jquery.nice-select.min.js"></script>
+    <script src="./assets/js/jquery-ui.min.js"></script>
+    <script src="./assets/js/jquery.slicknav.js"></script>
+    <script src="./assets/js/mixitup.min.js"></script>
+    <script src="./assets/js/owl.carousel.min.js"></script>
+    <script src="./assets/js/main.js"></script>
+</body>
+
+</html>
