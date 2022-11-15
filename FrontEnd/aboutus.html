@@ -7,19 +7,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About us</title>
 
+    <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
     <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
 
+    <!-- Google font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
 
+    <!-- csss -->
     <link rel="stylesheet" href="./assets/css/base.css">
     <link rel="stylesheet" href="./assets/css/main.css">
     <link rel="stylesheet" href="./assets/css/reposive.css">
@@ -28,7 +30,6 @@
 <body>
 
     <!-- Mobie Responsive Begin -->
-    <!-- Overlay for mobile -->
     <div class="mobile__menu__overlay"></div>
 
     <!-- Wrapper for mobile -->
@@ -38,7 +39,7 @@
         </div>
         <div class="mobile__menu__widget">
             <div class="header__top__right__auth">
-                <a href="#"><i class="fa fa-user"></i> Đăng nhập</a>
+                <a href="#"><i class="user-icon fa fa-user"></i> Đăng nhập</a>
             </div>
         </div>
         <div class="mobile__menu__cart">
@@ -51,16 +52,7 @@
         <nav class="mobile__menu__nav mobile-menu">
             <ul>
                 <li class="active"><a href="">Trang chủ</a></li>
-                <li class=""><a href="#">Sản phẩm</a>
-                    <ul class="header__menu__dropdown">
-                        <li><a href="#">MainBoard</a></li>
-                        <li><a href="#">Bộ nhớ</a></li>
-                        <li><a href="#">Ram</a></li>
-                        <li><a href="#">CPU</a></li>
-                        <li><a href="#">VGA Card</a></li>
-                        <li><a href="#">Keo tản nhiệt</a></li>
-                    </ul>
-                </li>
+                <li class="'"><a href="">Chính sách & điều khoản</a></li>
                 <li class=""><a href="">Liên hệ</a></li>
                 <li class=""><a href="">Về chúng tôi</a></li>
             </ul>
@@ -109,6 +101,7 @@
         </div>
         <!-- End top header -->
 
+        <!-- Mid_header -->
         <div class="header__mid">
             <div class="container">
                 <div class="row">
@@ -122,7 +115,7 @@
                     <!-- SEARCH BAR -->
                     <div class="col-lg-6 col-md-6">
                         <form role="search" id="form">
-                            <input type="search" id="query" name="q" placeholder="Tìm kiếm..."
+                            <input type="search" id="query" name="serach" placeholder="Tìm kiếm..."
                                 aria-label="Search through site content">
                             <button>
                                 <svg viewBox="0 0 1024 1024">
@@ -138,8 +131,8 @@
                     <div class="col-lg-3  col-md-3">
                         <div class="header-mid-side">
                             <ul>
-                                <li><a href=""><i class="header-notify-icon fa-solid fa-bell"></i></a></li>
-                                <li><a href=""><i class="header-cart-icon fa-solid fa-cart-shopping"></i></a></li>
+                                <li><a href=""><i class="fa-solid fa-bell"></i></a></li>
+                                <li><a href=""><i class="fa-solid fa-cart-shopping"></i></a></li>
                             </ul>
                         </div>
                     </div>
@@ -157,9 +150,10 @@
         <!-- divider -->
         <hr>
 
+
         <!-- hero section -->
         <!-- WARING: add class hero-normal if u dont code for homepage -->
-        <section class="hero hero-normal">
+        <section class="hero">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-3">
@@ -171,37 +165,30 @@
                             </div>
                             <ul>
                                 <li><a href="#">MainBoard</a></li>
-                                <li><a href="#">Bộ nhớ</a></li>
-                                <li><a href="#">Ram</a></li>
+                                <li><a href="#">Bộ nhớ HHD</a></li>
+                                <li><a href="#">Bộ nhớ SSD</a></li>
                                 <li><a href="#">CPU</a></li>
+                                <li><a href="#">Fan CPU</a></li>
+                                <li><a href="#">Case</a></li>
+                                <li><a href="#">Power</a></li>
+                                <li><a href="#">Sound Card</a></li>
                                 <li><a href="#">VGA Card</a></li>
+                                <li><a href="#">DVD</a></li>
                                 <li><a href="#">Keo tản nhiệt</a></li>
                             </ul>
                         </div>
                     </div>
-
                     <!-- header_menu -->
                     <div class="col-lg-9">
                         <nav class="header__menu">
-                            <ul class="header__menu--ul">
+                            <ul class="header__menu--li">
                                 <li class="active"><a href="">Trang chủ</a></li>
-                                <li class=""><a href="#">Sản phẩm</a>
-                                    <ul class="header__menu__dropdown">
-                                        <li class="inactive"><a href="#">MainBoard</a></li>
-                                        <li class="inactive"><a href="#">Bộ nhớ</a></li>
-                                        <li class="inactive"><a href="#">Ram</a></li>
-                                        <li class="inactive"><a href="#">CPU</a></li>
-                                        <li class="inactive"><a href="#">VGA Card</a></li>
-                                        <li class="inactive"><a href="#">Keo tản nhiệt</a></li>
-                                    </ul>
-                                </li>
+                                <li class="'"><a href="">Chính sách</a></li>
                                 <li class=""><a href="">Liên hệ</a></li>
                                 <li class=""><a href="">Về chúng tôi</a></li>
                             </ul>
                         </nav>
-
                     </div>
-
 
                 </div>
             </div>
@@ -210,8 +197,8 @@
     </header>
     <!-- Header Section End -->
 
-     <!-- Breadcrumb Section Begin -->
-     <section class="breadcrumb-section set-bg">
+    <!-- Breadcrumb Section Begin -->
+    <section class="breadcrumb-section set-bg">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -233,7 +220,7 @@
             <div class="row">
                 <div class="col-lg-6">
                     <div class="about-pic">
-                        <img src="./assets/img/homepage/banner.jpg" alt="">
+                        <img src="./assets/img/about-us/banner.jpg" alt="">
                         <a href="https://www.youtube.com/watch?v=SlPhMPnQ58k" class="play-btn video-popup">
                             <img src="img/play.png" alt="">
                         </a>
@@ -279,7 +266,7 @@
                     </div>
                 </div>
                 <div class="col-lg-4">
-                    <img src="./assets/img/Product detail/vga1.webp" alt="">
+                    <img src="./assets/img/about-us/vga1.webp" alt="">
                 </div>
             </div>
         </div>
@@ -287,7 +274,7 @@
     <!-- Chính sách ưu đãi Section End -->
 
     <!-- Banner Section Begin -->
-    <section class="banner-section set-bg" data-setbg="./assets/img/banner_aboutus2.webp">
+    <section class="banner-section set-bg" data-setbg="./assets/img/about-us/banner_aboutus2.webp">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6">
@@ -308,91 +295,6 @@
     </section>
     <!-- Banner Section End -->
 
-
-    <!-- Member Section Begin -->
-    <!-- <section class="member-section about-member spad">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="section-title">
-                        <h2>THÀNH VIÊN NHÓM 4.2</h2>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-3 col-md-6">
-                    <div class="single-member-item">
-                        <img src="./assets/img/member.jpg" alt="">
-                        <div class="member-text">
-                            <h5>Nguyễn Hoàng Trung</h5>
-                            <span>Leader</span>
-                            <p>non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat
-                                voluptatem.</p>
-                            <div class="member-social">
-                                <a href="#"><i class="fa fa-facebook"></i></a>
-                                <a href="#"><i class="fa fa-instagram"></i></a>
-                                <a href="#"><i class="fa fa-twitter"></i></a>
-                                <a href="#"><i class="fa fa-pinterest"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="single-member-item">
-                        <img src="./assets/img/member.jpg" alt="">
-                        <div class="member-text">
-                            <h5>Trần Nhật Sinh</h5>
-                            <span>Member</span>
-                            <p>non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat
-                                voluptatem.</p>
-                            <div class="member-social">
-                                <a href="#"><i class="fa fa-facebook"></i></a>
-                                <a href="#"><i class="fa fa-instagram"></i></a>
-                                <a href="#"><i class="fa fa-twitter"></i></a>
-                                <a href="#"><i class="fa fa-pinterest"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="single-member-item">
-                        <img src="./assets/img/member.jpg" alt="">
-                        <div class="member-text">
-                            <h5>Nguyễn Phúc Sơn</h5>
-                            <span>Member</span>
-                            <p>non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat
-                                voluptatem.</p>
-                            <div class="member-social">
-                                <a href="#"><i class="fa fa-facebook"></i></a>
-                                <a href="#"><i class="fa fa-instagram"></i></a>
-                                <a href="#"><i class="fa fa-twitter"></i></a>
-                                <a href="#"><i class="fa fa-pinterest"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="single-member-item">
-                        <img src="./assets/img/member.jpg" alt="">
-                        <div class="member-text">
-                            <h5>Trần Ngọc Quyền</h5>
-                            <span>Member</span>
-                            <p>non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat
-                                voluptatem.</p>
-                            <div class="member-social">
-                                <a href="#"><i class="fa fa-facebook"></i></a>
-                                <a href="#"><i class="fa fa-instagram"></i></a>
-                                <a href="#"><i class="fa fa-twitter"></i></a>
-                                <a href="#"><i class="fa fa-pinterest"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section> -->
-    <!-- Member Section End -->
-
     <!-- Javascript -->
     <script src="./assets/js/jquery-3.3.1.min.js"></script>
     <script src="./assets/js/bootstrap.min.js"></script>
@@ -402,7 +304,6 @@
     <script src="./assets/js/mixitup.min.js"></script>
     <script src="./assets/js/owl.carousel.min.js"></script>
     <script src="./assets/js/main.js"></script>
-
 </body>
 
 </html>
