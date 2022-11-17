@@ -891,6 +891,8 @@ img {
   display:inline-flex;
   white-space:nowrap;
   vertical-align:top;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 .is-form {
   overflow:hidden;
@@ -1029,7 +1031,10 @@ img {
 .tooltip-inner {
 	padding: 1.3em;
 }
-
+.product-sold{
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
 /* comment section */
 
 
