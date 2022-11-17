@@ -112,7 +112,9 @@ hr{
 	background-color: #33A0FF;
 	background-size: cover;
 	background-position: top center;
-	padding: 50px;
+	padding: 80px;
+	font-size: 18px;
+	color: #fff;
 }
 
 .spad {
