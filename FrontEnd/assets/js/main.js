@@ -21,7 +21,7 @@
         $(this).css('background-image', 'url(' + bg + ')');
     });
 
-    //Humberger Menu
+    //Mobie Menu
     $(".mobile__open").on('click', function () {
         $(".mobile__menu__wrapper").addClass("show__mobile__menu__wrapper");
         $(".mobile__menu__overlay").addClass("active");
@@ -43,156 +43,215 @@
         allowParentLinks: true
     });
 
+    // =====Menu hero===
+    /*------------------
+    Menu Hover
+    --------------------*/
+    $(".header__menu ul li").on('mousehover', function () {
+        $(this).addClass('active');
+    });
+
+    $(".header__menu ul li").on('mouseleave', function () {
+        $('.header__menu ul li').removeClass('active');
+    });
+
+
+    /*------------------
+    Hero banner silder
+    --------------------*/
+    $(".hero-silder").owlCarousel({
+        items: 1,
+        dots: true,
+        autoplay: true,
+        loop: true,
+        smartSpeed: 1200
+    });
+
+    //==Suggestion-product silder
+    $(".suggesstion-product-silder").owlCarousel({
+        loop: true,
+        margin: 0,
+        items: 2,
+        dots: true,
+        smartSpeed: 1200,
+        autoHeight: false,
+        autoplay: true,
+        responsive: {
+            320: {
+                items: 1,
+            },
+
+            480: {
+                items: 2,
+            },
+
+            768: {
+                items: 3,
+            },
+
+            992: {
+                items: 4,
+            }
+        }
+    });
+
+    /*--------------------------
+    Banner Slider
+----------------------------*/
+    $(".banner__slider").owlCarousel({
+        loop: true,
+        margin: 0,
+        items: 1,
+        dots: true,
+        smartSpeed: 1000,
+        autoHeight: false,
+        autoplay: true
+    });
+
+    /*------------------
+            Product filter
+        --------------------*/
+    $('.nav.nav-tabs li a').on('click', function () {
+        $('.nav.nav-tabs li a').removeClass('active-color');
+        $(this).addClass('active-color');
+    });
+
+    if ($('.property__gallery').length > 0) {
+        var containerEl = document.querySelector('.property__gallery');
+        var mixer = mixitup(containerEl);
+    }
+
+    /*------------------
+        Product choose
+    --------------------*/
+    $('.filter__controls li').on('click', function () {
+        $('.filter__controls li').removeClass('active');
+        $(this).addClass('active');
+    });
+
+
+    $(".property__gallery").owlCarousel({
+        loop: true,
+        margin: 0,
+        items: 3,
+        dots: false,
+        nav: true,
+        navText: ["<span class='fa fa-angle-left'><span/>", "<span class='fa fa-angle-right'><span/>"],
+        animateOut: 'fadeOut',
+        animateIn: 'fadeIn',
+        smartSpeed: 1200,
+        autoHeight: false,
+        autoplay: false,
+        responsive: {
+            320: {
+                items: 1,
+            },
+
+            480: {
+                items: 2,
+            },
+
+            768: {
+                items: 3,
+            },
+
+            992: {
+                items: 4,
+            }
+        }
+    });
+
+
+
+
+    $(".product-choosed-silder").owlCarousel({
+        loop: true,
+        margin: 0,
+        items: 4,
+        dots: false,
+        nav: true,
+        navText: ["<span class='fa fa-angle-left'><span/>", "<span class='fa fa-angle-right'><span/>"],
+        animateOut: 'fadeOut',
+        animateIn: 'fadeIn',
+        smartSpeed: 1200,
+        autoHeight: false,
+        autoplay: true,
+        responsive: {
+            320: {
+                items: 1,
+            },
+
+            480: {
+                items: 2,
+            },
+
+            768: {
+                items: 3,
+            },
+
+            992: {
+                items: 4,
+            }
+        }
+    });
+
+    // $(".account-details.order-details").owlCarousel({
+    //     loop: true,
+    //     margin: 0,
+    //     items: 4,
+    //     dots: true,
+    //     nav: false,
+    //     animateOut: 'fadeOut',
+    //     animateIn: 'fadeIn',
+    //     smartSpeed: 1200,
+    //     autoHeight: false,
+    //     autoplay: false,
+    //     responsive: {
+    //         320: {
+    //             items: 1,
+    //         },
+
+    //         480: {
+    //             items: 2,
+    //         },
+
+    //         768: {
+    //             items: 3,
+    //         },
+
+    //         992: {
+    //             items: 4,
+    //         }
+    //     }
+    // });
+
+
+
+    $(".latest-product__slider").owlCarousel({
+        loop: true,
+        margin: 0,
+        items: 1,
+        dots: false,
+        nav: true,
+        navText: ["<span class='fa fa-angle-left'><span/>", "<span class='fa fa-angle-right'><span/>"],
+        smartSpeed: 1200,
+        autoHeight: false,
+        autoplay: true
+    });
+
+
+
 
 })(jQuery)
 
-// nút tăng giảm số lượng
-$('input.input-qty').each(function() {
-    var $this = $(this),
-      qty = $this.parent().find('.is-form'),
-      min = Number($this.attr('min')),
-      max = Number($this.attr('max'))
-    if (min == 0) {
-      var d = 0
-    } else d = min
-    $(qty).on('click', function() {
-      if ($(this).hasClass('minus')) {
-        if (d > min) d += -1
-      } else if ($(this).hasClass('plus')) {
-        var x = Number($this.val()) + 1
-        if (x <= max) d += 1
-      }
-      $this.attr('value', d).val(d)
-    })
-  })
 
+const root = document.documentElement;
+const marqueeElementsDisplayed = getComputedStyle(root).getPropertyValue("--marquee-elements-displayed");
+const marqueeContent = document.querySelector("ul.marquee-content");
 
-      /*------------------
-       Product List
-    --------------------*/
-    // For Filters
-    document.addEventListener("DOMContentLoaded", function () {
-        var filterBtn = document.getElementById('filter-btn');
-        var btnTxt = document.getElementById('btn-txt');
-        var filterAngle = document.getElementById('filter-angle');
+root.style.setProperty("--marquee-elements", marqueeContent.children.length);
 
-        $('#filterbar').collapse(false);
-        var count = 0, count2 = 0;
-        function changeBtnTxt() {
-            $('#filterbar').collapse(true);
-            count++;
-            if (count % 2 != 0) {
-                filterAngle.classList.add("fa-angle-right");
-                btnTxt.innerText = "show filters"
-                filterBtn.style.backgroundColor = "#36a31b";
-            }
-            else {
-                filterAngle.classList.remove("fa-angle-right")
-                btnTxt.innerText = "hide filters"
-                filterBtn.style.backgroundColor = "#ff935d";
-            }
+for (let i = 0; i < marqueeElementsDisplayed; i++) {
+    marqueeContent.appendChild(marqueeContent.children[i].cloneNode(true));
+}
 
-        }
-
-        // For Applying Filters
-        $('#inner-box').collapse(false);
-        $('#inner-box2').collapse(false);
-
-        // For changing NavBar-Toggler-Icon
-        var icon = document.getElementById('icon');
-
-        function chnageIcon() {
-            count2++;
-            if (count2 % 2 != 0) {
-                icon.innerText = "";
-                icon.innerHTML = '<span class="far fa-times-circle" style="width:100%"></span>';
-                icon.style.paddingTop = "5px";
-                icon.style.paddingBottom = "5px";
-                icon.style.fontSize = "1.8rem";
-
-
-            }
-            else {
-                icon.innerText = "";
-                icon.innerHTML = '<span class="navbar-toggler-icon"></span>';
-                icon.style.paddingTop = "5px";
-                icon.style.paddingBottom = "5px";
-                icon.style.fontSize = "1.2rem";
-            }
-        }
-
-        // Showing tooltip for AVAILABLE COLORS
-        $(function () {
-            $('[data-tooltip="tooltip"]').tooltip()
-        })
-
-        // For Range Sliders
-        var inputLeft = document.getElementById("input-left");
-        var inputRight = document.getElementById("input-right");
-
-        var thumbLeft = document.querySelector(".slider > .thumb.left");
-        var thumbRight = document.querySelector(".slider > .thumb.right");
-        var range = document.querySelector(".slider > .range");
-
-        var amountLeft = document.getElementById('amount-left')
-        var amountRight = document.getElementById('amount-right')
-
-        function setLeftValue() {
-            var _this = inputLeft,
-                min = parseInt(_this.min),
-                max = parseInt(_this.max);
-
-            _this.value = Math.min(parseInt(_this.value), parseInt(inputRight.value) - 1);
-
-            var percent = ((_this.value - min) / (max - min)) * 100;
-
-            thumbLeft.style.left = percent + "%";
-            range.style.left = percent + "%";
-            amountLeft.innerText = parseInt(percent * 100);
-        }
-        setLeftValue();
-
-        function setRightValue() {
-            var _this = inputRight,
-                min = parseInt(_this.min),
-                max = parseInt(_this.max);
-
-            _this.value = Math.max(parseInt(_this.value), parseInt(inputLeft.value) + 1);
-
-            var percent = ((_this.value - min) / (max - min)) * 100;
-
-            amountRight.innerText = parseInt(percent * 100);
-            thumbRight.style.right = (100 - percent) + "%";
-            range.style.right = (100 - percent) + "%";
-        }
-        setRightValue();
-
-        inputLeft.addEventListener("input", setLeftValue);
-        inputRight.addEventListener("input", setRightValue);
-
-        inputLeft.addEventListener("mouseover", function () {
-            thumbLeft.classList.add("hover");
-        });
-        inputLeft.addEventListener("mouseout", function () {
-            thumbLeft.classList.remove("hover");
-        });
-        inputLeft.addEventListener("mousedown", function () {
-            thumbLeft.classList.add("active");
-        });
-        inputLeft.addEventListener("mouseup", function () {
-            thumbLeft.classList.remove("active");
-        });
-
-        inputRight.addEventListener("mouseover", function () {
-            thumbRight.classList.add("hover");
-        });
-        inputRight.addEventListener("mouseout", function () {
-            thumbRight.classList.remove("hover");
-        });
-        inputRight.addEventListener("mousedown", function () {
-            thumbRight.classList.add("active");
-        });
-        inputRight.addEventListener("mouseup", function () {
-            thumbRight.classList.remove("active");
-        });
-    });
