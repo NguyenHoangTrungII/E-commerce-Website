@@ -240,6 +240,14 @@
     });
 
 
+    // nút bên product detail
+
+    $('.filter-toggle a').on('click', function () {
+        $('.nav.nav-tabs li a').removeClass('active-color');
+        $(this).addClass('active-color');
+    });
+
+
 
 
 })(jQuery)
