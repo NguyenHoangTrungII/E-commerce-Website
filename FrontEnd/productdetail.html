@@ -20,7 +20,11 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
-
+    <!-- oswal -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap"
+        rel="stylesheet">
     <!-- csss -->
     <link rel="stylesheet" href="./assets/css/base.css">
     <link rel="stylesheet" href="./assets/css/main.css">
@@ -37,6 +41,7 @@
         <div class="mobile__menu__logo">
             <a href="#">LOGO</a>
         </div>
+        <hr>
         <div class="mobile__menu__widget">
             <div class="header__top__right__auth">
                 <a href="#"><i class="user-icon fa fa-user"></i> Đăng nhập</a>
@@ -48,6 +53,8 @@
                 <li><a href=""><i class="header-cart-icon fa-solid fa-cart-shopping"></i></a></li>
             </ul>
         </div>
+
+        <hr>
 
         <nav class="mobile__menu__nav mobile-menu">
             <ul>
@@ -63,6 +70,7 @@
             <li><a href=""><i class="fa-brands fa-twitter"></i></a></li>
             <li style="margin:0;"><a href=""><i class="fa-brands fa-discord"></i></a></li>
         </div>
+        <hr>
         <div class="mobile__menu__contact">
             <ul>
                 <li><i class="fa fa-envelope"></i> 4-2.group@gmail.com</li>
@@ -108,16 +116,16 @@
                     <!-- Header logo -->
                     <div class="col-lg-3 col-md-3">
                         <div class="header__logo">
-                            <img src="./assets/img/logo.jpg" alt="logo" style="width: 62px">
+                            <h3>LOGO</h3>
                         </div>
                     </div>
 
                     <!-- SEARCH BAR -->
                     <div class="col-lg-6 col-md-6">
                         <form role="search" id="form">
-                            <input type="search" id="query" name="serach" placeholder="Tìm kiếm..."
+                            <input type="search" id="query" name="serach" placeholder="Tìm kiếm"
                                 aria-label="Search through site content">
-                            <button>
+                            <button class="search-btn">
                                 <svg viewBox="0 0 1024 1024">
                                     <path class="path1"
                                         d="M848.471 928l-263.059-263.059c-48.941 36.706-110.118 55.059-177.412 55.059-171.294 0-312-140.706-312-312s140.706-312 312-312c171.294 0 312 140.706 312 312 0 67.294-24.471 128.471-55.059 177.412l263.059 263.059-79.529 79.529zM189.623 408.078c0 121.364 97.091 218.455 218.455 218.455s218.455-97.091 218.455-218.455c0-121.364-103.159-218.455-218.455-218.455-121.364 0-218.455 97.091-218.455 218.455z">
@@ -130,96 +138,192 @@
                     <!-- header-mid-side -->
                     <div class="col-lg-3  col-md-3">
                         <div class="header-mid-side">
-                            <ul>
-                                <li><a href=""><i class="fa-solid fa-bell"></i></a></li>
-                                <li><a href=""><i class="fa-solid fa-cart-shopping"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
 
-                </div>
-            </div>
+                            <div class="user-header">
+                                <a><i class=" user-icon-header fa-regular fa-user"></i></a>
 
-            <!-- Icon nav mobie -->
-            <div class="mobile__open">
-                <i class="fa fa-bars"></i>
-            </div>
-        </div>
-        <!-- end mid-header -->
+                                <div class="user-item">
+                                    <div class="dropdown-user-header">
+                                        <!-- <span>Xin chào</span> -->
+                                    </div>
+                                    <ul class="user-list">
+                                        <li>
+                                            <a href=""><i class="fa-solid fa-gear"></i>
+                                                <span>Tài khoản của tôi</span></a>
+                                        </li>
+                                        <li>
+                                            <a href="">
+                                                <i class="fa-solid fa-bag-shopping"></i>
+                                                <span>Đơn mua của tôi</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="">
+                                                <i class="fa-solid fa-lock"></i>
+                                                <span>Đổi mật khẩu</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href=""><i class="fa-solid fa-circle-info"></i>
+                                                <span>Thông tin cá nhân</span></a>
+                                        </li>
 
-        <!-- divider -->
-        <hr>
+                                    </ul>
+                                    <div class="bottom">
+                                        <!-- <div class="total">
+                                            <span>Đăng xuất</span>
+                                            <span>Đăng ký</span>
 
+                                        </div> -->
+                                        <a href="" class="btn animate">Đăng xuất</a>
+                                        <a href="" class="btn animate">Đăng nhập</a>
 
-        <!-- hero section -->
-        <!-- WARING: add class hero-normal if u dont code for homepage -->
-        <section class="hero hero-normal">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-3">
-                        <!-- category  -->
-                        <div class="hero__categories">
-                            <div class="hero__categories__all">
-                                <i class="fa fa-bars"></i>
-                                <span>Danh mục</span>
+                                    </div>
+                                </div>
                             </div>
-                            <ul>
-                                <li><a href="#">MainBoard</a></li>
-                                <li><a href="#">Bộ nhớ HHD</a></li>
-                                <li><a href="#">Bộ nhớ SSD</a></li>
-                                <li><a href="#">CPU</a></li>
-                                <li><a href="#">Fan CPU</a></li>
-                                <li><a href="#">Case</a></li>
-                                <li><a href="#">Power</a></li>
-                                <li><a href="#">Sound Card</a></li>
-                                <li><a href="#">VGA Card</a></li>
-                                <li><a href="#">DVD</a></li>
-                                <li><a href="#">Keo tản nhiệt</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <!-- header_menu -->
-                    <div class="col-lg-9">
-                        <nav class="header__menu">
-                            <ul class="header__menu--li">
-                                <li class="active"><a href="">Trang chủ</a></li>
-                                <li class="'"><a href="">Chính sách</a></li>
-                                <li class=""><a href="">Liên hệ</a></li>
-                                <li class=""><a href="">Về chúng tôi</a></li>
-                            </ul>
-                        </nav>
-                    </div>
 
+                            <!-- Cart -->
+                            <div class="sinlge-bar shopping">
+                                <a href="#" class="single-icon"><i
+                                        class="header-mid-icon fa-solid fa-cart-shopping"></i> <span
+                                        class="total-count">2</span></a>
+
+                                <div class="shopping-item">
+                                    <div class="dropdown-cart-header">
+                                        <span>2 sản phẩm</span>
+                                        <a href="#">Xem giỏ hàng</a>
+                                    </div>
+                                    <ul class="shopping-list">
+                                        <li>
+                                            <div class="content-shopping-list-item">
+                                                <div class="remove-icon">
+                                                    <a href="#" class="remove" title="Xóa sản phẩm"><i
+                                                            class="fa fa-remove"></i></a>
+                                                </div>
+                                                <a class="cart-img" href="#"><img
+                                                        src="./assets/img/homepage/product01.png" alt="#"></a>
+                                                <div class="cart-product-deatil">
+                                                    <h4><a href="#">Tên sản phẩm</a></h4>
+                                                    <p class="quantity">1x - <span class="amount">100.000đ</span>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="content-shopping-list-item">
+                                                <div class="remove-icon">
+                                                    <a href="#" class="remove" title="Xóa sản phẩm"><i
+                                                            class="fa fa-remove"></i></a>
+                                                </div>
+                                                <a class="cart-img" href="#"><img
+                                                        src="./assets/img/homepage/product01.png" alt="#"></a>
+                                                <div class="cart-product-deatil">
+                                                    <h4><a href="#">Tên sản phẩm</a></h4>
+                                                    <p class="quantity">1x - <span class="amount">100.000đ</span>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                    <div class="bottom">
+                                        <div class="total">
+                                            <span>Tổng </span>
+                                            <span class="total-amount">235.000đ</span>
+                                        </div>
+                                        <a href="" class="btn animate">Thanh toán</a>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <!-- /Cart -->
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Icon nav mobie -->
+                <div class="mobile__open">
+                    <i class="fa fa-bars"></i>
                 </div>
             </div>
-        </section>
-        <!-- Hero Section End -->
+            <!-- end mid-header -->
+
+            <!-- divider -->
+            <hr>
+
+
+            <!-- hero section -->
+            <!-- WARING: add class hero-normal if u dont code for homepage -->
+            <section class="hero hero-normal">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <!-- category  -->
+                            <div class="hero__categories">
+                                <div class="hero__categories__all">
+                                    <div>
+                                        <i class="fa fa-bars"></i>
+                                        <span>Danh mục</span>
+                                    </div>
+                                </div>
+                                <ul>
+                                    <li><a href="#">MainBoard</a></li>
+                                    <li><a href="#">Bộ nhớ HHD</a></li>
+                                    <li><a href="#">Bộ nhớ SSD</a></li>
+                                    <li><a href="#">CPU</a></li>
+                                    <li><a href="#">Fan CPU</a></li>
+                                    <li><a href="#">Case</a></li>
+                                    <li><a href="#">Power</a></li>
+                                    <li><a href="#">Sound Card</a></li>
+                                    <li><a href="#">VGA Card</a></li>
+                                    <li><a href="#">DVD</a></li>
+                                    <li><a href="#">Keo tản nhiệt</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- header_menu -->
+                        <div class="col-lg-9">
+                            <nav class="header__menu">
+                                <ul class="header__menu--li">
+                                    <li class="active"><a href="">Trang chủ</a></li>
+                                    <li class="'"><a href="">Chính sách</a></li>
+                                    <li class=""><a href="">Liên hệ</a></li>
+                                    <li class=""><a href="">Về chúng tôi</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+                <!-- Breadcrumb Section Begin -->
+                <section class="breadcrumb-section set-bg" data-setbg="img/breadcrumb/classes-breadcrumb.jpg">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="breadcrumb-text">
+                                    <h2>Chi tiết sản phẩm</h2>
+                                    <div class="breadcrumb-option">
+                                        <a href="./index.html"><i class="fa fa-home"></i> Trang chủ</a>
+                                        <span>Chi tiết sản phẩm</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- Breadcrumb Section End -->
+            </section>
+            <!-- Hero Section End -->
     </header>
     <!-- Header Section End -->
 
-    <!-- Breadcrumb Section Begin -->
-    <section class="breadcrumb-section set-bg">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="breadcrumb-text">
-                        <div class="breadcrumb-option">
-                            <a href="./homepage.html"><i class="fa fa-home"></i> Home</a>
-                            <span>> Chi tiết sản phẩm</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Breadcrumb Section End -->
+
 
     <!-- Product Detail Section Begin -->
     <div class="container">
-        <div class="product card">
+        <div class="product-card">
             <!-- <div class="container-fliud"> -->
             <div class="wrapper row">
-                <div class="preview col-md-7">
+                <div class="preview col-xl-7 col-md-12">
                     <div class="preview-pic tab-content">
                         <div class="tab-pane active" id="pic-1"><img src="./assets/img/product/vga1.webp" alt="">
                         </div>
@@ -251,40 +355,42 @@
                         </li>
                     </ul>
                 </div>
-                <div class="details col-md-5">
+                <div class="details col-xl-5 col-md-12">
                     <h3 class="product-title">ASUS TUF Gaming GeForce RTX 3090 Ti 24G</h3>
-
-                    <div class="rating">
-                        <div class="stars"> <span class="fa fa-star checked"></span> <span
-                                class="fa fa-star checked"></span> <span class="fa fa-star checked"></span> <span
-                                class="fa fa-star"></span> <span class="fa fa-star"></span>
-                        </div> <span class="review-no">123 đánh giá</span>
+                    <div class="review-product">
+                        <div class="row rating">
+                            <div class="col-3 stars"> <span class="fa fa-star checked"></span> <span
+                                    class="fa fa-star checked"></span> <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star"></span> <span class="fa fa-star"></span>
+                            </div>
+                            <div class="col-3 review-no">95 đánh giá</div>
+                            <div class="col-6"><strong><a href="#">Đánh giá</a></strong></div>
+                        </div>
+                        <span class="line start-0 end-0 " style="background-color: #d4d4d4;"></span>
                     </div>
-                    <span class="line start-0 end-0 " style="background-color: #d4d4d4;"></span>
 
-                   
                     <div class="content-detail-product">
                         <div class="col-md-6 col-8">
                             <div>
-                                <div class=" bd-hghliight text-info h4">
+                                <div class=" bd-hghliight text-info h5">
                                     <strong>40,990,000 VND</strong>
                                 </div>
                                 <span>
-                                    <div class=" bd-highlight h5"><strong>Tình trạng</strong></div>
+                                    <div class=" bd-highlight h6"><strong>Tình trạng</strong></div>
                                 </span>
                                 <span>
-                                    <div class=" bd-highlight h5"><strong>Loại sản phẩm</strong></div>
+                                    <div class=" bd-highlight h6"><strong>Loại sản phẩm</strong></div>
                                 </span>
                             </div>
                         </div>
                         <div class="col-md-6 col-4">
                             <div>
-                                <div class=" bd-highlight text-secondary h4 "><del>45,990,000 VND</del></div>
+                                <div class=" bd-highlight text-secondary h5 "><del>45,990,000 VND</del></div>
                                 <span>
-                                    <div class=" bd-highlight text-secondary h5 ">Còn hàng</div>
+                                    <div class=" bd-highlight text-secondary h6 ">Còn hàng</div>
                                 </span>
                                 <span>
-                                    <div class=" bd-highlight text-secondary h5 ">CPU</div>
+                                    <div class=" bd-highlight text-secondary h6 ">CPU</div>
                                 </span>
                             </div>
                         </div>
@@ -295,6 +401,7 @@
                     <span class="line start-0 end-0 " style="background-color: #d4d4d4;"></span>
 
                     <div class="buttons_added">
+                        <div style="margin:12px 5px"> Số lượng: </div>
                         <input class="minus is-form" type="button" value="-">
                         <input aria-label="quantity" class="input-qty" max="100" min="1" name="" type="number"
                             value="1">
@@ -303,6 +410,11 @@
                     <span class="line start-0 end-0 " style="background-color: #d4d4d4;"></span>
                     <p class="product-sold">Số sản phẩm bán được: 146</p>
                     <span class="line start-0 end-0 " style="background-color: #d4d4d4;"></span>
+                    <p class="pt-4">✔ Bảo hành chính hãng 12 tháng. </p>
+                    <p>✔ Hỗ trợ đổi mới trong 7 ngày. </p>
+                    <p>✔ Miễn phí giao hàng toàn quốc.</p>
+
+
                     <div class="action">
                         <a href="#" target="_blank"> <button class="add-to-cart" type="button">Thêm vào giỏ hàng
                                 <span class="fa fa-shopping-cart"></span></button> </a>
@@ -316,7 +428,7 @@
     </div>
     <div id="main">
         <div class="container">
-            <h1 class="title-page">ASUS TUF GAMING GEFORCE RTX 3090 TI 24G</h1>
+            <h2 class="title-page pb-3">ASUS TUF GAMING GEFORCE RTX 3090 TI 24G</h2>
             <div class="group-tabs">
                 <!-- Nav tabs -->
                 <ul class="nav nav-tabs" role="tablist">
@@ -329,8 +441,8 @@
                 </ul>
 
                 <!-- Tab panes -->
-                <div class="tab-content">
-                    <div role="tabpanel" class="tab-pane active" id="home">
+                <div class="tab-content pt-4">
+                    <div role="tabpanel " class="tab-pane active" id="home">
                         <div class="container">
                             <h3>Thông số kĩ thuật</h3>
                             <table class="table table-hover">
@@ -342,33 +454,33 @@
                                 </thead> -->
                                 <tbody>
                                     <tr>
-                                        <td>Sản phẩm</td>
-                                        <td>Card đồ họa VGA</td>
+                                        <th>Sản phẩm</th>
+                                        <th>Card đồ họa VGA</th>
                                     </tr>
                                     <tr>
-                                        <td>Hãng sản xuất</td>
-                                        <td>NVIDIA® GeForce RTX™ 3090</td>
+                                        <th>Hãng sản xuất</th>
+                                        <th>NVIDIA® GeForce RTX™ 3090</th>
                                     </tr>
                                     <tr>
-                                        <td>Chuẩn Bus</td>
-                                        <td>PCI Express 4.0</td>
+                                        <th>Chuẩn Bus</th>
+                                        <th>PCI Express 4.0</th>
                                     </tr>
                                     <tr>
-                                        <td>Bộ nhớ</td>
-                                        <td>24GB GDDR6X </td>
+                                        <th>Bộ nhớ</th>
+                                        <th>24GB GDDR6X </th>
                                     </tr>
                                     <tr>
-                                        <td>Engine Clock</td>
-                                        <td>Gaming Mode (Default) - GPU Boost Clock : 1695 MHz , GPU Base Clock : 1410
-                                            MHz</td>
+                                        <th>Engine Clock</th>
+                                        <th>Gaming Mode (Default) - GPU Boost Clock : 1695 MHz , GPU Base Clock : 1410
+                                            MHz</th>
                                     </tr>
                                     <tr>
-                                        <td>Lõi CUDA</td>
-                                        <td>5248</td>
+                                        <th>Lõi CUDA</th>
+                                        <th>5248</th>
                                     </tr>
                                     <tr>
-                                        <td>Clock bộ nhớ</td>
-                                        <td>19.5 Gbps</td>
+                                        <th>Clock bộ nhớ</td>
+                                        <th>19.5 Gbps</th>
                                     </tr>
                                 </tbody>
                             </table>
@@ -392,76 +504,137 @@
                         <img src="./assets/img/product/mota_vga.jpg" alt="">
                     </div>
                     <div role="tabpanel" class="tab-pane" id="messages">
-                        <div class="row d-flex justify-content-star mt-100 mb-100">
-                            <div class="col-lg-10">
-                                <div class="card-comment">
 
-                                    <div class="comment-widgets">
-                                        <!-- Comment Row -->
-                                        <div class="d-flex flex-row comment-row m-t-0">
-                                            <div class="p-2"><img src="./assets/img/icon/icon-1.png" alt="user"
-                                                    width="50" class="rounded-circle"></div>
-                                            <div class="comment-text w-100">
-                                                <h6 class="font-medium">Trần Nhật Sinh</h6> <span
-                                                    class="m-b-15 d-block">Sản phẩm rất chất lượng. trên cả mong đợi
-                                                </span>
-                                                <div class="comment-footer"> <span class="text-muted date-comment">T.11
-                                                        14, 2022</span> <button type="button"
-                                                        class="btn btn-cyan btn-comment">Sửa</button>
-                                                    <button type="button"
-                                                        class="btn btn-success btn-comment">Đăng</button>
-                                                    <button type="button"
-                                                        class="btn btn-danger btn-comment">Xóa</button>
+
+
+
+
+
+
+                        <div class="container bootdey">
+                            <div class="col-md-12 bootstrap snippets">
+                                <div class="panel comment">
+                                    <div class="panel-body comment">
+                                        <textarea class="form-control" rows="5" placeholder="Bình luận ..."></textarea>
+                                        <div class="clearfix text-end pt-3">
+                                            <button class="btn btn-sm btn-primary post-comment" type="submit"><i
+                                                    class="fa fa-pencil fa-fw"></i> Đăng</button>
+                                            <!-- <a class="btn btn-trans btn-icon fa fa-video-camera add-tooltip"
+                                                href="#"></a>
+                                            <a class="btn btn-trans btn-icon fa fa-camera add-tooltip" href="#"></a>
+                                            <a class="btn btn-trans btn-icon fa fa-file add-tooltip" href="#"></a> -->
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel">
+                                    <div class="panel-body">
+                                        <!-- Newsfeed Content -->
+                                        <!--===================================================-->
+                                        <div class="media-block">
+                                            <a class="media-left" href="#"><img class="img-circle img-sm"
+                                                    alt="Profile Picture" src="./assets/img/icon/icon-1.png"></a>
+                                            <div class="media-body">
+                                                <div class="mar-btm">
+                                                    <a href="#"
+                                                        class="btn-link text-semibold media-heading box-inline">Trần
+                                                        Nhật Sinh</a>
+                                                    <p class="text-muted text-sm"> 11 min ago</p>
                                                 </div>
+                                                <p>Sản phẩm tốt, ổn áp trong tầm giá như vậy, mình đã mua ở rất nhiều
+                                                    nơi rồi mà không nơi nào làm mình hài lòng như nơi này cả</p>
                                             </div>
-                                        </div> <!-- Comment Row -->
-                                        <div class="d-flex flex-row comment-row">
-                                            <div class="p-2"><img src="./assets/img/icon/icon-1.png" alt="user"
-                                                    width="50" class="rounded-circle"></div>
-                                            <div class="comment-text active w-100">
-                                                <h6 class="font-medium">Nguyễn Hoàng Trung</h6> <span
-                                                    class="m-b-15 d-block">Dụng cụ rất chắc chắn và chất lượng </span>
-                                                <div class="comment-footer"> <span class="text-muted date-comment">T.9
-                                                        10, 2022</span> <button type="button"
-                                                        class="btn btn-cyan btn-comment">Sửa</button>
-                                                    <button type="button"
-                                                        class="btn btn-success btn-comment">Đăng</button>
-                                                    <button type="button"
-                                                        class="btn btn-danger btn-comment">Xóa</button>
+                                            <hr>
+                                            <div>
+                                                <div class="media-block">
+                                                    <a class="media-left" href="#"><img class="img-circle img-sm"
+                                                            alt="Profile Picture"
+                                                            src="./assets/img/icon/icon-1.png"></a>
+                                                    <div class="media-body">
+                                                        <div class="mar-btm">
+                                                            <a href="#"
+                                                                class="btn-link text-semibold media-heading box-inline">Nguyễn
+                                                                Hoàng Trung</a>
+                                                            <p class="text-muted text-sm"> 7 min ago</p>
+
+                                                        </div>
+                                                        <p>Mình là người khá kỹ tính trong việc mua hàng, mà shop này
+                                                            lại làm mình vui vẻ khi mua hàng thì là một thành công lớn
+                                                            của shop này rồi đấy.</p>
+                                                        <hr>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </div> <!-- Comment Row -->
-                                        <div class="d-flex flex-row comment-row">
-                                            <div class="p-2"><img src="./assets/img/icon/icon-1.png" alt="user"
-                                                    width="50" class="rounded-circle"></div>
-                                            <div class="comment-text w-100">
-                                                <h6 class="font-medium">Trần Nhật Sinh</h6> <span
-                                                    class="m-b-15 d-block">Sản phẩm rất chất lượng. trên cả mong đợi Sản
-                                                    phẩm rất chất lượng. trên cả mong đợi </span>
-                                                <div class="comment-footer"> <span class="text-muted date-comment">T.7
-                                                        1,
-                                                        2022</span> <button type="button"
-                                                        class="btn btn-cyan btn-comment">Sửa</button>
-                                                    <button type="button"
-                                                        class="btn btn-success btn-comment">Đăng</button>
-                                                    <button type="button-comment"
-                                                        class="btn btn-danger btn-comment">Xóa</button>
+
+                                                <div class="media-block">
+                                                    <a class="media-left" href="#"><img class="img-circle img-sm"
+                                                            alt="Profile Picture" src="./assets/img/icon/icon-1.png">
+                                                    </a>
+                                                    <div class="media-body">
+                                                        <div class="mar-btm">
+                                                            <a href="#"
+                                                                class="btn-link text-semibold media-heading box-inline">Khách
+                                                                hàng</a>
+                                                            <p class="text-muted text-sm"> 2 min ago</p>
+
+                                                        </div>
+                                                        <p>Dịch vụ chăm sóc khách hàng ở shop này rất tốt luôn mọi người
+                                                            ạ, sản phẩm lại còn ổn áp nữa chứ</p>
+                                                        <hr>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div> <!-- Card -->
+                                        <!--===================================================-->
+                                        <!-- End Newsfeed Content -->
+
+
+                                        <!-- Newsfeed Content -->
+                                        <!--===================================================-->
+                                        <!-- <div class="media-block pad-all">
+                                            <a class="media-left" href="#"><img class="img-circle img-sm"
+                                                    alt="Profile Picture" src="./assets/img/icon/icon-1.png"></a>
+                                            <div class="media-body"> -->
+
+                                        <!-- Comments -->
+                                        <div>
+                                            <div class="media-block pad-all">
+                                                <a class="media-left" href="#"><img class="img-circle img-sm"
+                                                        alt="Profile Picture" src="./assets/img/icon/icon-1.png"></a>
+                                                <div class="media-body">
+                                                    <div class="mar-btm">
+                                                        <a href="#"
+                                                            class="btn-link text-semibold media-heading box-inline">Khách
+                                                            hàng</a>
+                                                        <p class="text-muted text-sm"> 2 min ago</p>
+
+                                                    </div>
+                                                    <p>Mình đã mua ở rất nhiều nơi rồi, shop này có thể là điểm đến cuối
+                                                        cùng của mình, bán toàn đồ chất lượng</p>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
+                                <!--===================================================-->
+                                <!-- End Newsfeed Content -->
                             </div>
                         </div>
                     </div>
                 </div>
+
+
+
+
+
             </div>
         </div>
     </div>
+    </div>
+    </div>
 
-    <link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <!-- <link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet"> -->
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"> -->
+    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> -->
 
     <script src="js/jquery-1.11.1.min.js"></script>
     <!-- Javascript -->
