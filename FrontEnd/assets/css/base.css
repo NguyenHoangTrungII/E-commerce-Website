@@ -113,10 +113,17 @@ hr {
   Helper CSS
 -----------------------*/
 
+.breadcrumb-text {
+	text-align: center;
+  }
 .set-bg {
 	background-repeat: no-repeat;
+	background-color: #33A0FF;
 	background-size: cover;
 	background-position: top center;
+	padding: 80px;
+	font-size: 18px;
+	color: #fff;
 }
 
 .spad {
