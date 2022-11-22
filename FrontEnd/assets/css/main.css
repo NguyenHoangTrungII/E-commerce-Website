@@ -887,13 +887,13 @@ button.search-btn {
 
 .banner__slider {
   text-align: center;
-  padding: 150px 0 0;
+  padding: 12px 0 0;
 }
 
 .banner__slider.owl-carousel .owl-dots {
   position: absolute;
   left: 0;
-  top: 430px;
+  top: 343px;
   width: 100%;
   text-align: center;
 }
@@ -953,6 +953,8 @@ button.search-btn {
   position: absolute;
   display: inline-block;
 }
+
+/* lọc sp */
 
 .filter__controls {
   /* text-align: right; */
@@ -1018,6 +1020,12 @@ button.search-btn {
   box-shadow: -2px 0px 3px 0px rgb(155 155 155 / 75%);
 }
 
+.main-product:hover .property__gallery.owl-carousel .owl-nav button span.fa {
+  display: block;
+  /* align-items: center; */
+  /* align-content: center; */
+}
+
 .property__gallery .col-lg-3 {
   max-width: 100%;
 }
@@ -1053,6 +1061,12 @@ button.search-btn {
 .property__gallery.owl-carousel .owl-nav button.owl-next:hover {
   height: 45px;
   width: 45px;
+}
+
+ /* flash sale */
+
+ .property__gallery__flash-sale .col-lg-3 {
+  min-width: 100%;
 }
 
 /*---------------------
@@ -2382,7 +2396,7 @@ ul.ltabs-tabs li.ltabs-tab.tab-sel .ltabs-tab-label {
   font-size: 11px;
 }
 
-.shopping .shopping-item {
+.shopping .shopping-item{
   position: absolute;
   top: 35px;
   right: 0;
@@ -2746,13 +2760,13 @@ ul.ltabs-tabs li.ltabs-tab.tab-sel .ltabs-tab-label {
 }
 
 
-.user-header {
+.user-header{
   position: relative;
 }
 
 
 /* homepage user hover */
-.user-item {
+.user-item{
   position: absolute;
   top: 21px;
   right: 6px;
@@ -2917,7 +2931,7 @@ ul li {
   flex-direction: column;
 } */
 
-.user-header:hover .user-item {
+.user-header:hover .user-item{
   opacity: 1;
   visibility: visible;
 }
@@ -3777,7 +3791,7 @@ nav.status-check {
 
 .btn.btn-primary.order-details {
   width: 200px;
-  height: 30px;
+  height: 44px;
   text-transform: uppercase;
   margin: 0 10px;
 }
@@ -3806,6 +3820,10 @@ nav.status-check {
   height: 18px;
   font-weight: 550;
   color: #33A0FF;
+  background-color: #ffff;
+  border: none;
+  text-align: end;
+  font-size: 15px;
 }
 
 #loader_itech{
@@ -4034,7 +4052,7 @@ textarea.form-control.edit-details{
 
 #filterbar .btn-success:not(:disabled):not(.disabled).active,
 #filterbar .btn-success:not(:disabled):not(.disabled):active {
-	background-color: #5d8eff;
+	background-color: #33A0FF;
 	color: #fff
 }
 

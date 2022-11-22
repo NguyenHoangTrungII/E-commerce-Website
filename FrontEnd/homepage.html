@@ -49,10 +49,14 @@
     <link rel="stylesheet" href="./assets/css/base.css">
     <link rel="stylesheet" href="./assets/css/main.css">
     <link rel="stylesheet" href="./assets/css/reposive.css">
-    <link rel="stylesheet" href="./assets/css/test.css">
+    <link rel="stylesheet" href="./assets/css/popup.css">
 </head>
 
 <body>
+       <!-- Page Preloder -->
+       <div id="preloder">
+        <div class="loader"></div>
+    </div>
 
     <!-- Mobie Responsive Begin -->
     <div class="mobile__menu__overlay"></div>
@@ -161,6 +165,7 @@
                         <div class="header-mid-side">
 
                             <div class="user-header">
+                                <span>Nội dung</span>
                                 <a><i class=" user-icon-header fa-regular fa-user"></i></a>
 
                                 <div class="user-item">
@@ -431,7 +436,7 @@
                     </div>
                     <div class="modcontent">
                         <div id="so_deal_1" class="so-deal style1">
-                            <div class="row property__gallery owl-carousel">
+                            <div class="row property__gallery__flash-sale owl-carousel">
                                 <div class="col-lg-3 col-xl-3 col-md-6">
                                     <div class="product product__hot--style">
                                         <div class="product-img">
@@ -477,7 +482,7 @@
                                             </div>
 
                                             <ul class="product-chose">
-                                                <li><a href="#"><i class="add-to-wishlist fa fa-eye"></i></a></li>
+                                                <li class="iframe-link btn-button quickview quickview_handler visible-lg" ><a title="Quick view" href="productdetail.html" data-fancybox-type="iframe"><i class="add-to-wishlist fa fa-eye"></i></a></li>
                                                 <li><a href="#"><i
                                                             class="add-to-wishlist fa-solid fa-cart-shopping"></i></a>
                                                 </li>
@@ -752,18 +757,18 @@
                     </div>
                 </div>
                 <div class="col-lg-8 col-md-8">
-                    <ul class="filter__controls">
-                        <li class="active" data-filter="*">Tất cả</li>
-                        <li data-filter="">Asus</li>
-                        <li data-filter="">Gigabyte</li>
-                        <li data-filter="">Antec</li>
+                    <ul class="filter__controls line_1">
+                        <li class="item active" data-owl-filter="*">Tất cả</li>
+                        <li class="item" data-owl-filter=".asus">Asus</li>
+                        <li class="item" data-owl-filter=".gigabyte">Gigabyte</li>
+                        <li class="item" data-owl-filter=".antec">Antec</li>
                     </ul>
                 </div>
             </div>
 
-            <div class="row property__gallery owl-carousel">
-                <div class="col-lg-3 col-xl-3 col-md-6">
-                    <div class="product">
+            <div class="row property__gallery line_1 owl-carousel ">
+                <div class="col-lg-3 col-xl-3 col-md-6 item asus">
+                    <div class="product ">
                         <div class="product-img">
                             <img src="./assets/img/homepage/product-card.jpg" alt="">
                             <div class="product-label">
@@ -798,7 +803,7 @@
                     </div>
                 </div>
 
-                <div class="col-lg-3 col-xl-3 col-md-6">
+                <div class="col-lg-3 col-xl-3 col-md-6 item asus">
                     <div class="product">
                         <div class="product-img">
                             <img src="./assets/img/homepage/product-card.jpg" alt="">
@@ -834,7 +839,43 @@
                     </div>
                 </div>
 
-                <div class="col-lg-3 col-xl-3 col-md-6">
+                <div class="col-lg-3 col-xl-3 col-md-6 item asus">
+                    <div class="product">
+                        <div class="product-img">
+                            <img src="./assets/img/homepage/product-card.jpg" alt="">
+                            <div class="product-label">
+                                <!-- <span class="sale">-30%</span>
+                                    <span class="new">MỚI</span> -->
+                            </div>
+
+                            <ul class="product-chose">
+                                <li><a href="#"><i class="add-to-wishlist fa fa-eye"></i></a></li>
+                                <li><a href="#"><i class="add-to-wishlist fa-solid fa-cart-shopping"></i></a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="product-body">
+                            <div class="product-band">
+                                <span class="band">aaa</span>
+                            </div>
+                            <div class="product-another ">
+                                <p class="product-category">Loại sản phẩm</p>
+                                <h3 class="product-name"><a href="#">Tên sản phẩm</a></h3>
+                                <h4 class="product-price">1.000.000đ <del class="product-old-price">1.150.000đ</del>
+                                </h4>
+                                <div class="product-rating">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-xl-3 col-md-6 item gigabyte">
                     <div class="product">
                         <div class="product-img">
                             <img src="./assets/img/homepage/product-card.jpg" alt="">
@@ -868,46 +909,10 @@
                             </div>
                         </div>
                     </div>
-                </div>
-
-                <div class="col-lg-3 col-xl-3 col-md-6">
-                    <div class="product">
-                        <div class="product-img">
-                            <img src="./assets/img/homepage/product-card.jpg" alt="">
-                            <div class="product-label">
-                                <!-- <span class="sale">-30%</span>
-                                    <span class="new">MỚI</span> -->
-                            </div>
-
-                            <ul class="product-chose">
-                                <li><a href="#"><i class="add-to-wishlist fa fa-eye"></i></a></li>
-                                <li><a href="#"><i class="add-to-wishlist fa-solid fa-cart-shopping"></i></a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="product-body">
-                            <div class="product-band">
-                                <span class="band">ASUS</span>
-                            </div>
-                            <div class="product-another ">
-                                <p class="product-category">Loại sản phẩm</p>
-                                <h3 class="product-name"><a href="#">Tên sản phẩm</a></h3>
-                                <h4 class="product-price">1.000.000đ <del class="product-old-price">1.150.000đ</del>
-                                </h4>
-                                <div class="product-rating">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
                 </div>
 
-                <div class="col-lg-3 col-xl-3 col-md-6">
+                <div class="col-lg-3 col-xl-3 col-md-6 item gigabyte ">
                     <div class="product">
                         <div class="product-img">
                             <img src="./assets/img/homepage/product-card.jpg" alt="">
@@ -961,127 +966,19 @@
                     </div>
                 </div>
                 <div class="col-lg-8 col-md-8">
-                    <ul class="filter__controls">
-                        <li class="active" data-filter="*">Tất cả</li>
-                        <li data-filter="">Asus</li>
-                        <li data-filter="">Gigabyte</li>
-                        <li data-filter="">Antec</li>
+                    <ul class="filter__controls line_2">
+                        <li class="item active" data-owl-filter="*">Tất cả</li>
+                        <li class="item" data-owl-filter=".asus">Asus</li>
+                        <li class="item" data-owl-filter=".gigabyte">Gigabyte</li>
+                        <li class="item" data-owl-filter=".antec">Antec</li>
                     </ul>
                 </div>
             </div>
 
-            <div class="row property__gallery owl-carousel">
+            <div class="row property__gallery line_2 owl-carousel ">
 
-                <div class="col-lg-3 col-xl-3 col-md-6">
-                    <div class="product">
-                        <div class="product-img">
-                            <img src="./assets/img/homepage/product-card.jpg" alt="">
-                            <div class="product-label">
-                                <!-- <span class="sale">-30%</span>
-                                    <span class="new">MỚI</span> -->
-                            </div>
-
-                            <ul class="product-chose">
-                                <li><a href="#"><i class="add-to-wishlist fa fa-eye"></i></a></li>
-                                <li><a href="#"><i class="add-to-wishlist fa-solid fa-cart-shopping"></i></a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="product-body">
-                            <div class="product-band">
-                                <span class="band">ASUS</span>
-                            </div>
-                            <div class="product-another ">
-                                <p class="product-category">Loại sản phẩm</p>
-                                <h3 class="product-name"><a href="#">Tên sản phẩm</a></h3>
-                                <h4 class="product-price">1.000.000đ <del class="product-old-price">1.150.000đ</del>
-                                </h4>
-                                <div class="product-rating">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-xl-3 col-md-6">
-                    <div class="product">
-                        <div class="product-img">
-                            <img src="./assets/img/homepage/product-card.jpg" alt="">
-                            <div class="product-label">
-                                <!-- <span class="sale">-30%</span>
-                                    <span class="new">MỚI</span> -->
-                            </div>
-
-                            <ul class="product-chose">
-                                <li><a href="#"><i class="add-to-wishlist fa fa-eye"></i></a></li>
-                                <li><a href="#"><i class="add-to-wishlist fa-solid fa-cart-shopping"></i></a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="product-body">
-                            <div class="product-band">
-                                <span class="band">ASUS</span>
-                            </div>
-                            <div class="product-another ">
-                                <p class="product-category">Loại sản phẩm</p>
-                                <h3 class="product-name"><a href="#">Tên sản phẩm</a></h3>
-                                <h4 class="product-price">1.000.000đ <del class="product-old-price">1.150.000đ</del>
-                                </h4>
-                                <div class="product-rating">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-xl-3 col-md-6">
-                    <div class="product">
-                        <div class="product-img">
-                            <img src="./assets/img/homepage/product-card.jpg" alt="">
-                            <div class="product-label">
-                                <!-- <span class="sale">-30%</span>
-                                    <span class="new">MỚI</span> -->
-                            </div>
-
-                            <ul class="product-chose">
-                                <li><a href="#"><i class="add-to-wishlist fa fa-eye"></i></a></li>
-                                <li><a href="#"><i class="add-to-wishlist fa-solid fa-cart-shopping"></i></a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="product-body">
-                            <div class="product-band">
-                                <span class="band">ASUS</span>
-                            </div>
-                            <div class="product-another ">
-                                <p class="product-category">Loại sản phẩm</p>
-                                <h3 class="product-name"><a href="#">Tên sản phẩm</a></h3>
-                                <h4 class="product-price">1.000.000đ <del class="product-old-price">1.150.000đ</del>
-                                </h4>
-                                <div class="product-rating">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-xl-3 col-md-6">
-                    <div class="product">
+                <div class="col-lg-3 col-xl-3 col-md-6 item asus">
+                    <div class="product ">
                         <div class="product-img">
                             <img src="./assets/img/homepage/product-card.jpg" alt="">
                             <div class="product-label">
@@ -1114,16 +1011,124 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
 
-                <div class="col-lg-3 col-xl-3 col-md-6">
+                <div class="col-lg-3 col-xl-3 col-md-6 item asus">
                     <div class="product">
                         <div class="product-img">
                             <img src="./assets/img/homepage/product-card.jpg" alt="">
                             <div class="product-label">
-                                <span class="sale">-30%</span>
-                                <span class="new">MỚI</span>
+                                <!-- <span class="sale">-30%</span>
+                                    <span class="new">MỚI</span> -->
+                            </div>
+
+                            <ul class="product-chose">
+                                <li><a href="#"><i class="add-to-wishlist fa fa-eye"></i></a></li>
+                                <li><a href="#"><i class="add-to-wishlist fa-solid fa-cart-shopping"></i></a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="product-body">
+                            <div class="product-band">
+                                <span class="band">ASUS</span>
+                            </div>
+                            <div class="product-another ">
+                                <p class="product-category">Loại sản phẩm</p>
+                                <h3 class="product-name"><a href="#">Tên sản phẩm</a></h3>
+                                <h4 class="product-price">1.000.000đ <del class="product-old-price">1.150.000đ</del>
+                                </h4>
+                                <div class="product-rating">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-xl-3 col-md-6 item antec">
+                    <div class="product">
+                        <div class="product-img">
+                            <img src="./assets/img/homepage/product-card.jpg" alt="">
+                            <div class="product-label">
+                                <!-- <span class="sale">-30%</span>
+                                    <span class="new">MỚI</span> -->
+                            </div>
+
+                            <ul class="product-chose">
+                                <li><a href="#"><i class="add-to-wishlist fa fa-eye"></i></a></li>
+                                <li><a href="#"><i class="add-to-wishlist fa-solid fa-cart-shopping"></i></a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="product-body">
+                            <div class="product-band">
+                                <span class="band">aaa</span>
+                            </div>
+                            <div class="product-another ">
+                                <p class="product-category">Loại sản phẩm</p>
+                                <h3 class="product-name"><a href="#">Tên sản phẩm</a></h3>
+                                <h4 class="product-price">1.000.000đ <del class="product-old-price">1.150.000đ</del>
+                                </h4>
+                                <div class="product-rating">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-xl-3 col-md-6 item gigabyte">
+                    <div class="product">
+                        <div class="product-img">
+                            <img src="./assets/img/homepage/product-card.jpg" alt="">
+                            <div class="product-label">
+                                <!-- <span class="sale">-30%</span>
+                                    <span class="new">MỚI</span> -->
+                            </div>
+
+                            <ul class="product-chose">
+                                <li><a href="#"><i class="add-to-wishlist fa fa-eye"></i></a></li>
+                                <li><a href="#"><i class="add-to-wishlist fa-solid fa-cart-shopping"></i></a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="product-body">
+                            <div class="product-band">
+                                <span class="band">ASUS</span>
+                            </div>
+                            <div class="product-another ">
+                                <p class="product-category">Loại sản phẩm</p>
+                                <h3 class="product-name"><a href="#">Tên sản phẩm</a></h3>
+                                <h4 class="product-price">1.000.000đ <del class="product-old-price">1.150.000đ</del>
+                                </h4>
+                                <div class="product-rating">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-lg-3 col-xl-3 col-md-6 item gigabyte ">
+                    <div class="product">
+                        <div class="product-img">
+                            <img src="./assets/img/homepage/product-card.jpg" alt="">
+                            <div class="product-label">
+                                <!-- <span class="sale">-30%</span>
+                                    <span class="new">MỚI</span> -->
                             </div>
 
                             <ul class="product-chose">
@@ -1162,7 +1167,7 @@
         </div>
     </section>
 
-    <section class="main-product pb-5">
+    <section class="main-product">
         <div class="container">
             <div class="row under-line-product" style="border-bottom: 2px solid #b7b7b7">
                 <div class="col-lg-4 col-md-4 p-0">
@@ -1171,19 +1176,19 @@
                     </div>
                 </div>
                 <div class="col-lg-8 col-md-8">
-                    <ul class="filter__controls">
-                        <li class="active" data-filter="*">Tất cả</li>
-                        <li data-filter="">Asus</li>
-                        <li data-filter="">Gigabyte</li>
-                        <li data-filter="">Antec</li>
+                    <ul class="filter__controls line_3">
+                        <li class="item active" data-owl-filter="*">Tất cả</li>
+                        <li class="item" data-owl-filter=".asus">Asus</li>
+                        <li class="item" data-owl-filter=".gigabyte">Gigabyte</li>
+                        <li class="item" data-owl-filter=".antec">Antec</li>
                     </ul>
                 </div>
             </div>
 
-            <div class="row property__gallery owl-carousel">
+            <div class="row property__gallery line_3 owl-carousel ">
 
-                <div class="col-lg-3 col-xl-3 col-md-6">
-                    <div class="product">
+                <div class="col-lg-3 col-xl-3 col-md-6 item antec">
+                    <div class="product ">
                         <div class="product-img">
                             <img src="./assets/img/homepage/product-card.jpg" alt="">
                             <div class="product-label">
@@ -1218,13 +1223,13 @@
                     </div>
                 </div>
 
-                <div class="col-lg-3 col-xl-3 col-md-6">
+                <div class="col-lg-3 col-xl-3 col-md-6 item antec">
                     <div class="product">
                         <div class="product-img">
                             <img src="./assets/img/homepage/product-card.jpg" alt="">
                             <div class="product-label">
-                                <span class="sale">-30%</span>
-                                <span class="new">MỚI</span>
+                                <!-- <span class="sale">-30%</span>
+                                    <span class="new">MỚI</span> -->
                             </div>
 
                             <ul class="product-chose">
@@ -1254,13 +1259,49 @@
                     </div>
                 </div>
 
-                <div class="col-lg-3 col-xl-3 col-md-6">
+                <div class="col-lg-3 col-xl-3 col-md-6 item antec">
                     <div class="product">
                         <div class="product-img">
                             <img src="./assets/img/homepage/product-card.jpg" alt="">
                             <div class="product-label">
-                                <span class="sale">-30%</span>
-                                <span class="new">MỚI</span>
+                                <!-- <span class="sale">-30%</span>
+                                    <span class="new">MỚI</span> -->
+                            </div>
+
+                            <ul class="product-chose">
+                                <li><a href="#"><i class="add-to-wishlist fa fa-eye"></i></a></li>
+                                <li><a href="#"><i class="add-to-wishlist fa-solid fa-cart-shopping"></i></a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="product-body">
+                            <div class="product-band">
+                                <span class="band">aaa</span>
+                            </div>
+                            <div class="product-another ">
+                                <p class="product-category">Loại sản phẩm</p>
+                                <h3 class="product-name"><a href="#">Tên sản phẩm</a></h3>
+                                <h4 class="product-price">1.000.000đ <del class="product-old-price">1.150.000đ</del>
+                                </h4>
+                                <div class="product-rating">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-xl-3 col-md-6 item gigabyte">
+                    <div class="product">
+                        <div class="product-img">
+                            <img src="./assets/img/homepage/product-card.jpg" alt="">
+                            <div class="product-label">
+                                <!-- <span class="sale">-30%</span>
+                                    <span class="new">MỚI</span> -->
                             </div>
 
                             <ul class="product-chose">
@@ -1288,52 +1329,16 @@
                             </div>
                         </div>
                     </div>
+
                 </div>
 
-                <div class="col-lg-3 col-xl-3 col-md-6">
+                <div class="col-lg-3 col-xl-3 col-md-6 item gigabyte ">
                     <div class="product">
                         <div class="product-img">
                             <img src="./assets/img/homepage/product-card.jpg" alt="">
                             <div class="product-label">
-                                <span class="sale">-30%</span>
-                                <span class="new">MỚI</span>
-                            </div>
-
-                            <ul class="product-chose">
-                                <li><a href="#"><i class="add-to-wishlist fa fa-eye"></i></a></li>
-                                <li><a href="#"><i class="add-to-wishlist fa-solid fa-cart-shopping"></i></a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="product-body">
-                            <div class="product-band">
-                                <span class="band">ASUS</span>
-                            </div>
-                            <div class="product-another ">
-                                <p class="product-category">Loại sản phẩm</p>
-                                <h3 class="product-name"><a href="#">Tên sản phẩm</a></h3>
-                                <h4 class="product-price">1.000.000đ <del class="product-old-price">1.150.000đ</del>
-                                </h4>
-                                <div class="product-rating">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="col-lg-3 col-xl-3 col-md-6">
-                    <div class="product">
-                        <div class="product-img">
-                            <img src="./assets/img/homepage/product-card.jpg" alt="">
-                            <div class="product-label">
-                                <span class="sale">-30%</span>
-                                <span class="new">MỚI</span>
+                                <!-- <span class="sale">-30%</span>
+                                    <span class="new">MỚI</span> -->
                             </div>
 
                             <ul class="product-chose">
@@ -1842,13 +1847,15 @@
     <script src="./assets/js/jquery.slicknav.js"></script>
     <script src="./assets/js/mixitup.min.js"></script>
     <script src="./assets/js/owl.carousel.min.js"></script>
-    <script src="./assets/js/test.js"></script>
+    <script src="./assets/js/popup.js"></script>
     <script src="./assets/js/main.js"></script>
+    <script src="./assets/js/fitter.js"></script>
+
     <script>
         // Cart add remove functions
         var cart = {
             'add': function (product_id, quantity) {
-                addProductNotice('Thêm thành công', '<img src="/DOANWEB/FrontEnd/assets/img/homepage/product-card.jpg" alt="lỗi">', '<h3><a href="#">Itel i7</a> đã được thêm <a href="#">giỏ hàng</a>!</h3>', 'success');
+                addProductNotice('Thêm thành công', '<img src="./assets/img/homepage/product-card.jpg" alt="lỗi">', '<h3><a href="#">Itel i7</a> đã được thêm <a href="#">giỏ hàng</a>!</h3>', 'success');
             }
         }
 
@@ -1869,7 +1876,7 @@
         function addProductNotice(title, thumb, text, type) {
             $.jGrowl.defaults.closer = false;
             //Stop jGrowl
-            // $.jGrowl.defaults.sticky = true;
+            $.jGrowl.defaults.sticky = true;
             var tpl = thumb + '<h3>' + text + '</h3>';
             $.jGrowl(tpl, {
                 life: 4000,

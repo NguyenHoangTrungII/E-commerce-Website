@@ -116,50 +116,20 @@
         $(this).addClass('active-color');
     });
 
-    if ($('.property__gallery').length > 0) {
-        var containerEl = document.querySelector('.property__gallery');
-        var mixer = mixitup(containerEl);
-    }
+    // if ($('.property__gallery').length > 0) {
+    //     var containerEl = document.querySelector('.property__gallery');
+    //     var mixer = mixitup(containerEl);
+    // }
 
     /*------------------
         Product choose
     --------------------*/
-    $('.filter__controls li').on('click', function () {
-        $('.filter__controls li').removeClass('active');
-        $(this).addClass('active');
-    });
+    // $('.filter__controls li').on('click', function () {
+    //     $('.filter__controls li').removeClass('active');
+    //     $(this).addClass('active');
+    // });
 
 
-    $(".property__gallery").owlCarousel({
-        loop: true,
-        margin: 0,
-        items: 3,
-        dots: false,
-        nav: true,
-        navText: ["<span class='fa fa-angle-left'><span/>", "<span class='fa fa-angle-right'><span/>"],
-        animateOut: 'fadeOut',
-        animateIn: 'fadeIn',
-        smartSpeed: 1200,
-        autoHeight: false,
-        autoplay: false,
-        responsive: {
-            320: {
-                items: 1,
-            },
-
-            480: {
-                items: 2,
-            },
-
-            768: {
-                items: 3,
-            },
-
-            992: {
-                items: 4,
-            }
-        }
-    });
 
 
 
@@ -247,8 +217,167 @@
         $(this).addClass('active-color');
     });
 
+    // lọc sp tại homepage
+    $('.filter__controls li').on('click', function () {
+        $('.filter__controls li').removeClass('active');
+        $(this).addClass('active');
+    });
 
+    var owl = $(".property__gallery__flash-sale").owlCarousel({
+        // loop: true,
+        margin: 0,
+        items: 3,
+        dots: false,
+        nav: true,
+        navText: ["<span class='fa fa-angle-left'><span/>", "<span class='fa fa-angle-right'><span/>"],
+        animateOut: 'fadeOut',
+        animateIn: 'fadeIn',
+        smartSpeed: 1200,
+        autoHeight: false,
+        autoplay: false,
+        responsive: {
+            320: {
+                items: 1,
+            },
 
+            480: {
+                items: 2,
+            },
+
+            768: {
+                items: 3,
+            },
+
+            992: {
+                items: 4,
+            }
+        }
+    });
+
+    // list 1
+
+    var owl = $(".property__gallery.line_1").owlCarousel({
+        // loop: true,
+        margin: 0,
+        items: 3,
+        dots: false,
+        nav: true,
+        navText: ["<span class='fa fa-angle-left'><span/>", "<span class='fa fa-angle-right'><span/>"],
+        animateOut: 'fadeOut',
+        animateIn: 'fadeIn',
+        smartSpeed: 1200,
+        autoHeight: false,
+        autoplay: false,
+        responsive: {
+            320: {
+                items: 1,
+            },
+
+            480: {
+                items: 2,
+            },
+
+            768: {
+                items: 3,
+            },
+
+            992: {
+                items: 4,
+            }
+        }
+    });
+
+    $('.filter__controls.line_1').on('click', '.item', function () {
+
+        var $item = $(this);
+        var filter = $item.data('owl-filter')
+
+        console.log(filter);
+
+        owl.owlcarousel2_filter(filter);
+    })
+
+    // list 2
+    var owl2 = $(".property__gallery.line_2").owlCarousel({
+        // loop: true,
+        margin: 0,
+        items: 3,
+        dots: false,
+        nav: true,
+        navText: ["<span class='fa fa-angle-left'><span/>", "<span class='fa fa-angle-right'><span/>"],
+        animateOut: 'fadeOut',
+        animateIn: 'fadeIn',
+        smartSpeed: 1200,
+        autoHeight: false,
+        autoplay: false,
+        responsive: {
+            320: {
+                items: 1,
+            },
+
+            480: {
+                items: 2,
+            },
+
+            768: {
+                items: 3,
+            },
+
+            992: {
+                items: 4,
+            }
+        }
+    });
+
+    $('.filter__controls.line_2').on('click', '.item', function () {
+
+        var $item = $(this);
+        var filter = $item.data('owl-filter')
+
+        owl2.owlcarousel2_filter(filter);
+
+    })
+
+    // line_3 
+    var owl3 = $(".property__gallery.line_3").owlCarousel({
+        // loop: true,
+        margin: 0,
+        items: 3,
+        dots: false,
+        nav: true,
+        navText: ["<span class='fa fa-angle-left'><span/>", "<span class='fa fa-angle-right'><span/>"],
+        animateOut: 'fadeOut',
+        animateIn: 'fadeIn',
+        smartSpeed: 1200,
+        autoHeight: false,
+        autoplay: false,
+        responsive: {
+            320: {
+                items: 1,
+            },
+
+            480: {
+                items: 2,
+            },
+
+            768: {
+                items: 3,
+            },
+
+            992: {
+                items: 4,
+            }
+        }
+    });
+
+    $('.filter__controls.line_3').on('click', '.item', function () {
+
+        var $item = $(this);
+        var filter = $item.data('owl-filter')
+
+        owl3.owlcarousel2_filter(filter);
+
+    })
 
 })(jQuery)
 
