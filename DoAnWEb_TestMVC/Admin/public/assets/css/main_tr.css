@@ -1,0 +1,1121 @@
+
+
+.photo-user{
+  width: 100%;
+  height: 50%;
+  text-align: center;
+}
+
+.id-header.user{
+  width: 50px;
+}
+
+.header.table-user{
+  display: flex;
+  justify-content: space-between;
+  align-content: flex-start;
+  text-align: center;
+}
+
+.name.user{
+  width: 170px;
+}
+
+.img.user{
+  width: 125px;
+  text-align: center;
+}
+
+.birthday.user{
+  width: 100px;
+}
+
+.email.user{
+  width: 125px;
+}
+
+.phone.user{
+  width: 100px;
+}
+
+.address.user{
+  width: 300px;
+}
+
+.action.user{
+  width: 20px;
+}
+
+.add-btn.user{
+  height: 45px;
+  width: 170px;
+  text-transform: uppercase;
+}
+
+table.th{
+  /* text-align: center; */
+}
+
+.form-control.add-infor.user{
+  position: relative;
+}
+/* trick để đổi choose file -> chọn tệp */
+.form-control.add-infor.user::after{
+  position: absolute;
+  position: absolute;
+  content: "Chọn tệp";
+  width: 95px;
+  height: 154px;
+  height: 1;
+  top: 0;
+  left: 0px;
+  background-color: #fff;
+  text-align: center;
+  /* display: flex; */
+  /* align-content: center; */
+  padding: 8px 0 0 0;
+  
+}
+
+.form-control.add-infor.user:hover:after{
+  background-color: #e5e5e5;
+}
+
+
+/* ===========CATEGORY=============== */
+/* ================================== */
+.id-header.category{
+  width: 80px;
+}
+
+.photo-category{
+  display: block;
+  width: 100%;
+  height: 100px ;
+}
+
+.name.category{
+  width: 150px;
+}
+
+.slug.category{
+  width: 150px;
+}
+
+.img.category{
+  width:250px;
+}
+
+.descript.category{
+  width: 180px;
+}
+
+/* .action.category{
+  width: 10px;
+} */
+
+/* fix ô xuống dòng */
+td.id-header.category{
+  width: 80px;
+  word-break: break-word;
+  white-space: pre-line;
+  vertical-align: top;
+}
+td.name.category{
+  width: 150px;
+  word-break: break-word;
+  white-space: pre-line;
+  vertical-align: top;
+}
+
+td.slug.category{
+  width: 150px;
+  word-break: break-word;
+  white-space: pre-line;
+  vertical-align: top;
+}
+
+td.img.category{
+  width: 250px;
+  word-break: break-word;
+  white-space: pre-line;
+  vertical-align: top;
+}
+
+td.descript.category{
+  width: 180px;
+  word-break: break-word;
+  white-space: pre-line;
+  vertical-align: top;
+}
+
+.action.category.flex{
+  width: 10px;
+  word-break: break-word;
+  white-space: pre-line;
+  vertical-align: top;
+}
+
+.action--none{
+  word-break: break-word;
+  white-space: normal ;
+  vertical-align: baseline;
+}
+
+/* ===========SILDER=============== */
+/* ================================== */
+
+.photo-silder{
+  width: 100%;
+}
+
+.id-header.slider{
+ width: 80px; 
+}
+.name-slider.slider{
+ width: 200px; 
+}
+.img.slider{
+ width: 200px; 
+}
+.satus.slider{
+ width: 100px; 
+}
+.number.slider{
+ width: 100px; 
+}
+.action.slider{
+ width: 40px; 
+}
+
+/* fix xuống dòng */
+td.id-header.slider{
+  width: 80px; 
+  word-break: break-word;
+  white-space: pre-line;
+  vertical-align: top;
+}
+ td.name-slider.slider{
+  width: 200px; 
+  word-break: break-word;
+  white-space: pre-line;
+  vertical-align: top;
+}
+ td.img.slider{
+  width: 200px; 
+  word-break: break-word;
+  /* white-space: pre-line; */
+  vertical-align: top;
+}
+ td.satus.slider{
+  width: 100px; 
+  padding: 35px 0 0 20px;
+  /* word-break: break-word;
+  white-space: pre-line; */
+  vertical-align: top;
+}
+ td.number.slider{
+  width: 100px; 
+  word-break: break-word;
+  white-space: pre-line;
+  vertical-align: top;
+}
+ td.action.slider{
+  width: 40px; 
+  word-break: break-word;
+  white-space: pre-line;
+  vertical-align: top;
+}
+
+/* ===========RATE=============== */
+/* ================================== */
+
+.id-header.rate{
+  width: 80px;
+}
+.photo-rate{
+  display: block;
+  width: 100px;
+  height: 130px ;
+}
+
+.name-user.rate{
+  width: 150px;
+}
+
+.date.rate{
+  width: 100px;
+}
+
+.content.rate{
+  width: 300px;
+}
+
+.rate-product.rate{
+  width: 100px;
+}
+
+.for-product.rate{
+  width: 150px;
+}
+
+.action.rate{
+  width: 40px;
+}
+
+/* fix xuống dòng */
+td.id-header.rate{
+  width: 80px;
+  word-break: break-word;
+  white-space: pre-line;
+  vertical-align: top;
+}
+
+td.name-user.rate{
+  width: 100px;
+  word-break: break-word;
+  white-space: pre-line;
+  vertical-align: top;
+}
+
+td.date.rate{
+  width: 100px;
+  word-break: break-word;
+  white-space: pre-line;
+  vertical-align: top;
+}
+
+td.content.rate{
+  width: 300px;
+  word-break: break-word;
+  white-space: pre-line;
+  vertical-align: top;
+}
+
+td.rate-product.rate{
+  width: 100px;
+  word-break: break-word;
+  white-space: pre-line;
+  vertical-align: top;
+}
+
+td.for-product.rate{
+  width: 150px;
+  word-break: break-word;
+  white-space: pre-line;
+  vertical-align: top;
+}
+
+td.action.rate{
+  width: 40px;
+  word-break: break-word;
+  white-space: pre-line;
+  vertical-align: top;
+}
+
+/* ===========QUESTION=============== */
+/* ================================== */
+
+.id-header.question{
+  width: 80px;
+}
+
+/* .photo-question{
+  display: block;
+  width: 100%;
+  height: 130px ;
+} */
+
+.name-user.question{
+  width: 150px;
+}
+
+.date.question{
+  width: 100px;
+}
+
+.status.question{
+  width: 100px;
+}
+
+.content.question{
+  width: 300px;
+}
+
+.action.question{
+  width: 40px;
+}
+
+/* fix xuống dòng */
+td.id-header.question{
+  width: 80px;
+  word-break: break-word;
+  white-space: pre-line;
+  vertical-align: top;
+}
+
+td.name-user.question{
+  width: 150px;
+  word-break: break-word;
+  white-space: pre-line;
+  vertical-align: top;
+}
+
+td.date.question{
+  width: 100px;
+  word-break: break-word;
+  white-space: pre-line;
+  vertical-align: top;
+}
+
+td.status.question{
+  width: 100px;
+  padding: 35px 0 0 20px;
+  word-break: break-word;
+  /* white-space: pre-line; */
+  vertical-align: top;
+}
+
+td.content.question{
+  width: 300px;
+  word-break: break-word;
+  white-space: pre-line;
+  vertical-align: top;
+}
+
+td.action.question{
+  width: 40px;
+  word-break: break-word;
+  white-space: pre-line;
+  vertical-align: top;
+}
+
+/* ===========ORDER=============== */
+/* ================================== */
+
+.id-header.order{
+  width: 80px;
+}
+
+.name-customer.order{
+  width: 150px;
+}
+
+.address.order{
+  width: 250px;
+}
+
+.total.order{
+  width: 100px;
+}
+
+.ship-code.order{
+  width: 100px;
+}
+
+.status.order{
+width: 150px;
+}
+
+.payment.order{
+width: 100px;
+}
+
+.action.order{
+  width: 10px;
+}
+
+td.id-header.order{
+  width: 80px;
+  word-break: break-word;
+  white-space: pre-line;
+  vertical-align: top;
+  
+}
+
+td.name-customer.order{
+  width: 150px;
+ word-break: break-word;
+  white-space: pre-line;
+  vertical-align: top;
+}
+
+td.address.order{
+  width: 250px;
+ word-break: break-word;
+  white-space: pre-line;
+  vertical-align: top;
+}
+
+td.total.order{
+  width: 100px;
+ word-break: break-word;
+  white-space: pre-line;
+  vertical-align: top;
+}
+
+td.ship-code.order{
+  width: 100px;
+ word-break: break-word;
+  white-space: pre-line;
+  vertical-align: top;
+}
+
+td.status.order{
+width: 150px;
+ word-break: break-word;
+  /* white-space: pre-line; */
+  padding-top: 35px;
+  vertical-align: top;
+}
+
+td.payment.order{
+width: 100px;
+ padding: 35px  0 0 25px ;
+  vertical-align: top;
+}
+
+td.action.order{
+  width: 30px;
+  word-break: break-word;
+  white-space: pre-line;
+  vertical-align: top;
+}
+/* =========== order-detail=========== */
+.id-header.order-detail{
+width: 80px;
+}
+
+.name-product.order-detail{
+width: 250px;
+}
+
+.img.order-detail{
+width: 170px;
+}
+
+.price.order-detail{
+width: 100px;
+}
+
+.qty.order-detail{
+width: 100px;
+}
+
+.action.order-detail{
+width: 20px;
+}
+
+.photo-order-item{
+width: 150px;
+height: 30%;
+}
+
+
+/* fix xuống dòng */
+td.id-header.order-detail{
+width: 80px;
+  word-break: break-word;
+  white-space: pre-line;
+  vertical-align: top;
+}
+
+td.name-product.order-detail{
+width: 250px;
+  word-break: break-word;
+  white-space: pre-line;
+  vertical-align: top;
+}
+
+td.img.order-detail{
+width: 170px;
+  word-break: break-word;
+  /* white-space: pre-line; */
+  vertical-align: top;
+}
+
+td.price.order-detail{
+width: 100px;
+  word-break: break-word;
+  white-space: pre-line;
+  vertical-align: top;
+}
+
+td.qty.order-detail{
+width: 100px;
+  word-break: break-word;
+  white-space: pre-line;
+  vertical-align: top;
+}
+
+td.action.order-detail{
+width: 20px;
+  word-break: break-word;
+  white-space: pre-line;
+  vertical-align: top;
+}
+
+  
+
+.photo-order-item{
+width: 150px;
+height: 30%;
+}
+
+
+/* ===========discount=============== */
+/* .id-header.discount{
+width: 3%;
+}
+.id-header.order{
+  width: 1%;
+}
+
+.name-customer.order{
+  width: 15%;
+}
+
+.address.order{
+  width: 30%;
+}
+
+.total.order{
+  width: 10%;
+}
+
+.ship-code.order{
+  width: 10%;
+}
+
+.status.order{
+width: 15%;
+}
+
+.payment.order{
+width: 15%;
+}
+
+.action.order{
+  width: 3%;
+} */
+/* =========== order-detail=========== */
+/* .id-header.order-detail{
+width: 1%;
+}
+
+.name-product.order-detail{
+width: 30%;
+}
+
+.img.order-detail{
+width: 30%;
+}
+
+.price.order-detail{
+width: 10%;
+}
+
+.qty.order-detail{
+width: 10%;
+}
+
+.action.order-detail{
+width: 3%;
+}
+
+.photo-order-item{
+width: 150px;
+height: 30%;
+}
+
+td.address-all {
+word-break: break-word;
+white-space: pre-line;
+max-width: 30%; 
+vertical-align: top; */
+/*padding: 5px;*/
+/*border: 1px solid black;*/
+/* } */
+
+
+/* ===========discount=============== */
+/* .id-header.discount{
+width: 3%;
+} */
+
+
+/* ===================LIVE CHECK=========== */
+.success-notify-live{
+  color: #33A0FF;
+
+}
+
+.erro-notify-live{
+  color: #ff3333;
+
+}
+
+
+
+/* ================user==================== */
+.photo-user{
+  width: 100px;
+  height: 50%;
+}
+
+td.id-header.user{
+  width: 40px;
+  word-break: break-word;
+  white-space: pre-line;
+  vertical-align: top;
+}
+
+/* td.header.table-user{
+  display: flex;
+  justify-content: space-between;
+  align-content: flex-start;
+  text-align: center;
+} */
+
+td.name.user{
+  width: 15%;
+  word-break: break-word;
+  white-space: pre-line;
+  vertical-align: top;
+}
+
+td.img.user{
+  max-width: 100px;
+  word-break: break-word;
+  /* white-space: pre-line; */
+  vertical-align: top;
+}
+
+td.birthday.user{
+  width: 10%;
+  word-break: break-word;
+  white-space: pre-line;
+  vertical-align: top;
+}
+
+td.email.user{
+  width: 15%;
+  word-break: break-word;
+  white-space: pre-line;
+  vertical-align: top;
+}
+
+td.phone.user{
+  width: 100px;
+  word-break: break-word;
+  white-space: pre-line;
+  vertical-align: top;
+}
+
+td.action.user{
+  width: 10px;
+  word-break: break-word;
+  white-space: pre-line;
+  vertical-align: top;
+}
+
+td.address.user{
+  width: 500px;
+  word-break: break-word;
+  white-space: pre-line;
+  vertical-align: top;
+}
+
+td.form-control.add-infor.user{
+  position: relative;
+}
+/* trick để đổi choose file -> chọn tệp */
+.form-control.add-infor.user::after{
+  position: absolute;
+  position: absolute;
+  content: "Chọn tệp";
+  width: 95px;
+  height: 154px;
+  height: 1;
+  top: 0;
+  left: 0px;
+  background-color: #fff;
+  text-align: center;
+  /* display: flex; */
+  /* align-content: center; */
+  padding: 8px 0 0 0;
+  
+}
+
+.form-control.add-infor.user:hover:after{
+  background-color: #e5e5e5;
+}
+
+
+/* ==========Kho========= */
+.id-header.warehouse{
+  width: 90px;
+}
+
+.product-name.warehouse{
+  width: 300px;
+}
+
+.stock.warehouse{
+  width: 100px;
+}
+
+.buyed.warehouse{
+  width: 100px;
+}
+
+.date-import.warehouse{
+  width: 120px;
+}
+
+.date-update.warehouse{
+  width: 120px;
+}
+
+.action.warehouse{
+ 
+  width: px;
+}    
+
+/* fix xuống dòng */
+td.id-header.warehouse{
+  width: 90px;
+  word-break: break-word;
+  white-space: pre-line;
+  vertical-align: top;
+}
+
+td.product-name.warehouse{
+  width: 300px;
+  word-break: break-word;
+  white-space: pre-line;
+  vertical-align: top;
+}
+
+td.stock.warehouse{
+  width: 100px;
+  word-break: break-word;
+  white-space: pre-line;
+  vertical-align: top;
+}
+
+td.buyed.warehouse{
+  width: 100px;
+  word-break: break-word;
+  white-space: pre-line;
+  vertical-align: top;
+}
+
+td.date-import.warehouse{
+  width: 120px;
+  word-break: break-word;
+  white-space: pre-line;
+  vertical-align: top;
+}
+
+td.date-update.warehouse{
+  width: 120px;
+  word-break: break-word;
+  white-space: pre-line;
+  vertical-align: top;
+}
+
+td.action.warehouse{
+ 
+  width: px;
+  word-break: break-word;
+  white-space: pre-line;
+  vertical-align: top;
+}       
+
+
+/* ============supplier================ */
+.id-header.brand{
+  width: 80px;
+}
+
+.name.brand{
+  width: 150px;
+}
+
+.img.brand{
+  width: 150px;
+}
+
+.category.brand{
+  width: 300px;
+}
+
+.action.brand{
+  width: px;
+}
+
+.photo-brand{
+  width: 100%;
+}
+
+/* fix xuống dòng */
+td.id-header.brand{
+  width: 80px;
+  word-break: break-word;
+  white-space: pre-line;
+  vertical-align: top
+}
+
+td.name.brand{
+  width: 150px;
+  word-break: break-word;
+  white-space: pre-line;
+  vertical-align: top
+}
+
+td.img.brand{
+  width: 150px;
+  word-break: break-word;
+  white-space: pre-line;
+  vertical-align: top
+}
+
+td.category.brand{
+  width: 300px;
+  word-break: break-word;
+  white-space: pre-line;
+  vertical-align: top
+}
+
+td.action.brand{
+  width: 40px;
+  word-break: break-word;
+  white-space: pre-line;
+  vertical-align: top
+}
+
+
+/* =============product========== */
+.id-header.product{
+  width: 80px;
+}
+
+.category.product{
+  width: 150px;
+}
+
+.companny.product{
+  width: 150px;
+}
+
+.name.product{
+  width: 200px;
+}
+
+.img.product{
+  width: 200px;
+}
+
+.cost.product{
+  width: 100px;
+}
+
+.percent-reduce.product{
+  width: 100px;
+}
+
+.status.product{
+  width: 100px;
+}
+
+.action.product{
+  width: 40px;
+}
+
+.photo-product{
+  width: 100%;
+}
+
+/* fix xuống dòng */
+td.id-header.product{
+  width: 80px;
+  word-break: break-word;
+  white-space: pre-line;
+  vertical-align: top
+}
+
+td.category.product{
+  width: 150px;
+  word-break: break-word;
+  white-space: pre-line;
+  vertical-align: top
+}
+
+td.companny.product{
+  width: 150px;
+  word-break: break-word;
+  white-space: pre-line;
+  vertical-align: top
+}
+
+td.name.product{
+  width: 200px;
+  word-break: break-word;
+  white-space: pre-line;
+  vertical-align: top
+}
+
+td.img.product{
+  width: 200px;
+  word-break: break-word;
+  white-space: pre-line;
+  vertical-align: top
+}
+
+td.cost.product{
+  width: 100px;
+  word-break: break-word;
+  white-space: pre-line;
+  vertical-align: top
+}
+
+td.percent-reduce.product{
+  width: 100px;
+  word-break: break-word;
+  white-space: pre-line;
+  vertical-align: top
+}
+
+td.status.product{
+  width: 100px;
+  padding: 35px 0 0 20px;
+  word-break: break-word;
+  /* white-space: pre-line; */
+  vertical-align: top
+}
+
+td.action.product{
+  width: 40px;
+  word-break: break-word;
+  white-space: pre-line;
+  vertical-align: top
+}
+
+
+/* ===============discount======== */
+.id-header.discount{
+  width: 80px;
+}
+
+.name.discount{
+  width: 150px;
+}
+
+.code.discount{
+  width: 150px;
+}
+
+.type.discount{
+  width: 100px;
+}
+
+.min.discount{
+  width: 100px;
+}
+
+.begin.discount{
+  width: 100px;
+}
+
+.end.discount{
+  width: 100px;
+}
+
+.status.discount{
+  width: 100px;
+}
+
+.action.discount{
+  width: 80px;
+}
+
+/* fix lỗi xuống dòng */
+
+.id-header.discount{
+  width: 80px;
+  word-break: break-word;
+  white-space: pre-line;
+  vertical-align: top
+}
+
+.name.discount{
+  width: 150px;
+  word-break: break-word;
+  white-space: pre-line;
+  vertical-align: top
+}
+
+.code.discount{
+  width: 150px;
+  word-break: break-word;
+  white-space: pre-line;
+  vertical-align: top
+}
+
+.type.discount{
+  width: 100px;
+  word-break: break-word;
+  white-space: pre-line;
+  vertical-align: top
+}
+
+.min.discount{
+  width: 100px;
+  word-break: break-word;
+  white-space: pre-line;
+  vertical-align: top
+}
+
+.begin.discount{
+  width: 100px;
+  word-break: break-word;
+  white-space: pre-line;
+  vertical-align: top
+}
+
+.end.discount{
+  width: 100px;
+  word-break: break-word;
+  white-space: pre-line;
+  vertical-align: top
+}
+
+.status.discount{
+  width: 100px;
+  word-break: break-word;
+  white-space: pre-line;
+  vertical-align: top
+}
+
+.action.discount{
+  width: 80px;
+  word-break: break-word;
+  white-space: pre-line;
+  vertical-align: top
+}
+
+
+.preview-img{
+  position: relative;
+}
+
+.preview-img::after{
+  position: absolute;
+  content: "cailonma";
+}
+
+
+
+
+
