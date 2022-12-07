@@ -5,16 +5,44 @@
     include("../Model/ModelAll.php");
     include("../config/databse.php");
 	  include("../config/site.php");
+    include("../Model/Pagination.php")
 ?>
 
 <!-- get role -->
 <?php
+
+$pagination = new Pagination;
+
   if($_SESSION['SMC_login_admin_type']==1){
     $_SESSION['SMC_login_admin_role']="Admin";
   }
   else {
     $_SESSION['SMC_login_admin_role']="Quản lý";
   }
+
+  $config = array(
+    'current_page'  => isset($_GET['page']) ? $_GET['page'] : 1,
+    'total_record'  => $pagination->count_all_member(), 
+    'limit'         => 15,
+    'link_full'     => 'list-employee.php?page={page}',
+    'link_first'    => 'list-employee.php',
+    'range'         => 3
+);
+
+
+$pagination->init($config);
+
+// Lấy limit, start
+$limit = $pagination->get_config('limit');
+$start = $pagination->get_config('start');
+
+// var_dump($limit);
+
+
+// Lấy danh sách thành viên
+$employeeList = $pagination->getAllEmployee($limit, $start);
+
+// var_dump($employeeList);
 
 ?>
 
@@ -31,11 +59,24 @@ $whereValue['nguoidung.id']=	$_SESSION['SMC_login_id'];
 // var_dump($whereValue['id']);
 $whereCondition ="!=";
 $joinCondition = array ("1"=>array ('taikhoan.id', 'nguoidung.id_taikhoan'));
-$employeeList = $Model->selectJoinData($columnName, $tableName, null, $joinCondition, $whereValue, $whereCondition);
-// var_dump($employeeList );
+// $employeeList = $Model->selectJoinData($columnName, $tableName, null, $joinCondition, $whereValue, $whereCondition);
+// var_dump($employeeList[0]['anh'] );
 
 ##=======LẤY DỮ LIỆU=======##
 
+  // Kiểm tra nếu là ajax request thì trả kết quả
+  // if(isset($_GET['page'])) {
+  //   // var_dump("chưa vào");
+  //   echo (json_encode(array(
+  //       'member' => $employeeList,
+  //       'paging' => $pagination->html()
+  //   )));
+  // }
+  
+
+
+
+// var_dump(();
 
 ?>
 
@@ -309,7 +350,7 @@ $employeeList = $Model->selectJoinData($columnName, $tableName, null, $joinCondi
                 <a href="add_employee.php"><button class="btn btn-primary add-btn user" type="button">THÊM</button></a>
               </div>
               <div class="table-responsive text-nowrap">
-                <table class="table user">
+                <table id="content-table" class="table user">
                   <thead>
                     <tr>
                       <th class="id-header user">Mã</th>
@@ -323,7 +364,7 @@ $employeeList = $Model->selectJoinData($columnName, $tableName, null, $joinCondi
 
                     </tr>
                   </thead>
-                  <tbody>
+                  <tbody id="list">
 
                     <?php 
 
@@ -349,7 +390,7 @@ $employeeList = $Model->selectJoinData($columnName, $tableName, null, $joinCondi
                             <td class="img user">
                               <ul class="list-unstyled users-list m-0 avatar-group d-flex align-items-center">
                                 <li>
-                                  <img src="'.$GLOBALS['USER_DIRECTORY_SHOW'] .$eachRow['anh'].'" alt="Anh dai dien" class="photo-user">
+                                  <img src="'.$GLOBALS['USER_DIRECTORY_SHOW'].$eachRow['anh'].'" alt="Anh-dai-dien.jpg" class="photo-user">
                                 </li>
                               </ul>
                             </td>
@@ -381,12 +422,16 @@ $employeeList = $Model->selectJoinData($columnName, $tableName, null, $joinCondi
                               </div>
                             </td>
                           </tr>
+
+                          
                           ';
                           
                       }
 
                       
                     ?>
+
+
 
                             <td class="id-header user"> 
                               1
@@ -396,7 +441,7 @@ $employeeList = $Model->selectJoinData($columnName, $tableName, null, $joinCondi
                             </td>
                             <td class="img user">
                               
-                                  <img src="../../public/uploads/users/User_admin_anh-dai-dien.jpg" alt="Anh dai dien" class="photo-user">
+                                  <img src="../../public/uploads/users/User_Employee_20221205152204_banner-person.png" alt="Anh dai dien" class="photo-user">
                               
                             </td>
                             <td class="birthday user">
@@ -422,7 +467,7 @@ $employeeList = $Model->selectJoinData($columnName, $tableName, null, $joinCondi
 
                                   <a class="dropdown-item" href="edit_employee.php?id='.$eachRow['id'].'"><i class="bx bx-edit-alt me-1"></i>
                                     Sửa</a>
-                                  <p class="btn-delete dropdown-item" data-bs-toggle="modal" data-bs-target="#modalCenter" id="" href=""><i class="bx bx-trash me-1" ></i> Xóa</p>
+                                  <p class="btn-delete dropdown-item" data-bs-toggle="modal" data-bs-target="#modalCenter" id="bt" href=""><i class="bx bx-trash me-1" ></i> Xóa</p>
                                 </div>
                               </div>
                             </td>
@@ -439,6 +484,7 @@ $employeeList = $Model->selectJoinData($columnName, $tableName, null, $joinCondi
                       <th class="address user">Địa chỉ</th>
                       <th class="action user">Thao tác</th>
                     </tr>
+                          
                   </tfoot>
 
                   <div class="modal fade" id="modalLong" tabindex="-1" aria-hidden="true">
@@ -584,8 +630,15 @@ $employeeList = $Model->selectJoinData($columnName, $tableName, null, $joinCondi
                     </div>
                   </div>
 
+                  
 
                 </table>
+
+                <div class="paging d-flex justify-content-end px-5 py-4">
+                      <?php echo $pagination->html(); ?>
+                  </div>
+                
+
               </div>
             </div>
             <!-- Bootstrap Table with Header - Footer -->
@@ -604,53 +657,119 @@ $employeeList = $Model->selectJoinData($columnName, $tableName, null, $joinCondi
 	})
 </script>	 -->
 
+<script>
+  // $('a').on('click', function(e) {
+  //   e.preventDefault()
+  // })
 
+  // function onClick(){
+  //   this.addClass
+  // }
 
+  // $('#content-table').on('click',' a', function ()
+  // {
+  //     var url = $(this).attr('href');
+  //   alert(url);
+  //     $.ajax({
+  //         url : "url",
+  //         type : 'get',
+  //         dataType : 'json',
+  //         success : function (result)
+  //         {
+  //         alert(result);
+
+  //                 var html = " ";
+  //                 $.each(result['member'], function (key, item){
+  //                   html += '<td class="id-header user">' 
+  //                           +member['id']+'</td>'; 
+  //                   html += '<td class="name user">'
+  //                           +member['hoten']+ '</td>'; 
+  //                   html += '<td class="img user">'
+  //                     +'<img src="'+$GLOBALS['USER_DIRECTORY_SHOW']+member['anh']+'" alt="Anh-dai-dien.jpg" class="photo-user">'
+  //                   +'</td>'; 
+  //                   html += ' <td class="birthday user">'
+  //                         +'<span>'+$eachRow['ngaysinh']+'</span>'
+  //                         +'</td>';
+  //                   html += '<td class="email user">'
+  //                             +item['sdt']+
+  //                             '</td>'; 
+  //                   html += '<td class="email user">'
+  //                           +item['diachi']+
+  //                           '</td>'; 
+  //                   html += '<td class="email user">'
+  //                   +'<div class="dropdown">'
+  //                   +'<button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">'
+  //                     +'<i class="bx bx-dots-vertical-rounded"></i>'
+  //                   +'</button>'
+  //                   +'<div class="dropdown-menu">'
+  //                     +'<a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modalLong"><i' +
+  //                         +'class="bx bx-info-circle"></i> Xem thông tin chi tiết</a>'
+
+  //                     +'<a type="submit" class="dropdown-item" href="edit_employee.php?id='+member['id']+'"><i class="bx bx-edit-alt me-1"></i>'
+  //                       +'Sửa</a>'
+  //                     +'<p class="btn-delete dropdown-item" data-bs-toggle="modal" data-bs-target="#modalCenter" id='+member['id_taikhoan']+' href=""><i class="bx bx-trash me-1" ></i> Xóa</p>'
+  //                   +'</div>'
+  //                 +'</div>'+
+  //                   '</td>'; 
+  //                 });
+                  
+                  
+  //                 $('#list').html(html);
+                  
+  //                 $('#paging').html(result['paging']);
+                  
+  //                 window.history.pushState({path:url},'',url);
+  //         }
+  //     });
+  //     return false;
+  // });
+</script>
 
 <script type="text/javascript">
 $(".btn-delete").click(function(e){
     var del_id = $(this).attr('id');
-        var $ele = $(this);
-        Swal.fire({
-        title: 'Bạn có muốn xóa nhân viên này?',
-        text: "Toàn bộ thông tin sẽ biến mất",
-        icon: 'Cảnh báo',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Xóa',
-        cancelButtonText: 'Hủy'
-        }).then((result) => {
-          if (result.isConfirmed) {
-            $.ajax({
-              url: "http://localhost/DoAnWeb_testMVC/admin/Controller/Employee/delete-employee.php",
-              type:"POST",
-              data:{del_id: del_id},
-              
-              success: function(response){
-                if(response !=0){
-                      console.log(response);
-                      Swal.fire(
-                      'Đã xóa!',
-                      'Nhân viên có ID '+del_id+' đã bị xóa',
-                      'sucess')
-                      $ele.parent().parent().parent().parent().slideToggle('slow'); 
-                  } else{
-                      Swal.fire(
-                      'Thất bại',
-                      'Đã xảy ra lỗi! Vui lòng thử lại',
-                      'error'
-                    )
-              }
-              }
-             
-                
- 
-          });
-            
+    console.log(del_id);
+    var $ele = $(this);
+    Swal.fire({
+    title: 'Bạn có muốn xóa nhân viên này?',
+    text: "Toàn bộ thông tin sẽ biến mất",
+    icon: 'Cảnh báo',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Xóa',
+    cancelButtonText: 'Hủy'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        $.ajax({
+          url: "http://localhost/DoAnWeb/DoAnWeb_testMVC/admin/Controller/Employee/delete-employee.php",
+          type:"POST",
+          data:{del_id: del_id},
+          
+          success: function(response){
+            if(response !=0){
+                  console.log(response);
+                  Swal.fire(
+                  'Đã xóa!',
+                  'Nhân viên có ID '+del_id+' đã bị xóa',
+                  'sucess')
+                  $ele.parent().parent().parent().parent().slideToggle('slow'); 
+              } else{
+                  Swal.fire(
+                  'Thất bại',
+                  'Đã xảy ra lỗi! Vui lòng thử lại',
+                  'error'
+                )
           }
-        })
- });
+          }
+          
+            
+
+      });
+        
+      }
+    })
+});
 </script>
 
 

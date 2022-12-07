@@ -107,13 +107,14 @@ class ModelAll
 				}
 			}
 			$query->execute($postSQL);
+			$this->connection->commit();
 			$dataAdded = $query->rowCount();
 			
 			return $dataAdded;
 		}
 		catch(Exception $e) 
 		{
-			return 0;
+			return -1;
 		}
 	}
 	
@@ -132,7 +133,7 @@ class ModelAll
 					$wa1ColumnUpper = strtoupper($wa1Column);
 					@$sql2 .= "`$wa1Column`=:$wa1ColumnUpper AND ";
 				}
-				$sql2 = trim($sql2); $sql2 = rtrim($sql2, "AND"); $sql2 = trim($sql2); // NIRU //
+				$sql2 = trim($sql2); $sql2 = rtrim($sql2, "AND"); $sql2 = trim($sql2); 
 				
 				$preSQL = $sql1 . $sql2;
 				
@@ -154,7 +155,10 @@ class ModelAll
 			}
 			
 			$dataAdded = $query->rowCount();
-			
+			if($dataAdded > 0)
+			{
+				$this->connection->commit();
+			}
 			return $dataAdded;
 		}
 		catch(Exception $e) 
@@ -164,7 +168,7 @@ class ModelAll
 	}
 	
 	//=======SELECT FUNCTION SET=======//
-	public function selectData($columnName, $tableName, $whereValue = 0, $inColumn = 0, $inValue = 0, $formatBy = 0, $paginate = 0)
+	public function selectData($columnName, $tableName, $whereValue = 0, $whereCondition = "=", $inColumn = 0, $inValue = 0, $formatBy = 0, $paginate = 0)
 	{
 		try
 		{
@@ -219,7 +223,7 @@ class ModelAll
 				
 				foreach($whereValue AS $wa1Column => $wa1Value)
 				{
-					@$sql5 .= $wa1Column . " = " . "'" . $wa1Value . "' AND ";
+					@$sql5 .= $wa1Column .$whereCondition. "'" . $wa1Value . "' AND ";
 				}
 				$sql5 = trim($sql5); $sql5 = rtrim($sql5, "AND"); $sql5 = trim($sql5); 
 				
@@ -250,7 +254,7 @@ class ModelAll
 	}
 	
 	//=======SELECT FUNCTION SET=======//
-	public function selectJoinData($columnName, $tableName, $joinType = "INNER", $onCondition, $whereValue = 0, $whereCondition="=", $formatBy = 0, $paginate = 0)
+	public function selectJoinData($columnName, $tableName, $joinType = "INNER", $onCondition, $whereValue = 0, $whereCondition="=", $formatBy = 0,$paginate=0)
 	{
 		try
 		{
@@ -314,6 +318,7 @@ class ModelAll
 			return 0;
 		}
 	}
+	
 	
 }
 
