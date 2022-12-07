@@ -514,11 +514,11 @@
                                                 <label for="formFile" class="form-label">Xem trước</label>
                                                     <!-- <div class="fileupload fileupload-new border-5" data-provides="fileupload"> -->
                                                         <div id="Preview-filed" >
-                                                            <img src="<?= $GLOBALS['USER_DIRECTORY_SHOW'].$employeeInfo[0]['anh'] ?>"  class ="img-preview-emp" alt="<?php $employeeInfo[0]['anh'] ?>" id="div4" style="width: 20%;">
+                                                            <img src="<?= $GLOBALS['USER_DIRECTORY_SHOW'].$employeeInfo[0]['anh'] ?>"  class ="img-preview-emp" alt="<?php echo $employeeInfo[0]['anh'] ?>" id="div4" style="width: 20%;">
                                                         </div>
                                                     <!-- </div> -->
                                             </div>
-                                            <button type="button" class="btn-save-edit btn btn-primary">Lưu</button>
+                                            <button type="button" id="btn-edit-employee" class="btn-save-edit btn btn-primary">Lưu</button>
                                         </form>
                                     </div>
                                 </div>
@@ -560,7 +560,7 @@
 <!-- ajax lấy tỉnh thành phố -->
 <script >
     $.ajax({
-        url: "http://localhost/DoAnWeb_testMVC/admin/Controller/Formcheck/LayTinh.php",       
+        url: "http://localhost/DoAnWeb/DoAnWeb_testMVC/admin/Controller/Formcheck/LayTinh.php",       
         dataType:'json',         
         success: function(data){     
             for (i=0; i<data.length; i++){            
@@ -577,7 +577,7 @@
                 var Provice_id = $( "#Provice_edit option:selected" ).val();
                 console.debug(Provice_id);
                 $.ajax({
-                    url: "http://localhost/DoAnWeb_testMVC/admin/Controller/Formcheck/GetDistrict.php?ProviceId=" + Provice_id,
+                    url: "http://localhost/DoAnWeb/DoAnWeb_testMVC/admin/Controller/Formcheck/GetDistrict.php?ProviceId=" + Provice_id,
                     dataType:'json',         
                     success: function(data){  
                         $("#District_edit").html("");
@@ -594,7 +594,7 @@
                             var District_id = $( "#District_edit option:selected" ).val();
                             console.log(District_id);
                             $.ajax({
-                                url: "http://localhost/DoAnWeb_testMVC/admin/Controller/Formcheck/GetTown.php?DistrictId=" + District_id,
+                                url: "http://localhost/DoAnWeb/DoAnWeb_testMVC/admin/Controller/Formcheck/GetTown.php?DistrictId=" + District_id,
                                 dataType:'json',         
                                 success: function(data){  
                                     // console.log(data);
@@ -636,7 +636,7 @@
         //Nếu email bị thay đổi-> báo như thường, phòng trường họp check email-> email của bạn đã tồn tại trong hệ thống
         if(email_input!= email_input_old){
            $.ajax({
-            url: "http://localhost/DoAnWeb_testMVC/admin/Controller/Formcheck/email.php",
+            url: "http://localhost/DoAnWeb/DoAnWeb_testMVC/admin/Controller/Formcheck/email.php",
             type:"POST",
             data:{email_input: email_input},
             success: function(data){
@@ -675,7 +675,7 @@
         console.debug(phone_input_old);
         if(phone_input != phone_input_old){
             $.ajax({
-            url: "http://localhost/DoAnWeb_testMVC/admin/Controller/Formcheck/phone.php",
+            url: "http://localhost/DoAnWeb/DoAnWeb_testMVC/admin/Controller/Formcheck/phone.php",
             type:"POST",
             data:{phone_input: phone_input},
             success: function(data){
@@ -711,13 +711,15 @@
         var file_name = $('input[type=file]').val().split('\\').pop();
         var file_extension = file_name.split('.').pop();
         $.ajax({
-                url: "http://localhost/DoAnWeb_testMVC/admin/Controller/Formcheck/file_img.php",
+                url: "http://localhost/DoAnWeb/DoAnWeb_testMVC/admin/Controller/Formcheck/file_img.php",
                 type:"POST",
                 data:{file_extension: file_extension },
                 success: function(data){
                     if(data==1){
                         $('.upload-notify').attr('style', 'color:#33A0FF;padding-left: 20px');
                         $(".upload-notify").html("<i class='bx bxs-check-circle pl-3'></i> Tải ảnh thành công");
+                        // $(".img-preview-emp").attr("src", "../../public/uploads/users/"+data['anh_moi']);
+                        
                         setTimeout(function(){
                         $(".upload-notify").html("");
                         }, 2000)
@@ -761,7 +763,7 @@
         return path_img.match(/\w*(?=.\w+$)/);
     }
 
-    $(".btn-save-edit").on("click", function(){
+    $("#btn-edit-employee").on("click", function(){
         var info={};
         info['id'] = $("#id-emp-edit").val();
         info['hoten'] = $(".name-text").val();
@@ -776,8 +778,9 @@
         info['diachi'] = $(".Address-textarea").val();
         info['trangthai'] = document.getElementById("status-emp-edit").checked ? 1 : 0;
         info['vaitro']= $('#role-emp-edit option:selected').val()!=-1 ? $('#role-emp-edit option:selected').val() : " ";
-        info['anh_cu'] = $('.img-preview-emp').attr("src").split("/").reverse()[0];
+        info['anh_cu'] = $('.img-preview-emp').attr("alt");
 
+        // alert(info['anh_cu']);
         var file_a = $('#imgFile-edit-employee').prop('files')[0];  
         var form_data = new FormData(); 
         //lưu file ảnh dưới dạng file, nén thông tin dưới dạng json để qua php xử lý
@@ -789,11 +792,11 @@
             contentType: false,
             processData: false,
             type: 'POST',
-            dataType: "text",
+            dataType: "json",
             success: function(data){
-                console.debug( data);
+                console.debug( data['anh_moi']);
 
-                switch(parseInt(data) ){
+                switch(parseInt(data['tinhtrang']) ){
                     case 0:
                         {
                         $('.alert.alert-danger.alert-dismissible').text("Không được để trống miền giá trị nào");
@@ -807,6 +810,11 @@
                          $('.alert.alert-info.alert-dismissible').text("Sửa thông tin thành công");
                         $('.alert.alert-danger.alert-dismissible').prop('hidden', true);
                         $('.alert.alert-info.alert-dismissible').prop('hidden', false);
+                        //Doi path cho anh, sau nay neu muon sua tiesp se khong bi loi
+                        $(".img-preview-emp").attr("src", "../../public/uploads/users/"+data['anh_moi']);
+                        $(".img-preview-emp").attr("alt", data['anh_moi']);
+
+                        
                         $("html, body").animate({scrollTop: 0}, 1000);
                        }
                         break;

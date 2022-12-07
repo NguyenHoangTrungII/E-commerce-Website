@@ -74,27 +74,24 @@
 			});
 
 
-      function changeBtnTxt(){
+
+
+
+      var inputLocalFont = document.getElementById("product-gallery-add");
+      inputLocalFont.addEventListener("change",previewImages,false);
+      function previewImages(){
+        var fileList = this.files;
         
+        var anyWindow = window.URL || window.webkitURL;
+
+            for(var i = 0; i < fileList.length; i++){
+              var objectUrl = anyWindow.createObjectURL(fileList[i]);
+              $('#preview-product-gallery-add').append('<img src="' + objectUrl + '" style="width: 20%;"/>');
+              window.URL.revokeObjectURL(fileList[i]);
+            }
+        
+
       }
-
-
-
-      // var inputLocalFont = document.getElementById("formFile-review-image-label");
-      // inputLocalFont.addEventListener("change",previewImages,false);
-      // function previewImages(){
-      //   var fileList = this.files;
-        
-      //   var anyWindow = window.URL || window.webkitURL;
-
-      //       for(var i = 0; i < fileList.length; i++){
-      //         var objectUrl = anyWindow.createObjectURL(fileList[i]);
-      //         $('#Preview-filed').append('<img src="' + objectUrl + '" style="width: 20%;"/>');
-      //         window.URL.revokeObjectURL(fileList[i]);
-      //       }
-        
-
-      // }
 
 //       function UpdatePreview(){
 //     $('#frame').attr('src', URL.createObjectURL(event.target.files[0]));

@@ -288,7 +288,7 @@
                                                             <label class="form-label" for="basic-default-nameproduct">Tên sản
                                                                 phẩm</label>
                                                             <input type="text" class="form-control"
-                                                                id="basic-default-nameproduct" placeholder="Nhập tên sản phẩm">
+                                                                id="product-name-add" placeholder="Nhập tên sản phẩm">
                                                         </div>
                                                     </div>
         
@@ -304,23 +304,23 @@
                                                     <div class="row">
                                                         <div class="col-xl-6">
                                                             <div class="mb-3">
-                                                                <label for="defaultSelect" class="form-label">Danh mục</label>
-                                                                <select id="defaultSelect" class="form-select">
-                                                                    <option>Chọn danh mục</option>
-                                                                    <option value="1">CPU</option>
+                                                                <label for="category-list-add" class="form-label">Danh mục</label>
+                                                                <select class="form-select" id="category_list_add" style="width: 100%;">
+                                                                    <option value="-1">Chọn danh mục</option>
+                                                                    <!-- <option value="1">CPU</option>
                                                                     <option value="2">RAM</option>
                                                                     <option value="3">SSD</option>
                                                                     <option value="4">HDD</option>
-                                                                    <option value="5">VGA</option>
+                                                                    <option value="5">VGA</option> -->
                                                                 </select>
                                                             </div>
                                                         </div>
         
                                                         <div class="col-xl-6">
                                                             <div class="mb-3">
-                                                                <label for="defaultSelect" class="form-label">Thương
+                                                                <label for="brand_list_add" class="form-label">Thương
                                                                     hiệu</label>
-                                                                <select id="defaultSelect" class="form-select">
+                                                                <select id="brand_list_add" class="form-select" style="width: 100%;">
                                                                     <option>Chọn thương hiệu</option>
                                                                     <option value="1">1</option>
                                                                     <option value="2">2</option>
@@ -336,19 +336,19 @@
                                                     <div class="row">
                                                         <div class="mb-3 col-xl-6">
                                                             <label class="form-label">Giá gốc</label>
-                                                            <input type="text" class="form-control" id="basic-default-cost"
+                                                            <input type="text" class="form-control" id="historical-cost"
                                                                 placeholder="Nhập giá gốc">
                                                         </div>
                                                         <div class="mb-3 col-xl-6">
                                                             <label class="form-label">Phần trăm giảm</label>
-                                                            <input type="text" class="form-control" id="basic-default-percent"
+                                                            <input type="text" class="form-control" id="percent-reduction"
                                                                 placeholder="Nhập phần trăm giảm">
                                                         </div>
                                                     </div>
                                                     <div class="row">
                                                         <div class="mb-3 col-xl-5">
                                                             <label class="form-label">Bảo hành</label>
-                                                            <input type="text" class="form-control" id="basic-default-cost"
+                                                            <input type="text" class="form-control" id="insurance-date"
                                                                 placeholder="Nhập số tháng bảo hành">
                                                         </div>
         
@@ -356,15 +356,15 @@
                                                             <div class="mb-3">
                                                                 <label for="defaultSelect" class="form-label">Ngày sản
                                                                     xuất</label>
-                                                                <input class="form-control" type="date" value="">
+                                                                <input class="form-control" type="date" value="" id="MFG-product-add">
                                                             </div>
                                                         </div>
         
                                                         <div class="mb-3 col-xl-2 text-center">
                                                             <label class="form-label pb-2">Tình trạng</label><br>
-                                                            <label class="toggle-switchy" for="example_textless_4"
+                                                            <label class="toggle-switchy" for="product-status-add"
                                                                 data-size="sm" data-text="false" data-style="rounded">
-                                                                <input checked type="checkbox" id="example_textless_4">
+                                                                <input checked type="checkbox" id="product-status-add">
                                                                 <span class="toggle">
                                                                     <span class="switch"></span>
                                                                 </span>
@@ -388,85 +388,47 @@
                                                         
                                                     </div> -->
                                                     <div class="row">
-                                                        <div class="mb-3 col-xl-3 col-md-6">
-                                                            <label for="formFile" class="form-label ">Ảnh thumbnail</label>
-                                                            <input class="form-control add-infor user" type="file"
-                                                                id="formFile review-image-label"
-                                                                accept=".jfif,.jpg,.jpeg,.png,.gif" multiple/>
-                                                                <label for="formFile" class="form-label">Xem trước ảnh
-                                                                    thumbnail</label>
-                                                                <div class="fileupload fileupload-new border-5"
-                                                                    data-provides="fileupload">
-                                                                    <div class="fileupload-new thumbnail"
-                                                                        style="width: 160px; height: 160px;">
-                                                                        <img src="../assets/img/product/570x470_cpu-intel-core-i9-12900.png"
-                                                                            alt="" width="200px">
-                                                                    </div>
-                                                                </div>
-                                                        </div>
-                                                        
+                                                          <label for="formFile" class="form-label ">Ảnh thumbail</label> <span class="upload-notify"></span>
+                                                          <div class="input-group">
+                                                            <!-- <div class="row"> -->
+                                                              <!-- <div class="col-6"> -->
+                                                                  <button class="btn-remove-img btn btn-outline-primary" type="button" >Xóa</button>
+                                                                  <input name= "avatar-employee" class="form-control Employee-img-preview" type="file" id="file-product-add" 
+                                                                    accept=".jfif,.jpg,.jpeg,.png,.gif" set-to="div4"  onchange="readURL(this)"/>
+                                                              <!-- </div> -->
+
+                                                              
+                                                          </div>
+                                                          <div class="col-6">
+                                                                <label for="formFile" class="form-label">Xem trước</label>
+                                                                  <div id="preview-product-add" >
+                                                                      <img src=""  class ="img-preview-emp" alt="" id="div4" style="width: 20%;">
+                                                                  </div>
+                                                          </div>
                                                     </div>
                                                     <div class="row">
-                                                        <div class="mb-3 col-xl-3 col-md-6">
-                                                            <label for="formFile" class="form-label ">Ảnh</label>
-                                                            <input class="form-control add-infor user" type="file"
-                                                                id="formFile review-image-label"
-                                                                accept=".jfif,.jpg,.jpeg,.png,.gif" multiple>
-                                                                <label for="formFile" class="form-label">Xem trước</label>
-                                                                <div class="fileupload fileupload-new border-5"
-                                                                    data-provides="fileupload">
-                                                                    <div class="fileupload-new thumbnail"
-                                                                        style="width: 160px; height: 160px;">
-                                                                        <img src="../assets/img/avatars/1.png" alt="">
-                                                                    </div>
-                                                                </div>
-                                                        </div>
-                                                        
-                                                        <div class="mb-3 col-xl-3 col-md-6">
-                                                            <label for="formFile" class="form-label ">Ảnh</label>
-                                                            <input class="form-control add-infor user" type="file"
-                                                                id="formFile review-image-label"
-                                                                accept=".jfif,.jpg,.jpeg,.png,.gif" multiple>
-                                                                <label for="formFile" class="form-label">Xem trước</label>
-                                                                <div class="fileupload fileupload-new border-5"
-                                                                    data-provides="fileupload">
-                                                                    <div class="fileupload-new thumbnail"
-                                                                        style="width: 160px; height: 160px;">
-                                                                        <img src="../assets/img/avatars/1.png" alt="">
-                                                                    </div>
-                                                                </div>
-                                                        </div>
-                                                        <div class="mb-3 col-xl-3 col-md-6">
-                                                            <label for="formFile" class="form-label ">Ảnh</label>
-                                                            <input class="form-control add-infor user" type="file"
-                                                                id="formFile review-image-label"
-                                                                accept=".jfif,.jpg,.jpeg,.png,.gif" multiple>
-                                                                <label for="formFile" class="form-label">Xem trước</label>
-                                                                <div class="fileupload fileupload-new border-5"
-                                                                    data-provides="fileupload">
-                                                                    <div class="fileupload-new thumbnail"
-                                                                        style="width: 160px; height: 160px;">
-                                                                        <img src="../assets/img/avatars/1.png" alt="">
-                                                                    </div>
-                                                                </div>
-                                                        </div>
-                                                        <div class="mb-3 col-xl-3 col-md-6">
-                                                            <label for="formFile" class="form-label ">Ảnh</label>
-                                                            <input class="form-control add-infor user" type="file"
-                                                                id="formFile review-image-label"
-                                                                accept=".jfif,.jpg,.jpeg,.png,.gif" multiple>
-                                                                <label for="formFile" class="form-label">Xem trước</label>
-                                                                <div class="fileupload fileupload-new border-5"
-                                                                    data-provides="fileupload">
-                                                                    <div class="fileupload-new thumbnail"
-                                                                        style="width: 160px; height: 160px;">
-                                                                        <img src="../assets/img/avatars/1.png" alt="">
-                                                                    </div>
-                                                                </div>
-                                                        </div>
+                                                      <div class="mb-3">
+                                                              <label for="formFile" class="form-label ">Ảnh liên quan</label> <span class="upload-notify"></span>
+                                                              <div class="input-group">
+                                                                  <button class="btn-remove-img btn btn-outline-primary" type="button" >Xóa</button>
+                                                                  <input name= "avatar-employee" class="form-control Employee-img-preview" type="file" id="product-gallery-add" 
+                                                                    accept=".jfif,.jpg,.jpeg,.png,.gif" multiple  />
+                                                              <!-- <input name= "avatar-employee" class="form-control add-infor user" type="file" id="formFile-review-image-label" 
+                                                                  onchange="readURL(this);" set-to="div3" required accept=".jfif,.jpg,.jpeg,.png,.gif"  multiple> -->
+                                                              </div>
+
+                                                          <div class="mb-5">
+                                                              <label for="formFile" class="form-label">Xem trước</label>
+                                                                  <!-- <div class="fileupload fileupload-new border-5" data-provides="fileupload"> -->
+                                                                      <div id="preview-product-gallery-add" >
+                                                                          <img src=""  class ="img-preview-emp" alt=""  style="width: 20%;">
+                                                                      </div>
+                                                                  <!-- </div> -->
+                                                          </div>
+                                                      </div>
                                                     </div>
-        
-                                                    <!-- <button type="submit" class="btn btn-primary mt-5">Lưu</button> -->
+
+                                                    <!-- <button type="button" class="btn-save-edit btn btn-primary">Lưu</button> -->
                                                 </form>
                                             </div>
                                         </div>
@@ -566,3 +528,162 @@
 <?php
   include("include/tail.php");
 ?>
+
+<script>
+  function checkEmpty(data_value, data_text){
+        var data;
+        if(data_value == -1 ){
+            data="";
+        } else{
+            data= data_text;
+        }
+        return data;
+    }
+
+   $("#nextBtn").on("click", function(){
+        var info={};
+        info['tensp'] = $("#product-name-add").val();
+        info['slug'] = $("#product-slug-add").val(); 
+        info['danhmuc']= checkEmpty($( "#category_list_add option:selected" ).val(), $( "#category_list_add option:selected" ).text());
+        info['thuonghieu'] = checkEmpty($( "#brand_list_add option:selected" ).val(), $( "#brand_list_add option:selected" ).text());
+        info['giagoc'] = $("#historical-cost").val();
+        info['phantram'] = $("#percent-reduction").val();
+        info['baohanh'] =  $("#insurance-date").val();
+        info['ngaysx'] = $("#MFG-product-add").val(); 
+        info['tinhtrang'] = document.getElementById("product-status-add").checked ? 1 : 0;
+
+
+        //lấy ảnh thumbail
+        var file_thumbail_img = $('#file-product-add').prop('files')[0]; 
+
+        //Lấy ảnh liên quan
+        var file_garelly_img  = $('#product-gallery-add').prop('files');
+        // console.debug(file_garelly_img);
+        var form_data = new FormData();  
+        form_data.append("other_data", JSON.stringify(info))  ;
+        form_data.append("file_thumbail_img", file_thumbail_img) ;
+        form_data.append("file_garelly_img", file_garelly_img) ;
+        console.debug(form_data);
+
+
+         $.ajax({
+            url: "http://localhost/DoAnWeb/DoAnWeb_testMVC/admin/Controller/Formcheck/emptyCheck.php",
+            data: form_data,
+            contentType: false,
+            processData: false,
+            type: 'POST',
+            dataType: "text",
+            success: function(data){
+                console.debug( data);
+
+                switch(parseInt(data) ){
+                    case 0:
+                        {
+                            // $('.alert.alert-danger.alert-dismissible').text("");
+                        $('.alert.alert-danger.alert-dismissible').text("Không được để trống miền giá trị nào");
+                        // $(".alert.alert-danger.alert-dismissible").php("Không được để trống miền giá trị nào");
+                        $('.alert.alert-info.alert-dismissible').prop('hidden', true);
+                        $('.alert.alert-danger.alert-dismissible').prop('hidden', false);
+                        // $('.btn-close-danger').prop('hidden', false);
+                        $("html, body").animate({scrollTop: 0}, 1000);
+                        }
+                        break;
+                    case 1:
+                       {
+                         //$('.alert.alert-danger.alert-dismissible').text("");
+                         $('.alert.alert-info.alert-dismissible').text("Thêm thành công");
+                        // $(".alert.alert-danger.alert-dismissible").php("Không được để trống miền giá trị nào");
+                        $('.alert.alert-danger.alert-dismissible').prop('hidden', true);
+                        $('.alert.alert-info.alert-dismissible').prop('hidden', false);
+                        // $('.btn-close-anger').prop('hidden', false);
+                            //xóa dữ liệu trong form
+                        $('.add_employee-form')[0].reset();
+
+                        // xóa ảnh
+                        $(".img-preview").attr('src', " ");
+                        $('input[type=file]').val("");
+                            
+                        $("html, body").animate({scrollTop: 0}, 1000);
+                       }
+                    break;
+                    case -1:{
+                        $('.alert.alert-danger.alert-dismissible').text("Đã có lỗi xảy ra !! vui lòng thử lại sau");
+                        $('.alert.alert-info.alert-dismissible').prop('hidden', true);
+                        $('.alert.alert-danger.alert-dismissible').prop('hidden', false);
+                        $("html, body").animate({scrollTop: 0}, 1000);
+                    }
+                    break;
+
+                }
+               
+            }
+                
+                
+        });
+
+
+    });
+</script>
+
+<script>
+
+        $(document).ready(function() {
+
+            $('#category_list_add').select2(
+            {
+                width: 'resolve'
+            }
+            );
+
+            $('#brand_list_add').select2(
+            {
+                width: 'resolve'
+            }
+            );
+
+        });
+
+        $(".btn-remove-img").on("click", function(){
+            $(".img-preview").attr('src', " ");
+            $('input[type=file]').val("");
+        })
+
+
+</script>
+
+
+<script>
+    $.ajax({
+        url: "http://localhost/DoAnWeb/DoAnWeb_testMVC/admin/Controller/Product/getCategory.php",       
+        dataType:'json',         
+        success: function(data){     
+            $("#category_list_add").html("");
+            $("#category_list_add").append($('<option>', {value:-1, text:"Chọn danh mục sản phẩm"}));
+            for (i=0; i<data.length; i++){            
+                var category = data[i]; //vd  {idTinh:'6', loai:'Tỉnh', tenTinh:'Bắc Kạn'}
+                
+                console.log(category["id"]);
+                $('#category_list_add').append($('<option>', {value:category['id'], text:category['ten'].toUpperCase()}));
+            }
+
+        }
+    });
+</script>
+
+<script>
+   $.ajax({
+        url: "http://localhost/DoAnWeb/DoAnWeb_testMVC/admin/Controller/Product/getBrand.php",       
+        dataType:'json',         
+        success: function(data){     
+            $("#brand_list_add").html("");
+            $("#brand_list_add").append($('<option>', {value:-1, text:"Chọn thương hiệu"}));
+            for (i=0; i<data.length; i++){            
+                var brand = data[i]; //vd  {idTinh:'6', loai:'Tỉnh', tenTinh:'Bắc Kạn'}
+                
+                console.log(brand["id"]);
+                $('#brand_list_add').append($('<option>', {value:brand['id'], text:brand['tenncc'].toUpperCase()}));
+            }
+
+        }
+    });
+</script>
