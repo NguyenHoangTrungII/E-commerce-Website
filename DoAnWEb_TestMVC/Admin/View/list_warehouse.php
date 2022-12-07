@@ -1,6 +1,33 @@
 <?php
-  include("include/top.php");
+    session_start();
+    include("include/session.php");
+    include("include/top.php");
+    include("../Model/ModelAll.php");
+    include("../config/databse.php");
+	  include("../config/site.php");
 ?>
+
+<?php
+$Model = new ModelAll;
+
+// var_dump($_SESSION);
+##=======LẤY DỮ LIỆU=======##
+$columnName = $tableName = null;
+$columnName = "*";
+$tableName['MAIN'] = "khohang";
+$tableName['1'] ='sanpham';
+$whereValue['sanpham.id']=	$_SESSION['SMC_login_id'];
+// var_dump($whereValue['id']);
+$whereCondition ="!=";
+$joinCondition = array ("1"=>array ('khohang.id_sp', 'sanpham.id'));
+$warehouseList = $Model->selectJoinData($columnName, $tableName, null, $joinCondition, $whereValue, $whereCondition);
+// var_dump($warehouseList );
+
+##=======LẤY DỮ LIỆU=======##
+
+
+?>
+
 
 
 <body>
@@ -296,26 +323,31 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
+                                    <?php 
+
+                                        foreach($warehouseList AS $eachRow)
+                                        {
+                                            echo '
+                                            <tr>
                                             <td class="id-header warehouse">
-                                              123
-                                            </td>
-                                            <td class="product-name warehouse">
-                                                CPU Intel Core I9 12900 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-                                            </td>
-                                            <td class="stock warehouse">
-                                                150
-                                            </td>
-                                            <td class ="buyed warehouse">
-                                                50
-                                            </td>
-                                            <td class="date-import warehouse">
-                                                30/11/2022
-                                            </td>
-                                            <td class="date-update warehouse">
-                                                30/11/2022
-                                            </td>
-                                            <td class="action warehouse">
+                                              '.$eachRow['id_sp'].'
+                                              </td>
+                                              <td class="product-name warehouse">
+                                                '.$eachRow['tensp'].'
+                                              </td>
+                                              <td class="stock warehouse">
+                                              '.$eachRow['soluongton'].'
+                                              </td>
+                                              <td class ="buyed warehouse">
+                                              '.$eachRow['soluongdaban'].'
+                                              </td>
+                                              <td class="date-import warehouse">
+                                                '.$eachRow['ngaynhap'].'
+                                              </td>
+                                              <td class="date-update warehouse">
+                                                '.$eachRow['ngaysua'].'
+                                              </td>
+                                              <td class="action warehouse">
                                                 <div class="dropdown">
                                                     <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
                                                         data-bs-toggle="dropdown">
@@ -323,48 +355,16 @@
                                                     </button>
                                                     <div class="dropdown-menu action--none">
                                                         
-                                                        <a class="dropdown-item" href="javascript:void(0);"><i
+                                                        <a class="btn-delete dropdown-item" href="javascript:void(0);"><i
                                                                 class="bx bx-trash me-1"></i> Xóa</a>
                                                     </div>
                                                 </div>
                                             </td>
+                                          ';
+                                        }
+                                        ?>
 
-                                        </tr>
-
-                                        <tr>
-                                            <td class="id-header warehouse">
-                                              123
-                                            </td>
-                                            <td class="product-name warehouse">
-                                                CPU Intel Core I9 12900 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-                                            </td>
-                                            <td class="stock warehouse">
-                                                150
-                                            </td>
-                                            <td class ="buyed warehouse">
-                                                50
-                                            </td>
-                                            <td class="date-import warehouse">
-                                                30/11/2022
-                                            </td>
-                                            <td class="date-update warehouse">
-                                                30/11/2022
-                                            </td>
-                                            <td class="action warehouse">
-                                                <div class="dropdown">
-                                                    <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
-                                                        data-bs-toggle="dropdown">
-                                                        <i class="bx bx-dots-vertical-rounded"></i>
-                                                    </button>
-                                                    <div class="dropdown-menu action--none">
-                                                        
-                                                        <a class="dropdown-item" href="javascript:void(0);"><i
-                                                                class="bx bx-trash me-1"></i> Xóa</a>
-                                                    </div>
-                                                </div>
-                                            </td>
-
-                                        </tr>
+                                        
                                     </tbody>
                                         <tfoot class="table-border-bottom-0">
                                           <tr>
@@ -598,3 +598,51 @@
 <?php
   include("include/tail.php");
 ?>
+
+
+
+<script type="text/javascript">
+$(".btn-delete").click(function(e){
+    var del_id = $(this).attr('id');
+        var $ele = $(this);
+        Swal.fire({
+        title: 'Bạn có muốn xóa sản phẩm này?',
+        text: "Toàn bộ thông tin sẽ biến mất",
+        icon: 'Cảnh báo',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Xóa',
+        cancelButtonText: 'Hủy'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            $.ajax({
+              url: "http://localhost/DoAnWeb_testMVC/admin/Controller/Employee/delete-employee.php",
+              type:"POST",
+              data:{del_id: del_id},
+              
+              success: function(response){
+                if(response !=0){
+                      console.log(response);
+                      Swal.fire(
+                      'Đã xóa!',
+                      'Sản phẩm có ID '+del_id+' đã bị xóa',
+                      'success')
+                      $ele.parent().parent().parent().parent().slideToggle('slow'); 
+                  } else{
+                      Swal.fire(
+                      'Thất bại',
+                      'Đã xảy ra lỗi! Vui lòng thử lại',
+                      'error'
+                    )
+              }
+              }
+             
+                
+ 
+          });
+            
+          }
+        })
+ });
+</script>

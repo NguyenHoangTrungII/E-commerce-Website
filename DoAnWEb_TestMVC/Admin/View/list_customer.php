@@ -1,5 +1,32 @@
 <?php
-  include("include/top.php");
+session_start();
+include("include/session.php");
+include("include/top.php");
+include("../Model/ModelAll.php");
+include("../config/databse.php");
+include("../config/site.php");
+?>
+
+
+<?php
+$Model = new ModelAll;
+
+// var_dump($_SESSION);
+##=======LẤY DỮ LIỆU=======##
+$columnName = $tableName = null;
+$columnName = "*";
+$tableName['MAIN'] = "taikhoan";
+$tableName['1'] = 'nguoidung';
+$whereValue['nguoidung.id'] =  $_SESSION['SMC_login_id'];
+// var_dump($whereValue['id']);
+$whereCondition = "!=";
+$joinCondition = array("1" => array('taikhoan.id', 'nguoidung.id_taikhoan'));
+$customerList = $Model->selectJoinData($columnName, $tableName, null, $joinCondition, $whereValue, $whereCondition);
+// var_dump($employeeList );
+
+##=======LẤY DỮ LIỆU=======##
+
+
 ?>
 
 
@@ -7,182 +34,180 @@
   <!-- Layout wrapper -->
   <div class="layout-wrapper layout-content-navbar">
     <div class="layout-container">
-   <!-- Menu -->
- <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
-    <div class="app-brand demo">
-      <a href="index.php" class="app-brand-link">
-        <span class="app-brand-logo demo">
-        </span>
-        <span class="app-brand-text demo menu-text fw-bolder ms-2">LOGO</span>
-      </a>
+      <!-- Menu -->
+      <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
+        <div class="app-brand demo">
+          <a href="index.php" class="app-brand-link">
+            <span class="app-brand-logo demo">
+            </span>
+            <span class="app-brand-text demo menu-text fw-bolder ms-2">LOGO</span>
+          </a>
 
-      <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
-        <i class="bx bx-chevron-left bx-sm align-middle"></i>
-      </a>
-    </div>
+          <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
+            <i class="bx bx-chevron-left bx-sm align-middle"></i>
+          </a>
+        </div>
 
-    <div class="menu-inner-shadow"></div>
+        <div class="menu-inner-shadow"></div>
 
-    <ul class="menu-inner py-1">
-      <!-- Dashboard -->
-      <li class="menu-item">
-        <a href="index.php" class="menu-link">
-          <i class="menu-icon tf-icons bx bx-home-circle"></i>
-          <div data-i18n="Analytics">Dashboard</div>
-        </a>
-      </li>
+        <ul class="menu-inner py-1">
+          <!-- Dashboard -->
+          <li class="menu-item">
+            <a href="index.php" class="menu-link">
+              <i class="menu-icon tf-icons bx bx-home-circle"></i>
+              <div data-i18n="Analytics">Dashboard</div>
+            </a>
+          </li>
 
-  <!-- Account -->
-  <li class="menu-header small text-uppercase">
-    <span class="menu-header-text">TÀI KHOẢN</span>
-  </li>
-  <li class="menu-item">
-    <a href="javascript:void(0);" class="menu-link menu-toggle">
-      <i class="menu-icon tf-icons bx bx-dock-top"></i>
-      <div data-i18n="Account Settings">Cài đặt tài khoản</div>
-    </a>
-    <ul class="menu-sub">
-      <li class="menu-item">
-        <a href="pages-account-settings-account.php" class="menu-link">
-          <div data-i18n="Account">Tài khoản</div>
-        </a>
-      </li>
-      <li class="menu-item">
-        <a href="pages-account-settings-notifications.php" class="menu-link">
-          <div data-i18n="Notifications">Đổi mật khẩu</div>
-        </a>
-      </li>
+          <!-- Account -->
+          <li class="menu-header small text-uppercase">
+            <span class="menu-header-text">TÀI KHOẢN</span>
+          </li>
+          <li class="menu-item">
+            <a href="javascript:void(0);" class="menu-link menu-toggle">
+              <i class="menu-icon tf-icons bx bx-dock-top"></i>
+              <div data-i18n="Account Settings">Cài đặt tài khoản</div>
+            </a>
+            <ul class="menu-sub">
+              <li class="menu-item">
+                <a href="pages-account-settings-account.php" class="menu-link">
+                  <div data-i18n="Account">Tài khoản</div>
+                </a>
+              </li>
+              <li class="menu-item">
+                <a href="pages-account-settings-notifications.php" class="menu-link">
+                  <div data-i18n="Notifications">Đổi mật khẩu</div>
+                </a>
+              </li>
 
-      <li class="menu-item">
-        <a href="auth-login-basic.php" class="menu-link" target="_blank">
-          <div data-i18n="Basic">Đăng nhập</div>
-        </a>
-      </li>
-      <li class="menu-item">
-        <a href="auth-register-basic.php" class="menu-link" target="_blank">
-          <div data-i18n="Basic">Đăng xuất</div>
-        </a>
-      </li>
-    </ul>
-  </li>
+              <li class="menu-item">
+                <a href="auth-login-basic.php" class="menu-link" target="_blank">
+                  <div data-i18n="Basic">Đăng nhập</div>
+                </a>
+              </li>
+              <li class="menu-item">
+                <a href="auth-register-basic.php" class="menu-link" target="_blank">
+                  <div data-i18n="Basic">Đăng xuất</div>
+                </a>
+              </li>
+            </ul>
+          </li>
 
-  <!-- Manament -->
-  <li class="menu-header small text-uppercase"><span class="menu-header-text">Quản lý</span></li>
-  <!-- Cards -->
-  <li class="menu-item active open">
-    <a href="javascript:void(0)" class="menu-link menu-toggle">
-      <i class="menu-icon tf-icons bx bx-box"></i>
-      <div data-i18n="">Nhân lực</div>
-    </a>
-    <ul class="menu-sub">
-      <li class="menu-item">
-        <a href="list-employee.php" class="menu-link">
-          <div data-i18n="">Nhân viên</div>
-        </a>
-      </li>
-      <li class="menu-item active">
-        <a href="list_customer.php" class="menu-link">
-          <div data-i18n="Alerts">Khách hàng</div>
-        </a>
-      </li>
-    </ul>
-  </li>
+          <!-- Manament -->
+          <li class="menu-header small text-uppercase"><span class="menu-header-text">Quản lý</span></li>
+          <!-- Cards -->
+          <li class="menu-item active open">
+            <a href="javascript:void(0)" class="menu-link menu-toggle">
+              <i class="menu-icon tf-icons bx bx-box"></i>
+              <div data-i18n="">Nhân lực</div>
+            </a>
+            <ul class="menu-sub">
+              <li class="menu-item">
+                <a href="list-employee.php" class="menu-link">
+                  <div data-i18n="">Nhân viên</div>
+                </a>
+              </li>
+              <li class="menu-item active">
+                <a href="list_customer.php" class="menu-link">
+                  <div data-i18n="Alerts">Khách hàng</div>
+                </a>
+              </li>
+            </ul>
+          </li>
 
-  <!-- website -->
-  <li class="menu-item">
-    <a href="javascript:void(0)" class="menu-link menu-toggle">
-      <i class="menu-icon tf-icons bx bx-box"></i>
-      <div data-i18n="">Website</div>
-    </a>
-    <ul class="menu-sub">
-      <li class="menu-item">
-        <a href="list-category.php" class="menu-link">
-          <div data-i18n="">Danh mục</div>
-        </a>
-      </li>
-      <li class="menu-item">
-        <a href="list-slider.php" class="menu-link">
-          <div data-i18n="Alerts">Slider</div>
-        </a>
-      </li>
-    </ul>
-  </li>
+          <!-- website -->
+          <li class="menu-item">
+            <a href="javascript:void(0)" class="menu-link menu-toggle">
+              <i class="menu-icon tf-icons bx bx-box"></i>
+              <div data-i18n="">Website</div>
+            </a>
+            <ul class="menu-sub">
+              <li class="menu-item">
+                <a href="list-category.php" class="menu-link">
+                  <div data-i18n="">Danh mục</div>
+                </a>
+              </li>
+              <li class="menu-item">
+                <a href="list-slider.php" class="menu-link">
+                  <div data-i18n="Alerts">Slider</div>
+                </a>
+              </li>
+            </ul>
+          </li>
 
-  <!-- Feedback -->
-  <li class="menu-item">
-    <a href="javascript:void(0)" class="menu-link menu-toggle">
-      <i class="menu-icon tf-icons bx bx-box"></i>
-      <div data-i18n="">Phản hồi</div>
-    </a>
-    <ul class="menu-sub">
-      <li class="menu-item">
-        <a href="list-rate.php" class="menu-link">
-          <div data-i18n="">Đánh giá</div>
-        </a>
-      </li>
-      <li class="menu-item">
-        <a href="list-question.php" class="menu-link">
-          <div data-i18n="Alerts">Thắc mắc</div>
-        </a>
-      </li>
-    </ul>
-  </li>
+          <!-- Feedback -->
+          <li class="menu-item">
+            <a href="javascript:void(0)" class="menu-link menu-toggle">
+              <i class="menu-icon tf-icons bx bx-box"></i>
+              <div data-i18n="">Phản hồi</div>
+            </a>
+            <ul class="menu-sub">
+              <li class="menu-item">
+                <a href="list-rate.php" class="menu-link">
+                  <div data-i18n="">Đánh giá</div>
+                </a>
+              </li>
+              <li class="menu-item">
+                <a href="list-question.php" class="menu-link">
+                  <div data-i18n="Alerts">Thắc mắc</div>
+                </a>
+              </li>
+            </ul>
+          </li>
 
-  <!-- Buying -->
-  <li class="menu-item">
-    <a href="javascript:void(0)" class="menu-link menu-toggle">
-      <i class="menu-icon tf-icons bx bx-box"></i>
-      <div data-i18n="">Bán hàng</div>
-    </a>
-    <ul class="menu-sub">
-      <li class="menu-item">
-        <a href="list_product.php" class="menu-link">
-          <div data-i18n="">Sản phẩm</div>
-        </a>
-      </li>
-      <li class="menu-item">
-        <a href="list_discount.php" class="menu-link">
-          <div data-i18n="Alerts">Mã giảm giá</div>
-        </a>
-      </li>
-      <li class="menu-item">
-        <a href="list_warehouse.php" class="menu-link">
-          <div data-i18n="Alerts">Kho hàng</div>
-        </a>
-      </li>
-    </ul>
-  </li>
+          <!-- Buying -->
+          <li class="menu-item">
+            <a href="javascript:void(0)" class="menu-link menu-toggle">
+              <i class="menu-icon tf-icons bx bx-box"></i>
+              <div data-i18n="">Bán hàng</div>
+            </a>
+            <ul class="menu-sub">
+              <li class="menu-item">
+                <a href="list_product.php" class="menu-link">
+                  <div data-i18n="">Sản phẩm</div>
+                </a>
+              </li>
+              <li class="menu-item">
+                <a href="list_discount.php" class="menu-link">
+                  <div data-i18n="Alerts">Mã giảm giá</div>
+                </a>
+              </li>
+              <li class="menu-item">
+                <a href="list_warehouse.php" class="menu-link">
+                  <div data-i18n="Alerts">Kho hàng</div>
+                </a>
+              </li>
+            </ul>
+          </li>
 
-  <!-- Order -->
-  <li class="menu-item">
-    <a href="list-order.php" class="menu-link">
-      <i class="menu-icon tf-icons bx bx-box"></i>
-      <div data-i18n="">Đơn hàng</div>
-    </a>
-  </li>
+          <!-- Order -->
+          <li class="menu-item">
+            <a href="list-order.php" class="menu-link">
+              <i class="menu-icon tf-icons bx bx-box"></i>
+              <div data-i18n="">Đơn hàng</div>
+            </a>
+          </li>
 
-  <!-- Brand -->
-  <li class="menu-item">
-    <a href="list_supplier.php" class="menu-link">
-      <i class="menu-icon tf-icons bx bx-box"></i>
-      <div data-i18n="">Thương hiệu</div>
-    </a>
-  </li>
+          <!-- Brand -->
+          <li class="menu-item">
+            <a href="list_supplier.php" class="menu-link">
+              <i class="menu-icon tf-icons bx bx-box"></i>
+              <div data-i18n="">Thương hiệu</div>
+            </a>
+          </li>
 
 
-  <!-- Forms & Tables -->
-  <li class="menu-header small text-uppercase"><span class="menu-header-text">Thống kê</span></li>
+          <!-- Forms & Tables -->
+          <li class="menu-header small text-uppercase"><span class="menu-header-text">Thống kê</span></li>
 
-</aside>
-<!-- / Menu -->
+      </aside>
+      <!-- / Menu -->
 
       <!-- Layout container -->
       <div class="layout-page">
         <!-- Navbar -->
 
-        <nav
-          class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme"
-          id="layout-navbar">
+        <nav class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme" id="layout-navbar">
           <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none">
             <a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
               <i class="bx bx-menu bx-sm"></i>
@@ -194,8 +219,7 @@
             <div class="navbar-nav align-items-center">
               <div class="nav-item d-flex align-items-center">
                 <i class="bx bx-search fs-4 lh-0"></i>
-                <input type="text" class="form-control border-0 shadow-none" placeholder="Tìm kiếm..."
-                  aria-label="Search..." />
+                <input type="text" class="form-control border-0 shadow-none" placeholder="Tìm kiếm..." aria-label="Search..." />
               </div>
             </div>
             <!-- /Search -->
@@ -289,48 +313,63 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td class="id-header user">
-                        1
-                      </td>
-                      <td class="name user">
-                        Nguyễn Hoàng Trung
-                      </td>
-                      <td class="img user">
-                        <img src="../../public/uploads/users/User_admin_anh-dai-dien.jpg" alt="Anh dai dien" class="photo-user">
-                      </td>
-                      <td class="birthday user">
-                        1/1/2022
-                      </td>
-                      <td  class="email user">
-                        nguyenhoangtrung@gmail.com
-                      </td>
-                      <td class="phone user">
-                        0123456789
-                      </td>
-                      <td class="address user">
-                        Dắk lắk, Buôn Ma Thuột, xã Hòa Phú, đường nào đaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-                      </td>
-                      <td class="action user">
-                        <div class="dropdown">
-                          <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
-                            <i class="bx bx-dots-vertical-rounded"></i>
-                          </button>
-                          <div class="dropdown-menu action--none">
-                            <a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modalLong"><i
-                                class="bx bx-info-circle"></i> Xem thông tin chi tiết</a>
+                    <?php
 
-                            <a class="dropdown-item" href="edit_customer.php"><i class="bx bx-edit-alt me-1"></i>
-                              Sửa</a>
-                            <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1"></i> Xóa</a>
-                          </div>
+                    foreach ($customerList as $eachRow) {
+                      if (empty($eachRow['anh'])) {
+                        $adminImage = "";
+                      } else {
+                        $adminImage = $GLOBALS['USER_DIRECTORY'] . $eachRow['anh'];
+                      }
+
+                      echo '
+  <tr>
+    <td class="id-header user">
+    ' . $eachRow['id'] . '
+    </td>
+    <td class="name user">
+      ' . $eachRow['hoten'] . '
+    </td>
+    <td class="img user">
+      <ul class="list-unstyled users-list m-0 avatar-group d-flex align-items-center">
+        <li>
+          <img src="' . $GLOBALS['USER_DIRECTORY_SHOW'] . $eachRow['anh'] . '" alt="Anh dai dien" class="photo-user">
+        </li>
+      </ul>
+    </td>
+    <td class="birthday user">
+      <span>' . $eachRow['ngaysinh'] . '</span>
+    </td>
+    <td class="email user">
+      ' . $eachRow['email'] . '
+    </td>
+    <td class="phone user">
+    ' . $eachRow['sdt'] .
+                        '</td>
+    <td class="address user">
+      ' . $eachRow['diachi'] . '
+    </td>
+    <td>
+      <div class="dropdown">
+        <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+          <i class="bx bx-dots-vertical-rounded"></i>
+        </button>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modalLong"><i
+              class="bx bx-info-circle"></i> Xem thông tin chi tiết</a>
+
+          <a type="submit" class="dropdown-item" href="edit_employee.php?id=' . $eachRow['id'] . '"><i class="bx bx-edit-alt me-1"></i>
+            Sửa</a>
+          <p class="btn-delete dropdown-item" data-bs-toggle="modal" data-bs-target="#modalCenter" id=' . $eachRow['id_taikhoan'] . ' href=""><i class="bx bx-trash me-1" ></i> Xóa</p>
+        </div>
+      </div>
+    </td>
+  </tr>
+  ';
+                    }
 
 
-                        </div>
-
-                      </td>
-
-                    </tr>
+                    ?>
                   </tbody>
 
                   <tfoot class="table-border-bottom-0">
@@ -370,8 +409,7 @@
                                       <div class="mb-3 col-xl-6">
                                         <label class="form-label" for="basic-default-fullname">Họ
                                           tên</label>
-                                        <input type="text" class="form-control" id="basic-default-fullname"
-                                          placeholder="Nhập họ và tên" disabled />
+                                        <input type="text" class="form-control" id="basic-default-fullname" placeholder="Nhập họ và tên" disabled />
                                       </div>
                                       <div class="mb-3 col-xl-6">
                                         <label class="form-label">Ngày sinh</label>
@@ -384,8 +422,7 @@
                                           tính</label>
                                         <div class="row px-4">
                                           <div class="col-6">
-                                            <input name=" GioiTinh" class="form-check-input" type="radio" value=""
-                                              checked>
+                                            <input name=" GioiTinh" class="form-check-input" type="radio" value="" checked>
                                             <label class="form-check-label" for="defaultRadio2"> Nam
                                             </label>
                                           </div>
@@ -403,9 +440,7 @@
                                         <div class="mb-3">
                                           <label class="form-label" for="basic-default-email">Email</label>
                                           <div class="input-group input-group-merge">
-                                            <input type="text" id="basic-default-email" class="form-control"
-                                              placeholder="nguyenhoangtrunghs" aria-label=""
-                                              aria-describedby="basic-default-email2" disabled />
+                                            <input type="text" id="basic-default-email" class="form-control" placeholder="nguyenhoangtrunghs" aria-label="" aria-describedby="basic-default-email2" disabled />
                                             <!-- <span class="input-group-text" id="basic-default-email2">@gmail.com</span> -->
                                           </div>
                                           <!-- <div class="form-text">You can use letters, numbers & periods</div> -->
@@ -415,8 +450,7 @@
                                         <div class="mb-3">
                                           <label class="form-label" for="basic-default-phone">Số điện
                                             thoại</label>
-                                          <input type="text" id="basic-default-phone" class="form-control phone-mask"
-                                            placeholder="0123456789" disabled />
+                                          <input type="text" id="basic-default-phone" class="form-control phone-mask" placeholder="0123456789" disabled />
                                         </div>
                                       </div>
 
@@ -465,8 +499,7 @@
 
                                     <div class="mb-3">
                                       <label class="form-label" for="basic-default-message">Địa chỉ</label>
-                                      <textarea id="basic-default-message" class="form-control" placeholder="Địa chỉ"
-                                        disabled></textarea>
+                                      <textarea id="basic-default-message" class="form-control" placeholder="Địa chỉ" disabled></textarea>
                                     </div>
 
                                     <div class="mb-5">
@@ -499,8 +532,8 @@
             <!-- Bootstrap Table with Header - Footer -->
           </div>
           <!-- / Content -->
-        
-        
-        <?php
+
+
+          <?php
           include("include/tail.php");
-        ?>
+          ?>

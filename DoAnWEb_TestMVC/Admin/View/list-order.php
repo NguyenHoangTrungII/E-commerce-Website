@@ -1,6 +1,35 @@
 <?php
-  include("include/top.php");
+    session_start();
+    include("include/session.php");
+    include("include/top.php");
+    include("../Model/ModelAll.php");
+    include("../config/databse.php");
+	  include("../config/site.php");
 ?>
+
+
+
+<?php
+$Model = new ModelAll;
+
+// var_dump($_SESSION);
+##=======LẤY DỮ LIỆU=======##
+$columnName = $tableName = null;
+$columnName = "*";
+$tableName['MAIN'] = "donhang";
+$tableName['1'] ='nguoidung';
+$whereValue['nguoidung.id']=	$_SESSION['SMC_login_id'];
+// var_dump($whereValue['id']);
+$whereCondition ="!=";
+$joinCondition = array ("1"=>array ('donhang.id_nguoidung', 'nguoidung.id'));
+$orderList = $Model->selectJoinData($columnName, $tableName, null, $joinCondition, $whereValue, $whereCondition);
+var_dump($orderList );
+
+##=======LẤY DỮ LIỆU=======##
+
+
+?>
+
 
 <body>
   <!-- Layout wrapper -->
@@ -287,114 +316,71 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td class="id-header order">
-                        1
-                      </td>
-                      <td class="name-customer order">
-                        Nguyễn Hoàng Trung
-                      </td>
-                      <td class="address order">
-                          aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-                      </td class="address order">
-                      <td class="total order">
-                        <span>1.000.000đ</span>
-                      </td>
-                      <td class="ship-code order">
-                        #3avnjnjkj
-                      </td>
-                      <td class="status order">
-                        <div>
-                          <select id="defaultSelect" class="form-select">
-                            <option>Trạng thái</option>
-                            <option value="1">Chưa xác nhận</option>
-                            <option value="2">Xác nhận</option>
-                            <option value="3">Đang vận chuyên</option>
-                            <option value="3">Đã giao</option>
-                            <option value="3">Đã hủy</option>
-                          </select>
-                        </div>
-                      </td>
-                      <td class=" payment order pr-5">
-                        <label class="toggle-switchy pl-3" for="fitter-product" data-size="sm" data-text="false"
-                          data-style="rounded" data-toggle="collapse" data-target="#filterbar" aria-expanded="true"
-                          aria-controls="filterbar" id="filter-btn" onclick="changeBtnTxt()">
-                          <input checked="" type="checkbox" id="fitter-product">
-                          <span class="toggle">
-                            <span class="switch"></span>
-                          </span>
-                        </label>
-                      </td>
-                      <td class="action order">
-                        <div class="dropdown">
-                          <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
-                            <i class="bx bx-dots-vertical-rounded"></i>
-                          </button>
-                          <div class="dropdown-menu action--none">
-                            <a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modalLong"><i
-                                class="bx bx-info-circle"></i> Xem thông tin chi tiết</a>
+                  <?php 
 
-                            <a class="dropdown-item" href="edit_order.php"><i class="bx bx-edit-alt me-1"></i>
-                              Sửa</a>
-                            <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1"></i> Xóa</a>
-                          </div>
-                        </div>
-                      </td>
-                    </tr>  
-                    <tr>
-                      <td class="id-header order">
-                        1
-                      </td>
-                      <td class="name-customer order">
-                        Nguyễn Hoàng Trung
-                      </td>
-                      <td class="address order">
-                          aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-                      </td class="address order">
-                      <td class="total order">
-                        <span>1.000.000đ</span>
-                      </td>
-                      <td class="ship-code order">
-                        #3avnjnjkj
-                      </td>
-                      <td class="status order">
-                        <div>
-                          <select id="defaultSelect" class="form-select">
-                            <option>Trạng thái</option>
-                            <option value="1">Chưa xác nhận</option>
-                            <option value="2">Xác nhận</option>
-                            <option value="3">Đang vận chuyên</option>
-                            <option value="3">Đã giao</option>
-                            <option value="3">Đã hủy</option>
-                          </select>
-                        </div>
-                      </td>
-                      <td class=" payment order pr-5">
-                        <label class="toggle-switchy pl-3" for="fitter-product" data-size="sm" data-text="false"
-                          data-style="rounded" data-toggle="collapse" data-target="#filterbar" aria-expanded="true"
-                          aria-controls="filterbar" id="filter-btn" onclick="changeBtnTxt()">
-                          <input checked="" type="checkbox" id="fitter-product">
-                          <span class="toggle">
-                            <span class="switch"></span>
-                          </span>
-                        </label>
-                      </td>
-                      <td class="action order">
-                        <div class="dropdown">
-                          <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
-                            <i class="bx bx-dots-vertical-rounded"></i>
-                          </button>
-                          <div class="dropdown-menu action--none">
-                            <a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modalLong"><i
-                                class="bx bx-info-circle"></i> Xem thông tin chi tiết</a>
+                      foreach($orderList AS $eachRow)
+                      {
+                          echo '
+                          <tr>
+                            <td class="id-header user">
+                            '.$eachRow['id'].'
+                            </td>
+                            <td class="name user">
+                              '.$eachRow['hoten'].'
+                            </td>
+                            <td class="address order">
+                            '.$eachRow['diachi'].'
+                            </td>
+                            <td class="total order">
+                              <span>'.$eachRow['tongtienhang'].'</span>
+                            </td>
+                            <td class="ship-code order">
+                              '.$eachRow['mavanchuyen'].'
+                            </td>
+                            <td class="status order">
+                                <div>
+                                  <select id="defaultSelect" class="form-select">
+                                    <option>Trạng thái</option>
+                                    <option value="1">Chưa xác nhận</option>
+                                    <option value="2">Xác nhận</option>
+                                    <option value="3">Đang vận chuyên</option>
+                                    <option value="3">Đã giao</option>
+                                    <option value="3">Đã hủy</option>
+                                  </select>
+                                </div>
+                              </td>
+                            
+                            <td class=" payment order pr-5">
+                              <label class="toggle-switchy pl-3" for="fitter-product" data-size="sm" data-text="false"
+                                data-style="rounded" data-toggle="collapse" data-target="#filterbar" aria-expanded="true"
+                                aria-controls="filterbar" id="filter-btn" onclick="changeBtnTxt()">
+                                <input checked="" type="checkbox" id="fitter-product">
+                                <span class="toggle">
+                                  <span class="switch"></span>
+                                </span>
+                              </label>
+                            </td>
+                            <td>
+                              <div class="dropdown">
+                                <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                                  <i class="bx bx-dots-vertical-rounded"></i>
+                                </button>
+                                <div class="dropdown-menu">
+                                  <a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modalLong"><i
+                                      class="bx bx-info-circle"></i> Xem thông tin chi tiết</a>
 
-                            <a class="dropdown-item" href="edit_order.php"><i class="bx bx-edit-alt me-1"></i>
-                              Sửa</a>
-                            <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1"></i> Xóa</a>
-                          </div>
-                        </div>
-                      </td>
-                    </tr> 
+                                  <a type="submit" class="dropdown-item" href="edit_employee.php?id='.$eachRow['id'].'"><i class="bx bx-edit-alt me-1"></i>
+                                    Sửa</a>
+                                  <p class="btn-delete dropdown-item" data-bs-toggle="modal" data-bs-target="#modalCenter" id='.$eachRow['id_taikhoan'].' href=""><i class="bx bx-trash me-1" ></i> Xóa</p>
+                                </div>
+                              </div>
+                            </td>
+                          </tr>
+                          ';
+                          
+}
+                        ?>  
+                    
                   </tbody>
                   <tfoot class="table-border-bottom-0">
                     <tr>
@@ -571,3 +557,52 @@
 <?php
   include("include/tail.php");
 ?>
+
+
+
+
+<script type="text/javascript">
+$(".btn-delete").click(function(e){
+    var del_id = $(this).attr('id');
+        var $ele = $(this);
+        Swal.fire({
+        title: 'Bạn có muốn xóa đơn hàng này?',
+        text: "Toàn bộ thông tin sẽ biến mất",
+        icon: 'Cảnh báo',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Xóa',
+        cancelButtonText: 'Hủy'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            $.ajax({
+              url: "http://localhost/DoAnWeb/DoAnWEb_TestMVC/admin/Controller/Order/delete-order.php",
+              type:"POST",
+              data:{del_id: del_id},
+              
+              success: function(response){
+                if(response !=0){
+                      console.log(response);
+                      Swal.fire(
+                      'Đã xóa!',
+                      'Đơn hàng có ID '+del_id+' đã bị xóa',
+                      'sucess')
+                      $ele.parent().parent().parent().parent().slideToggle('slow'); 
+                  } else{
+                      Swal.fire(
+                      'Thất bại',
+                      'Đã xảy ra lỗi! Vui lòng thử lại',
+                      'error'
+                    )
+              }
+              }
+             
+                
+ 
+          });
+            
+          }
+        })
+ });
+</script>
