@@ -60,7 +60,6 @@
                     $tableName = $value = null;
                     $tableName = 'nguoidung';
                     $value ='sdt';
-                    
                     if(Controller::checkValiation($phoneNumber, $tableName, $value) ==1){
                         return $phonelErr= 'Số điện đã tồn tại trong hệ thống';
                     }
@@ -140,6 +139,8 @@
         //         return -1;
         //     }
         // }
+
+
 	
     }
 ?>

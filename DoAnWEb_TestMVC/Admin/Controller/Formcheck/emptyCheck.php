@@ -31,8 +31,8 @@
     $columnName['id'] = null;
     $columnName['email'] = $info_array['email'];
     $columnName['matkhau'] = sha1($employeeCtroller->randomPassword());
-    $columnName['trangthai'] = 1; 
-    $columnName['vaitro'] = 2; 
+    $columnName['trangthai'] = $info_array['trangthai']; 
+    $columnName['vaitro'] = $info_array['vaitro']; 
     
     //Insert dữ  liệu vào bảng taikhoan sau đó lấy id mới nhất rồi tạo người dùng, 
     //nếu có lỗi xảy ra thì rollback

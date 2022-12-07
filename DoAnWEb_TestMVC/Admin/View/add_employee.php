@@ -407,6 +407,35 @@
                                                     placeholder="Địa chỉ" ></textarea>
                                             </div>
 
+                                            <div class="row">
+                                                <div class="mb-3 col-6">
+                                                    <label class="form-label col-12" for="basic-default-slug">Tình trạng</label>
+
+                                                    <label class="toggle-switchy pl-2" for="fitter-product" data-size="sm"
+                                                    data-text="false" data-style="rounded" data-toggle="collapse"
+                                                    data-target="#filterbar" aria-expanded="true" aria-controls="filterbar"
+                                                    id="filter-btn" onclick="changeBtnTxt()">
+                                                    <input class="status-emp-add" checked type="checkbox" id="fitter-product">
+                                                    <span class="toggle" >
+                                                        <span class="switch"></span>
+                                                    </span>
+                                                    </label>
+                                                </div>
+
+                                                <div class="col-xl-4 col-6">
+                                                    <div class="mb-3">
+                                                        <label for="role-emp-add" class="form-label">Vai trò</label>
+                                                        <select id="role-emp-add" class="form-select" style="width: 100%;" >
+                                                            <option value="-1">Chọn vai trò</option>
+                                                            <option value="1">Nhân viên</option>
+                                                            <option value="2">Admin</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                           
+                                
+
                                             <div class="mb-3">
                                                 <label for="formFile" class="form-label ">Ảnh</label> <span class="upload-notify"></span>
                                                 <div class="input-group">
@@ -618,6 +647,11 @@
         info['quan_huyen'] = checkAdress($( "#District option:selected" ).val(), $( "#District option:selected" ).text());
         info['phuong_xa'] = checkAdress($( "#Town option:selected" ).val(), $( "#Town option:selected" ).text());
         info['diachi'] = $("#Address").val();
+        info['trangthai'] = document.getElementById("fitter-product").checked ? 1 : 0;
+        info['vaitro']= $('#role-emp-add option:selected').val()!=-1 ? $('#role-emp-add option:selected').val() : " ";
+       
+        console.debug(info['vaitro']);
+
 
         var file_a = $('#formFile-review-image-label').prop('files')[0];  
         var form_data = new FormData();  
@@ -653,7 +687,7 @@
                         // $(".alert.alert-danger.alert-dismissible").php("Không được để trống miền giá trị nào");
                         $('.alert.alert-danger.alert-dismissible').prop('hidden', true);
                         $('.alert.alert-info.alert-dismissible').prop('hidden', false);
-                        // $('.btn-close-danger').prop('hidden', false);
+                        // $('.btn-close-anger').prop('hidden', false);
                             //xóa dữ liệu trong form
                         $('.add_employee-form')[0].reset();
 

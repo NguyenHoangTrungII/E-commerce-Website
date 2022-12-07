@@ -26,15 +26,15 @@
         //Lưu giá trị email, phone để sử dụng check form
         $phone_input_old = $employeeInfo[0]['sdt'];
         $email_input_old =  $employeeInfo[0]['email'];
-        var_dump( $phone_input_old);
+        // var_dump( $phone_input_old);
         
-        // $columnName = $tableName = null;
-        // $columnName = "id";
-        // $tableName['1'] = "tinh_thanhpho";
-        // $whereValue['tinh_thanhpho']= $employeeInfo['tinh_thanhpho'];
-        // $whereCondition ="LIKE";
-        // $employeeInfo_Provice = $Model->selectJoinData($columnName, $tableName, null, 0, $whereValue, $whereCondition);
-
+        $columnName = $tableName = null;
+        $columnName['id']='id';
+        $tableName= "tinh_thanhpho";
+        $whereValue['tinh_thanhpho']= $employeeInfo[0]['tinh_thanhpho'];
+        $whereCondition ="LIKE";
+        $employeeInfo_Provice = $Model->selectData($columnName, $tableName, $whereValue, $whereCondition);
+        // var_dump($employeeInfo[0]['tinh_thanhpho']    );
         ##=======LẤY DỮ LIỆU=======##
     }
 ?>
@@ -308,6 +308,18 @@
 
                         <hr class="my-5" />
                         <!-- Basic Layout -->
+
+                             <!-- alert warning -->
+                        <div class="alert alert-danger alert-dismissible" role="alert" hidden>
+                            This is a danger dismissible alert — check it out!
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+
+                        <div class="alert alert-info alert-dismissible" role="alert" hidden >
+                            This is an info dismissible alert — check it out!
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+
                         <div class="row">
                             <div class="col-xl">
                                 <div class="card mb-4">
@@ -316,12 +328,13 @@
                                         <small class="text-muted float-end">Sửa thông tin</small>
                                     </div>
                                     <div class="card-body">
-                                        <form>
+                                        <form class="edit_employee-form">
                                             <div class="row">
                                                 <div class="mb-3 col-xl-6">
-                                                    <label class="name-text form-label" for="basic-default-fullname">Họ
+                                                    <label class="form-label" for="basic-default-fullname">Họ
                                                         tên</label>
-                                                    <input type="text" class="form-control" value="<?= $employeeInfo[0]['hoten'] ?>" id="basic-default-fullname"
+                                                    <input type="text" id= "id-emp-edit" value="<?= $employeeInfo[0]['id_taikhoan'] ?>" hidden>
+                                                    <input type="text" class="name-text form-control" value="<?= $employeeInfo[0]['hoten'] ?>" id="basic-default-fullname"
                                                         placeholder="Nhập họ và tên" />
                                                 </div>
                                                 <div class="mb-3 col-xl-6">
@@ -335,19 +348,19 @@
                                                         tính</label>
                                                     <div class="row px-4">
                                                         <?php
-                                                            if($employeeInfo[0]['ngaysinh']==1){
+                                                            if($employeeInfo[0]['gioitinh']==1){
                                                                 echo 
                                                                 '
                                                                     <div class="col-6">
-                                                                        <input name=" Gender-cb " class="Gender-cb form-check-input"
-                                                                            type="radio" value="" checked>
+                                                                        <input name="Gender " class="Gender-cb form-check-input"
+                                                                            type="radio" value="1" checked>
                                                                         <label class="form-check-label" for="defaultRadio2"> Nam
                                                                         </label>
                                                                     </div>
     
                                                                     <div class="col-6">
-                                                                        <input name="Gender-cb " class="Gender-cb form-check-input"
-                                                                            type="radio" value="" >
+                                                                        <input name="Gender " class="Gender-cb form-check-input"
+                                                                            type="radio" value="0" >
                                                                         <label class="form-check-label" for="defaultRadio1">
                                                                             Nữ </label>
                                                                     </div>
@@ -357,15 +370,15 @@
                                                                 echo 
                                                                 '
                                                                     <div class="col-6">
-                                                                        <input name=" Gender-cb " class="Gender-cb form-check-input"
-                                                                            type="radio" value="">
+                                                                        <input name="Gender" class="Gender-cb form-check-input"
+                                                                            type="radio" value="1">
                                                                         <label class="form-check-label" for="defaultRadio2"> Nam
                                                                         </label>
                                                                     </div>
     
                                                                     <div class="col-6">
-                                                                        <input name="Gender-cb " class="Gender-cb form-check-input"
-                                                                            type="radio" value="" checked>
+                                                                        <input name="Gender" class="Gender-cb form-check-input"
+                                                                            type="radio" value="0" checked>
                                                                         <label class="form-check-label" for="defaultRadio1">
                                                                             Nữ </label>
                                                                     </div>
@@ -401,7 +414,7 @@
                                                         <!-- <div class="form-text">You can use letters, numbers & periods</div> -->
                                                     </div>
                                                 </div>
-                                                <div class="col-xl-4">
+                                                <div class="col-lg-4">
                                                     <div class="mb-3">
                                                         <label class="form-label" for="basic-default-phone">Số điện
                                                             thoại</label><span class="Error-notify-phone"></span>
@@ -412,12 +425,12 @@
                                             </div>
 
                                             <div class="row">
-                                                <div class="col-xl-4">
+                                                <div class="col-lg-4">
                                                     <div class="mb-3">
-                                                        <label for="Provice" class="form-label">Tỉnh/Thành
+                                                        <label for="Provice_edit" class="form-label">Tỉnh/Thành
                                                             phố</label>
                                                         <select id="Provice_edit" class="form-select">
-                                                            <option value=-1><?= $employeeInfo[0]['tinh_thanhpho']?></option>
+                                                            <option value=0><?= $employeeInfo[0]['tinh_thanhpho']?></option>
                                                             <!-- <option value="1">1</option>
                                                             <option value="2">2</option>
                                                             <option value="3">3</option> -->
@@ -425,11 +438,11 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="col-xl-4">
+                                                <div class="col-lg-4">
                                                     <div class="mb-3">
-                                                        <label for="District" class="form-label">Quận/Huyện</label>
+                                                        <label for="District_edit" class="form-label">Quận/Huyện</label>
                                                         <select id="District_edit" class="form-select">
-                                                            <option value=-1><?= $employeeInfo[0]['quan_huyen']?></option>
+                                                            <option value=0><?= $employeeInfo[0]['quan_huyen']?></option>
                                                             <!-- <option value="1">1</option>
                                                             <option value="2">2</option>
                                                             <option value="3">3</option> -->
@@ -438,11 +451,11 @@
                                                 </div>
 
 
-                                                <div class="col-xl-4">
+                                                <div class="col-lg-4">
                                                     <div class="mb-3">
-                                                        <label for="Town" class="form-label">Phường/Xã</label>
+                                                        <label for="Town_edit" class="form-label">Phường/Xã</label>
                                                         <select id="Town_edit" class="form-select">
-                                                            <option value=-1><?= $employeeInfo[0]['phuong_xa']?></option>
+                                                            <option value=0><?= $employeeInfo[0]['phuong_xa']?></option>
                                                             <!-- <option value="1">1</option>
                                                             <option value="2">2</option>
                                                             <option value="3">3</option> -->
@@ -454,7 +467,36 @@
                                             <div class="mb-3">
                                                 <label class="form-label" for="basic-default-message">Địa chỉ</label>
                                                 <textarea id="basic-default-message" class="Address-textarea form-control"
-                                                    placeholder="Địa chỉ" ><?= $employeeInfo[0]['tinh_thanhpho'].", ". $employeeInfo[0]['quan_huyen'].", ".  $employeeInfo[0]['phuong_xa'].", ".  $employeeInfo[0]['diachi'] ?></textarea>
+                                                    placeholder="Địa chỉ" ><?= $employeeInfo[0]['diachi'] ?></textarea>
+                                            </div>
+
+
+                                            <div class="row">
+                                                
+                                                <div class="mb-3 col-6">
+                                                    <label class="form-label col-12" for="basic-default-slug">Tình trạng</label>
+
+                                                    <label class="toggle-switchy pl-2" for="status-emp-edit" data-size="sm"
+                                                    data-text="false" data-style="rounded" data-toggle="collapse"
+                                                    data-target="#filterbar" aria-expanded="true" aria-controls="filterbar"
+                                                    id="filter-btn" onclick="changeBtnTxt()">
+                                                    <input class="status-emp-edit" <?php echo $employeeInfo[0]['trangthai'] == 1 ? "checked " : " " ?> type="checkbox" id="status-emp-edit">
+                                                    <span class="toggle" >
+                                                        <span class="switch"></span>
+                                                    </span>
+                                                    </label>
+                                                </div>
+                                                
+                                                <div class="col-xl-4 col-6">
+                                                    <div class="mb-3">
+                                                        <label for="role-emp-edit" class="form-label">Vai trò</label>
+                                                        <select id="role-emp-edit" class="form-select" style="width: 100%;" >
+                                                            <option value="-1">Chọn vai trò</option>
+                                                            <option <?php echo $employeeInfo[0]['vaitro']==2 ? "selected ":" " ?> value="2">Nhân viên</option>
+                                                            <option <?php echo $employeeInfo[0]['vaitro']==1 ? "selected ":" "?> value="1">Admin</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
                                             </div>
 
                                            
@@ -472,11 +514,11 @@
                                                 <label for="formFile" class="form-label">Xem trước</label>
                                                     <!-- <div class="fileupload fileupload-new border-5" data-provides="fileupload"> -->
                                                         <div id="Preview-filed" >
-                                                            <img src="<?= $GLOBALS['USER_DIRECTORY_SHOW'].$employeeInfo[0]['anh'] ?>"  alt="anh-dai-dien.png" id="div4" style="width: 20%;">
+                                                            <img src="<?= $GLOBALS['USER_DIRECTORY_SHOW'].$employeeInfo[0]['anh'] ?>"  class ="img-preview-emp" alt="<?php $employeeInfo[0]['anh'] ?>" id="div4" style="width: 20%;">
                                                         </div>
                                                     <!-- </div> -->
                                             </div>
-                                            <button type="button" class="btn btn-primary">Lưu</button>
+                                            <button type="button" class="btn-save-edit btn btn-primary">Lưu</button>
                                         </form>
                                     </div>
                                 </div>
@@ -524,18 +566,16 @@
             for (i=0; i<data.length; i++){            
                 var provice = data[i]; //vd  {idTinh:'6', loai:'Tỉnh', tenTinh:'Bắc Kạn'}
                 
-                // console.log(provice);
+                console.debug(provice);
                 $('#Provice_edit').append($('<option>', {value:provice['id'], text:provice['name']}));
             }
-            
-            $("#Provice_edit").val($employeeInfo_Provice[0][id]).change();
 
 
             $("#Provice_edit").on("change", function(e){
                 $("#Town_edit").html("");
                 $("#Town_edit").append($('<option>', {value:-1, text:"Chọn Phường/xã"}));
                 var Provice_id = $( "#Provice_edit option:selected" ).val();
-                console.log(Provice_id);
+                console.debug(Provice_id);
                 $.ajax({
                     url: "http://localhost/DoAnWeb_testMVC/admin/Controller/Formcheck/GetDistrict.php?ProviceId=" + Provice_id,
                     dataType:'json',         
@@ -587,6 +627,7 @@
     let checkNotify2= 1;
     let checkNotify3= 1;
     const email_input_old = $("#email-edit-value").val();
+    const phone_input_old = $("#phone-edit-value").val();
     $("#email-edit-value").on("focusout keyup keydown blur change ",function(e){
         var $ele = $(this);
         var email_input = $("#email-edit-value").val();
@@ -622,12 +663,16 @@
                 
         }); 
         }
+        else{
+            $(".Error-notify-email").html("");
+        }
         
     });
 
     $("#phone-edit-value").on("focusout keyup keydown blur change",function(e){
         var phone_input = $("#phone-edit-value").val();
         //Tương tư như email
+        console.debug(phone_input_old);
         if(phone_input != phone_input_old){
             $.ajax({
             url: "http://localhost/DoAnWeb_testMVC/admin/Controller/Formcheck/phone.php",
@@ -656,6 +701,9 @@
                 
         });
         }
+        else{
+            $(".Error-notify-phone").html("")
+        }
     });
     
 
@@ -680,6 +728,10 @@
                         }
                     }
                     else if(data==0){
+
+                        //ẨN ảnh cũ đi
+                        $('img.img-preview-emp').removeProp('src').hide();
+                        $('input[type=file]').val("");
                         $(".upload-notify").html("");
                         $('.upload-notify').attr('style', 'color:#ff3333;padding-left: 20px');
                         $(".upload-notify").html("<i class='bx bxs-x-circle pl-3'></i>Loại ảnh không được cho phép");
@@ -705,26 +757,34 @@
         return data;
     }
 
+    function getNameImg(path_img){
+        return path_img.match(/\w*(?=.\w+$)/);
+    }
+
     $(".btn-save-edit").on("click", function(){
         var info={};
+        info['id'] = $("#id-emp-edit").val();
         info['hoten'] = $(".name-text").val();
+        console.debug(info['hoten']);
         info['ngaysinh'] = $(".birthday-input").val(); 
         info['gioitinh']= $('.Gender-cb:checked').val();
         info['email'] = $(".email-input").val();
         info['sdt'] = $(".phone-input").val();
-        info['tinh_thanhpho'] = checkAdress($( "#Provice option:selected" ).val(), $( "#Provice option:selected" ).text());
-        info['quan_huyen'] = checkAdress($( "#District option:selected" ).val(), $( "#District option:selected" ).text());
-        info['phuong_xa'] = checkAdress($( "#Town option:selected" ).val(), $( "#Town option:selected" ).text());
+        info['tinh_thanhpho'] = checkAdress($( "#Provice_edit option:selected" ).val(), $( "#Provice_edit option:selected" ).text());
+        info['quan_huyen'] = checkAdress($( "#District_edit option:selected" ).val(), $( "#District_edit option:selected" ).text());
+        info['phuong_xa'] = checkAdress($( "#Town_edit option:selected" ).val(), $( "#Town_edit option:selected" ).text());
         info['diachi'] = $(".Address-textarea").val();
+        info['trangthai'] = document.getElementById("status-emp-edit").checked ? 1 : 0;
+        info['vaitro']= $('#role-emp-edit option:selected').val()!=-1 ? $('#role-emp-edit option:selected').val() : " ";
+        info['anh_cu'] = $('.img-preview-emp').attr("src").split("/").reverse()[0];
 
         var file_a = $('#imgFile-edit-employee').prop('files')[0];  
         var form_data = new FormData(); 
         //lưu file ảnh dưới dạng file, nén thông tin dưới dạng json để qua php xử lý
         form_data.append("other_data", JSON.stringify(info))  ;
-        form_data.append("file_arr", file_a) ;
-
+        form_data.append("file_arr", file_a)  ;
          $.ajax({
-            url: "http://localhost/DoAnWeb_testMVC/admin/Controller/Formcheck/emptyCheck.php",
+            url: "http://localhost/DoAnWeb/DoAnWeb_testMVC/admin/Controller/Employee/update-employee.php",
             data: form_data,
             contentType: false,
             processData: false,
@@ -744,20 +804,21 @@
                         break;
                     case 1:
                        {
-                         $('.alert.alert-info.alert-dismissible').text("Thêm thành công");
+                         $('.alert.alert-info.alert-dismissible').text("Sửa thông tin thành công");
                         $('.alert.alert-danger.alert-dismissible').prop('hidden', true);
                         $('.alert.alert-info.alert-dismissible').prop('hidden', false);
-                        //Reset dữ liệu sau khi thêm thành công
-                        //xóa dữ liệu trong form
-                        $('.add_employee-form')[0].reset();
-                        // xóa ảnh
-                        $(".img-preview").attr('src', " ");
-                        $('input[type=file]').val("");
                         $("html, body").animate({scrollTop: 0}, 1000);
                        }
-                    break;
+                        break;
                     case -1:{
                         $('.alert.alert-danger.alert-dismissible').text("Đã có lỗi xảy ra !! vui lòng thử lại sau");
+                        $('.alert.alert-info.alert-dismissible').prop('hidden', true);
+                        $('.alert.alert-danger.alert-dismissible').prop('hidden', false);
+                        $("html, body").animate({scrollTop: 0}, 1000);
+                        }
+                        break;
+                    case 2:{
+                        $('.alert.alert-danger.alert-dismissible').text("Bạn chưa thay đổi miền giá trị nào");
                         $('.alert.alert-info.alert-dismissible').prop('hidden', true);
                         $('.alert.alert-danger.alert-dismissible').prop('hidden', false);
                         $("html, body").animate({scrollTop: 0}, 1000);
