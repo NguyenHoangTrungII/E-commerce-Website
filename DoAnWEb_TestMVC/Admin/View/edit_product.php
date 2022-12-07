@@ -388,82 +388,44 @@
                                                         
                                                     </div> -->
                                                     <div class="row">
-                                                        <div class="mb-3 col-xl-3 col-md-6">
-                                                            <label for="formFile" class="form-label ">Ảnh thumbnail</label>
-                                                            <input class="form-control add-infor user" type="file"
-                                                                id="formFile review-image-label"
-                                                                accept=".jfif,.jpg,.jpeg,.png,.gif" multiple>
-                                                                <label for="formFile" class="form-label">Xem trước ảnh
-                                                                    thumbnail</label>
-                                                                <div class="fileupload fileupload-new border-5"
-                                                                    data-provides="fileupload">
-                                                                    <div class="fileupload-new thumbnail"
-                                                                        style="width: 160px; height: 160px;">
-                                                                        <img src="../assets/img/product/570x470_cpu-intel-core-i9-12900.png"
-                                                                            alt="" width="200px">
-                                                                    </div>
-                                                                </div>
-                                                        </div>
-                                                        
+                                                          <label for="formFile" class="form-label ">Ảnh thumbail</label> <span class="upload-notify"></span>
+                                                          <div class="input-group">
+                                                            <!-- <div class="row"> -->
+                                                              <!-- <div class="col-6"> -->
+                                                                  <button class="btn-remove-img btn btn-outline-primary" type="button" >Xóa</button>
+                                                                  <input name= "avatar-employee" class="form-control Employee-img-preview" type="file" id="imgFile-edit-employee" 
+                                                                    accept=".jfif,.jpg,.jpeg,.png,.gif" set-to="div4"  onchange="readURL(this)"/>
+                                                              <!-- </div> -->
+
+                                                              
+                                                          </div>
+                                                          <div class="col-6">
+                                                                <label for="formFile" class="form-label">Xem trước</label>
+                                                                  <div id="Preview-filed" >
+                                                                      <img src=""  class ="img-preview-emp" alt="" id="div4" style="width: 20%;">
+                                                                  </div>
+                                                          </div>
                                                     </div>
                                                     <div class="row">
-                                                        <div class="mb-3 col-xl-3 col-md-6">
-                                                            <label for="formFile" class="form-label ">Ảnh</label>
-                                                            <input class="form-control add-infor user" type="file"
-                                                                id="formFile review-image-label"
-                                                                accept=".jfif,.jpg,.jpeg,.png,.gif" multiple>
-                                                                <label for="formFile" class="form-label">Xem trước</label>
-                                                                <div class="fileupload fileupload-new border-5"
-                                                                    data-provides="fileupload">
-                                                                    <div class="fileupload-new thumbnail"
-                                                                        style="width: 160px; height: 160px;">
-                                                                        <img src="../assets/img/avatars/1.png" alt="">
-                                                                    </div>
-                                                                </div>
-                                                        </div>
-                                                        
-                                                        <div class="mb-3 col-xl-3 col-md-6">
-                                                            <label for="formFile" class="form-label ">Ảnh</label>
-                                                            <input class="form-control add-infor user" type="file"
-                                                                id="formFile review-image-label"
-                                                                accept=".jfif,.jpg,.jpeg,.png,.gif" multiple>
-                                                                <label for="formFile" class="form-label">Xem trước</label>
-                                                                <div class="fileupload fileupload-new border-5"
-                                                                    data-provides="fileupload">
-                                                                    <div class="fileupload-new thumbnail"
-                                                                        style="width: 160px; height: 160px;">
-                                                                        <img src="../assets/img/avatars/1.png" alt="">
-                                                                    </div>
-                                                                </div>
-                                                        </div>
-                                                        <div class="mb-3 col-xl-3 col-md-6">
-                                                            <label for="formFile" class="form-label ">Ảnh</label>
-                                                            <input class="form-control add-infor user" type="file"
-                                                                id="formFile review-image-label"
-                                                                accept=".jfif,.jpg,.jpeg,.png,.gif" multiple>
-                                                                <label for="formFile" class="form-label">Xem trước</label>
-                                                                <div class="fileupload fileupload-new border-5"
-                                                                    data-provides="fileupload">
-                                                                    <div class="fileupload-new thumbnail"
-                                                                        style="width: 160px; height: 160px;">
-                                                                        <img src="../assets/img/avatars/1.png" alt="">
-                                                                    </div>
-                                                                </div>
-                                                        </div>
-                                                        <div class="mb-3 col-xl-3 col-md-6">
-                                                            <label for="formFile" class="form-label ">Ảnh</label>
-                                                            <input class="form-control add-infor user" type="file"
-                                                                id="formFile review-image-label"
-                                                                accept=".jfif,.jpg,.jpeg,.png,.gif" multiple>
-                                                                <label for="formFile" class="form-label">Xem trước</label>
-                                                                <div class="fileupload fileupload-new border-5"
-                                                                    data-provides="fileupload">
-                                                                    <div class="fileupload-new thumbnail"
-                                                                        style="width: 160px; height: 160px;">
-                                                                        <img src="../assets/img/avatars/1.png" alt="">
-                                                                    </div>
-                                                                </div>
-                                                        </div>
+                                                      <div class="mb-3">
+                                                              <label for="formFile" class="form-label ">Ảnh liên quan</label> <span class="upload-notify"></span>
+                                                              <div class="input-group">
+                                                                  <button class="btn-remove-img btn btn-outline-primary" type="button" >Xóa</button>
+                                                                  <input name= "avatar-employee" class="form-control Employee-img-preview" type="file" id="product-gallery-add" 
+                                                                    accept=".jfif,.jpg,.jpeg,.png,.gif" />
+                                                              <!-- <input name= "avatar-employee" class="form-control add-infor user" type="file" id="formFile-review-image-label" 
+                                                                  onchange="readURL(this);" set-to="div3" required accept=".jfif,.jpg,.jpeg,.png,.gif"  multiple> -->
+                                                          </div>
+
+                                                          <div class="mb-5">
+                                                              <label for="formFile" class="form-label">Xem trước</label>
+                                                                  <!-- <div class="fileupload fileupload-new border-5" data-provides="fileupload"> -->
+                                                                      <div id="Preview-product-gallery-add" >
+                                                                          <img src=""  class ="img-preview-emp" alt=""  style="width: 20%;">
+                                                                      </div>
+                                                                  <!-- </div> -->
+                                                          </div>
+                                                      </div>
                                                     </div>
         
                                                     <!-- <button type="submit" class="btn btn-primary mt-5">Lưu</button> -->

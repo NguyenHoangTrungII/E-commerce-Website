@@ -454,7 +454,7 @@
                                                         </div>
                                                     <!-- </div> -->
                                             </div>
-                                            <button type="button" class="btn-save-edit btn btn-primary" name="create_employee">Lưu</button>
+                                            <button type="button" id="btn-add-employee" class="btn-save-edit btn btn-primary" name="create_employee">Lưu</button>
                                         </form>
                                     </div>
                                 </div>
@@ -510,7 +510,7 @@
         var $ele = $(this);
         var email_input = $("#basic-default-email").val();
         $.ajax({
-                url: "http://localhost/DoAnWeb_testMVC/admin/Controller/Formcheck/email.php",
+                url: "http://localhost/DoAnWeb/DoAnWeb_testMVC/admin/Controller/Formcheck/email.php",
                 type:"POST",
                 data:{email_input: email_input},
                 success: function(data){
@@ -543,7 +543,7 @@
     $("#basic-default-phone").on("focusout keyup keydown blur change",function(e){
         var phone_input = $("#basic-default-phone").val();
         $.ajax({
-                url: "http://localhost/DoAnWeb_testMVC/admin/Controller/Formcheck/phone.php",
+                url: "http://localhost/DoAnWeb/DoAnWeb_testMVC/admin/Controller/Formcheck/phone.php",
                 type:"POST",
                 data:{phone_input: phone_input},
                 success: function(data){
@@ -575,7 +575,7 @@
         var file_name = $('input[type=file]').val().split('\\').pop();
         var file_extension = file_name.split('.').pop();
         $.ajax({
-                url: "http://localhost/DoAnWeb_testMVC/admin/Controller/Formcheck/file_img.php",
+                url: "http://localhost/DoAnWeb/DoAnWeb_testMVC/admin/Controller/Formcheck/file_img.php",
                 type:"POST",
                 data:{file_extension: file_extension },
                 success: function(data){
@@ -619,7 +619,7 @@
         return data;
     }
 
-    $(".btn-save-edit").on("click", function(){
+    $("#btn-add-employee").on("click", function(){
         //Lấy thông tin input
         // var name = $(".name-text").val();
         // var birthday = $("#birthday-input").val(); //format khi làm php
@@ -659,7 +659,7 @@
         form_data.append("file_arr", file_a) ;
 
          $.ajax({
-            url: "http://localhost/DoAnWeb_testMVC/admin/Controller/Formcheck/emptyCheck.php",
+            url: "http://localhost/DoAnWeb/DoAnWeb_testMVC/admin/Controller/Formcheck/emptyCheck.php",
             data: form_data,
             contentType: false,
             processData: false,
@@ -722,7 +722,7 @@
 
 <script>
     $.ajax({
-        url: "http://localhost/DoAnWeb_testMVC/admin/Controller/Formcheck/LayTinh.php",       
+        url: "http://localhost/DoAnWeb/DoAnWeb_testMVC/admin/Controller/Formcheck/LayTinh.php",       
         dataType:'json',         
         success: function(data){     
             $("#Provice").html("");
@@ -740,7 +740,7 @@
                 var Provice_id = $( "#Provice option:selected" ).val();
                 console.log(Provice_id);
                 $.ajax({
-                    url: "http://localhost/DoAnWeb_testMVC/admin/Controller/Formcheck/GetDistrict.php?ProviceId=" + Provice_id,
+                    url: "http://localhost/DoAnWeb/DoAnWeb_testMVC/admin/Controller/Formcheck/GetDistrict.php?ProviceId=" + Provice_id,
                     dataType:'json',         
                     success: function(data){  
                         $("#District").html("");
@@ -757,7 +757,7 @@
                             var District_id = $( "#District option:selected" ).val();
                             console.log(District_id);
                             $.ajax({
-                                url: "http://localhost/DoAnWeb_testMVC/admin/Controller/Formcheck/GetTown.php?DistrictId=" + District_id,
+                                url: "http://localhost/DoAnWeb/DoAnWeb_testMVC/admin/Controller/Formcheck/GetTown.php?DistrictId=" + District_id,
                                 dataType:'json',         
                                 success: function(data){  
                                     // console.log(data);
