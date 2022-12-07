@@ -12,11 +12,8 @@
 
     //encode
     $info_array = json_decode($_POST['other_data'], true);
-
-    define ('SITE_ROOT', realpath(dirname(__FILE__)));
-
     foreach($info_array as $key=> $value) { 
-        if($value ==" "){
+        if($value ==""){
             echo  0;
             exit();
         } 
@@ -28,23 +25,15 @@
     $tableName = $columnName = null;
     $tableName = 'taikhoan';
     $columnName['email'] = $info_array['email'];
-    // $columnName['matkhau'] = sha1($employeeCtroller->randomPassword());
     $columnName['trangthai'] = $info_array['trangthai']; 
     $columnName['vaitro'] = $info_array['vaitro'];
     $whereValue['id'] = $info_array['id'];
 
-    // var_dump($whereValue['id']);
-
-    
-    //Insert dữ  liệu vào bảng taikhoan sau đó lấy id mới nhất rồi tạo người dùng, 
-    //nếu có lỗi xảy ra thì rollback
-    //1  thành công
     $employeeUpdate = $Model->updateData($tableName, $columnName, $whereValue);
     // var_dump($employeeUpdate);
-    if($employeeUpdate == 1  ){
+    if($employeeUpdate !=1 ){
         $tableName = $columnName = $whereValue =null;
         $tableName = 'nguoidung';
-        $columnName['anh'] = "User_Employee_".date("YmdHis") ."_".$_FILES['file_arr']['name'];
         // $columnName['tenhienthi'] = $info_array['email'];
         $columnName['hoten'] = $info_array['hoten'];
         $columnName['gioitinh'] = $info_array['gioitinh'];
@@ -55,25 +44,26 @@
         $columnName['quan_huyen'] = $info_array['quan_huyen']; 
         $columnName['phuong_xa'] = $info_array['phuong_xa'];
         $whereValue['id_taikhoan'] = $info_array['id'];
-
+        @$columnName['anh'] = $controller->checkNewImgaie($_FILES['file_arr']['name'], $info_array['anh_cu']);
 
         $updateEmployeeUser = $Model->updateData($tableName, $columnName, $whereValue );
-        // var_dump( $updateEmployeeUser);
-        if($updateEmployeeUser==1 && isset($_FILES['file_arr']['name']))
-            {
+        // var_dump( $_FILES['file_arr']['name']);
+        if($updateEmployeeUser!=-1)
+        {
+            if(!empty($_FILES['file_arr'])){
+                //di chuyển ảnh vào thư mục phù hợp
                 move_uploaded_file($_FILES['file_arr']['tmp_name'], $GLOBALS['USER_DIRECTORY']. $columnName['anh']);
-                var_dump($_FILES['file_arr']['tmp_name']);
-                var_dump($GLOBALS['USER_DIRECTORY']. $columnName['anh']);
-                var_dump($_FILES['file_arr']['error']);
-                echo 1;
+                //Thực sự là ảnh và tồn tại trong hệ thống mới xóa
+                if($controller->checkImageValiation($columnName['anh']))
+                    unlink($GLOBALS['USER_DIRECTORY'].$info_array['anh_cu']);
+
             }
+            echo 1;
+        }
         else{
             $controller->connection->rollBack();
             echo -1;
         }
-    }
-    else if($employeeUpdate==0){
-            echo 2;
     }
     else
     {

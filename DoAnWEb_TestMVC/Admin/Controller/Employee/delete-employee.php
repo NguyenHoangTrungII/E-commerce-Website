@@ -7,6 +7,7 @@ $Model= new ModelAll;
 
 if(!empty($_POST['del_id']))
 {
+	// echo "5555";
 	// $tableName = $columnName = $whereValue = null;
 	// $columnName = "*";
 	// $tableName = "taikhoan";

@@ -68,9 +68,15 @@
 				}
 			}
 			
+      
 			$(".Employee-img-preview").change(function(){
-				readURL(this);
+    		readURL(this);
 			});
+
+
+      function changeBtnTxt(){
+        
+      }
 
 
 

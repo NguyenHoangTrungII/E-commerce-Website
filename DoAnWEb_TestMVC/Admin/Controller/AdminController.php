@@ -19,7 +19,15 @@
 			return $dataList;
 		else
 			return 0;
-	}	
+	}
+	
+	public function checkNewImgaie($new_img, $old_img){
+		if(isset($new_img)){
+			return "User_Employee_". date("YmdHis") . "_".$new_img;
+		} else{
+			return $old_img;
+		}
+	}
 	
 }
 ?>
