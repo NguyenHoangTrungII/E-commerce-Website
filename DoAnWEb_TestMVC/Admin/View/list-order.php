@@ -15,14 +15,15 @@ $Model = new ModelAll;
 // var_dump($_SESSION);
 ##=======LẤY DỮ LIỆU=======##
 $columnName = $tableName = null;
-$columnName = "*";
+// $columnName = "*";
 $tableName['MAIN'] = "donhang";
 $tableName['1'] ='nguoidung';
-$whereValue['nguoidung.id']=	$_SESSION['SMC_login_id'];
+$joinType="full";
+// $whereValue['nguoidung.id']=	$_SESSION['SMC_login_id'];
 // var_dump($whereValue['id']);
-$whereCondition ="!=";
+// $whereCondition ="!=";
 $joinCondition = array ("1"=>array ('donhang.id_nguoidung', 'nguoidung.id'));
-$orderList = $Model->selectJoinData($columnName, $tableName, null, $joinCondition, $whereValue, $whereCondition);
+$orderList = $Model->selectJoinData($columnName, $tableName, $joinType, $joinCondition);
 var_dump($orderList );
 
 ##=======LẤY DỮ LIỆU=======##
@@ -369,9 +370,9 @@ var_dump($orderList );
                                   <a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modalLong"><i
                                       class="bx bx-info-circle"></i> Xem thông tin chi tiết</a>
 
-                                  <a type="submit" class="dropdown-item" href="edit_employee.php?id='.$eachRow['id'].'"><i class="bx bx-edit-alt me-1"></i>
+                                  <a type="submit" class="dropdown-item" href="edit_order.php?id='.$eachRow['id'].'"><i class="bx bx-edit-alt me-1"></i>
                                     Sửa</a>
-                                  <p class="btn-delete dropdown-item" data-bs-toggle="modal" data-bs-target="#modalCenter" id='.$eachRow['id_taikhoan'].' href=""><i class="bx bx-trash me-1" ></i> Xóa</p>
+                                  <p class="btn-delete dropdown-item" data-bs-toggle="modal" data-bs-target="#modalCenter" id='.$eachRow['id'].' href=""><i class="bx bx-trash me-1" ></i> Xóa</p>
                                 </div>
                               </div>
                             </td>

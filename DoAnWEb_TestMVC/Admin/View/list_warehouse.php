@@ -16,11 +16,11 @@ $columnName = $tableName = null;
 $columnName = "*";
 $tableName['MAIN'] = "khohang";
 $tableName['1'] ='sanpham';
-$whereValue['sanpham.id']=	$_SESSION['SMC_login_id'];
+// $whereValue['sanpham.id']=	$_SESSION['SMC_login_id'];
 // var_dump($whereValue['id']);
-$whereCondition ="!=";
+// $whereCondition ="!=";
 $joinCondition = array ("1"=>array ('khohang.id_sp', 'sanpham.id'));
-$warehouseList = $Model->selectJoinData($columnName, $tableName, null, $joinCondition, $whereValue, $whereCondition);
+$warehouseList = $Model->selectJoinData($columnName, $tableName, null, $joinCondition);
 // var_dump($warehouseList );
 
 ##=======LẤY DỮ LIỆU=======##
@@ -355,8 +355,7 @@ $warehouseList = $Model->selectJoinData($columnName, $tableName, null, $joinCond
                                                     </button>
                                                     <div class="dropdown-menu action--none">
                                                         
-                                                        <a class="btn-delete dropdown-item" href="javascript:void(0);"><i
-                                                                class="bx bx-trash me-1"></i> Xóa</a>
+                                                    <p class="btn-delete dropdown-item" data-bs-toggle="modal" data-bs-target="#modalCenter" id='.$eachRow['id'].' href=""><i class="bx bx-trash me-1" ></i> Xóa</p>
                                                     </div>
                                                 </div>
                                             </td>
@@ -617,7 +616,7 @@ $(".btn-delete").click(function(e){
         }).then((result) => {
           if (result.isConfirmed) {
             $.ajax({
-              url: "http://localhost/DoAnWeb_testMVC/admin/Controller/Employee/delete-employee.php",
+              url: "http://localhost/DoAnWeb/DoAnWEb_TestMVC/admin/Controller/Warehouse/delete-warehouse.php",
               type:"POST",
               data:{del_id: del_id},
               

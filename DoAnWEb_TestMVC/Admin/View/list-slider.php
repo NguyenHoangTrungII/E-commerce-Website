@@ -311,7 +311,7 @@ $sliderList = $Model->selectData($columnName, $tableName);
                       <th class="id-header  slider">Mã</th>
                       <th class="name-slider slider">Slider</th>
                       <th class="img slider">Ảnh</th>
-                      <th class="status slider">Tình trạng</th>
+                      <th class="satus slider">Tình trạng</th>
                       <th class="number slider">Thứ tự</th>
                       <th class="action slider">Thao tác</th>
                     </tr>
@@ -339,20 +339,20 @@ $sliderList = $Model->selectData($columnName, $tableName);
                           <td class="img slider">
                           <ul class="list-unstyled users-list m-0 avatar-group d-flex align-items-center">
                             <li>
-                              <img src="' . $GLOBALS['USER_DIRECTORY_SHOW'] . $eachRow['url'] . '" alt="Anh slider" class="">
+                              <img src="' . $GLOBALS['SLIDES_DIRECTORY_SHOW'] . $eachRow['url'] . '" alt="Anh slider" class="slider-photo">
                             </li>
                           </ul>
                           </td>
                         
                           
 
-                          <td class="status slider">
-                          <label class="toggle-switchy pl-2" for="status-silder-check'.$number.'" data-size="sm" data-text="false" data-style="rounded" data-toggle="collapse" data-target="#filterbar" aria-expanded="true" aria-controls="filterbar" id="filter-btn" onclick="changeBtnTxt()">
-                          <input checked="" type="checkbox" id="status-silder-check'.$number.'">
-                          <span class="toggle">
-                            <span class="switch"></span>
-                          </span>
-                        </label>
+                          <td class="satus slider">
+                              <label class="toggle-switchy pl-2" for="satus-silder-check'.$number.'" data-size="sm" data-text="false" data-style="rounded" data-toggle="collapse" data-target="#filterbar" aria-expanded="true" aria-controls="filterbar" id="filter-btn" onclick="changeBtnTxt()">
+                              <input checked="" type="checkbox" id="satus-silder-check'.$number.'">
+                              <span class="toggle">
+                                <span class="switch"></span>
+                              </span>
+                              </label>
                           </td>
 
                           <td class="number slider">
@@ -368,7 +368,7 @@ $sliderList = $Model->selectData($columnName, $tableName);
                           <a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modalLong"><i
                               class="bx bx-info-circle"></i> Xem thông tin chi tiết</a>
 
-                          <a type="submit" class="dropdown-item" href="edit_slider.php?id=' . $eachRow['id'] . '"><i class="bx bx-edit-alt me-1"></i>
+                          <a type="button" class="dropdown-item" href="edit_slider.php?id=' . $eachRow['id'] . '"><i class="bx bx-edit-alt me-1"></i>
                             Sửa</a>
                           <p class="btn-delete dropdown-item" data-bs-toggle="modal" data-bs-target="#modalCenter" id=' . $eachRow['id'] . ' href=""><i class="bx bx-trash me-1" ></i> Xóa</p>
                         </div>
@@ -423,7 +423,7 @@ $sliderList = $Model->selectData($columnName, $tableName);
                       <th class="id-header  slider">Mã</th>
                       <th class="name-slider slider">Slider</th>
                       <th class="img slider">Ảnh</th>
-                      <th class="status slider">Tình trạng</th>
+                      <th class="satus slider">Tình trạng</th>
                       <th class="number slider">Thứ tự</th>
                       <th class="action slider">Thao tác</th>
                     </tr>

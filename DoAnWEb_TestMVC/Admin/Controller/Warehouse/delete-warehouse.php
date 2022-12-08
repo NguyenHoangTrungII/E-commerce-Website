@@ -14,8 +14,8 @@ if(!empty($_POST['del_id']))
 	// $getcustomerData = $eloquent->selectData($columnName, $tableName, @$whereValue);
 	// atler($_POST['del_id']);
     $tableName = $whereValue = null;
-	$tableName = "donhang";
-	$whereValue["id"] = $_POST['del_id'];
-	$deleteorderData = $Model->deleteData($tableName, $whereValue);
-    echo $deleteorderData;
+	$tableName = "khohang";
+	$whereValue["id_sp"] = $_POST['del_id'];
+	$deletewarehouseData = $Model->deleteData($tableName, $whereValue);
+    echo $deleteswarehouseData;
 }

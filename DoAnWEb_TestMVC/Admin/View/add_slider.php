@@ -268,15 +268,16 @@
           <hr class="my-5" />
              <!-- alert warning -->
              <div class="alert alert-danger alert-dismissible" role="alert" hidden>
-                        This is a danger dismissible alert — check it out!
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                      </div>
+              This is a danger dismissible alert — check it out!
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
 
-                      <div class="alert alert-info alert-dismissible" role="alert" hidden >
-                        This is an info dismissible alert — check it out!
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                      </div>
-          
+            <div class="alert alert-info alert-dismissible" role="alert" hidden >
+              This is an info dismissible alert — check it out!
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+
+      
             
             <!-- Basic Layout -->
             <div class="row">
@@ -287,7 +288,7 @@
                     <small class="text-muted float-end">Thêm thông tin</small>
                   </div>
                   <div class="card-body">
-                    <form>
+                    <form class="add-slider-form">
 
                       <div class="mb-3 col-xl-12">
                         <label class="form-label" for="basic-default-fullname">Tên slider</label>
@@ -297,44 +298,42 @@
 
 
 
-                      <div class="row">
                       <div class="mb-3">
-                                                <label for="formFile" class="form-label ">Ảnh</label> <span class="upload-notify"></span>
-                                                <div class="input-group">
-                                                    <button class="btn-remove-img btn btn-outline-primary" type="button" >Xóa</button>
-                                                    <input name= "img-slider" class="form-control add-img slider" type="file" id="file-slider-add" 
-                                                      accept=".jfif,.jpg,.jpeg,.png,.gif"  onchange="previewImages()" multiple/>
-                                                <!-- <input name= "avatar-employee" class="form-control add-infor user" type="file" id="formFile-review-image-label" 
-                                                     onchange="readURL(this);" set-to="div3" required accept=".jfif,.jpg,.jpeg,.png,.gif"  multiple> -->
-                                            </div>
+                          <label for="formFile" class="form-label ">Ảnh</label> <span class="upload-notify"></span>
+                          <div class="input-group">
+                              <button class="btn-remove-img btn btn-outline-primary" type="button" >Xóa</button>
+                              <input name= "avatar-employee" class="form-control Employee-img-preview" type="file" id="file-slider-add" 
+                                accept=".jfif,.jpg,.jpeg,.png,.gif" set-to="div4"  onchange="readURL(this)"/>
+                          <!-- <input name= "avatar-employee" class="form-control add-infor user" type="file" id="formFile-review-image-label" 
+                                onchange="readURL(this);" set-to="div3" required accept=".jfif,.jpg,.jpeg,.png,.gif"  multiple> -->
+                          </div>
 
-                                            <div class="mb-5">
-                                                <label for="formFile" class="form-label">Xem trước</label>
-                                                    <!-- <div class="fileupload fileupload-new border-5" data-provides="fileupload"> -->
-                                                        <div id="Preview-filed" >
-                                                            <!-- <img src="../assets/img/avatars/1.png" class ="img-preview" alt=""  id="div3" style="width: 20%;"> -->
-                                                        </div>
-                                                    <!-- </div> -->
-                                            </div>
-                        </div>
+                          <div class="mb-5">
+                          <label for="formFile" class="form-label">Xem trước</label>
+                              <!-- <div class="fileupload fileupload-new border-5" data-provides="fileupload"> -->
+                                  <div id="Preview-filed" >
+                                      <img src="$GLOBALS['USER_DIRECTORY_SHOW']"  class ="img-preview-emp" alt="" id="div4" style="width: 20%;">
+                                  </div>
+                              <!-- </div> -->
+                          </div>
 
-                        <div class="mb-3 col-md-4 text-center">
-                          <label class="form-label col-12 pb-2" for="basic-default-slug">Tình trạng</label>
-                          <label class="toggle-switchy pl-2" for="fitter-product" data-size="sm" data-text="false"
-                            data-style="rounded" data-toggle="collapse" data-target="#filterbar" aria-expanded="true"
-                            aria-controls="filterbar" id="filter-btn" onclick="changeBtnTxt()">
-                            <input checked="" type="checkbox" id="fitter-product">
-                            <span class="toggle">
-                              <span class="switch"></span>
-                            </span>
-                          </label>
+                          <div class="mb-3 col-md-4 text-center">
+                            <label class="form-label col-12 pb-2" for="basic-default-slug">Tình trạng</label>
+                            <label class="toggle-switchy pl-2" for="status-sli-add" data-size="sm" data-text="false"
+                              data-style="rounded" data-toggle="collapse" data-target="#filterbar" aria-expanded="true"
+                              aria-controls="filterbar" id="filter-btn" onclick="changeBtnTxt()">
+                              <input id="status-sli-add" checked="" type="checkbox" id="fitter-product">
+                              <span class="toggle">
+                                <span class="switch"></span>
+                              </span>
+                            </label>
 
-                        </div>
+                          </div>
 
-                        <div class="mb-3 col-md-4">
-                          <label class="form-label" for="basic-default-fullname">Số thứ tự</label>
-                          <input type="text" class="form-control" id="stt-slider"
-                            placeholder="Nhập tên danh mục" />
+                          <div class="mb-3 col-md-4">
+                            <label class="form-label" for="basic-default-fullname">Số thứ tự</label>
+                            <input type="text" class="form-control" id="stt-slider"
+                              placeholder="Nhập tên danh mục" />
                         </div>
 
                         
@@ -368,11 +367,8 @@
                         setTimeout(function(){
                         $(".upload-notify").html("");
                         }, 2000)
-                        checkNotify3 =1;
-                        if(checkNotify1==1 && checkNotify2 && checkNotify3)
-                        {
-                            $('.btn-save-edit.btn.btn-primary').prop('disabled', false);
-                        }
+                        $('.btn-save-edit.btn.btn-primary').prop('disabled', false);
+
 
                     }
                     else if(data==0){
@@ -380,7 +376,6 @@
                         $('.upload-notify').attr('style', 'color:#ff3333;padding-left: 20px');
                         $(".upload-notify").html("<i class='bx bxs-x-circle pl-3'></i>Loại ảnh không được cho phép");
                         $('.btn-save-edit.btn.btn-primary').prop('disabled', true);
-                        checkNotify3=0;
                     }
                     
                 }     
@@ -423,7 +418,7 @@
         info['tenslider'] = $("#name-slider").val();
         info['url'] = $("#img-slider").val();
         info['sothutu'] = $("#stt-slider").val();
-
+        info['tinhtrang'] = document.getElementById("status-sli-add").checked ? 1 : 0;
 
 
         var file_a = $('#file-slider-add').prop('files')[0];  
@@ -432,7 +427,7 @@
         form_data.append("file_arr", file_a) ;
 
          $.ajax({
-            url: "http://localhost/DoAnWeb/DoAnWeb_testMVC/admin/Controller/Formcheck/emptyCheck.php",
+            url: "http://localhost/DoAnWeb/DoAnWEb_TestMVC/Admin/Controller/Slider/create-add-slider.php",
             data: form_data,
             contentType: false,
             processData: false,
@@ -462,7 +457,7 @@
                         $('.alert.alert-info.alert-dismissible').prop('hidden', false);
                         // $('.btn-close-danger').prop('hidden', false);
                             //xóa dữ liệu trong form
-                        $('.add_employee-form')[0].reset();
+                        $('.add-slider-form')[0].reset();
 
                         // xóa ảnh
                         $(".img-preview").attr('src', " ");
