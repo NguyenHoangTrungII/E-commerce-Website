@@ -454,7 +454,7 @@
                                                         </div>
                                                     <!-- </div> -->
                                             </div>
-                                            <button type="button" class="btn-save-edit btn btn-primary" name="create_employee">Lưu</button>
+                                            <button type="button" id="btn-add-employee" class="btn-save-edit btn btn-primary" name="create_employee">Lưu</button>
                                         </form>
                                     </div>
                                 </div>
@@ -619,7 +619,7 @@
         return data;
     }
 
-    $(".btn-save-edit").on("click", function(){
+    $("#btn-add-employee").on("click", function(){
         //Lấy thông tin input
         // var name = $(".name-text").val();
         // var birthday = $("#birthday-input").val(); //format khi làm php

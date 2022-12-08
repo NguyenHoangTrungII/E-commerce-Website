@@ -5,13 +5,15 @@
     include("../Model/ModelAll.php");
     include("../config/databse.php");
 	  include("../config/site.php");
-    include("../Model/Pagination.php")
+    include("../Model/Pagination.php");
+    include("../Controller/Employee/getall-employee.php");
 ?>
 
 <!-- get role -->
 <?php
 
 $pagination = new Pagination;
+
 
   if($_SESSION['SMC_login_admin_type']==1){
     $_SESSION['SMC_login_admin_role']="Admin";
@@ -20,14 +22,15 @@ $pagination = new Pagination;
     $_SESSION['SMC_login_admin_role']="Quản lý";
   }
 
+
   $config = array(
     'current_page'  => isset($_GET['page']) ? $_GET['page'] : 1,
-    'total_record'  => $pagination->count_all_member(), 
-    'limit'         => 15,
+    'total_record'  => count_all_member(), 
+    'limit'         => 5,
     'link_full'     => 'list-employee.php?page={page}',
     'link_first'    => 'list-employee.php',
     'range'         => 3
-);
+  );
 
 
 $pagination->init($config);
@@ -40,7 +43,7 @@ $start = $pagination->get_config('start');
 
 
 // Lấy danh sách thành viên
-$employeeList = $pagination->getAllEmployee($limit, $start);
+$employeeList = getAllEmployee($limit, $start);
 
 // var_dump($employeeList);
 
@@ -60,7 +63,7 @@ $whereValue['nguoidung.id']=	$_SESSION['SMC_login_id'];
 $whereCondition ="!=";
 $joinCondition = array ("1"=>array ('taikhoan.id', 'nguoidung.id_taikhoan'));
 // $employeeList = $Model->selectJoinData($columnName, $tableName, null, $joinCondition, $whereValue, $whereCondition);
-// var_dump($employeeList[0]['anh'] );
+// var_dump($employeeList);
 
 ##=======LẤY DỮ LIỆU=======##
 

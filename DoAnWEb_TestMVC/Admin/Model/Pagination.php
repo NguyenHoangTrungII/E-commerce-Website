@@ -149,39 +149,6 @@
             return $p;
         }
 
-        function count_all_member(){
-        
-        try
-        {
-            $query_code = "SELECT COUNT(*) FROM `taikhoan` JOIN `nguoidung` ON taikhoan.id = nguoidung.id_taikhoan";
-            $query = $this->connection->prepare($query_code);
-			$query->execute();
-			$rowSelected = $query->fetchColumn(); 
-			return $rowSelected ;
-		}
-		catch(Exception $e) 
-		{
-			return 0;
-		}
-            return 0;
-        }
-        
-        
-        
-        function getAllEmployee($limit, $start)
-        {
-            $sql_code = 'SELECT * FROM `taikhoan` JOIN `nguoidung` ON taikhoan.id = nguoidung.id_taikhoan LIMIT '.(int)$start . ','.(int)$limit;
-            $query = $this->connection->prepare($sql_code);
-            
-            $query->execute();
-            
-            $dataList = $query->fetchAll(PDO::FETCH_ASSOC);
-            $totalRowSelected = $query->rowCount();
-            
-            if($totalRowSelected > 0)
-                return $dataList;
-            else
-                return 0;
-        }
+
     }
 ?>
