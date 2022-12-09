@@ -40,8 +40,8 @@ class ModelAll
 			$dataAdded = $query->rowCount();
 			$lastInsertId = $this->connection->lastInsertId();
 			
-			if($dataAdded> 0)
-				$this->connection->commit();
+			// if($dataAdded> 0)
+				// $this->connection->commit();
 			return array("NUMBER_OF_ROW_INSERTED"=>$dataAdded, "LAST_INSERT_ID"=>$lastInsertId);
 		}
 		catch(Exception $e) 

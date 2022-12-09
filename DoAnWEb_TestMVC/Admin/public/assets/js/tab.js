@@ -2,7 +2,6 @@ var currentTab = 0; // Current tab is set to be the first tab (0)
 showTab(currentTab); // Display the current tab
 
 function showTab(n) {
-  // This function will display the specified tab of the form ...
   var x = document.getElementsByClassName("tab");
   x[n].style.display = "block";
   // ... and fix the Previous/Next buttons:
@@ -12,17 +11,21 @@ function showTab(n) {
     document.getElementById("prevBtn").style.display = "inline";
   }
   if (n == (x.length - 1)) {
-    document.getElementById("nextBtn").innerHTML = "Hoàn thành";
+    document.getElementById("nextPrev").innerHTML = "Quay về trang 1";
+    document.getElementById("finish").innerHTML = "Lưu";
+    // document.getElementById("nextPrev").className = "btn-add-product";
   } else {
-    document.getElementById("nextBtn").innerHTML = "Tiếp";
+    document.getElementById("nextPrev").innerHTML = "Tiếp";
   }
   // ... and run a function that displays the correct step indicator:
-  fixStepIndicator(n)
+  fixStepIndicator(n);
+  
 }
 
 function nextPrev(n) {
   // This function will figure out which tab to display
   var x = document.getElementsByClassName("tab");
+  // console.debug(x);
   // Exit the function if any field in the current tab is invalid:
   // if (n == 1 && !validateForm()) return false;
   // Hide the current tab:
@@ -31,9 +34,13 @@ function nextPrev(n) {
   currentTab = currentTab + n;
   // if you have reached the end of the form... :
   if (currentTab >= x.length) {
-    //...the form gets submitted:
-    document.getElementById("regForm").submit();
-    return false;
+    // ...the form gets submitted:
+    // document.getElementById("regForm").back();
+    // return false;
+    // x[currentTab].style.display = "inline";
+    currentTab = 0;
+    showTab(0);
+
   }
   // Otherwise, display the correct tab:
   showTab(currentTab);

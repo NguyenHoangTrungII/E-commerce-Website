@@ -1002,6 +1002,10 @@ td.action.product{
   vertical-align: top
 }
 
+.product-img{
+  width: 180px;
+}
+
 
 /* ===============discount======== */
 .id-header.discount{
