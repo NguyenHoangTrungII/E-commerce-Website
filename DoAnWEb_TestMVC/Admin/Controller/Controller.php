@@ -65,6 +65,20 @@
 				return -1;
 			}
 		}
+		
+		// MAKE PASSWORD // RETURN TO USER for SIGNUP //
+		public function makePass() 
+		{
+			$alphabet = "56789abcdefghijklmnopqrstuwxyz@#%#@ABCDEFGHIJKLMNOPQRSTUWXYZ01234";
+			$pass = array(); //remember to declare $pass as an array
+			$alphaLength = strlen($alphabet) - 1; //put the length -1 in cache
+			for ($i = 0; $i < 8; $i++) 
+			{
+				$n = rand(0, $alphaLength);
+				$pass[] = $alphabet[$n];
+			}
+			return implode($pass); //turn the array into a string
+		}
 
 		public function checkNewImgaie($new_img, $old_img){
 			if(isset($new_img)){
@@ -72,6 +86,38 @@
 			} else{
 				return $old_img;
 			}
+		}
+
+		public function unlinkProductImg($source, $number){
+			for($i =0 ; $i < $number; $i++){
+				unlink($source, $number);
+			}
+		}
+
+		public function spaceCheck($str){
+			if (str_contains($str, ' ')) {
+				return true;
+			}
+			else
+				return false;
+		}
+
+		public function checkImage($fileType, $fileSize, $fileError)
+		{
+			// 50 MB = 52428800 Bytes //
+			if ((($fileType == "image/gif")
+			|| ($fileType == "image/jpeg")
+			|| ($fileType == "image/jpg")
+			|| ($fileType == "image/pjpeg")
+			|| ($fileType == "image/x-png")
+			|| ($fileType == "image/png"))
+			&& ($fileSize < 52428800)
+			&& ($fileError <= 0))
+			{
+				return 1;
+			}
+			else 
+			return 0;
 		}
 
 	}
