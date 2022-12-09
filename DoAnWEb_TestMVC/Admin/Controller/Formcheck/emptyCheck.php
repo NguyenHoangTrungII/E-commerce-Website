@@ -14,16 +14,20 @@
     //encode
     $info_array = json_decode($_POST['other_data'], true);
 
-    define ('SITE_ROOT', realpath(dirname(__FILE__)));
 
     foreach($info_array as $key=> $value) { 
-        if(empty($value)){
+        if($value == "" || $value == " "){
             echo  0;
             exit();
         } 
     }
 
-    $controller->connection->beginTransaction();
+    if(!isset($_FILES['file_arr'])){
+        echo  0;
+        exit();
+    }
+
+    $Model->connection->beginTransaction();
 
     //Lưu dữ liệu
     $tableName = $columnName = null;
@@ -38,6 +42,7 @@
     //nếu có lỗi xảy ra thì rollback
     //1  thành công
     $employeeInsert = $Model->insertData($tableName, $columnName);
+    // var_dump($employeeInsert);
     if( isset($employeeInsert["NUMBER_OF_ROW_INSERTED"]) && $employeeInsert["NUMBER_OF_ROW_INSERTED"] > 0  && isset($_FILES['file_arr']['name'])){
                 $tableName = $columnName = null;
                 $tableName = 'nguoidung';
@@ -58,15 +63,16 @@
                 if($insertEmployeeUser["NUMBER_OF_ROW_INSERTED"] > 0)
                     {
                         move_uploaded_file($_FILES['file_arr']['tmp_name'], $GLOBALS['USER_DIRECTORY']. $columnName['anh']);
+                        $Model->connection->commit();
                         echo 1;
                     }
                 else{
-                    $controller->connection->rollBack();
+                    $Model->connection->rollBack();
                     echo -1;
                 }
     }
     else{
-        $controller->connection->rollBack();
+        $Model->connection->rollBack();
 
         echo -1;
     }

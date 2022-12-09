@@ -691,6 +691,9 @@
                             //xóa dữ liệu trong form
                         $('.add_employee-form')[0].reset();
 
+                        //reset tỉnh thành phố
+                        $("#Provice").val("-1").change();
+                        
                         // xóa ảnh
                         $(".img-preview").attr('src', " ");
                         $('input[type=file]').val("");
