@@ -270,6 +270,18 @@
 
                         <hr class="my-5" />
 
+                         <!-- alert warning -->
+                        <div class="alert alert-danger alert-dismissible" role="alert" hidden>
+                          This is a danger dismissible alert — check it out!
+                          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+
+                        <div class="alert alert-info alert-dismissible" role="alert" hidden >
+                          This is an info dismissible alert — check it out!
+                          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+
+
                         <!-- alert warning -->
                         <div class="alert alert-danger alert-dismissible" role="alert" hidden>
                                     This is a danger dismissible alert — check it out!
@@ -311,7 +323,7 @@
 
 
 
-                                            <button type="submit" class="btn-save-edit btn btn-primary">Lưu</button>
+                                            <button type="button" class="btn-save-edit btn btn-primary">Lưu</button>
                                         </form>
                                     </div>
                                 </div>

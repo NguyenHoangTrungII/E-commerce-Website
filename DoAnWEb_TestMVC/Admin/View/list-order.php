@@ -15,15 +15,14 @@ $Model = new ModelAll;
 // var_dump($_SESSION);
 ##=======LẤY DỮ LIỆU=======##
 $columnName = $tableName = null;
-// $columnName = "*";
+$columnName = "*";
 $tableName['MAIN'] = "donhang";
 $tableName['1'] ='nguoidung';
-$joinType="full";
-// $whereValue['nguoidung.id']=	$_SESSION['SMC_login_id'];
+// $whereValue['sanpham.id']=	$_SESSION['SMC_login_id'];
 // var_dump($whereValue['id']);
 // $whereCondition ="!=";
 $joinCondition = array ("1"=>array ('donhang.id_nguoidung', 'nguoidung.id'));
-$orderList = $Model->selectJoinData($columnName, $tableName, $joinType, $joinCondition);
+$orderList = $Model->selectJoinData($columnName, $tableName, null, $joinCondition);
 var_dump($orderList );
 
 ##=======LẤY DỮ LIỆU=======##
