@@ -2,10 +2,87 @@
 <html lang="en">
 
 <head>
+
+    <?php 
+        session_start();
+        include($_SERVER['DOCUMENT_ROOT']."/DoAnWeb/DoAnWeb_TEstMVC/View/include/session.php");
+        include($_SERVER['DOCUMENT_ROOT']."/DoAnWeb/DoAnWeb_TEstMVC/Controller/Controller.php");
+        include($_SERVER['DOCUMENT_ROOT']."/DoAnWeb/DoAnWeb_TEstMVC/Admin/config/databse.php");
+        include($_SERVER['DOCUMENT_ROOT']."/DoAnWeb/DoAnWeb_TEstMVC/Controller/HomeController.php");
+        include($_SERVER['DOCUMENT_ROOT']."/DoAnWeb/DoAnWeb_TEstMVC/Admin/Model/ModelAll.php");
+        include($_SERVER['DOCUMENT_ROOT']."/DoAnWeb/DoAnWeb_TEstMVC/Controller/HeroBannerController.php");
+
+    ?>
+
+    <?php
+        //Lấy title
+        $controller = new Controller;
+        $homeController = new HomeController;
+        $heroBannerController = new HeroBannerController;
+
+        $pageName = basename($_SERVER['PHP_SELF']);
+        $pageName = str_replace('.php', '', $pageName);
+
+        $pageTitile = $controller->getTitle($pageName);
+        
+    ?>
+
+    <?php 
+        //Lấy dữ liệu cho giỏ hàng header, danh mục sản phẩm
+        $Model = new ModelAll;
+        $tableName = $columnName= $whereValue = null;
+        $columnName['1']="sanpham.tensp tensp";
+        $columnName['2']="ct_giohang.soluong soluongsp";
+        $columnName['3']="sanpham.giagoc giagoc";
+        $columnName['4']="sanpham.phantram phantram";
+        $columnName['5']="sanpham.anh anhsp";
+        $columnName['6']="giohang.id_user";
+        $columnName['7']="sanpham.id id_sp";
+        // $columnName['8']="sanpham.phantram";
+        // $columnName['9']="sanpham.tinhtrang";
+        // $columnName['10']="sanpham.id_danhmuc";
+        // $columnName['11']="sanpham.id_thuonghieu";
+        // $columnName['12']="sanpham.baohanh";
+        // $columnName['13']="sanpham.ngaysx";
+        $tableName['MAIN'] = 'ct_giohang';
+        $tableName['1'] = 'giohang';
+        $tableName['2'] = 'sanpham';
+        $joinCondition = array ("1"=>array ('ct_giohang.id_giohang', 'giohang.id'), "2"=>array('ct_giohang.id_sp', 'sanpham.id'));
+        @$whereValue['giohang.id_user']= $_SESSION['SSCF_login_id'];
+
+        $cartDetail = $Model->selectJoinData($columnName, $tableName, null, $joinCondition, $whereValue);
+
+
+        //Lấy dữ liệu cho giỏ hàng header, danh mục sản phẩm
+        $Model = new ModelAll;
+        $tableName = $columnName= $whereValue = null;
+        $columnName="*";
+        $tableName = 'danhmucsp';
+        $formatBy['ASC'] ="sothutu";
+
+        $categoryList = $Model->selectData($columnName, $tableName, null, null, null, null, $formatBy, null);
+        // var_dump($categoryList);
+
+
+        //Lấy slider tho sothutu
+        $Model = new ModelAll;
+        $tableName = $columnName= $whereValue = null;
+        $columnName['1'] = "url";
+        $tableName = 'slider';
+        $formatBy['ASC'] ="sothutu";
+
+        $sliderList = $Model->selectData($columnName, $tableName, null, null, null, null, $formatBy, null);
+        // var_dump($sliderList);
+
+
+
+        
+    ?>
+
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Homepage</title>
+    <title> <?= $pageTitile ?> </title>
 
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -176,16 +253,23 @@
                     </div>
 
                     <!-- header-mid-side -->
-                    <div class="col-lg-3  col-md-3">
+                    <div class="col-lg-3  col-md-3 text-center">
                         <div class="header-mid-side">
 
-                            <div class="user-header">
+
+                            <?php 
+                                $heroBannerController->checkLogIn($_SESSION, $cartDetail);
+                            ?>
+                            <!-- <div class="header-mid-side--no-login font-weight-bold" style="padding-right: 100px;">
+                                    <a href="">Đăng nhập / Đăng ký</a>
+                            </div> -->
+
+                            <!-- <div class="user-header">
                                 <span>Nội dung</span>
                                 <a><i class=" user-icon-header fa-regular fa-user"></i></a>
 
                                 <div class="user-item">
                                     <div class="dropdown-user-header">
-                                        <!-- <span>Xin chào</span> -->
                                     </div>
                                     <ul class="user-list">
                                         <li>
@@ -211,20 +295,15 @@
 
                                     </ul>
                                     <div class="bottom">
-                                        <!-- <div class="total">
-                                            <span>Đăng xuất</span>
-                                            <span>Đăng ký</span>
-
-                                        </div> -->
                                         <a href="" class="btn animate">Đăng xuất</a>
                                         <a href="" class="btn animate">Đăng nhập</a>
 
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
 
                             <!-- Cart -->
-                            <div class="sinlge-bar shopping">
+                            <!-- <div class="sinlge-bar shopping">
                                 <a href="#" class="single-icon"><i
                                         class="header-mid-icon fa-solid fa-cart-shopping"></i> <span
                                         class="total-count">2</span></a>
@@ -275,8 +354,12 @@
                                     </div>
                                 </div>
 
-                            </div>
+                            </div> -->
                             <!-- /Cart -->
+
+                            
+
+
                         </div>
 
                     </div>
@@ -308,7 +391,16 @@
                                     </div>
                                 </div>
                                 <ul>
-                                    <li><a href="#">MainBoard</a></li>
+                                    <?php 
+                                        foreach($categoryList as $eachRow){
+                                            echo 
+                                            '
+                                                <li><a href="#">'.$eachRow['ten'].'</a></li>
+
+                                            ';
+                                        }
+                                    ?>
+                                    <!-- <li><a href="#">MainBoard</a></li>
                                     <li><a href="#">Bộ nhớ HHD</a></li>
                                     <li><a href="#">Bộ nhớ SSD</a></li>
                                     <li><a href="#">CPU</a></li>
@@ -318,7 +410,7 @@
                                     <li><a href="#">Sound Card</a></li>
                                     <li><a href="#">VGA Card</a></li>
                                     <li><a href="#">DVD</a></li>
-                                    <li><a href="#">Keo tản nhiệt</a></li>
+                                    <li><a href="#">Keo tản nhiệt</a></li> -->
                                 </ul>
                             </div>
                         </div>
@@ -332,3 +424,36 @@
                                     <li class=""><a href="">Về chúng tôi</a></li>
                                 </ul>
                             </nav>
+
+                            <?php 
+                                if($pageName == "index"){
+                                    $heroBannerController->setHeroBanner($sliderList);
+                                }
+                                else{
+                                    
+                                }
+                            ?>
+                            <!-- <div class="hero-silder owl-carousel">
+                                <div class="col-lg-12">
+                                    <div class="hero__item set-bg" data-setbg="img/hero/banner.jpg">
+                                        <div class="hero__text">
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-12">
+                                    <div class="hero__item set-bg" data-setbg="img/hero/banner.jpg">
+                                        <div class="hero__text">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section> -->
+            <!-- Hero Section End -->
+    </header>
+    <!-- Header Section End -->
