@@ -58,6 +58,7 @@
     $columnName['baohanh'] = $info_array['baohanh']; 
     $columnName['ngaysx'] = $info_array['ngaysx']; 
     $columnName['ngaytao'] =  date("d/m/Y");
+    $columNmame['tinhtrang'] = $info_array['tinhtrang'];
 
 
     
@@ -86,7 +87,7 @@
             $imgInsert = $Model->insertData($tableName4, $columnName4);
             // var_dump( $imgInsert);
             if(!isset($imgInsert["NUMBER_OF_ROW_INSERTED"]) || $imgInsert["NUMBER_OF_ROW_INSERTED"] < 0){
-                $controller->unlinkProductImg($GLOBALS['PRODUCT_DIRECTORY']."garelly/". $columnName['anh'], $i);
+                $controller->unlinkProductImg($GLOBALS['PRODUCT_DIRECTORY']."garelly/", "Product_".$info_array['danhmuc']."_garelly_", $_FILES['file_garelly_img']['name'], $i);
                 $Model->connection->rollBack();
                 echo -1;
                 exit();
@@ -125,7 +126,7 @@
         $specInsert = $Model->insertData($tableName3,  $columnName3);
         $wareHouseInsert = $Model->insertData($tableName1,  $columnName1);
 
-        var_dump($columnName1);
+        // var_dump($columnName1);
 
         if(!isset($desInsert["NUMBER_OF_ROW_INSERTED"]) || $desInsert["NUMBER_OF_ROW_INSERTED"] < 0 || !isset($specInsert["NUMBER_OF_ROW_INSERTED"]) 
                 || $specInsert["NUMBER_OF_ROW_INSERTED"] < 0 || !isset($wareHouseInsert["NUMBER_OF_ROW_INSERTED"]) || $wareHouseInsert["NUMBER_OF_ROW_INSERTED"] < 0 ){

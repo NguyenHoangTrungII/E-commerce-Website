@@ -575,108 +575,113 @@
     }
 
    $("#finish").on("click", function(){
-    var info={};
-    info['tensp'] = $("#product-name-add").val();
-    info['slug'] = $("#product-slug-add").val(); 
-    info['danhmuc']= checkEmpty($( "#category_list_add option:selected" ).val());
-    info['thuonghieu'] = checkEmpty($( "#brand_list_add option:selected" ).val());
-    info['giagoc'] = $("#historical-cost").val();
-    info['phantram'] = $("#percent-reduction").val();
-    info['baohanh'] =  $("#insurance-date").val();
-    info['ngaysx'] = $("#MFG-product-add").val(); 
-    info['tinhtrang'] = document.getElementById("product-status-add").checked ? 1 : 0;
-    info['soluongton'] = $('#qty-product-add').val();
+      var info={};
+      info['tensp'] = $("#product-name-add").val();
+      info['slug'] = $("#product-slug-add").val(); 
+      info['danhmuc']= checkEmpty($( "#category_list_add option:selected" ).val());
+      info['thuonghieu'] = checkEmpty($( "#brand_list_add option:selected" ).val());
+      info['giagoc'] = $("#historical-cost").val();
+      info['phantram'] = $("#percent-reduction").val();
+      info['baohanh'] =  $("#insurance-date").val();
+      info['ngaysx'] = $("#MFG-product-add").val(); 
+      info['tinhtrang'] = document.getElementById("product-status-add").checked ? 1 : 0;
+      info['soluongton'] = $('#qty-product-add').val();
 
-    var thongtincauhinh = [];
-    var $headers = ["loai", "noidung"];
-    $("#specification-product").find("tbody tr").each(function(index) {
-      var values = {};
-      $(this).find("td:lt(2)").each(function(index) {
-        values[$headers[index]] = $(this).text();
-      })
-      thongtincauhinh.push(values) 
-    });
-    // console.debug(JSON.stringify(thongtincauhinh));
+      var thongtincauhinh = [];
+      var $headers = ["loai", "noidung"];
+      $("#specification-product").find("tbody tr").each(function(index) {
+        var values = {};
+        $(this).find("td:lt(2)").each(function(index) {
+          values[$headers[index]] = $(this).text();
+        })
+        thongtincauhinh.push(values) 
+      });
+      // console.debug(JSON.stringify(thongtincauhinh));
 
-    var plainText = $("#summernote").summernote('code');
-    // console.log(plainText);
-
-  //  console.log(info);
-    //lấy ảnh thumbail
-    var file_thumbail_img = $('#file-product-add').prop('files')[0]; 
-
-    //Lấy ảnh liên quan
-    var form_data = new FormData();  
-
-    var file_garelly_img  = $('#product-gallery-add').prop('files');
-    // console.debug(length_a);
-    for(var i = 0; i< file_garelly_img.length; i++){
-      console.debug(file_garelly_img[i]);
-      form_data.append("file_garelly_img[]", file_garelly_img[i]) ;
-    }
-
-    form_data.append("other_data", JSON.stringify(info));
-    form_data.append("file_thumbail_img", file_thumbail_img) ;
-    // form_data.append("file_garelly_img", file_garelly_img) ;
-    form_data.append("specification", JSON.stringify(thongtincauhinh));
-    form_data.append("summarynote_content", plainText);
-    // console.debug(...form_data);
+      var plainText = $("#summernote").summernote('code');
+      // console.log(plainText);
 
 
-      $.ajax({
-        url: "http://localhost/DoAnWeb/DoAnWeb_testMVC/admin/Controller/Product/create-add-product.php",
-        data: form_data,
-        contentType: false,
-        processData: false,
-        type: 'POST',
-        dataType: "text",
-        success: function(data){
-            console.debug( data);
 
-            switch(parseInt(data) ){
-                case 0:
-                    {
-                        // $('.alert.alert-danger.alert-dismissible').text("");
-                    $('.alert.alert-danger.alert-dismissible').text("Không được để trống miền giá trị nào");
-                    // $(".alert.alert-danger.alert-dismissible").php("Không được để trống miền giá trị nào");
-                    $('.alert.alert-info.alert-dismissible').prop('hidden', true);
-                    $('.alert.alert-danger.alert-dismissible').prop('hidden', false);
-                    // $('.btn-close-danger').prop('hidden', false);
-                    $("html, body").animate({scrollTop: 0}, 1000);
-                    }
-                    break;
-                case 1:
-                    {
-                      //$('.alert.alert-danger.alert-dismissible').text("");
-                      $('.alert.alert-info.alert-dismissible').text("Thêm thành công");
-                    // $(".alert.alert-danger.alert-dismissible").php("Không được để trống miền giá trị nào");
-                    $('.alert.alert-danger.alert-dismissible').prop('hidden', true);
-                    $('.alert.alert-info.alert-dismissible').prop('hidden', false);
-                    // $('.btn-close-anger').prop('hidden', false);
-                        //xóa dữ liệu trong form
-                    $('.add_employee-form')[0].reset();
+      
 
-                    // xóa ảnh
-                    $(".img-preview").attr('src', " ");
-                    $('input[type=file]').val("");
-                        
-                    $("html, body").animate({scrollTop: 0}, 1000);
-                    }
-                break;
-                case -1:{
-                    $('.alert.alert-danger.alert-dismissible').text("Đã có lỗi xảy ra !! vui lòng thử lại sau");
-                    $('.alert.alert-info.alert-dismissible').prop('hidden', true);
-                    $('.alert.alert-danger.alert-dismissible').prop('hidden', false);
-                    $("html, body").animate({scrollTop: 0}, 1000);
-                }
-                break;
 
-            }
-            
-        }
-            
-            
-    });
+    //  console.log(info);
+      //lấy ảnh thumbail
+      var file_thumbail_img = $('#file-product-add').prop('files')[0]; 
+
+      //Lấy ảnh liên quan
+      var form_data = new FormData();  
+
+      var file_garelly_img  = $('#product-gallery-add').prop('files');
+      // console.debug(length_a);
+      for(var i = 0; i< file_garelly_img.length; i++){
+        console.debug(file_garelly_img[i]);
+        form_data.append("file_garelly_img[]", file_garelly_img[i]) ;
+      }
+
+      form_data.append("other_data", JSON.stringify(info));
+      form_data.append("file_thumbail_img", file_thumbail_img) ;
+      // form_data.append("file_garelly_img", file_garelly_img) ;
+      form_data.append("specification", JSON.stringify(thongtincauhinh));
+      form_data.append("summarynote_content", plainText);
+      // console.debug(...form_data);
+
+
+        $.ajax({
+          url: "http://localhost/DoAnWeb/DoAnWeb_testMVC/admin/Controller/Product/create-add-product.php",
+          data: form_data,
+          contentType: false,
+          processData: false,
+          type: 'POST',
+          dataType: "text",
+          success: function(data){
+              console.debug( data);
+
+              switch(parseInt(data) ){
+                  case 0:
+                      {
+                          // $('.alert.alert-danger.alert-dismissible').text("");
+                      $('.alert.alert-danger.alert-dismissible').text("Không được để trống miền giá trị nào");
+                      // $(".alert.alert-danger.alert-dismissible").php("Không được để trống miền giá trị nào");
+                      $('.alert.alert-info.alert-dismissible').prop('hidden', true);
+                      $('.alert.alert-danger.alert-dismissible').prop('hidden', false);
+                      // $('.btn-close-danger').prop('hidden', false);
+                      $("html, body").animate({scrollTop: 0}, 1000);
+                      }
+                      break;
+                  case 1:
+                      {
+                        //$('.alert.alert-danger.alert-dismissible').text("");
+                        $('.alert.alert-info.alert-dismissible').text("Thêm thành công");
+                      // $(".alert.alert-danger.alert-dismissible").php("Không được để trống miền giá trị nào");
+                      $('.alert.alert-danger.alert-dismissible').prop('hidden', true);
+                      $('.alert.alert-info.alert-dismissible').prop('hidden', false);
+                      // $('.btn-close-anger').prop('hidden', false);
+                          //xóa dữ liệu trong form
+                      $('.add_employee-form')[0].reset();
+
+                      // xóa ảnh
+                      $(".img-preview").attr('src', " ");
+                      $('input[type=file]').val("");
+                          
+                      $("html, body").animate({scrollTop: 0}, 1000);
+                      }
+                  break;
+                  case -1:{
+                      $('.alert.alert-danger.alert-dismissible').text("Đã có lỗi xảy ra !! vui lòng thử lại sau");
+                      $('.alert.alert-info.alert-dismissible').prop('hidden', true);
+                      $('.alert.alert-danger.alert-dismissible').prop('hidden', false);
+                      $("html, body").animate({scrollTop: 0}, 1000);
+                  }
+                  break;
+
+              }
+              
+          }
+              
+              
+      });
 
   });
 </script>

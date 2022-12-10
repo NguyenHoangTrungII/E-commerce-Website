@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SingUp</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <!-- Font Awesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
+  <!-- MDB -->
+  <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/5.0.0/mdb.min.css" rel="stylesheet" /> -->
+
+  <link rel="stylesheet" href="../assets/css/main.css">
+  <link rel="stylesheet" href="../assets/css/base.css">
+  <style>
+    body {
+      height: 100%;
+      width: 100%;
+      /* extended code */
+      background-size: 100% 100%;
+      /* background-repeat: no-repeat; */
+      background-position: center center;
+      background-image: url('../assets/img/login/backgroup_login_SignUp.jpg');
+    }
+  </style>
+</head>
+
+<body>
+  <section class="vh-100 bg-image">
+
+    <div class="mask d-flex align-items-center h-100 gradient-custom-3">
+      <div class="container h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+          <div class="col-11 col-md-8 col-lg-6 col-xl-5 col-xxl-4">
+            <div class="card" style="border-radius: 15px;">
+              <div class="card-body login-sinup">
+                <h2 class="header__title-login text-uppercase text-center pb-4">Đăng ký</h2>
+
+                <form>
+
+                  <div class="form-outline mb-1">
+                    <label class="form-label" for="form3Example1cg">Họ và tên</label>
+                    <input type="text" id="form3Example1cg" class="form-control form-control" />
+                  </div>
+
+
+                  <div class="form-outline mb-1">
+                    <label class="form-label" for="form3Example3cg">Địa chỉ mail</label>
+                    <input type="email" id="form3Example3cg" class="form-control form-control" />
+                  </div>
+
+                  <div class="form-outline mb-1">
+                    <label class="form-label" for="form3Example4cg">Mật khẩu</label>
+                    <input type="password" id="form3Example4cg" class="form-control form-control" />
+                  </div>
+
+                  <div class="form-outline mb-1">
+                    <label class="form-label" for="form3Example4cdg">Nhắc lại mật khẩu</label>
+                    <input type="password" id="form3Example4cdg" class="form-control form-control" />
+                  </div>
+
+                  <div class="d-flex justify-content-center pt-4">
+                    <button type="button" class="btn btn-primary-color btn--sinup fw-bold text-white text-uppercase">Tạo
+                      tài khoản</button>
+                  </div>
+
+                  <div class="login__another fw-bold">
+                    <div class="divider text-center position-relative my-4">
+                      <span class="line position-absolute start-0 end-0 " style="background-color: #d4d4d4;"></span>
+                      <div class="content position-relative bg-white px-3 mx-auto">
+                        <span class="fw-bold" style="color:#8e8e8e">Hoặc</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="btn btn-with  fw-bold " style="border: 2px solid #000; width: 100%;">
+                    <img class="login__with-gg-img" src="./assets/img/login/Google__G__Logo.svg" alt="">
+                    Đăng nhập với google
+                  </div>
+
+                  <p class="text-center mt-4 mb-0">Bạn đã có tài khoản? <a href="./login.html"
+                      class="fst-italic text-body"><u>Đăng nhập</u></a></p>
+
+                </form>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</body>
+
+</html>

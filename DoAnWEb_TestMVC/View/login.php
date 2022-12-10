@@ -1,36 +1,43 @@
 <?php
 session_start();
 include("../Controller/Controller.php");
-include("../Controller/AdminController.php");
-include("../config/databse.php");
-include("../config/site.php");
+include("../Admin/Model/ModelAll.php");
+include("../Admin/config/databse.php");
+include("../Admin/config/site.php");
 
-
-
-$adminController = new AdminController;
-
-if(isset($_POST['load_login']))
+$Model= new ModelAll;
+if(isset($_POST['customer_login']))
 {
-	$email = $_POST['email'];
-	$password = sha1($_POST['password']);
+        $columnName = $tableName = null;
+        $columnName['1']="nguoidung.id id_nguoidung";
+        $columnName['2']="nguoidung.hoten hoten";
+        $columnName['3']="nguoidung.tenhienthi tenhienthi";
+        $columnName['4']="taikhoan.email email";
+        $columnName['5']="nguoidung.sdt sdt";
+        $columnName['6']="nguoidung.diachi diachi";
+        $tableName['MAIN'] = "taikhoan";
+        $tableName['1'] ='nguoidung';
+        $whereValue['email']= $_POST['user_email'];
+        $whereValue['matkhau']= sha1($_POST['user_pass']);
+        $whereValue['vaitro']= 3;
+
+        $joinCondition = array ("1"=>array ('taikhoan.id', 'nguoidung.id_taikhoan'));
+        $userLogin = $Model->selectJoinData($columnName, $tableName, null, $joinCondition, $whereValue);
+        // var_dump($employeeInfo);
+    var_dump($userLogin);
+
 	
-	$adminData = $adminController->loadLogin( $email, $password );
-	
-	if(!empty($adminData))
+	if(!empty($userLogin))
 	{
-        //Lưu thông tin phiên đăng nhập vào session
-		$_SESSION['SMC_login_time'] = date("Y-m-d H:i:s");
-		$_SESSION['SMC_login_id'] = $adminData[0]['id'];
-		$_SESSION['SMC_login_admin_name'] = $adminData[0]['hoten'];
-        $_SESSION['SMC_login_admin_name'] = $adminData[0]['tenhienthi'];
-		$_SESSION['SMC_login_admin_email'] = $adminData[0]['email'];
-		$_SESSION['SMC_login_admin_image'] = $adminData[0]['anh'];
-		$_SESSION['SMC_login_admin_status'] = $adminData[0]['trangthai'];
-		$_SESSION['SMC_login_admin_type'] = $adminData[0]['vaitro'];
+		$_SESSION['SSCF_login_time'] = date("Y-m-d H:i:s");
+		$_SESSION['SSCF_login_id'] = $userLogin[0]['id_nguoidung'];
+		$_SESSION['SSCF_login_user_name'] = $userLogin[0]['hoten'];
+        $_SESSION['SSCF_login_user_showname'] = $userLogin[0]['tenhienthi'];
+		$_SESSION['SSCF_login_user_email'] = $userLogin[0]['email'];
+		$_SESSION['SSCF_login_user_mobile'] = $userLogin[0]['sdt'];
+		$_SESSION['SSCF_login_user_address'] = $userLogin[0]['diachi'];
 		
-        var_dump($_SESSION);
-        //Chuyển hướng đến dashboard
-		header("Location: index.php");
+		echo '<meta http-equiv="Refresh" content="0; url=index.php" />';
 	}
 }
 ?>
@@ -58,8 +65,8 @@ if(isset($_POST['load_login']))
         rel="stylesheet">
 
     <!-- CSS -->
-    <link rel="stylesheet" href="../../assets/css/base.css">
-    <link rel="stylesheet" href="../../assets/css/main.css">
+    <link rel="stylesheet" href="../assets/css/base.css">
+    <link rel="stylesheet" href="../assets/css/main.css">
     <style>
         body {
             height: 100%;
@@ -67,7 +74,7 @@ if(isset($_POST['load_login']))
             /* extended code */
             background-size: 100% 100%;
             background-position: center center;
-            background-image: url('../../assets/img/login/backgroup_login_SignUp.jpg');
+            background-image: url('../assets/img/login/backgroup_login_SignUp.jpg');
         }
     </style>
 </head>
@@ -107,13 +114,13 @@ if(isset($_POST['load_login']))
 
                                         <div class="form-outline mb-1">
                                             <label class="form-label" for="form3Example1cg">Địa chỉ email</label>
-                                            <input type="text" id="form3Example1cg" class="form-control form-control" name="email"/>
+                                            <input type="text" id="form3Example1cg" class="form-control form-control" name="user_email"/>
                                         </div>
 
                                         <div class="form-outline mb-1">
                                             <label class="form-label" for="form3Example4cg">Mật khẩu</label>
                                             <input type="password" id="form3Example4cg"
-                                                class="form-control form-control" name="password"/>
+                                                class="form-control form-control" name="user_pass"/>
                                         </div>
 
                                         <div class="form-check d-flex justify-content-start pt-3 pb-3">
@@ -125,7 +132,7 @@ if(isset($_POST['load_login']))
                                         </div>
 
                                         <div class="d-flex justify-content-center">
-                                            <button type="submit" class="btn btn-primary-color fw-bold text-white " name="load_login">Đăng
+                                            <button type="submit" class="btn btn-primary-color fw-bold text-white " name="customer_login">Đăng
                                                 nhập</button>
                                         </div>
 
@@ -134,7 +141,7 @@ if(isset($_POST['load_login']))
                                                 class=" px-1 fst-italic text-body text-sm-start"><u>Quên mật
                                                     khẩu?</u></a></p>
                                         <div class="vr"></div>
-                                        <p class="text-center mt-3 mb-0">Chưa có tài khoản? <a href="./Singup.html"
+                                        <p class="text-center mt-3 mb-0">Chưa có tài khoản? <a href="Singup.php"
                                                 class=" fst-italic text-body"><u>Đăng ký </u></a></p>
                                     </form>
                             </div>
