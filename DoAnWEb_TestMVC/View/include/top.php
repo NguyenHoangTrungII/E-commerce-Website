@@ -140,6 +140,10 @@
     <link rel="stylesheet" href="../assets/css/main.css">
     <link rel="stylesheet" href="../assets/css/reposive.css">
     <link rel="stylesheet" href="../assets/css/popup.css">
+    <link rel="stylesheet" href="../assets/css/css/toggle-switchy.css">
+    <link rel="stylesheet" href="../assets/css/range-srate.css">
+    <link rel="stylesheet" href="../assets/css/add_css.css">
+
 
     
 </head>
@@ -239,17 +243,29 @@
 
                     <!-- SEARCH BAR -->
                     <div class="col-lg-6 col-md-6">
-                        <form role="search" id="form">
-                            <input type="search" id="query" name="serach" placeholder="Tìm kiếm"
-                                aria-label="Search through site content">
-                            <button class="search-btn">
-                                <svg viewBox="0 0 1024 1024">
-                                    <path class="path1"
-                                        d="M848.471 928l-263.059-263.059c-48.941 36.706-110.118 55.059-177.412 55.059-171.294 0-312-140.706-312-312s140.706-312 312-312c171.294 0 312 140.706 312 312 0 67.294-24.471 128.471-55.059 177.412l263.059 263.059-79.529 79.529zM189.623 408.078c0 121.364 97.091 218.455 218.455 218.455s218.455-97.091 218.455-218.455c0-121.364-103.159-218.455-218.455-218.455-121.364 0-218.455 97.091-218.455 218.455z">
-                                    </path>
-                                </svg>
-                            </button>
-                        </form>
+                        <div class="row">
+                            <div class="col-12">
+                                <form role="search" id="form">
+                                    <input type="search" id="query" name="serach" placeholder="Tìm kiếm" autocomplete="off"
+                                        >
+                                    <button class="search-btn">
+                                        <svg viewBox="0 0 1024 1024">
+                                            <path class="path1"
+                                                d="M848.471 928l-263.059-263.059c-48.941 36.706-110.118 55.059-177.412 55.059-171.294 0-312-140.706-312-312s140.706-312 312-312c171.294 0 312 140.706 312 312 0 67.294-24.471 128.471-55.059 177.412l263.059 263.059-79.529 79.529zM189.623 408.078c0 121.364 97.091 218.455 218.455 218.455s218.455-97.091 218.455-218.455c0-121.364-103.159-218.455-218.455-218.455-121.364 0-218.455 97.091-218.455 218.455z">
+                                            </path>
+                                        </svg>
+                                    </button>
+                                </form>
+                            </div>
+
+                            <div class="col-12">
+                            <div class="list-group list-group-flush list-style" id="show-list">
+                            </div>
+                        </div>
+
+
+
+                    </div>
                     </div>
 
                     <!-- header-mid-side -->
@@ -378,7 +394,7 @@
 
             <!-- hero section -->
             <!-- WARING: add class hero-normal if u dont code for homepage -->
-            <section class="hero">
+            <section class="hero <?= $pageName =="index" ? " " : " hero-normal"?>">
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-3">
@@ -391,6 +407,7 @@
                                     </div>
                                 </div>
                                 <ul>
+                                    <!-- Category động -->
                                     <?php 
                                         foreach($categoryList as $eachRow){
                                             echo 
@@ -400,17 +417,6 @@
                                             ';
                                         }
                                     ?>
-                                    <!-- <li><a href="#">MainBoard</a></li>
-                                    <li><a href="#">Bộ nhớ HHD</a></li>
-                                    <li><a href="#">Bộ nhớ SSD</a></li>
-                                    <li><a href="#">CPU</a></li>
-                                    <li><a href="#">Fan CPU</a></li>
-                                    <li><a href="#">Case</a></li>
-                                    <li><a href="#">Power</a></li>
-                                    <li><a href="#">Sound Card</a></li>
-                                    <li><a href="#">VGA Card</a></li>
-                                    <li><a href="#">DVD</a></li>
-                                    <li><a href="#">Keo tản nhiệt</a></li> -->
                                 </ul>
                             </div>
                         </div>
@@ -426,11 +432,17 @@
                             </nav>
 
                             <?php 
+                                //Nếu là trang index-> hiển thị bannerhero
+                                //Nếu là trang sản phẩm -> hiển thị banner theo từng loại danh mục
+                                //Nếu là các trang khác-> hiển thị ảnh theo từng rang và fix link 
                                 if($pageName == "index"){
                                     $heroBannerController->setHeroBanner($sliderList);
                                 }
                                 else{
-                                    
+                                    echo 
+                                    '
+                                     </div> </div>  </div> </div> </section>
+                                    ';
                                 }
                             ?>
                             <!-- <div class="hero-silder owl-carousel">
@@ -457,3 +469,11 @@
             <!-- Hero Section End -->
     </header>
     <!-- Header Section End -->
+
+    <!-- <script>
+        $('#query').keyup(function(){
+				alert("cc");
+			});
+    </script> -->
+
+

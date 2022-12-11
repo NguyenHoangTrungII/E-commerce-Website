@@ -1,0 +1,23 @@
+.list-style {
+    position: absolute !important;
+    /* margin-left: 5px; */
+    margin-top: 10px;
+    z-index: 999999;
+    background-color: white;
+    max-height: 135px;
+    width: 100%;
+    overflow-y: auto !important;
+    -webkit-transition: all .3s ease 0s;
+    -moz-transition: all .3s ease 0s;
+    transition: all .3s ease 0s;
+    -webkit-transform: translateY(10px);
+    -moz-transform: translateY(10px);
+    transform: translateY(10px);
+    -webkit-box-shadow: 0 0 5px rgb(0 0 0 / 20%);
+    -moz-box-shadow: 0 0 5px rgba(0, 0, 0, .2);
+    box-shadow: 0 0 10px rgb(0 0 0 / 20%);
+}
+
+.list-group-item-action.loadData:hover{
+    background-color: rgba(51, 160, 255, 0.25);
+}

@@ -240,12 +240,12 @@ button.search-btn {
 /* ----Catagero---- */
 .hero {
   padding-top: 0px;
-  padding-bottom: 50px;
+  /* padding-bottom: 50px; */
   box-sizing: border-box;
 }
 
 .hero.hero-normal {
-  padding-bottom: 30px;
+  /* padding-bottom: 30px; */
 }
 
 .hero.hero-normal .hero__categories {
@@ -4018,7 +4018,6 @@ textarea.form-control.edit-details{
   padding: 20px;
 	width: 32%;
 	background-color: #fff;
-	/* border: 1px solid #ddd; */
 	border-radius: 6px;
 	float: left;
 	box-shadow: 0px 5px 5px rgb(0 0 0 / 15%);
@@ -4038,7 +4037,7 @@ textarea.form-control.edit-details{
 	background-color: #ddd;
 	color: #333;
 	border: none;
-	width: 120px;
+	width: 78px;
 	height: 50px;
 	display: flex;
 	align-items: center;
@@ -4268,9 +4267,7 @@ label {
 	top: 0;
 	bottom: 0;
 	border-radius: 5px;
-	background-image: -webkit-gradient(linear, left top, right top, from(#eb3c5a), to(#f67831)), -webkit-gradient(linear, left top, right top, from(#eb3c5a), to(#f67831));
-	background-image: -o-linear-gradient(left, #eb3c5a 0%, #f67831 100%), -o-linear-gradient(left, #eb3c5a 0%, #f67831 100%);
-	background-image: linear-gradient(to right, #eb3c5a 0%, #f67831 100%), linear-gradient(to right, #eb3c5a 0%, #f67831 100%);
+	background-color: #33A0FF;
 }
 
 .slider>.thumb {
@@ -4279,11 +4276,9 @@ label {
 	z-index: 3;
 	width: 20px;
 	height: 20px;
-	background-image: -webkit-gradient(linear, left top, right top, from(#eb3c5a), to(#f67831)), -webkit-gradient(linear, left top, right top, from(#eb3c5a), to(#f67831));
-	background-image: -o-linear-gradient(left, #eb3c5a 0%, #f67831 100%), -o-linear-gradient(left, #eb3c5a 0%, #f67831 100%);
-	background-image: linear-gradient(to right, #eb3c5a 0%, #f67831 100%), linear-gradient(to right, #eb3c5a 0%, #f67831 100%);
+	background-color: #33A0FF;
 	border-radius: 50%;
-	box-shadow: 0 0 0 0 rgba(#f67831, #f67831, #f67831, 0.705);
+	box-shadow: 0 0 0 0 rgba(#33A0FF, #33A0FF, #33A0FF, 0.705);
 	transition: box-shadow .3s ease-in-out
 }
 
@@ -4309,11 +4304,11 @@ label {
 }
 
 .slider>.thumb.hover {
-	box-shadow: 0 0 0 10px rgba(231, 155, 23, 0.623)
+	box-shadow: 0 0 0 10px rgba(63, 151, 219, 0.623)
 }
 
 .slider>.thumb.active {
-	box-shadow: 0 0 0 10px rgba(231, 155, 23, 0.623)
+	box-shadow: 0 0 0 10px rgba(63, 151, 219, 0.623)
 }
 
 input[type=range] {

@@ -1,6 +1,6 @@
 <?php
     include("include/top.php");
-    include("include/Silder.php");
+    // include("include/Silder.php");
 ?>
 
     <section class="section">

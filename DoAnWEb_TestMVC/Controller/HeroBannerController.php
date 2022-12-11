@@ -128,7 +128,7 @@ class HeroBannerController extends Controller
             echo 
             '
                 <div class="user-header">
-                    <span>'.$seasionUser['SSCF_login_user_showname'].'</span>
+                    <span>'.@$seasionUser['SSCF_login_user_showname'].'</span>
                     <a><i class=" user-icon-header fa-regular fa-user"></i></a>
 
                     <div class="user-item">
@@ -221,15 +221,13 @@ class HeroBannerController extends Controller
         }
 
         $bannerHero .= 
-        ' </div>
-                    </div>
-                </div>
-                </div>
-                </section>
-                <!-- Hero Section End -->
-                </header>';
+        ' </div> </div>  </div> </div> </section>';
 
         echo  $bannerHero;
     }
+
+
+    //Lấy và đặt ảnh cho trang product-list
+    // public function setBannerProductList($)
 }
 ?>
