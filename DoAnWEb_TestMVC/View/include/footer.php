@@ -9,6 +9,8 @@
     <script src="../assets/js/popup.js"></script>
     <script src="../assets/js/main.js"></script>
     <script src="../assets/js/fitter.js"></script>
+    <script src="../assets/js/range-price.js"></script>
+
 
     <script>
         // Cart add remove functions
@@ -48,3 +50,30 @@
 </body>
 
 </html>
+
+
+<script type="text/javascript">
+		$(document).ready(function(){
+			$('#query').on("keyup", function(){
+				var data = $(this).val();
+                // alert(data);
+				
+				if(data!='') {
+					$.ajax({
+						url: 'http://localhost/DoAnWeb/DoAnWeb_testMVC/Controller/HomePage/Auto-Search.php',
+						type: 'POST',
+						data: {search: data},
+						success: function(response) {
+							$('#show-list').html(response);
+						}
+					});
+					} else {
+					$('#show-list').html('');
+				}
+			});
+			$(document).on('click', '.loadData', function() {
+				$('#query').val($(this).text());
+				$('#show-list').html('');
+			});
+		});
+	</script>

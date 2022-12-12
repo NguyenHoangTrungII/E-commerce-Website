@@ -2,10 +2,87 @@
 <html lang="en">
 
 <head>
+
+    <?php 
+        session_start();
+        include($_SERVER['DOCUMENT_ROOT']."/DoAnWeb/DoAnWeb_TEstMVC/View/include/session.php");
+        include($_SERVER['DOCUMENT_ROOT']."/DoAnWeb/DoAnWeb_TEstMVC/Controller/Controller.php");
+        include($_SERVER['DOCUMENT_ROOT']."/DoAnWeb/DoAnWeb_TEstMVC/Admin/config/databse.php");
+        include($_SERVER['DOCUMENT_ROOT']."/DoAnWeb/DoAnWeb_TEstMVC/Controller/HomeController.php");
+        include($_SERVER['DOCUMENT_ROOT']."/DoAnWeb/DoAnWeb_TEstMVC/Admin/Model/ModelAll.php");
+        include($_SERVER['DOCUMENT_ROOT']."/DoAnWeb/DoAnWeb_TEstMVC/Controller/HeroBannerController.php");
+
+    ?>
+
+    <?php
+        //Lấy title
+        $controller = new Controller;
+        $homeController = new HomeController;
+        $heroBannerController = new HeroBannerController;
+
+        $pageName = basename($_SERVER['PHP_SELF']);
+        $pageName = str_replace('.php', '', $pageName);
+
+        $pageTitile = $controller->getTitle($pageName);
+        
+    ?>
+
+    <?php 
+        //Lấy dữ liệu cho giỏ hàng header, danh mục sản phẩm
+        $Model = new ModelAll;
+        $tableName = $columnName= $whereValue = null;
+        $columnName['1']="sanpham.tensp tensp";
+        $columnName['2']="ct_giohang.soluong soluongsp";
+        $columnName['3']="sanpham.giagoc giagoc";
+        $columnName['4']="sanpham.phantram phantram";
+        $columnName['5']="sanpham.anh anhsp";
+        $columnName['6']="giohang.id_user";
+        $columnName['7']="sanpham.id id_sp";
+        // $columnName['8']="sanpham.phantram";
+        // $columnName['9']="sanpham.tinhtrang";
+        // $columnName['10']="sanpham.id_danhmuc";
+        // $columnName['11']="sanpham.id_thuonghieu";
+        // $columnName['12']="sanpham.baohanh";
+        // $columnName['13']="sanpham.ngaysx";
+        $tableName['MAIN'] = 'ct_giohang';
+        $tableName['1'] = 'giohang';
+        $tableName['2'] = 'sanpham';
+        $joinCondition = array ("1"=>array ('ct_giohang.id_giohang', 'giohang.id'), "2"=>array('ct_giohang.id_sp', 'sanpham.id'));
+        @$whereValue['giohang.id_user']= $_SESSION['SSCF_login_id'];
+
+        $cartDetail = $Model->selectJoinData($columnName, $tableName, null, $joinCondition, $whereValue);
+
+
+        //Lấy dữ liệu cho giỏ hàng header, danh mục sản phẩm
+        $Model = new ModelAll;
+        $tableName = $columnName= $whereValue = null;
+        $columnName="*";
+        $tableName = 'danhmucsp';
+        $formatBy['ASC'] ="sothutu";
+
+        $categoryList = $Model->selectData($columnName, $tableName, null, null, null, null, $formatBy, null);
+        // var_dump($categoryList);
+
+
+        //Lấy slider tho sothutu
+        $Model = new ModelAll;
+        $tableName = $columnName= $whereValue = null;
+        $columnName['1'] = "url";
+        $tableName = 'slider';
+        $formatBy['ASC'] ="sothutu";
+
+        $sliderList = $Model->selectData($columnName, $tableName, null, null, null, null, $formatBy, null);
+        // var_dump($sliderList);
+
+
+
+        
+    ?>
+
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Homepage</title>
+    <title> <?= $pageTitile ?> </title>
 
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -63,6 +140,10 @@
     <link rel="stylesheet" href="../assets/css/main.css">
     <link rel="stylesheet" href="../assets/css/reposive.css">
     <link rel="stylesheet" href="../assets/css/popup.css">
+    <link rel="stylesheet" href="../assets/css/css/toggle-switchy.css">
+    <link rel="stylesheet" href="../assets/css/range-srate.css">
+    <link rel="stylesheet" href="../assets/css/add_css.css">
+
 
     
 </head>
@@ -162,30 +243,49 @@
 
                     <!-- SEARCH BAR -->
                     <div class="col-lg-6 col-md-6">
-                        <form role="search" id="form">
-                            <input type="search" id="query" name="serach" placeholder="Tìm kiếm"
-                                aria-label="Search through site content">
-                            <button class="search-btn">
-                                <svg viewBox="0 0 1024 1024">
-                                    <path class="path1"
-                                        d="M848.471 928l-263.059-263.059c-48.941 36.706-110.118 55.059-177.412 55.059-171.294 0-312-140.706-312-312s140.706-312 312-312c171.294 0 312 140.706 312 312 0 67.294-24.471 128.471-55.059 177.412l263.059 263.059-79.529 79.529zM189.623 408.078c0 121.364 97.091 218.455 218.455 218.455s218.455-97.091 218.455-218.455c0-121.364-103.159-218.455-218.455-218.455-121.364 0-218.455 97.091-218.455 218.455z">
-                                    </path>
-                                </svg>
-                            </button>
-                        </form>
+                        <div class="row">
+                            <div class="col-12">
+                                <form role="search" id="form">
+                                    <input type="search" id="query" name="serach" placeholder="Tìm kiếm" autocomplete="off"
+                                        >
+                                    <button class="search-btn">
+                                        <svg viewBox="0 0 1024 1024">
+                                            <path class="path1"
+                                                d="M848.471 928l-263.059-263.059c-48.941 36.706-110.118 55.059-177.412 55.059-171.294 0-312-140.706-312-312s140.706-312 312-312c171.294 0 312 140.706 312 312 0 67.294-24.471 128.471-55.059 177.412l263.059 263.059-79.529 79.529zM189.623 408.078c0 121.364 97.091 218.455 218.455 218.455s218.455-97.091 218.455-218.455c0-121.364-103.159-218.455-218.455-218.455-121.364 0-218.455 97.091-218.455 218.455z">
+                                            </path>
+                                        </svg>
+                                    </button>
+                                </form>
+                            </div>
+
+                            <div class="col-12">
+                            <div class="list-group list-group-flush list-style" id="show-list">
+                            </div>
+                        </div>
+
+
+
+                    </div>
                     </div>
 
                     <!-- header-mid-side -->
-                    <div class="col-lg-3  col-md-3">
+                    <div class="col-lg-3  col-md-3 text-center">
                         <div class="header-mid-side">
 
-                            <div class="user-header">
+
+                            <?php 
+                                $heroBannerController->checkLogIn($_SESSION, $cartDetail);
+                            ?>
+                            <!-- <div class="header-mid-side--no-login font-weight-bold" style="padding-right: 100px;">
+                                    <a href="">Đăng nhập / Đăng ký</a>
+                            </div> -->
+
+                            <!-- <div class="user-header">
                                 <span>Nội dung</span>
                                 <a><i class=" user-icon-header fa-regular fa-user"></i></a>
 
                                 <div class="user-item">
                                     <div class="dropdown-user-header">
-                                        <!-- <span>Xin chào</span> -->
                                     </div>
                                     <ul class="user-list">
                                         <li>
@@ -211,20 +311,15 @@
 
                                     </ul>
                                     <div class="bottom">
-                                        <!-- <div class="total">
-                                            <span>Đăng xuất</span>
-                                            <span>Đăng ký</span>
-
-                                        </div> -->
                                         <a href="" class="btn animate">Đăng xuất</a>
                                         <a href="" class="btn animate">Đăng nhập</a>
 
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
 
                             <!-- Cart -->
-                            <div class="sinlge-bar shopping">
+                            <!-- <div class="sinlge-bar shopping">
                                 <a href="#" class="single-icon"><i
                                         class="header-mid-icon fa-solid fa-cart-shopping"></i> <span
                                         class="total-count">2</span></a>
@@ -275,8 +370,12 @@
                                     </div>
                                 </div>
 
-                            </div>
+                            </div> -->
                             <!-- /Cart -->
+
+                            
+
+
                         </div>
 
                     </div>
@@ -295,7 +394,7 @@
 
             <!-- hero section -->
             <!-- WARING: add class hero-normal if u dont code for homepage -->
-            <section class="hero">
+            <section class="hero <?= $pageName =="index" ? " " : " hero-normal"?>">
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-3">
@@ -308,17 +407,16 @@
                                     </div>
                                 </div>
                                 <ul>
-                                    <li><a href="#">MainBoard</a></li>
-                                    <li><a href="#">Bộ nhớ HHD</a></li>
-                                    <li><a href="#">Bộ nhớ SSD</a></li>
-                                    <li><a href="#">CPU</a></li>
-                                    <li><a href="#">Fan CPU</a></li>
-                                    <li><a href="#">Case</a></li>
-                                    <li><a href="#">Power</a></li>
-                                    <li><a href="#">Sound Card</a></li>
-                                    <li><a href="#">VGA Card</a></li>
-                                    <li><a href="#">DVD</a></li>
-                                    <li><a href="#">Keo tản nhiệt</a></li>
+                                    <!-- Category động -->
+                                    <?php 
+                                        foreach($categoryList as $eachRow){
+                                            echo 
+                                            '
+                                                <li><a href="#">'.$eachRow['ten'].'</a></li>
+
+                                            ';
+                                        }
+                                    ?>
                                 </ul>
                             </div>
                         </div>
@@ -332,3 +430,50 @@
                                     <li class=""><a href="">Về chúng tôi</a></li>
                                 </ul>
                             </nav>
+
+                            <?php 
+                                //Nếu là trang index-> hiển thị bannerhero
+                                //Nếu là trang sản phẩm -> hiển thị banner theo từng loại danh mục
+                                //Nếu là các trang khác-> hiển thị ảnh theo từng rang và fix link 
+                                if($pageName == "index"){
+                                    $heroBannerController->setHeroBanner($sliderList);
+                                }
+                                else{
+                                    echo 
+                                    '
+                                     </div> </div>  </div> </div> </section>
+                                    ';
+                                }
+                            ?>
+                            <!-- <div class="hero-silder owl-carousel">
+                                <div class="col-lg-12">
+                                    <div class="hero__item set-bg" data-setbg="img/hero/banner.jpg">
+                                        <div class="hero__text">
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-12">
+                                    <div class="hero__item set-bg" data-setbg="img/hero/banner.jpg">
+                                        <div class="hero__text">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section> -->
+            <!-- Hero Section End -->
+    </header>
+    <!-- Header Section End -->
+
+    <!-- <script>
+        $('#query').keyup(function(){
+				alert("cc");
+			});
+    </script> -->
+
+

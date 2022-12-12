@@ -44,7 +44,7 @@
         $columnName['quan_huyen'] = $info_array['quan_huyen']; 
         $columnName['phuong_xa'] = $info_array['phuong_xa'];
         $whereValue['id_taikhoan'] = $info_array['id'];
-        @$columnName['anh'] = $controller->checkNewImgaie($_FILES['file_arr']['name'], $info_array['anh_cu']);
+        @$columnName['anh'] = $controller->checkNewImgaie($_FILES['file_arr']['name'], $info_array['anh_cu'], "User_Employee_");
 
         $updateEmployeeUser = $Model->updateData($tableName, $columnName, $whereValue );
         // var_dump( $_FILES['file_arr']['name']);
@@ -62,11 +62,12 @@
                     echo json_encode (array('tinhtrang'=>1, "anh_moi"=>$columnName['anh']));
                     exit();
                 }
-
+                
+                $controller->connection->commit();
                 echo json_encode (array('tinhtrang'=>1, "anh_moi"=>$columnName['anh']));
                 exit();
             }
-
+            $controller->connection->commit();
             echo json_encode (array('tinhtrang'=>1, "anh_moi"=>$info_array['anh_cu']));
 
         }

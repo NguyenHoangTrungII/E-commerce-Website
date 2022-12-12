@@ -1,6 +1,6 @@
 <?php
     include("include/top.php");
-    include("include/Silder.php");
+    // include("include/Silder.php");
 ?>
 
     <section class="section">
@@ -65,7 +65,6 @@
                             <span>Flash Sale</span>
                             <div class="cslider-item-timer">
                                 <div class="product_time_maxprice">
-
                                     <div class="item-time">
                                         <div class="item-timer">
                                             <div class="defaultCountdown-30">
@@ -100,8 +99,6 @@
                                         <div class="product-img">
                                             <img src="../assets/img/homepage/product-card.jpg" alt="">
                                             <div class="product-label">
-                                                <!-- <span class="sale">-30%</span>
-                                                        <span class="new">MỚI</span> -->
                                             </div>
 
                                             <ul class="product-chose">
@@ -243,134 +240,6 @@
     </section>
     <!-- End Deals -->
 
-    <!-- <div class="marquee">
-    <ul class="marquee-content">
-      <li><i class="fab fa-aws"></i></li>
-      <li><i class="fab fa-docker"></i></li>
-      <li><i class="fab fa-android"></i></li>
-    </ul>
-  </div> -->
-
-    <!--  Product suggestion Section-->
-    <!-- <section class="Product-suggestion_section layout_padding">
-        <div class="container">
-            <div class="title-suggestion text-center">
-                <h4 class="Product-suggestion-title"><span class="px-2">SẢN PHẨM GỢI Ý</span></h4>
-            </div>
-            <div class="row suggesstion-product-silder owl-carousel">
-                <div class="col-lg-4 col-xl-4">
-                    <div class="product">
-                        <div class="product-img">
-                            <img src="../assets/img/homepage/product-card.jpg" alt="">
-                            <div class="product-label">
-                                <span class="sale">-30%</span>
-                                <span class="new">MỚI</span>
-                            </div>
-
-                            <ul class="product-chose">
-                                <li><a href="#"><i class="add-to-wishlist fa fa-eye"></i></a></li>
-                                <li><a href="#"><i class="add-to-wishlist fa-solid fa-cart-shopping"></i></a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="product-body">
-                            <div class="product-band">
-                                <span class="band">ASUS</span>
-                            </div>
-                            <div class="product-another ">
-                                <p class="product-category">Loại sản phẩm</p>
-                                <h3 class="product-name"><a href="#">Tên sản phẩm</a></h3>
-                                <h4 class="product-price">1.000.000đ <del class="product-old-price">1.150.000đ</del>
-                                </h4>
-                                <div class="product-rating">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-4 col-xl-4">
-                    <div class="product">
-                        <div class="product-img">
-                            <img src="../assets/img/homepage/product-card.jpg" alt="">
-                            <div class="product-label">
-                                <span class="sale">-30%</span>
-                                <span class="new">MỚI</span>
-                            </div>
-
-                            <ul class="product-chose">
-                                <li><a href="#"><i class="add-to-wishlist fa fa-eye"></i></a></li>
-                                <li><a href="#"><i class="add-to-wishlist fa-solid fa-cart-shopping"></i></a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="product-body">
-                            <div class="product-band">
-                                <span class="band">ASUS</span>
-                            </div>
-                            <div class="product-another ">
-                                <p class="product-category">Loại sản phẩm</p>
-                                <h3 class="product-name"><a href="#">Tên sản phẩm</a></h3>
-                                <h4 class="product-price">1.000.000đ <del class="product-old-price">1.150.000đ</del>
-                                </h4>
-                                <div class="product-rating">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-4 col-xl-4">
-                    <div class="product">
-                        <div class="product-img">
-                            <img src="../assets/img/homepage/product-card.jpg" alt="">
-                            <div class="product-label">
-                                <span class="sale">-30%</span>
-                                <span class="new">MỚI</span>
-                            </div>
-
-                            <ul class="product-chose">
-                                <li><a href="#"><i class="add-to-wishlist fa fa-eye"></i></a></li>
-                                <li><a href="#"><i class="add-to-wishlist fa-solid fa-cart-shopping"></i></a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="product-body">
-                            <div class="product-band">
-                                <span class="band">ASUS</span>
-                            </div>
-                            <div class="product-another ">
-                                <p class="product-category">Loại sản phẩm</p>
-                                <h3 class="product-name"><a href="#">Tên sản phẩm</a></h3>
-                                <h4 class="product-price">1.000.000đ <del class="product-old-price">1.150.000đ</del>
-                                </h4>
-                                <div class="product-rating">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-
-    </section> -->
-
     <!-- Banner Section Begin -->
     <section class="banner set-bg" data-setbg="">
         <div class="container">
@@ -380,22 +249,16 @@
                         <div class="banner__item">
                             <div class="banner__text">
                                 <span>Siêu khuyến mãi 11.11</span>
-                                <!-- <h1>Ưu đãi khủng</h1> -->
-                                <!-- <a href="#">Mua ngay</a> -->
                             </div>
                         </div>
                         <div class="banner__item">
                             <div class="banner__text">
                                 <span>Sự kiện siêu giảm giá 11.11</span>
-                                <!-- <h1>Ưu đãi khủng</h1> -->
-                                <!-- <a href="#">Mua ngay</a> -->
                             </div>
                         </div>
                         <div class="banner__item">
                             <div class="banner__text">
                                 <span>Sự kiện siêu giảm giá 11.11</span>
-                                <!-- <h1>Ưu đãi khủng</h1> -->
-                                <!-- <a href="#">Mua ngay</a> -->
                             </div>
                         </div>
                     </div>

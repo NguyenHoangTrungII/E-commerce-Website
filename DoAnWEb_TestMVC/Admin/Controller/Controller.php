@@ -80,19 +80,21 @@
 			return implode($pass); //turn the array into a string
 		}
 
-		public function checkNewImgaie($new_img, $old_img){
+		public function checkNewImgaie($new_img, $old_img, $string){
 			if(isset($new_img)){
-				return "User_Employee_". date("YmdHis") . "_".$new_img;
+				return $string. date("YmdHis") . "_".$new_img;
 			} else{
 				return $old_img;
 			}
 		}
 
-		public function unlinkProductImg($source, $number){
+		public function unlinkProductImg($source, $extra_source, $file_arr, $number){
 			for($i =0 ; $i < $number; $i++){
-				unlink($source, $number);
+				unlink($source.$extra_source. $file_arr[$number]);
 			}
 		}
+
+
 
 		public function spaceCheck($str){
 			if (str_contains($str, ' ')) {

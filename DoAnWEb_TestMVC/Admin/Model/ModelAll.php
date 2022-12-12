@@ -107,7 +107,7 @@ class ModelAll
 				}
 			}
 			$query->execute($postSQL);
-			$this->connection->commit();
+			// $this->connection->commit();
 			$dataAdded = $query->rowCount();
 			
 			return $dataAdded;
@@ -155,15 +155,15 @@ class ModelAll
 			}
 			
 			$dataAdded = $query->rowCount();
-			if($dataAdded > 0)
-			{
-				$this->connection->commit();
-			}
+			// if($dataAdded > 0)
+			// {
+			// 	$this->connection->commit();
+			// }
 			return $dataAdded;
 		}
 		catch(Exception $e) 
 		{
-			return 0;
+			return -1;
 		}
 	}
 	

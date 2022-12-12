@@ -405,7 +405,7 @@ $productList = getAll($limit, $start);
                                                             <i class="bx bx-dots-vertical-rounded"></i>
                                                         </button>
                                                         <div class="dropdown-menu action--none">
-                                                        <a class="dropdown-item" href="edit_product.php"><i
+                                                        <a class="dropdown-item" href="edit_product.php?id='.$eachRow['id'].'"><i
                                                                     class="bx bx-trash me-1"></i> sửa</a>
                                                             
                                                             <a class="dropdown-item" href="javascript:void(0);"><i
@@ -712,7 +712,6 @@ include("include/tail.php");
   function  changStatus(e){
     var id_product = $(e).parent().parent().find('td').attr('id');
     var status = document.getElementById($(e).find('input').attr('id')).checked ? 1: 0;
-    // alert($(e).attr('id'));
 
     $.ajax({
     url: "http://localhost/DoAnWeb/DoAnWeb_testMVC/admin/Controller/Product/status_check_rt.php",
