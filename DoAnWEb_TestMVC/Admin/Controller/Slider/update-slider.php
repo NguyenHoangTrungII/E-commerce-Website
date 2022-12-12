@@ -18,7 +18,7 @@
     }
     // var_dump($info_array);
 
-    $controller->connection->beginTransaction();
+    $Model->connection->beginTransaction();
 
     //Lưu dữ liệu
     $tableName = $columnName = null;
@@ -32,7 +32,7 @@
 
     $sliderUpdate = $Model->updateData($tableName, $columnName, $whereValue);
     // var_dump($employeeUpdate);
-    if($sliderUpdate !=1 ){
+    if($sliderUpdate !=-1 ){
         
         // var_dump( $_FILES['file_arr']['name']);
             if(!empty($_FILES['file_arr'])){
@@ -42,18 +42,22 @@
                 if($controller->checkImageValiation(pathinfo($info_array['anh_cu'], PATHINFO_EXTENSION)))
                 {
                     unlink($GLOBALS['SLIDES_DIRECTORY'].$info_array['anh_cu']); 
+                    // unlink($GLOBALS['USER_DIRECTORY'].$info_array['anh_cu']);
+                    echo json_encode (array('tinhtrang'=>1, "anh_moi"=>$columnName['url']));
+                    exit();
                     
-                    var_dump($info_array['anh_cu']);
+                    // var_dump($info_array['anh_cu']);
                 }
-
+                echo json_encode (array('tinhtrang'=>1, "anh_moi"=>$columnName['url']));
+                exit();
             }
-            echo 1;
+            echo json_encode (array('tinhtrang'=>1, "anh_moi"=>$info_array['anh_cu']));
     }
     else
     {
-        $controller->connection->rollBack();
+        $Model->connection->rollBack();
 
-        echo -1;
+        echo json_encode (array('tinhtrang'=>-1));
     }
     
 ?>

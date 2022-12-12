@@ -5,28 +5,50 @@
     include("../Model/ModelAll.php");
     include("../config/databse.php");
 	  include("../config/site.php");
+    include("../Model/Pagination.php");
+    include("../Controller/Warehouse/getall-warehouse.php");
 ?>
 
+<!-- get role -->
 <?php
-$Model = new ModelAll;
 
-// var_dump($_SESSION);
-##=======LẤY DỮ LIỆU=======##
-$columnName = $tableName = null;
-$columnName = "*";
-$tableName['MAIN'] = "khohang";
-$tableName['1'] ='sanpham';
-// $whereValue['sanpham.id']=	$_SESSION['SMC_login_id'];
-// var_dump($whereValue['id']);
-// $whereCondition ="!=";
-$joinCondition = array ("1"=>array ('khohang.id_sp', 'sanpham.id'));
-$warehouseList = $Model->selectJoinData($columnName, $tableName, null, $joinCondition);
-// var_dump($warehouseList );
+$pagination = new Pagination;
 
-##=======LẤY DỮ LIỆU=======##
 
+  if($_SESSION['SMC_login_admin_type']==1){
+    $_SESSION['SMC_login_admin_role']="Admin";
+  }
+  else {
+    $_SESSION['SMC_login_admin_role']="Quản lý";
+  }
+
+
+  $config = array(
+    'current_page'  => isset($_GET['page']) ? $_GET['page'] : 1,
+    'total_record'  => count_all_member(), 
+    'limit'         => 1,
+    'link_full'     => 'list_warehouse.php?page={page}',
+    'link_first'    => 'list_warehouse.php',
+    'range'         => 3
+  );
+
+
+$pagination->init($config);
+
+// Lấy limit, start
+$limit = $pagination->get_config('limit');
+$start = $pagination->get_config('start');
+
+// var_dump($limit);
+
+
+// Lấy danh sách thành viên
+$warehouseList = getAll($limit, $start);
+
+// var_dump($productList);
 
 ?>
+
 
 
 
@@ -302,12 +324,21 @@ $warehouseList = $Model->selectJoinData($columnName, $tableName, null, $joinCond
 
                         <hr class="my-5" />
 
+                        <div class="alert alert-danger alert-dismissible" role="alert" hidden>
+                          This is a danger dismissible alert — check it out!
+                          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+
+                        <div class="alert alert-info alert-dismissible" role="alert" hidden >
+                          This is an info dismissible alert — check it out!
+                          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
                         <!-- Bootstrap Table with Header - Footer -->
                         <div class="card">
                             <div class="card-header header table-user">
                                 <h5 class=" card-header">Danh sách sản phẩm</h5>
-                                <a href="add_warehouse.php"><button class="btn btn-primary add-btn user"
-                                        type="button">THÊM</button></a>
+                                <!-- <a href="add_warehouse.php"><button class="btn btn-primary add-btn user"
+                                        type="button">THÊM</button></a> -->
                             </div>
                             <div class="table-responsive text-nowrap">
                                 <table class="table user">
@@ -329,14 +360,15 @@ $warehouseList = $Model->selectJoinData($columnName, $tableName, null, $joinCond
                                         {
                                             echo '
                                             <tr>
-                                            <td class="id-header warehouse">
+                                            <td id=" '.$eachRow['id_sp'].'" class="id-header warehouse">
                                               '.$eachRow['id_sp'].'
                                               </td>
                                               <td class="product-name warehouse">
                                                 '.$eachRow['tensp'].'
                                               </td>
                                               <td class="stock warehouse">
-                                              '.$eachRow['soluongton'].'
+                                              <input type="number" class="form-control"   placeholder="nhap so luong ton"  value="'.(int)$eachRow['soluongton'].'" 
+                                              
                                               </td>
                                               <td class ="buyed warehouse">
                                               '.$eachRow['soluongdaban'].'
@@ -348,17 +380,9 @@ $warehouseList = $Model->selectJoinData($columnName, $tableName, null, $joinCond
                                                 '.$eachRow['ngaysua'].'
                                               </td>
                                               <td class="action warehouse">
-                                                <div class="dropdown">
-                                                    <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
-                                                        data-bs-toggle="dropdown">
-                                                        <i class="bx bx-dots-vertical-rounded"></i>
-                                                    </button>
-                                                    <div class="dropdown-menu action--none">
-                                                        
-                                                    <p class="btn-delete dropdown-item" data-bs-toggle="modal" data-bs-target="#modalCenter" id='.$eachRow['id'].' href=""><i class="bx bx-trash me-1" ></i> Xóa</p>
-                                                    </div>
-                                                </div>
-                                            </td>
+                                              <button class="btn btn-primary "
+                                                type="button" onClick="changestock(this)"  >Lưu</button></a>
+                                               </td>
                                           ';
                                         }
                                         ?>
@@ -580,6 +604,9 @@ $warehouseList = $Model->selectJoinData($columnName, $tableName, null, $joinCond
 
 
                                 </table>
+                                <div class="paging d-flex justify-content-end px-5 py-4">
+                                  <?php echo $pagination->html(); ?>
+                                </div>
                             </div>
                         </div>
                         <!-- Bootstrap Table with Header - Footer -->
@@ -598,50 +625,45 @@ $warehouseList = $Model->selectJoinData($columnName, $tableName, null, $joinCond
   include("include/tail.php");
 ?>
 
+<!-- real time  -->
+<script>
+  function  changestock(e){
+    var id = $(e).parent().parent().find('td').attr('id');
+    var stock = parseInt($(e).closest('tr').find('.stock.warehouse').find('input').val()) ;
 
+    // alert($(e).attr('id'));
+    // alert(stock);
 
-<script type="text/javascript">
-$(".btn-delete").click(function(e){
-    var del_id = $(this).attr('id');
-        var $ele = $(this);
-        Swal.fire({
-        title: 'Bạn có muốn xóa sản phẩm này?',
-        text: "Toàn bộ thông tin sẽ biến mất",
-        icon: 'Cảnh báo',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Xóa',
-        cancelButtonText: 'Hủy'
-        }).then((result) => {
-          if (result.isConfirmed) {
-            $.ajax({
-              url: "http://localhost/DoAnWeb/DoAnWEb_TestMVC/admin/Controller/Warehouse/delete-warehouse.php",
-              type:"POST",
-              data:{del_id: del_id},
-              
-              success: function(response){
-                if(response !=0){
-                      console.log(response);
-                      Swal.fire(
-                      'Đã xóa!',
-                      'Sản phẩm có ID '+del_id+' đã bị xóa',
-                      'success')
-                      $ele.parent().parent().parent().parent().slideToggle('slow'); 
-                  } else{
-                      Swal.fire(
-                      'Thất bại',
-                      'Đã xảy ra lỗi! Vui lòng thử lại',
-                      'error'
-                    )
-              }
-              }
-             
-                
- 
-          });
-            
-          }
-        })
- });
+    $.ajax({
+    url: "http://localhost/DoAnWeb/DoAnWeb_testMVC/admin/Controller/Warehouse/checkrt-warehouse.php",
+    data: {id: id, stock: stock},
+    type: 'POST',
+    dataType: "text",
+    success: function(data){ 
+      if(data==1){
+        $('.alert.alert-info.alert-dismissible').text("Sửa thông tin thành công");
+        $('.alert.alert-danger.alert-dismissible').prop('hidden', true);
+        $('.alert.alert-info.alert-dismissible').prop('hidden', false);
+        $("html, body").animate({scrollTop: 0}, 1000);
+
+        setTimeout(function(){
+          $('.alert.alert-danger.alert-dismissible').prop('hidden', true);
+          }, 2000);
+
+      }
+      else{
+        $('.alert.alert-danger.alert-dismissible').text("Đã có lỗi xảy ra !! vui lòng thử lại sau");
+        $('.alert.alert-info.alert-dismissible').prop('hidden', true);
+        $('.alert.alert-danger.alert-dismissible').prop('hidden', false);
+        $("html, body").animate({scrollTop: 0}, 1000);
+
+        setTimeout(function(){
+          $('.alert.alert-info.alert-dismissible').prop('hidden', true);
+        }, 2000);
+      }
+    }
+        
+        
+  });
+};
 </script>

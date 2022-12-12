@@ -357,7 +357,7 @@
                               <label for="formFile" class="form-label">Xem trước</label>
                                   <!-- <div class="fileupload fileupload-new border-5" data-provides="fileupload"> -->
                                       <div id="Preview-filed" >
-                                          <img src="<?= $GLOBALS['SLIDES_DIRECTORY_SHOW'].$sliderInfo[0]['url'] ?>"  class ="img-preview-sli" alt="<?php $sliderInfo[0]['url'] ?> "id="div4" style="width: 20%;">
+                                          <img src="<?= $GLOBALS['SLIDES_DIRECTORY_SHOW'].$sliderInfo[0]['url'] ?>" alt="<?= $sliderInfo[0]['url']?>" class ="img-preview-sli" alt="<?php $sliderInfo[0]['url'] ?> "id="div4" style="width: 20%;">
                                       </div>
                                   <!-- </div> -->
                           </div>
@@ -375,7 +375,7 @@
 
                       </div>
 
-                      <button type="button" class="btn-save-edit btn btn-primary">Lưu</button>
+                      <button type="button" class="btn-save-edit btn btn-primary" id="btn-edit-slide">Lưu</button>
                     </form>
                   </div>
                 </div>
@@ -408,15 +408,15 @@
         return path_img.match(/\w*(?=.\w+$)/);
     }
 
-    $(".btn-save-edit").on("click", function(){
+    $("#btn-edit-slide").on("click", function(){
       var info={};
         info['id']=$("#id-sli-edit").val();
         info['tenslider'] = $("#name-slider").val();
         info['url'] = $("#img-slider").val();
         info['sothutu'] = $("#stt-slider").val();
         info['tinhtrang'] = document.getElementById("status-sli-edit").checked ? 1 : 0;
-        info['anh_cu'] = $('.img-preview-sli').attr("src").split("/").reverse()[0];
-        alert(info['anh_cu']);
+        info['anh_cu'] = $('.img-preview-sli').attr("alt");
+        // alert(info['anh_cu']);
 
         var file_a = $('#imgFile-edit-slider').prop('files')[0];  
         var form_data = new FormData(); 
@@ -429,11 +429,11 @@
             contentType: false,
             processData: false,
             type: 'POST',
-            dataType: "text",
+            dataType: "JSON",
             success: function(data){
-                console.debug( data);
+                console.debug( data['tinhtrang']);
 
-                switch(parseInt(data) ){
+                switch((data['tinhtrang']) ){
                     case 0:
                         {
                         $('.alert.alert-danger.alert-dismissible').text("Không được để trống miền giá trị nào");
@@ -448,6 +448,8 @@
                         $('.alert.alert-danger.alert-dismissible').prop('hidden', true);
                         $('.alert.alert-info.alert-dismissible').prop('hidden', false);
                         $("html, body").animate({scrollTop: 0}, 1000);
+                        $(".img-preview-sli").attr("src", "../../public/uploads/slides/"+data['anh_moi']);
+                        $(".img-preview-sli").attr("alt", data['anh_moi']);
                        }
                         break;
                     case -1:{

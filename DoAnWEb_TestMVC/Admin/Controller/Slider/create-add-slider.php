@@ -44,6 +44,7 @@
     if(isset($sliderInsert["NUMBER_OF_ROW_INSERTED"]) && $sliderInsert["NUMBER_OF_ROW_INSERTED"] > 0)
         {
             move_uploaded_file($_FILES['file_arr']['tmp_name'], $GLOBALS['SLIDES_DIRECTORY']. $columnName['url']);
+            $Model->connection->commit();
             echo 1;
         }
     else{

@@ -1,39 +1,51 @@
 <?php
-session_start();
-include("include/session.php");
-include("include/top.php");
-include("../Model/ModelAll.php");
-include("../config/databse.php");
-include("../config/site.php");
+    session_start();
+    include("include/session.php");
+    include("include/top.php");
+    include("../Model/ModelAll.php");
+    include("../config/databse.php");
+	  include("../config/site.php");
+    include("../Model/Pagination.php");
+    include("../Controller/Slider/getall-slider.php");
 ?>
-
-
 
 <!-- get role -->
 <?php
-if ($_SESSION['SMC_login_admin_type'] == 1) {
-  $_SESSION['SMC_login_admin_role'] = "Admin";
-} else {
-  $_SESSION['SMC_login_admin_role'] = "Quản lý";
-}
 
-?>
-
-<?php
-$Model = new ModelAll;
+$pagination = new Pagination;
 
 
+  if($_SESSION['SMC_login_admin_type']==1){
+    $_SESSION['SMC_login_admin_role']="Admin";
+  }
+  else {
+    $_SESSION['SMC_login_admin_role']="Quản lý";
+  }
 
 
+  $config = array(
+    'current_page'  => isset($_GET['page']) ? $_GET['page'] : 1,
+    'total_record'  => count_all_member(), 
+    'limit'         => 2,
+    'link_full'     => 'list-slider.php?page={page}',
+    'link_first'    => 'list-slider.php',
+    'range'         => 3
+  );
 
-##=======LẤY DỮ LIỆU=======##
-$columnName = $tableName = null;
-$columnName = "*";
-$tableName = "slider";
-$sliderList = $Model->selectData($columnName, $tableName);
+
+$pagination->init($config);
+
+// Lấy limit, start
+$limit = $pagination->get_config('limit');
+$start = $pagination->get_config('start');
+
+// var_dump($limit);
+
+
+// Lấy danh sách thành viên
+$sliderList = getAll($limit, $start);
+
 // var_dump($sliderList);
-##=======LẤY DỮ LIỆU=======##
-
 
 ?>
 
@@ -297,7 +309,16 @@ $sliderList = $Model->selectData($columnName, $tableName);
             <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Website /</span> Slider</h4>
 
             <hr class="my-5" />
+             <!-- alert warning -->
+             <div class="alert alert-danger alert-dismissible" role="alert" hidden>
+              This is a danger dismissible alert — check it out!
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
 
+            <div class="alert alert-info alert-dismissible" role="alert" hidden >
+              This is an info dismissible alert — check it out!
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
             <!-- Bootstrap Table with Header - Footer -->
             <div class="card">
               <div class="card-header header table-user">
@@ -326,9 +347,18 @@ $sliderList = $Model->selectData($columnName, $tableName);
                         $adminImage = $GLOBALS['USER_DIRECTORY'] . $eachRow['url'];
                       }
 
+                      if($eachRow['tinhtrang']==1)
+                      {
+                        $sliderStatus = "checked='true'";
+                      }
+                      else
+                      {
+                        $sliderStatus = "";
+                      }
+
                       echo '
                      <tr>
-                          <td  class="id-header slider">
+                          <td  id =" ' . $eachRow['id'] . '" class="id-header slider">
                             ' . $eachRow['id'] . '
                           </td>
  
@@ -347,8 +377,8 @@ $sliderList = $Model->selectData($columnName, $tableName);
                           
 
                           <td class="satus slider">
-                              <label class="toggle-switchy pl-2" for="satus-silder-check'.$number.'" data-size="sm" data-text="false" data-style="rounded" data-toggle="collapse" data-target="#filterbar" aria-expanded="true" aria-controls="filterbar" id="filter-btn" onclick="changeBtnTxt()">
-                              <input checked="" type="checkbox" id="satus-silder-check'.$number.'">
+                              <label onchange="changStatusSlider(this)" class="toggle-switchy pl-2" for="satus-silder-check'.$number.'" data-size="sm" data-text="false" data-style="rounded" data-toggle="collapse" data-target="#filterbar" aria-expanded="true" aria-controls="filterbar" id="filter-btn" onclick="changeBtnTxt()">
+                              <input  '.$sliderStatus.' type="checkbox" id="satus-silder-check'.$number.'">
                               <span class="toggle">
                                 <span class="switch"></span>
                               </span>
@@ -500,6 +530,9 @@ $sliderList = $Model->selectData($columnName, $tableName);
 
 
                 </table>
+                <div class="paging d-flex justify-content-end px-5 py-4">
+                  <?php echo $pagination->html(); ?>
+                </div>
               </div>
             </div>
             <!-- Bootstrap Table with Header - Footer -->
@@ -557,4 +590,49 @@ $(".btn-delete").click(function(e){
     }
   })
  });
+</script>
+
+
+<!-- realtime thay đổi trạng thái -->
+<script>
+  function  changStatusSlider(e){
+    var id = $(e).parent().parent().find('td').attr('id');
+    var status = document.getElementById($(e).find('input').attr('id')).checked ? 1: 0;
+    // alert($(e).attr('id'));
+
+    $.ajax({
+    url: "http://localhost/DoAnWeb/DoAnWeb_testMVC/admin/Controller/Slider/status_checkrt_slider.php",
+    data: {id: id, status: status},
+    type: 'POST',
+    dataType: "text",
+    success: function(data){ 
+      if(data==1){
+        $('.alert.alert-info.alert-dismissible').text("Sửa thông tin thành công");
+        $('.alert.alert-danger.alert-dismissible').prop('hidden', true);
+        $('.alert.alert-info.alert-dismissible').prop('hidden', false);
+        $("html, body").animate({scrollTop: 0}, 1000);
+
+        setTimeout(function(){
+          $('.alert.alert-danger.alert-dismissible').prop('hidden', true);
+          }, 2000);
+      //   setTimeout(function(){
+
+      //     $('.alert.alert-danger.alert-dismissible').prop('hidden', true);
+      //   }, 1000)
+      }
+      else{
+        $('.alert.alert-danger.alert-dismissible').text("Đã có lỗi xảy ra !! vui lòng thử lại sau");
+        $('.alert.alert-info.alert-dismissible').prop('hidden', true);
+        $('.alert.alert-danger.alert-dismissible').prop('hidden', false);
+        $("html, body").animate({scrollTop: 0}, 1000);
+
+        setTimeout(function(){
+          $('.alert.alert-info.alert-dismissible').prop('hidden', true);
+        }, 2000);
+      }
+    }
+        
+        
+  });
+};
 </script>

@@ -5,28 +5,47 @@
     include("../Model/ModelAll.php");
     include("../config/databse.php");
 	  include("../config/site.php");
+    include("../Model/Pagination.php");
+    include("../Controller/Order/getall-order.php");
 ?>
 
-
-
+<!-- get role -->
 <?php
-$Model = new ModelAll;
 
-// var_dump($_SESSION);
-##=======LẤY DỮ LIỆU=======##
-$columnName = $tableName = null;
-$columnName = "*";
-$tableName['MAIN'] = "donhang";
-$tableName['1'] ='nguoidung';
-// $whereValue['sanpham.id']=	$_SESSION['SMC_login_id'];
-// var_dump($whereValue['id']);
-// $whereCondition ="!=";
-$joinCondition = array ("1"=>array ('donhang.id_nguoidung', 'nguoidung.id'));
-$orderList = $Model->selectJoinData($columnName, $tableName, null, $joinCondition);
-var_dump($orderList );
+$pagination = new Pagination;
 
-##=======LẤY DỮ LIỆU=======##
 
+  if($_SESSION['SMC_login_admin_type']==1){
+    $_SESSION['SMC_login_admin_role']="Admin";
+  }
+  else {
+    $_SESSION['SMC_login_admin_role']="Quản lý";
+  }
+
+
+  $config = array(
+    'current_page'  => isset($_GET['page']) ? $_GET['page'] : 1,
+    'total_record'  => count_all_member(), 
+    'limit'         => 5,
+    'link_full'     => 'list-order.php?page={page}',
+    'link_first'    => 'list-order.php',
+    'range'         => 3
+  );
+
+
+$pagination->init($config);
+
+// Lấy limit, start
+$limit = $pagination->get_config('limit');
+$start = $pagination->get_config('start');
+
+// var_dump($limit);
+
+
+// Lấy danh sách thành viên
+$orderList = getAll($limit, $start);
+
+// var_dump($productList);
 
 ?>
 
@@ -295,6 +314,15 @@ var_dump($orderList );
 
             <hr class="my-5" />
 
+            <div class="alert alert-danger alert-dismissible" role="alert" hidden>
+              This is a danger dismissible alert — check it out!
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+
+            <div class="alert alert-info alert-dismissible" role="alert" hidden >
+              This is an info dismissible alert — check it out!
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
             <!-- Bootstrap Table with Header - Footer -->
             <div class="card">
               <div class="card-header header table-user">
@@ -310,7 +338,7 @@ var_dump($orderList );
                       <th class="total order">Tổng tiền</th>
                       <th class="ship-code order">Mã vận chuyện</th>
                       <th class="status order">Trạng thái</th>
-                      <th class="payment order">Thanh toán</th>
+                      <!-- <th class="payment order">Thanh toán</th> -->
                       <th class="action order">Thao tác</th>
 
                     </tr>
@@ -320,9 +348,57 @@ var_dump($orderList );
 
                       foreach($orderList AS $eachRow)
                       {
+                        switch((int)$eachRow['trangthai']){
+                          case 1: 
+                            {
+                              $status = '<option>Trạng thái</option> <option selected value="1">Chưa xác nhận</option> 
+                                          <option value="2">Xác nhận</option>
+                                          <option value="3">Đang vận chuyên</option>
+                                          <option value="4">Đã giao</option>
+                                          <option value="5">Đã hủy</option>';
+                            }
+                            break;
+                          case 2: 
+                            {
+                              $status = '<option>Trạng thái</option> <option  value="1">Chưa xác nhận</option> 
+                                          <option selected value="2">Xác nhận</option>
+                                          <option value="3">Đang vận chuyên</option>
+                                          <option value="4">Đã giao</option>
+                                          <option value="5">Đã hủy</option>';
+                            }
+                            break;
+                          case 3: 
+                            {
+                              $status = '<option>Trạng thái</option> <option value="1">Chưa xác nhận</option> 
+                                          <option value="2">Xác nhận</option>
+                                          <option selected value="3">Đang vận chuyên</option>
+                                          <option value="4">Đã giao</option>
+                                          <option value="5">Đã hủy</option>';
+                            }
+                            break;
+                          case 4: 
+                            {
+                              $status = '<option>Trạng thái</option> <option value="1">Chưa xác nhận</option> 
+                                          <option value="2">Xác nhận</option>
+                                          <option value="3">Đang vận chuyên</option>
+                                          <option selected value="4">Đã giao</option>
+                                          <option value="5">Đã hủy</option>';
+                            }
+                            break;
+                          case 5: 
+                            {
+                              $status = '<option>Trạng thái</option> <option  value="1">Chưa xác nhận</option> 
+                                          <option value="2">Xác nhận</option>
+                                          <option value="3">Đang vận chuyên</option>
+                                          <option value="4">Đã giao</option>
+                                          <option selected value="5">Đã hủy</option>';
+                            }
+                            break;
+
+                        }
                           echo '
                           <tr>
-                            <td class="id-header user">
+                            <td id="'.$eachRow['id'].'" class="id-header user">
                             '.$eachRow['id'].'
                             </td>
                             <td class="name user">
@@ -339,27 +415,13 @@ var_dump($orderList );
                             </td>
                             <td class="status order">
                                 <div>
-                                  <select id="defaultSelect" class="form-select">
-                                    <option>Trạng thái</option>
-                                    <option value="1">Chưa xác nhận</option>
-                                    <option value="2">Xác nhận</option>
-                                    <option value="3">Đang vận chuyên</option>
-                                    <option value="3">Đã giao</option>
-                                    <option value="3">Đã hủy</option>
+                                  <select onchange="changeStatusOrder(this)" id="defaultSelect" class="form-select">
+                                    '.$status.'
                                   </select>
                                 </div>
                               </td>
                             
-                            <td class=" payment order pr-5">
-                              <label class="toggle-switchy pl-3" for="fitter-product" data-size="sm" data-text="false"
-                                data-style="rounded" data-toggle="collapse" data-target="#filterbar" aria-expanded="true"
-                                aria-controls="filterbar" id="filter-btn" onclick="changeBtnTxt()">
-                                <input checked="" type="checkbox" id="fitter-product">
-                                <span class="toggle">
-                                  <span class="switch"></span>
-                                </span>
-                              </label>
-                            </td>
+                            
                             <td>
                               <div class="dropdown">
                                 <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
@@ -390,7 +452,7 @@ var_dump($orderList );
                       <th class="total order">Tổng tiền</th>
                       <th class="ship-code order">Mã vận chuyện</th>
                       <th class="status order">Trạng thái</th>
-                      <th class="payment order">Thanh toán</th>
+                      <!-- <th class="payment order">Thanh toán</th> -->
                       <th class="action order">Thao tác</th>
                     </tr>
                   </tfoot>
@@ -540,6 +602,9 @@ var_dump($orderList );
 
 
                 </table>
+                <div class="paging d-flex justify-content-end px-5 py-4">
+                  <?php echo $pagination->html(); ?>
+                </div>
               </div>
             </div>
             <!-- Bootstrap Table with Header - Footer -->
@@ -605,4 +670,46 @@ $(".btn-delete").click(function(e){
           }
         })
  });
+</script>
+
+<!-- real time  -->
+<script>
+  function  changeStatusOrder(e){
+    var statusChoosen = $(e).find(":selected").val();
+    var id_order = $(e).parent().parent().parent().find('td').html();
+    // alert(id_order);
+
+
+    $.ajax({
+    url: "http://localhost/DoAnWeb/DoAnWeb_testMVC/admin/Controller/Order/checkrt-order.php",
+    data: {id_order: id_order, statusChoosen: statusChoosen},
+    type: 'POST',
+    dataType: "text",
+    success: function(data){ 
+      if(data==1){
+        $('.alert.alert-info.alert-dismissible').text("Sửa thông tin thành công");
+        $('.alert.alert-danger.alert-dismissible').prop('hidden', true);
+        $('.alert.alert-info.alert-dismissible').prop('hidden', false);
+        $("html, body").animate({scrollTop: 0}, 1000);
+
+        setTimeout(function(){
+          $('.alert.alert-danger.alert-dismissible').prop('hidden', true);
+          }, 2000);
+
+      }
+      else{
+        $('.alert.alert-danger.alert-dismissible').text("Đã có lỗi xảy ra !! vui lòng thử lại sau");
+        $('.alert.alert-info.alert-dismissible').prop('hidden', true);
+        $('.alert.alert-danger.alert-dismissible').prop('hidden', false);
+        $("html, body").animate({scrollTop: 0}, 1000);
+
+        setTimeout(function(){
+          $('.alert.alert-info.alert-dismissible').prop('hidden', true);
+        }, 2000);
+      }
+    }
+        
+        
+  });
+};
 </script>

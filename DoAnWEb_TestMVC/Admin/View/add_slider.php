@@ -302,7 +302,7 @@
                           <label for="formFile" class="form-label ">Ảnh</label> <span class="upload-notify"></span>
                           <div class="input-group">
                               <button class="btn-remove-img btn btn-outline-primary" type="button" >Xóa</button>
-                              <input name= "avatar-employee" class="form-control Employee-img-preview" type="file" id="file-slider-add" 
+                              <input name= "avatar-slider" class="form-control Slider-img-preview" type="file" id="file-slider-add" 
                                 accept=".jfif,.jpg,.jpeg,.png,.gif" set-to="div4"  onchange="readURL(this)"/>
                           <!-- <input name= "avatar-employee" class="form-control add-infor user" type="file" id="formFile-review-image-label" 
                                 onchange="readURL(this);" set-to="div3" required accept=".jfif,.jpg,.jpeg,.png,.gif"  multiple> -->
@@ -312,7 +312,7 @@
                           <label for="formFile" class="form-label">Xem trước</label>
                               <!-- <div class="fileupload fileupload-new border-5" data-provides="fileupload"> -->
                                   <div id="Preview-filed" >
-                                      <img src="$GLOBALS['USER_DIRECTORY_SHOW']"  class ="img-preview-emp" alt="" id="div4" style="width: 20%;">
+                                      <img src="$GLOBALS['SLIDES_DIRECTORY_SHOW']"  class ="img-preview-sli" alt="" id="div4" style="width: 20%;">
                                   </div>
                               <!-- </div> -->
                           </div>
@@ -332,15 +332,14 @@
 
                           <div class="mb-3 col-md-4">
                             <label class="form-label" for="basic-default-fullname">Số thứ tự</label>
-                            <input type="text" class="form-control" id="stt-slider"
-                              placeholder="Nhập tên danh mục" />
+                            <input type="number" class="form-control" id="stt-slider"
+                              placeholder="Nhập số thứ tự" />
                         </div>
 
                         
 
                       </div>
-
-                      <button type="button" class="btn-save-edit btn btn-primary" name="create_slider">Lưu</button>
+                      <button type="button" id="btn-add-slider" class="btn-save-edit btn btn-primary" name="create_slider">Lưu</button>
                     </form>
                   </div>
                 </div>
@@ -396,7 +395,7 @@
         return data;
     }
 
-    $(".btn-save-edit").on("click", function(){
+    $("#btn-add-slider").on("click", function(){
         //Lấy thông tin input
         // var name = $(".name-text").val();
         // var birthday = $("#birthday-input").val(); //format khi làm php
@@ -460,7 +459,7 @@
                         $('.add-slider-form')[0].reset();
 
                         // xóa ảnh
-                        $(".img-preview").attr('src', " ");
+                        $(".img-preview-sli").attr('src', " ");
                         $('input[type=file]').val("");
                             
                         $("html, body").animate({scrollTop: 0}, 1000);
