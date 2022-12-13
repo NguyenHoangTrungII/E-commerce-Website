@@ -79,3 +79,5 @@
 			});
 		});
 	</script>
+
+<!-- ajax thêm vào giỏ hàng -->

@@ -315,7 +315,7 @@ class ModelAll
 		}
 		catch(Exception $e) 
 		{
-			return 0;
+			return $preSQL;
 		}
 	}
 	
