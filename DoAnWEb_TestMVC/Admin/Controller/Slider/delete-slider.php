@@ -19,3 +19,4 @@ if(!empty($_POST['del_id']))
 	$deletesliderData = $Model->deleteData($tableName, $whereValue);
     echo $deletesliderData;
 }
+$Model->connection->commit();
