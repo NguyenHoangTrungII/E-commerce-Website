@@ -258,6 +258,7 @@ class ModelAll
 	{
 		try
 		{
+			
 			if($columnName == "*")
 			{
 				$sql1 = "SELECT ";

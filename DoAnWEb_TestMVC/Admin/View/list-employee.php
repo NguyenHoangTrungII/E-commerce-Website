@@ -2,6 +2,7 @@
     session_start();
     include("include/session.php");
     include("include/top.php");
+    include("include/menu.php");
     include("../Model/ModelAll.php");
     include("../config/databse.php");
 	  include("../config/site.php");

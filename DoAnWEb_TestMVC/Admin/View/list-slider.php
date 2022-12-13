@@ -299,7 +299,7 @@ include("include/tail.php");
 <script type="text/javascript">
 $(".btn-delete").click(function(e){
   var del_id = $(this).attr('id');
-  // console.log(del_id);
+  
   var $ele = $(this);
   Swal.fire({
   title: 'Bạn có muốn xóa slider này?',

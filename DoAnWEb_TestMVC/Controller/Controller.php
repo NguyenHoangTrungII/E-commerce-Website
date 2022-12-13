@@ -117,7 +117,7 @@ class Controller
         if($discountMoney == 0)
             return 1;
         else{
-            return $discountMoney/100;
+            return (1 - $discountMoney/100);
         }
     }
 

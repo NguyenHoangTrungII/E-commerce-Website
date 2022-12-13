@@ -95,13 +95,15 @@ class HomeController extends Controller
 
             if($eachProduct['phantram'] > 30)
             {
-                $labelSale = '<span class="sale">'.$eachProduct['phantram'].'</span>';
+                $labelSale = '<span class="sale">'.'-'.$eachProduct['phantram'] .'%'.'</span>';
             }
             else{
                 $labelSale = "";
             }
 
             $phantram = Controller::checkDiscountMoney($eachProduct['phantram']);
+
+            // var_dump($eachProduct['giagoc']*$phantram);
 
             if($eachProduct['phantram'] == 0)
             {
