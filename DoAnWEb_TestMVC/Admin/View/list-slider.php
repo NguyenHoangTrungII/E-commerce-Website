@@ -26,7 +26,7 @@ $pagination = new Pagination;
   $config = array(
     'current_page'  => isset($_GET['page']) ? $_GET['page'] : 1,
     'total_record'  => count_all_member(), 
-    'limit'         => 2,
+    'limit'         => 5,
     'link_full'     => 'list-slider.php?page={page}',
     'link_first'    => 'list-slider.php',
     'range'         => 3

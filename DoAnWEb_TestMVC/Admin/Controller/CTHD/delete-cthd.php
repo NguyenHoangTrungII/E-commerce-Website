@@ -21,8 +21,8 @@ if(!empty($_POST['id_order']) && !empty($_POST['id_sp']))
     $whereValue["id_sp"] = $_POST['id_sp'];
     $deletecthdData = $Model->deleteData($tableName, $whereValue);
     
-    var_dump($deletecthdData);
-    var_dump($rowSelected);
+    // var_dump($deletecthdData);
+    // var_dump($rowSelected);
 
     if($rowSelected ==1 && $deletecthdData==1)
     {
@@ -31,10 +31,11 @@ if(!empty($_POST['id_order']) && !empty($_POST['id_sp']))
         $tableName = "donhang";
         $whereValue["id"] = $_POST['id_order'];
         $deleteorderData = $Model->deleteData($tableName, $whereValue);
+        $Model->connection->commit();
         echo $deleteorderData;  
         exit();
     }
-
+    $Model->connection->commit();
     echo $deletecthdData;
 
 

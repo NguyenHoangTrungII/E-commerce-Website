@@ -17,5 +17,7 @@ if(!empty($_POST['del_id']))
 	$tableName = "donhang";
 	$whereValue["id"] = $_POST['del_id'];
 	$deleteorderData = $Model->deleteData($tableName, $whereValue);
+	if($deleteorderData !=-1)
+		$Model->connection->commit();
     echo $deleteorderData;
 }

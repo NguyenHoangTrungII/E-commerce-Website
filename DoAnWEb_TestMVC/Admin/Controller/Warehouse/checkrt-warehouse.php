@@ -17,7 +17,7 @@
         $stockWarehouseUpdate = $Model->updateData($tableName,  $columnName, $whereValue);
         // var_dump($stockWarehouseUpdate);
         if($stockWarehouseUpdate==1){
-            // $Model->connection->commit();
+            $Model->connection->commit();
             echo 1;
         }
         else{

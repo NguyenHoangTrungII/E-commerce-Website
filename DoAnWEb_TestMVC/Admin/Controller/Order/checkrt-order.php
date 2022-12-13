@@ -17,7 +17,7 @@
         $statusOrderUpdate = $Model->updateData($tableName,  $columnName, $whereValue);
         // var_dump($statusProductUpdate);
         if($statusOrderUpdate==1){
-            // $Model->connection->commit();
+            $Model->connection->commit();
             echo 1;
         }
         else{

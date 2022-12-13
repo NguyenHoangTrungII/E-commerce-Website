@@ -24,15 +24,14 @@
     $tableName = $columnName = null;
     $tableName = 'slider';
     $columnName['tenslider'] = $info_array['tenslider'];
-    @$columnName['url'] = isset($_FILES['file_arr']['name']) ? "Slider_".$_FILES['file_arr']['name'] : $info_array['anh_cu'];
+    $columnName['url'] = isset($_FILES['file_arr']['name']) ? "Slider_". date("YmdHis")."_". $_FILES['file_arr']['name'] : $info_array['anh_cu'];
     $columnName['sothutu'] = $info_array['sothutu'];
     $columnName['tinhtrang'] = $info_array['tinhtrang'];
     $whereValue['id'] = $info_array['id'];
-    // var_dump($info_array['anh_cu']);
 
     $sliderUpdate = $Model->updateData($tableName, $columnName, $whereValue);
-    // var_dump($employeeUpdate);
-    if($sliderUpdate !=-1 ){
+    // var_dump( $columnName['url']);
+    if($sliderUpdate ==-1 ){
         
         // var_dump( $_FILES['file_arr']['name']);
             if(!empty($_FILES['file_arr'])){
@@ -48,9 +47,11 @@
                     
                     // var_dump($info_array['anh_cu']);
                 }
+                $Model->connection->commit();
                 echo json_encode (array('tinhtrang'=>1, "anh_moi"=>$columnName['url']));
                 exit();
             }
+            $Model->connection->commit();
             echo json_encode (array('tinhtrang'=>1, "anh_moi"=>$info_array['anh_cu']));
     }
     else
