@@ -26,7 +26,7 @@ $pagination = new Pagination;
   $config = array(
     'current_page'  => isset($_GET['page']) ? $_GET['page'] : 1,
     'total_record'  => count_all_member(), 
-    'limit'         => 5,
+    'limit'         => 8,
     'link_full'     => 'list_product.php?page={page}',
     'link_first'    => 'list_product.php',
     'range'         => 3
@@ -130,7 +130,7 @@ $productList = getAll($limit, $start);
                                             '.$eachRow['tensp'].'
                                             </td>
                                             <td class="img product">
-                                              <img src="'.$GLOBALS['PRODUCT_DIRECTORY_SHOW']."thumbail/".$eachRow['anh'].'" class ="product-img">
+                                              <img src="'.$GLOBALS['PRODUCT_DIRECTORY_SHOW'].$eachRow['ten']."/"."Thumbnail/".$eachRow['anh'].'" class ="product-img">
                                             </td>
                                             <td class="cost product">
                                             '.$eachRow['giagoc'].'
@@ -173,7 +173,7 @@ $productList = getAll($limit, $start);
 
 
                                       ?>
-                                      <tr>
+                                      <!-- <tr>
                                         <td class="id-header product">
                                           100
                                         </td>
@@ -220,7 +220,7 @@ $productList = getAll($limit, $start);
                                                     </div>
                                                 </div>
                                         </td>
-                                      </tr>
+                                      </tr> -->
                                     </tbody>
                                     <tfoot class="table-border-bottom-0">
                                       <tr>

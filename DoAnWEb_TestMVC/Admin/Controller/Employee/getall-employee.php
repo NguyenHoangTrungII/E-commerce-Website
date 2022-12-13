@@ -68,8 +68,9 @@
             $tableName['1'] ='nguoidung';
             $limitPaging['POINT'] = $start;
             $limitPaging['LIMIT'] = $limit;
+            $formatBy['ASC'] = "ID";
             $joinCondition = array ("1"=>array ('taikhoan.id', 'nguoidung.id_taikhoan'));
-            $employeeList = $Model->selectJoinData($columnName, $tableName, null, $joinCondition, null, null, null, $limitPaging);
+            $employeeList = $Model->selectJoinData($columnName, $tableName, null, $joinCondition, null, null,  $formatBy, $limitPaging);
             return $employeeList;
         }
 ?>
