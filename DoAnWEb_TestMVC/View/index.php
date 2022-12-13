@@ -4,27 +4,49 @@
     include("include/top.php");
     require_once($_SERVER['DOCUMENT_ROOT']."/DoAnWeb/DoAnWeb_TEstMVC/Controller/Controller.php");
     require_once($_SERVER['DOCUMENT_ROOT']."/DoAnWeb/DoAnWeb_TEstMVC/Controller/HomeController.php");
-    
-    // include("include/Silder.php");
+    // include($_SERVER['DOCUMENT_ROOT']."/DoAnWeb/DoAnWeb_TEstMVC/Admin/Model/ModelAll.php");
 ?>
 <?php
+
+    // Lay xem co bao nhieu cot ma admin muon hien thi tren website
     $conn = new Controller;
     $homeCtrl = new HomeController;
+    $Model = new ModelAll;
+
+    $tableName = $columnName =null;
+    $tableName ="danhmucsp";
+    $columnName['1'] = "id";
+    $whereValue['hienthi'] = "1";
+    $categoryShow = $Model->selectData($columnName, $tableName, $whereValue);
+    // var_dump( $categoryShow);
+    // var_dump(json_decode(($conn->getListMainProduct($categoryShow))['category'][0], true)[2]['tenncc']);
+
+    
+    $categoryLists = (($conn->getListMainProduct($categoryShow))['category']);
+    $productsListsMenu = (($conn->getListMainProduct($categoryShow))['product']);
+    // var_dump( json_decode($productsListsMenu[0], true));
+
+
+
+    
     $categoryName = '4';
     $sql_code="SELECT DISTINCT id_thuonghieu, nhacungcap.tenncc, danhmucsp.ten FROM `sanpham` inner join `nhacungcap` on sanpham.id_thuonghieu  = nhacungcap.id INNER JOIN `danhmucsp` on sanpham.id_danhmuc = danhmucsp.id WHERE danhmucsp.id =:VALUE1";
     // $sql_code = "SELECT * FROM `taikhoan` JOIN `nguoidung` ON taikhoan.id = nguoidung.id_taikhoan WHERE `email`=:VALUE1 AND `matkhau`=:VALUE2";
-		$query = $conn->connection->prepare($sql_code);
-		
-		$values = array(
-			':VALUE1' => $categoryName,
-			);
-            
-		$query->execute($values);
-		
-		$menuMainProductList = $query->fetchAll(PDO::FETCH_ASSOC);
-		$totalRowSelected = $query->rowCount();
-		
-        var_dump($menuMainProductList);
+    $query = $conn->connection->prepare($sql_code);
+    
+    $values = array(
+        ':VALUE1' => $categoryName,
+        );
+        
+    $query->execute($values);
+    
+    $menuMainProductList = $query->fetchAll(PDO::FETCH_ASSOC);
+    $totalRowSelected = $query->rowCount();
+
+
+    // var_dump($menuMainProductList);
+
+
 		
 ?>
     <section class="section">
@@ -292,639 +314,23 @@
     </section>
     <!-- Banner Section End -->
 
+    
     <!-- Product Section Begin -->
-    <section class="main-product pt-4">
-        <div class="container">
+    <?php
+        for($i=0; $i < count($categoryShow); $i++){
+            echo '<section class="main-product pt-4">  <div class="container">';
 
-            <?php 
-                $homeCtrl->menuMainProduct($menuMainProductList, $menuMainProductList[0]['ten'])
-            ?>
-            <!-- <div class="row under-line-product" style="border-bottom: 2px solid #b7b7b7">
-                <div class="col-lg-4 col-md-4 p-0">
-                    <div class="main-product-title">
-                        <h4>CPU</h4>
-                    </div>
-                </div>
-                <div class="col-lg-8 col-md-8">
-                    <ul class="filter__controls line_1">
-                        <li class="item active" data-owl-filter="*">Tất cả</li>
-                        <li class="item" data-owl-filter=".asus">Asus</li>
-                        <li class="item" data-owl-filter=".gigabyte">Gigabyte</li>
-                        <li class="item" data-owl-filter=".antec">Antec</li>
-                    </ul>
-                </div>
-            </div> -->
+            $decode_category = json_decode($categoryLists[$i], true);
+            $homeCtrl->menuMainProduct($decode_category, $decode_category[0]['ten'], $i);
 
-            <div class="row property__gallery line_1 owl-carousel ">
-                <div class="col-lg-3 col-xl-3 col-md-6 item asus">
-                    <div class="product ">
-                        <div class="product-img">
-                            <img src="../assets/img/homepage/product-card.jpg" alt="">
-                            <div class="product-label">
-                                <span class="sale">-30%</span>
-                                <span class="new">MỚI</span>
-                            </div>
+            echo '<div class="row property__gallery '."line_".''.($i+1).' owl-carousel  ">';
 
-                            <ul class="product-chose">
-                                <li><a href="#"><i class="add-to-wishlist fa fa-eye"></i></a></li>
-                                <li><a href="#"><i class="add-to-wishlist fa-solid fa-cart-shopping"></i></a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="product-body">
-                            <div class="product-band">
-                                <span class="band">ASUS</span>
-                            </div>
-                            <div class="product-another ">
-                                <p class="product-category">Loại sản phẩm</p>
-                                <h3 class="product-name"><a href="#">Tên sản phẩm</a></h3>
-                                <h4 class="product-price">1.000.000đ <del class="product-old-price">1.150.000đ</del>
-                                </h4>
-                                <div class="product-rating">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            $homeCtrl->mainProduct(json_decode($productsListsMenu[$i], true));
 
-                <div class="col-lg-3 col-xl-3 col-md-6 item asus">
-                    <div class="product">
-                        <div class="product-img">
-                            <img src="../assets/img/homepage/product-card.jpg" alt="">
-                            <div class="product-label">
-                                <!-- <span class="sale">-30%</span>
-                                    <span class="new">MỚI</span> -->
-                            </div>
-
-                            <ul class="product-chose">
-                                <li><a href="#"><i class="add-to-wishlist fa fa-eye"></i></a></li>
-                                <li><a href="#"><i class="add-to-wishlist fa-solid fa-cart-shopping"></i></a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="product-body">
-                            <div class="product-band">
-                                <span class="band">ASUS</span>
-                            </div>
-                            <div class="product-another ">
-                                <p class="product-category">Loại sản phẩm</p>
-                                <h3 class="product-name"><a href="#">Tên sản phẩm</a></h3>
-                                <h4 class="product-price">1.000.000đ <del class="product-old-price">1.150.000đ</del>
-                                </h4>
-                                <div class="product-rating">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-xl-3 col-md-6 item asus">
-                    <div class="product">
-                        <div class="product-img">
-                            <img src="../assets/img/homepage/product-card.jpg" alt="">
-                            <div class="product-label">
-                                <!-- <span class="sale">-30%</span>
-                                    <span class="new">MỚI</span> -->
-                            </div>
-
-                            <ul class="product-chose">
-                                <li><a href="#"><i class="add-to-wishlist fa fa-eye"></i></a></li>
-                                <li><a href="#"><i class="add-to-wishlist fa-solid fa-cart-shopping"></i></a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="product-body">
-                            <div class="product-band">
-                                <span class="band">aaa</span>
-                            </div>
-                            <div class="product-another ">
-                                <p class="product-category">Loại sản phẩm</p>
-                                <h3 class="product-name"><a href="#">Tên sản phẩm</a></h3>
-                                <h4 class="product-price">1.000.000đ <del class="product-old-price">1.150.000đ</del>
-                                </h4>
-                                <div class="product-rating">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-xl-3 col-md-6 item gigabyte">
-                    <div class="product">
-                        <div class="product-img">
-                            <img src="../assets/img/homepage/product-card.jpg" alt="">
-                            <div class="product-label">
-                                <!-- <span class="sale">-30%</span>
-                                    <span class="new">MỚI</span> -->
-                            </div>
-
-                            <ul class="product-chose">
-                                <li><a href="#"><i class="add-to-wishlist fa fa-eye"></i></a></li>
-                                <li><a href="#"><i class="add-to-wishlist fa-solid fa-cart-shopping"></i></a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="product-body">
-                            <div class="product-band">
-                                <span class="band">ASUS</span>
-                            </div>
-                            <div class="product-another ">
-                                <p class="product-category">Loại sản phẩm</p>
-                                <h3 class="product-name"><a href="#">Tên sản phẩm</a></h3>
-                                <h4 class="product-price">1.000.000đ <del class="product-old-price">1.150.000đ</del>
-                                </h4>
-                                <div class="product-rating">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="col-lg-3 col-xl-3 col-md-6 item gigabyte ">
-                    <div class="product">
-                        <div class="product-img">
-                            <img src="../assets/img/homepage/product-card.jpg" alt="">
-                            <div class="product-label">
-                                <!-- <span class="sale">-30%</span>
-                                    <span class="new">MỚI</span> -->
-                            </div>
-
-                            <ul class="product-chose">
-                                <li><a href="#"><i class="add-to-wishlist fa fa-eye"></i></a></li>
-                                <li><a href="#"><i class="add-to-wishlist fa-solid fa-cart-shopping"></i></a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="product-body">
-                            <div class="product-band">
-                                <span class="band">ASUS</span>
-                            </div>
-                            <div class="product-another ">
-                                <p class="product-category">Loại sản phẩm</p>
-                                <h3 class="product-name"><a href="#">Tên sản phẩm</a></h3>
-                                <h4 class="product-price">1.000.000đ <del class="product-old-price">1.150.000đ</del>
-                                </h4>
-                                <div class="product-rating">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="btn-all text-center pt-3">
-
-                <a href="homepage.html" class="primary-btn all-product"> Xem tất cả sản phẩm</a>
-            </div>
-
-        </div>
-    </section>
-
-    <section class="main-product">
-        <div class="container">
-            <div class="row under-line-product" style="border-bottom: 2px solid #b7b7b7">
-                <div class="col-lg-4 col-md-4 p-0">
-                    <div class="main-product-title">
-                        <h4>CPU</h4>
-                    </div>
-                </div>
-                <div class="col-lg-8 col-md-8">
-                    <ul class="filter__controls line_2">
-                        <li class="item active" data-owl-filter="*">Tất cả</li>
-                        <li class="item" data-owl-filter=".asus">Asus</li>
-                        <li class="item" data-owl-filter=".gigabyte">Gigabyte</li>
-                        <li class="item" data-owl-filter=".antec">Antec</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="row property__gallery line_2 owl-carousel ">
-
-                <div class="col-lg-3 col-xl-3 col-md-6 item asus">
-                    <div class="product ">
-                        <div class="product-img">
-                            <img src="../assets/img/homepage/product-card.jpg" alt="">
-                            <div class="product-label">
-                                <span class="sale">-30%</span>
-                                <span class="new">MỚI</span>
-                            </div>
-
-                            <ul class="product-chose">
-                                <li><a href="#"><i class="add-to-wishlist fa fa-eye"></i></a></li>
-                                <li><a href="#"><i class="add-to-wishlist fa-solid fa-cart-shopping"></i></a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="product-body">
-                            <div class="product-band">
-                                <span class="band">ASUS</span>
-                            </div>
-                            <div class="product-another ">
-                                <p class="product-category">Loại sản phẩm</p>
-                                <h3 class="product-name"><a href="#">Tên sản phẩm</a></h3>
-                                <h4 class="product-price">1.000.000đ <del class="product-old-price">1.150.000đ</del>
-                                </h4>
-                                <div class="product-rating">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-xl-3 col-md-6 item asus">
-                    <div class="product">
-                        <div class="product-img">
-                            <img src="../assets/img/homepage/product-card.jpg" alt="">
-                            <div class="product-label">
-                                <!-- <span class="sale">-30%</span>
-                                    <span class="new">MỚI</span> -->
-                            </div>
-
-                            <ul class="product-chose">
-                                <li><a href="#"><i class="add-to-wishlist fa fa-eye"></i></a></li>
-                                <li><a href="#"><i class="add-to-wishlist fa-solid fa-cart-shopping"></i></a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="product-body">
-                            <div class="product-band">
-                                <span class="band">ASUS</span>
-                            </div>
-                            <div class="product-another ">
-                                <p class="product-category">Loại sản phẩm</p>
-                                <h3 class="product-name"><a href="#">Tên sản phẩm</a></h3>
-                                <h4 class="product-price">1.000.000đ <del class="product-old-price">1.150.000đ</del>
-                                </h4>
-                                <div class="product-rating">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-xl-3 col-md-6 item antec">
-                    <div class="product">
-                        <div class="product-img">
-                            <img src="../assets/img/homepage/product-card.jpg" alt="">
-                            <div class="product-label">
-                                <!-- <span class="sale">-30%</span>
-                                    <span class="new">MỚI</span> -->
-                            </div>
-
-                            <ul class="product-chose">
-                                <li><a href="#"><i class="add-to-wishlist fa fa-eye"></i></a></li>
-                                <li><a href="#"><i class="add-to-wishlist fa-solid fa-cart-shopping"></i></a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="product-body">
-                            <div class="product-band">
-                                <span class="band">aaa</span>
-                            </div>
-                            <div class="product-another ">
-                                <p class="product-category">Loại sản phẩm</p>
-                                <h3 class="product-name"><a href="#">Tên sản phẩm</a></h3>
-                                <h4 class="product-price">1.000.000đ <del class="product-old-price">1.150.000đ</del>
-                                </h4>
-                                <div class="product-rating">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-xl-3 col-md-6 item gigabyte">
-                    <div class="product">
-                        <div class="product-img">
-                            <img src="../assets/img/homepage/product-card.jpg" alt="">
-                            <div class="product-label">
-                                <!-- <span class="sale">-30%</span>
-                                    <span class="new">MỚI</span> -->
-                            </div>
-
-                            <ul class="product-chose">
-                                <li><a href="#"><i class="add-to-wishlist fa fa-eye"></i></a></li>
-                                <li><a href="#"><i class="add-to-wishlist fa-solid fa-cart-shopping"></i></a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="product-body">
-                            <div class="product-band">
-                                <span class="band">ASUS</span>
-                            </div>
-                            <div class="product-another ">
-                                <p class="product-category">Loại sản phẩm</p>
-                                <h3 class="product-name"><a href="#">Tên sản phẩm</a></h3>
-                                <h4 class="product-price">1.000.000đ <del class="product-old-price">1.150.000đ</del>
-                                </h4>
-                                <div class="product-rating">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="col-lg-3 col-xl-3 col-md-6 item gigabyte ">
-                    <div class="product">
-                        <div class="product-img">
-                            <img src="../assets/img/homepage/product-card.jpg" alt="">
-                            <div class="product-label">
-                                <!-- <span class="sale">-30%</span>
-                                    <span class="new">MỚI</span> -->
-                            </div>
-
-                            <ul class="product-chose">
-                                <li><a href="#"><i class="add-to-wishlist fa fa-eye"></i></a></li>
-                                <li><a href="#"><i class="add-to-wishlist fa-solid fa-cart-shopping"></i></a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="product-body">
-                            <div class="product-band">
-                                <span class="band">ASUS</span>
-                            </div>
-                            <div class="product-another ">
-                                <p class="product-category">Loại sản phẩm</p>
-                                <h3 class="product-name"><a href="#">Tên sản phẩm</a></h3>
-                                <h4 class="product-price">1.000.000đ <del class="product-old-price">1.150.000đ</del>
-                                </h4>
-                                <div class="product-rating">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="btn-all text-center pt-3">
-
-                <a href="homepage.html" class="primary-btn all-product"> Xem tất cả sản phẩm</a>
-            </div>
-
-        </div>
-    </section>
-
-    <section class="main-product">
-        <div class="container">
-            <div class="row under-line-product" style="border-bottom: 2px solid #b7b7b7">
-                <div class="col-lg-4 col-md-4 p-0">
-                    <div class="main-product-title">
-                        <h4>CPU</h4>
-                    </div>
-                </div>
-                <div class="col-lg-8 col-md-8">
-                    <ul class="filter__controls line_3">
-                        <li class="item active" data-owl-filter="*">Tất cả</li>
-                        <li class="item" data-owl-filter=".asus">Asus</li>
-                        <li class="item" data-owl-filter=".gigabyte">Gigabyte</li>
-                        <li class="item" data-owl-filter=".antec">Antec</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="row property__gallery line_3 owl-carousel ">
-
-                <div class="col-lg-3 col-xl-3 col-md-6 item antec">
-                    <div class="product ">
-                        <div class="product-img">
-                            <img src="../assets/img/homepage/product-card.jpg" alt="">
-                            <div class="product-label">
-                                <span class="sale">-30%</span>
-                                <span class="new">MỚI</span>
-                            </div>
-
-                            <ul class="product-chose">
-                                <li><a href="#"><i class="add-to-wishlist fa fa-eye"></i></a></li>
-                                <li><a href="#"><i class="add-to-wishlist fa-solid fa-cart-shopping"></i></a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="product-body">
-                            <div class="product-band">
-                                <span class="band">ASUS</span>
-                            </div>
-                            <div class="product-another ">
-                                <p class="product-category">Loại sản phẩm</p>
-                                <h3 class="product-name"><a href="#">Tên sản phẩm</a></h3>
-                                <h4 class="product-price">1.000.000đ <del class="product-old-price">1.150.000đ</del>
-                                </h4>
-                                <div class="product-rating">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-xl-3 col-md-6 item antec">
-                    <div class="product">
-                        <div class="product-img">
-                            <img src="../assets/img/homepage/product-card.jpg" alt="">
-                            <div class="product-label">
-                                <!-- <span class="sale">-30%</span>
-                                    <span class="new">MỚI</span> -->
-                            </div>
-
-                            <ul class="product-chose">
-                                <li><a href="#"><i class="add-to-wishlist fa fa-eye"></i></a></li>
-                                <li><a href="#"><i class="add-to-wishlist fa-solid fa-cart-shopping"></i></a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="product-body">
-                            <div class="product-band">
-                                <span class="band">ASUS</span>
-                            </div>
-                            <div class="product-another ">
-                                <p class="product-category">Loại sản phẩm</p>
-                                <h3 class="product-name"><a href="#">Tên sản phẩm</a></h3>
-                                <h4 class="product-price">1.000.000đ <del class="product-old-price">1.150.000đ</del>
-                                </h4>
-                                <div class="product-rating">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-xl-3 col-md-6 item antec">
-                    <div class="product">
-                        <div class="product-img">
-                            <img src="../assets/img/homepage/product-card.jpg" alt="">
-                            <div class="product-label">
-                                <!-- <span class="sale">-30%</span>
-                                    <span class="new">MỚI</span> -->
-                            </div>
-
-                            <ul class="product-chose">
-                                <li><a href="#"><i class="add-to-wishlist fa fa-eye"></i></a></li>
-                                <li><a href="#"><i class="add-to-wishlist fa-solid fa-cart-shopping"></i></a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="product-body">
-                            <div class="product-band">
-                                <span class="band">aaa</span>
-                            </div>
-                            <div class="product-another ">
-                                <p class="product-category">Loại sản phẩm</p>
-                                <h3 class="product-name"><a href="#">Tên sản phẩm</a></h3>
-                                <h4 class="product-price">1.000.000đ <del class="product-old-price">1.150.000đ</del>
-                                </h4>
-                                <div class="product-rating">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-xl-3 col-md-6 item gigabyte">
-                    <div class="product">
-                        <div class="product-img">
-                            <img src="../assets/img/homepage/product-card.jpg" alt="">
-                            <div class="product-label">
-                                <!-- <span class="sale">-30%</span>
-                                    <span class="new">MỚI</span> -->
-                            </div>
-
-                            <ul class="product-chose">
-                                <li><a href="#"><i class="add-to-wishlist fa fa-eye"></i></a></li>
-                                <li><a href="#"><i class="add-to-wishlist fa-solid fa-cart-shopping"></i></a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="product-body">
-                            <div class="product-band">
-                                <span class="band">ASUS</span>
-                            </div>
-                            <div class="product-another ">
-                                <p class="product-category">Loại sản phẩm</p>
-                                <h3 class="product-name"><a href="#">Tên sản phẩm</a></h3>
-                                <h4 class="product-price">1.000.000đ <del class="product-old-price">1.150.000đ</del>
-                                </h4>
-                                <div class="product-rating">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="col-lg-3 col-xl-3 col-md-6 item gigabyte ">
-                    <div class="product">
-                        <div class="product-img">
-                            <img src="../assets/img/homepage/product-card.jpg" alt="">
-                            <div class="product-label">
-                                <!-- <span class="sale">-30%</span>
-                                    <span class="new">MỚI</span> -->
-                            </div>
-
-                            <ul class="product-chose">
-                                <li><a href="#"><i class="add-to-wishlist fa fa-eye"></i></a></li>
-                                <li><a href="#"><i class="add-to-wishlist fa-solid fa-cart-shopping"></i></a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="product-body">
-                            <div class="product-band">
-                                <span class="band">ASUS</span>
-                            </div>
-                            <div class="product-another ">
-                                <p class="product-category">Loại sản phẩm</p>
-                                <h3 class="product-name"><a href="#">Tên sản phẩm</a></h3>
-                                <h4 class="product-price">1.000.000đ <del class="product-old-price">1.150.000đ</del>
-                                </h4>
-                                <div class="product-rating">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="btn-all text-center pt-3">
-
-                <a href="homepage.html" class="primary-btn all-product"> Xem tất cả sản phẩm</a>
-            </div>
-
-        </div>
-    </section>
+            echo ' </div> <div class="btn-all text-center pt-3"> <a href="homepage.html" class="primary-btn all-product"> Xem tất cả sản phẩm</a>
+                </div> </div> </section>';
+        }
+    ?>
     <!-- Product Section End -->
 
     <!-- Discount Section Begin -->

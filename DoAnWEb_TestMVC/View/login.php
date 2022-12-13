@@ -1,9 +1,9 @@
 <?php
 session_start();
-include("../Controller/Controller.php");
-include("../Admin/Model/ModelAll.php");
-include("../Admin/config/databse.php");
-include("../Admin/config/site.php");
+require_once("../Controller/Controller.php");
+require_once("../Admin/Model/ModelAll.php");
+require_once("../Admin/config/databse.php");
+require_once("../Admin/config/site.php");
 
 $Model= new ModelAll;
 if(isset($_POST['customer_login']))

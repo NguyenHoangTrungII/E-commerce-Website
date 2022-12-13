@@ -38,7 +38,7 @@ class HomeController extends Controller
                                 <p class="product-category">'.$eachProduct['tendanhmuc'].'</p>
                                 <h3 class="product-name"><a href="#">'.$eachProduct['tensp'].'</a></h3>
                                 <h4 class="product-price">'.$eachProduct['giagoc']*$eachProduct['phantram'].'<del
-                                        class="product-old-price">'.$eachProduct['tendanhmuc'].'</del>
+                                        class="product-old-price">'.$eachProduct['giagoc'].'</del>
                                 </h4>
                                 <div class="product-rating">
                                     <i class="fa fa-star"></i>
@@ -69,7 +69,7 @@ class HomeController extends Controller
         return $brandListMenu;
     }
 
-    public function menuMainProduct($brandList, $categoryName){
+    public function menuMainProduct($brandList, $categoryName, $i){
 				
 			echo 
             '
@@ -80,7 +80,7 @@ class HomeController extends Controller
                         </div>
                     </div>
                     <div class="col-lg-8 col-md-8">
-                        <ul class="filter__controls line_1">
+                        <ul class="filter__controls line_'.($i+1).'">
                             <li class="item active" data-owl-filter="*">Tất cả</li>
                             '.HomeController::categoryMainProduct($brandList).'
                         </ul>
@@ -101,22 +101,31 @@ class HomeController extends Controller
                 $labelSale = "";
             }
 
-            // label mới sẽ làm nếu có time
-            // <span class="new">MỚI</span>
+            $phantram = Controller::checkDiscountMoney($eachProduct['phantram']);
+
+            if($eachProduct['phantram'] == 0)
+            {
+                $price = '<h4 class="product-price">'.Controller::currency_format($eachProduct['giagoc']*$phantram).'</h4>';
+            }
+            else{
+                $price = '<h4 class="product-price">'.Controller::currency_format($eachProduct['giagoc']*$phantram).'<del class="product-old-price pl-2">'.Controller::currency_format($eachProduct['giagoc']).'</del></h4>';
+            }
+
+            // $phantram = Controller::checkDiscountMoney($eachProduct['phantram']);
 
 			echo 
             '
-                <div class="col-lg-3 col-xl-3 col-md-6 item asus">
+                <div class="col-lg-3 col-xl-3 col-md-6 item '.strtolower($eachProduct['tenncc']).' ">
                     <div class="product ">
                         <div class="product-img">
-                            <img src="'.$GLOBALS['PRODUCT_DIRECTORY_SHOW'].$eachProduct['anh'].'" alt="">
+                            <img src="'.$GLOBALS['PRODUCT_DIRECTORY_SHOW'].$eachProduct['tendanhmuc']."/"."Thumbnail/".$eachProduct['anh'].'" alt="">
                             <div class="product-label">
                                 '.$labelSale.'
                             </div>
 
                             <ul class="product-chose">
-                                <li><a href="#"><i class="add-to-wishlist fa fa-eye"></i></a></li>
-                                <li><a  onclick="cart.add("1000")" href="#"><i class="add-to-wishlist fa-solid fa-cart-shopping"></i></a>
+                                <li><a ><i class="add-to-wishlist fa fa-eye"></i></a></li>
+                                <li><a  onclick="cart.add()" ><i class="add-to-wishlist fa-solid fa-cart-shopping"></i></a>
                                 </li>
                             </ul>
                         </div>
@@ -127,8 +136,7 @@ class HomeController extends Controller
                             <div class="product-another ">
                                 <p class="product-category">'.$eachProduct['tendanhmuc'].'</p>
                                 <h3 class="product-name"><a href="#">'.$eachProduct['tensp'].'</a></h3>
-                                <h4 class="product-price">'.$eachProduct['giagoc']*$eachProduct['phantram'].'<del class="product-old-price">'.$eachProduct['giagoc'].'</del>
-                                </h4>
+                                '.$price.'
                                 <div class="product-rating">
                                     <i class="fa fa-star"></i>
                                     <i class="fa fa-star"></i>
@@ -141,12 +149,11 @@ class HomeController extends Controller
                     </div>
                 </div>
 
-                <div class="btn-all text-center pt-3">
-
-                 <a href="productlist.php?id='.$eachProduct['id'].'" class="primary-btn all-product"> Xem tất cả sản phẩm</a>
-                </div>
+                
             ';
 		}
     }
+
+   
 }
 ?>
