@@ -29,6 +29,12 @@ $GLOBALS['BANNER_DIRECTORY_SHOW'] = "../../public/uploads/banners/";
 #path cho ảnh brand danh mục
 $GLOBALS['BRAND_DIRECTORY_SHOW'] = "../../public/uploads/brands/";
 
+$GLOBALS['CATEGORY_DIRECTORY_SHOW'] = "../../public/uploads/categarys/";
+
+$GLOBALS['CATEGORY_DIRECTORY'] =  $_SERVER['DOCUMENT_ROOT']."/DoAnWeb/DoAnWeb_TEstMVC/public/uploads/categarys/";
+
+
+
 
 ?>
 
