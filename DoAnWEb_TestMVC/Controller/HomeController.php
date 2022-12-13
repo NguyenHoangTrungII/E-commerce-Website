@@ -56,15 +56,17 @@ class HomeController extends Controller
     }
 
     public function CategoryMainProduct($brandList){
+        $brandListMenu =" ";
         foreach($brandList as $eachBrand){
-            $lowBrandName = $eachBrand;
-            echo 
+            $lowBrandName = strtolower($eachBrand['tenncc']);
+            $brandListMenu .= 
             '
-                <li class="item" data-owl-filter="'.'.'.$lowBrandName.'">'.$eachBrand.'</li>
-                <li class="item" data-owl-filter=".gigabyte">Gigabyte</li>
+                <li class="item" data-owl-filter="'.'.'.$lowBrandName.'">'.$eachBrand['tenncc'].'</li>
 
             ';
         }
+
+        return $brandListMenu;
     }
 
     public function menuMainProduct($brandList, $categoryName){
