@@ -10,13 +10,15 @@
     <script src="../assets/js/main.js"></script>
     <script src="../assets/js/fitter.js"></script>
     <script src="../assets/js/range-price.js"></script>
+    <script src="../assets/js/lightslider.js"></script>
+
 
 
     <script>
         // Cart add remove functions
         var cart = {
             'add': function (product_id, quantity) {
-                addProductNotice('Thêm thành công', '<img src="./assets/img/homepage/product-card.jpg" alt="lỗi">', '<h3><a href="#">Itel i7</a> đã được thêm <a href="#">giỏ hàng</a>!</h3>', 'success');
+                addProductNotice('Thêm thành công', '<img src="./assets/img/homepage/product-card.jpg" alt="lỗi">', '<h3><a href="#">'+product_id+'</a> đã được thêm <a href="#">giỏ hàng</a>!</h3>', 'success');
             }
         }
 
@@ -67,7 +69,7 @@
 							$('#show-list').html(response);
 						}
 					});
-					} else {
+					} else{
 					$('#show-list').html('');
 				}
 			});

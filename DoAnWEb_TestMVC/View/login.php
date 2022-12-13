@@ -24,7 +24,7 @@ if(isset($_POST['customer_login']))
         $joinCondition = array ("1"=>array ('taikhoan.id', 'nguoidung.id_taikhoan'));
         $userLogin = $Model->selectJoinData($columnName, $tableName, null, $joinCondition, $whereValue);
         // var_dump($employeeInfo);
-    var_dump($userLogin);
+    // var_dump($userLogin);
 
 	
 	if(!empty($userLogin))
@@ -110,16 +110,23 @@ if(isset($_POST['customer_login']))
                                         </div>
                                     </div>
 
+                                    <!-- <div class="alert alert-danger alert-dismissible" id ="login-info-error" role="alert" >
+                                        Thông báo realtime login
+                                    </div>
+                                    <div class="alert alert-info alert-dismissible" id ="login-info-success" role="alert" hidden >
+                                        Thông báo realtime login
+                                    </div> -->
+
                                     <form>
 
                                         <div class="form-outline mb-1">
                                             <label class="form-label" for="form3Example1cg">Địa chỉ email</label>
-                                            <input type="text" id="form3Example1cg" class="form-control form-control" name="user_email"/>
+                                            <input type="text" id="user_email" class="form-control form-control" name="user_email"/>
                                         </div>
 
                                         <div class="form-outline mb-1">
                                             <label class="form-label" for="form3Example4cg">Mật khẩu</label>
-                                            <input type="password" id="form3Example4cg"
+                                            <input type="password" id="user_pass"
                                                 class="form-control form-control" name="user_pass"/>
                                         </div>
 
@@ -132,7 +139,7 @@ if(isset($_POST['customer_login']))
                                         </div>
 
                                         <div class="d-flex justify-content-center">
-                                            <button type="submit" class="btn btn-primary-color fw-bold text-white " name="customer_login">Đăng
+                                            <button type="submit" class="btn btn-primary-color fw-bold text-white " id="login-btn" name="customer_login">Đăng
                                                 nhập</button>
                                         </div>
 
@@ -151,6 +158,118 @@ if(isset($_POST['customer_login']))
             </div>
         </div>
     </section>
+    <script src="../assets/js/jquery-3.3.1.min.js"></script>
+    <script src="../assets/js/bootstrap.min.js"></script>
+    <script src="../assets/js/jquery.nice-select.min.js"></script>
+    <script src="../assets/js/jquery-ui.min.js"></script>
+    <script src="../assets/js/jquery.slicknav.js"></script>
 </body>
 
+
+
 </html>
+
+<!-- Kiểm tra tính hợp lệ của email, số điện thoại, upload file realtime -->
+
+<!-- <script>
+    $("#login-btn").on("click", function(){
+        var pass = $("#user_pass").val();
+        var email = $("#user_email").val();
+        $.ajax({
+        url: "http://localhost/DoAnWeb/DoAnWeb_testMVC/admin/Controller/Login/check_login.php",
+        data: {email: email, pass:pass},
+        type: 'POST',
+        dataType: "text",
+        success: function(data){ 
+            if(data==1){
+                $('.alert.alert-info.alert-dismissible').text("Sửa thông tin thành công");
+                $('.alert.alert-danger.alert-dismissible').prop('hidden', true);
+                $('.alert.alert-info.alert-dismissible').prop('hidden', false);
+                $("html, body").animate({scrollTop: 0}, 1000);
+
+                setTimeout(function(){
+                $('.alert.alert-info.alert-dismissible').prop('hidden', true);
+                }, 2000);
+            }
+            else{
+                $('.alert.alert-danger.alert-dismissible').text("Đã có lỗi xảy ra !! vui lòng thử lại sau");
+                $('.alert.alert-info.alert-dismissible').prop('hidden', true);
+                $('.alert.alert-danger.alert-dismissible').prop('hidden', false);
+                $("html, body").animate({scrollTop: 0}, 1000);
+
+                setTimeout(function(){
+                $('.alert.alert-danger.alert-dismissible').prop('hidden', true);
+                }, 5000);
+            }
+        } 
+    });
+
+    })
+</script> -->
+
+<!-- <script>
+    let checkNotify1 = 1;
+    let checkNotify2= 1;
+    let checkNotify3= 1;
+    $("#basic-default-email").on("focusout keyup keydown blur change ",function(e){
+        var $ele = $(this);
+        var email_input = $("#basic-default-email").val();
+        $.ajax({
+                url: "http://localhost/DoAnWeb/DoAnWeb_testMVC/admin/Controller/Formcheck/email.php",
+                type:"POST",
+                data:{email_input: email_input},
+                success: function(data){
+                   if(data==1){
+                        $('#login-info').html("Email hợp lệ")
+                        setTimeout(function(){
+                        $(".Error-notify-email").html("");
+                        }, 2000)
+                        checkNotify1=1;
+                        if(checkNotify1==1 && checkNotify2 ){
+                            $('.btn-save-edit.btn.btn-primary').prop('disabled', false);
+                        }
+
+                        
+                    }
+                    else {
+                        $("#login-info").html(data);
+                        $('.btn-save-edit.btn.btn-primary').prop('disabled', true);
+                        checkNotify1 = 0;
+
+                    }
+                }
+                
+            });
+    });
+
+    $("#basic-default-phone").on("focusout keyup keydown blur change",function(e){
+        var phone_input = $("#basic-default-phone").val();
+        $.ajax({
+                url: "http://localhost/DoAnWeb/DoAnWeb_testMVC/admin/Controller/Formcheck/phone.php",
+                type:"POST",
+                data:{phone_input: phone_input},
+                success: function(data){
+                    if(data==1 ){
+
+                        setTimeout(function(){
+                        $(".Error-notify-phone").html("");
+                        }, 2000)
+                        checkNotify2=1;
+                        if(checkNotify1==1 && checkNotify2){
+                            $('.btn-save-edit.btn.btn-primary').prop('disabled', false);
+                        }
+                    }
+                    else{
+                        $(".Error-notify-phone").html("");
+                        $('.Error-notify-phone').attr('style', 'color:#ff3333;padding-left: 20px');
+                        $(".Error-notify-phone").html("<i class='bx bxs-x-circle pl-3'></i>"+data);
+                        $('.btn-save-edit.btn.btn-primary').prop('disabled', true);
+                        checkNotify2=0;
+                    }
+                }
+
+                
+            });
+    });
+
+</script> -->

@@ -143,6 +143,11 @@
     <link rel="stylesheet" href="../assets/css/css/toggle-switchy.css">
     <link rel="stylesheet" href="../assets/css/range-srate.css">
     <link rel="stylesheet" href="../assets/css/add_css.css">
+    <link rel="stylesheet" href="../assets/css/lightslider.css">
+    <link rel="stylesheet" href="../../Admin/public/assets/vendor/fonts/boxicons.css" />
+
+    <!-- <link rel="stylesheet" href="../public/assets/vendor/fonts/boxicons.css" /> -->
+
 
 
     
@@ -412,7 +417,7 @@
                                         foreach($categoryList as $eachRow){
                                             echo 
                                             '
-                                                <li><a href="#">'.$eachRow['ten'].'</a></li>
+                                                <li><a href="">'.$eachRow['ten'].'</a></li>
 
                                             ';
                                         }

@@ -18,7 +18,7 @@
   <script src="../public/assets/vendor/js/bootstrap.js"></script>
   <script src="../public/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
 
-  <script src="../public/assets/vendor/js/menu.js"></script>
+  <script src="../public/assets/js/menu.js"></script>
   <!-- endbuild -->
 
   <!-- Vendors JS -->
@@ -145,6 +145,56 @@
     // }
         
 		</script>
+
+    <!-- dùng để dùng chung silder, nhận biết đang ở slider nào để add class active -->
+
+    <script>
+
+      $(".menu-item.one").on("click", function(){
+        
+        $(".menu-item").removeClass('active');
+        $(".menu-item").removeClass('open');
+        localStorage.clear();
+        localStorage.setItem("menu-item-one", $(this).attr('id'));
+      });
+
+      $(".menu-item").on("click", function(){
+        $(".menu-item").removeClass('active');
+        $(".menu-item").removeClass('open');
+        $(this).addClass("active");
+      });
+
+      $(".menu-sub .menu-item").on("click", function(){
+        $(".menu-item").removeClass('active');
+        $(".menu-item").removeClass('open');
+        $(this).addClass("active");
+        if(localStorage.getItem("menu-item-one")!= null)
+          localStorage.clear();
+        localStorage.setItem("menu-item", $(this).attr("id"))
+      });
+
+
+    $(document).ready(function() {
+      SetClass();
+      SetClassOne() 
+    });
+
+    function SetClass() {
+      var item = localStorage.getItem("menu-item");
+      $("#" + item).addClass("active")
+      $("#" + item).parent().parent().addClass("active open")
+
+    }
+
+    function SetClassOne() {
+      if(localStorage.getItem("menu-item-one") != "")
+      {
+        var item = localStorage.getItem("menu-item-one");
+        $("#" + item).addClass("active")
+      }
+
+    }
+    </script>
 
 
 </body>

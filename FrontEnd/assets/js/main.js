@@ -209,6 +209,25 @@
         autoplay: true
     });
 
+    $('input.input-qty').each(function() {
+        var $this = $(this),
+          qty = $this.parent().find('.is-form'),
+          min = Number($this.attr('min')),
+          max = Number($this.attr('max'))
+        if (min == 0) {
+          var d = 0
+        } else d = min
+        $(qty).on('click', function() {
+          if ($(this).hasClass('minus')) {
+            if (d > min) d += -1
+          } else if ($(this).hasClass('plus')) {
+            var x = Number($this.val()) + 1
+            if (x <= max) d += 1
+          }
+          $this.attr('value', d).val(d)
+        })
+      })
+
 
     // nút bên product detail
 
@@ -379,6 +398,19 @@
 
     })
 
+    // Priview Thumbail slider
+    (".preview-thumbnail").owlCarousel({
+        loop: true,
+        margin: 0,
+        items: 1,
+        dots: false,
+        nav: true,
+        navText: ["<span class='fa fa-angle-left'><span/>", "<span class='fa fa-angle-right'><span/>"],
+        smartSpeed: 1200,
+        autoHeight: false,
+        autoplay: true
+    });
+
 })(jQuery)
 
 
@@ -391,4 +423,12 @@ root.style.setProperty("--marquee-elements", marqueeContent.children.length);
 for (let i = 0; i < marqueeElementsDisplayed; i++) {
     marqueeContent.appendChild(marqueeContent.children[i].cloneNode(true));
 }
+
+
+function calcRate(r) {
+ const f = ~~r,//Tương tự Math.floor(r)
+ id = 'star' + f + (r % f ? 'half' : '')
+ id && (document.getElementById(id).checked = !0)
+}
+
 

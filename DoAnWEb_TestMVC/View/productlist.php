@@ -44,9 +44,9 @@
 
                     <span>Lọc:</span>
                     <label class="toggle-switchy pl-2" for="fitter-product" data-size="sm" data-text="false"
-                        data-style="rounded" data-toggle="collapse" data-target="#filterbar" aria-expanded="true"
+                        data-style="rounded" data-toggle="collapse" data-target="#filterbar" aria-expanded="false"
                         aria-controls="filterbar" id="filter-btn" onclick="changeBtnTxt()">
-                        <input type="checkbox" id="fitter-product">
+                        <input checked type="checkbox" id="fitter-product">
                         <span class="toggle">
                             <span class="switch"></span>
                         </span>
@@ -97,12 +97,12 @@
                         <div> <label class="tick">Sale sốc <input type="checkbox"> <span class="check"></span> </label>
                         </div>
                     </div>
-                    <div class="box border-bottom">
-                        <div class="box-label text-uppercase d-flex align-items-center">Phân loại <button
+                    <!-- <div class="box border-bottom"> -->
+                        <!-- <div class="box-label text-uppercase d-flex align-items-center">Phân loại <button
                                 class="btn ml-auto" type="button" data-toggle="collapse" data-target="#inner-box"
                                 aria-expanded="false" aria-controls="inner-box" id="out" onclick="outerFilter()"> <span
-                                    class="fas fa-plus"></span> </button> </div>
-                        <div id="inner-box" class="collapse mt-2 mr-1">
+                                    class="fas fa-plus"></span> </button> </div> -->
+                        <!-- <div id="inner-box" class="collapse mt-2 mr-1">
                             <div class="my-1"> <label class="tick">Mainboard <input type="checkbox" checked="checked">
                                     <span class="check"></span> </label> </div>
                             <div class="my-1"> <label class="tick">Bộ nhớ SSD <input type="checkbox"> <span
@@ -119,23 +119,23 @@
                                         class="check"></span> </label> </div>
                             <div class="my-1"> <label class="tick">Keo tản nhiệt <input type="checkbox" checked> <span
                                         class="check"></span> </label> </div>
-                        </div>
-                    </div>
+                        </div> -->
+                    <!-- </div> -->
                     <div class="box border-bottom">
-                        <div class="box-label text-uppercase d-flex align-items-center">Bộ lọc 2 <button
+                        <div class="box-label text-uppercase d-flex align-items-center">Thương hiệu<button
                                 class="btn ml-auto" type="button" data-toggle="collapse" data-target="#inner-box2"
                                 aria-expanded="false" aria-controls="inner-box2"><span
                                     class="fas fa-plus"></span></button> </div>
                         <div id="inner-box2" class="collapse mt-2 mr-1">
-                            <div class="my-1"> <label class="tick">bộ lọc <input type="checkbox" checked="checked">
+                            <div class="my-1"> <label class="tick">Thương hiệu  <input type="checkbox" checked="checked">
                                     <span class="check"></span> </label> </div>
-                            <div class="my-1"> <label class="tick">bộ lọc <input type="checkbox"> <span
+                            <div class="my-1"> <label class="tick">Thương hiệu  <input type="checkbox"> <span
                                         class="check"></span> </label> </div>
-                            <div class="my-1"> <label class="tick">bộ lọc <input type="checkbox" checked> <span
+                            <div class="my-1"> <label class="tick">Thương hiệu  <input type="checkbox" checked> <span
                                         class="check"></span> </label> </div>
-                            <div class="my-1"> <label class="tick">bộ lọc <input type="checkbox"> <span
+                            <div class="my-1"> <label class="tick">Thương hiệu  <input type="checkbox"> <span
                                         class="check"></span> </label> </div>
-                            <div class="my-1"> <label class="tick">bộ lọc <input type="checkbox"> <span
+                            <div class="my-1"> <label class="tick">Thương hiệu  <input type="checkbox"> <span
                                         class="check"></span> </label> </div>
                         </div>
                     </div>

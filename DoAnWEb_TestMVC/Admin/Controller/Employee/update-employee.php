@@ -19,7 +19,7 @@
         } 
     }
 
-    $controller->connection->beginTransaction();
+    $Model->connection->beginTransaction();
 
     //Lưu dữ liệu
     $tableName = $columnName = null;
@@ -63,23 +63,23 @@
                     exit();
                 }
                 
-                $controller->connection->commit();
+                $Model->connection->commit();
                 echo json_encode (array('tinhtrang'=>1, "anh_moi"=>$columnName['anh']));
                 exit();
             }
-            $controller->connection->commit();
+            $Model->connection->commit();
             echo json_encode (array('tinhtrang'=>1, "anh_moi"=>$info_array['anh_cu']));
 
         }
         else{
-            $controller->connection->rollBack();
+            $Model->connection->rollBack();
             echo json_encode (array('tinhtrang'=>-1));
         }
     }
 
     else
     {
-        $controller->connection->rollBack();
+        $Model->connection->rollBack();
 
         echo json_encode (array('tinhtrang'=>-1));
     }
