@@ -1,8 +1,32 @@
 <?php
+    // session_start();
+    include("include/session.php");
     include("include/top.php");
+    require_once($_SERVER['DOCUMENT_ROOT']."/DoAnWeb/DoAnWeb_TEstMVC/Controller/Controller.php");
+    require_once($_SERVER['DOCUMENT_ROOT']."/DoAnWeb/DoAnWeb_TEstMVC/Controller/HomeController.php");
+    
     // include("include/Silder.php");
 ?>
-
+<?php
+    $conn = new Controller;
+    $homeCtrl = new HomeController;
+    $categoryName = '4';
+    $sql_code="SELECT DISTINCT id_thuonghieu, nhacungcap.tenncc, danhmucsp.ten FROM `sanpham` inner join `nhacungcap` on sanpham.id_thuonghieu  = nhacungcap.id INNER JOIN `danhmucsp` on sanpham.id_danhmuc = danhmucsp.id WHERE danhmucsp.id =:VALUE1";
+    // $sql_code = "SELECT * FROM `taikhoan` JOIN `nguoidung` ON taikhoan.id = nguoidung.id_taikhoan WHERE `email`=:VALUE1 AND `matkhau`=:VALUE2";
+		$query = $conn->connection->prepare($sql_code);
+		
+		$values = array(
+			':VALUE1' => $categoryName,
+			);
+            
+		$query->execute($values);
+		
+		$menuMainProductList = $query->fetchAll(PDO::FETCH_ASSOC);
+		$totalRowSelected = $query->rowCount();
+		
+        var_dump($menuMainProductList);
+		
+?>
     <section class="section">
         <!-- container -->
         <div class="container">
@@ -271,7 +295,11 @@
     <!-- Product Section Begin -->
     <section class="main-product pt-4">
         <div class="container">
-            <div class="row under-line-product" style="border-bottom: 2px solid #b7b7b7">
+
+            <?php 
+                $homeCtrl->menuMainProduct($menuMainProductList, $menuMainProductList[0]['ten'])
+            ?>
+            <!-- <div class="row under-line-product" style="border-bottom: 2px solid #b7b7b7">
                 <div class="col-lg-4 col-md-4 p-0">
                     <div class="main-product-title">
                         <h4>CPU</h4>
@@ -285,7 +313,7 @@
                         <li class="item" data-owl-filter=".antec">Antec</li>
                     </ul>
                 </div>
-            </div>
+            </div> -->
 
             <div class="row property__gallery line_1 owl-carousel ">
                 <div class="col-lg-3 col-xl-3 col-md-6 item asus">
