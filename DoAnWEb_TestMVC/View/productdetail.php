@@ -1,325 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php
+    include("include/top.php");
+    // include("include/Silder.php");
+?>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product detail</title>
 
-    <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <!-- Font Awesome -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
-
-    <!-- Google font -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
-    <!-- oswal -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap"
-        rel="stylesheet">
-    <!-- csss -->
-    <link rel="stylesheet" href="./assets/css/base.css">
-    <link rel="stylesheet" href="./assets/css/main.css">
-    <link rel="stylesheet" href="./assets/css/reposive.css">
-    <link rel="stylesheet" href="./assets/css/css/owl.carousel.min.css">
-    <link rel="stylesheet" href="./assets/css/css/slicknav.min.css">
-    <link type="text/css" rel="stylesheet" href="css/lightslider.css" />                  
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <script src="js/lightslider.js"></script>
-</head>
-
-<body>
-
-    <!-- Mobie Responsive Begin -->
-    <div class="mobile__menu__overlay"></div>
-
-    <!-- Wrapper for mobile -->
-    <div class="mobile__menu__wrapper">
-        <div class="mobile__menu__logo">
-            <a href="#">LOGO</a>
-        </div>
-        <hr>
-        <div class="mobile__menu__widget">
-            <div class="header__top__right__auth">
-                <a href="#"><i class="user-icon fa fa-user"></i> Đăng nhập</a>
-            </div>
-        </div>
-        <div class="mobile__menu__cart">
-            <ul>
-                <li><a href=""><i class="header-notify-icon fa-solid fa-bell"></i></a></li>
-                <li><a href=""><i class="header-cart-icon fa-solid fa-cart-shopping"></i></a></li>
-            </ul>
-        </div>
-
-        <hr>
-
-        <nav class="mobile__menu__nav mobile-menu">
-            <ul>
-                <li class="active"><a href="">Trang chủ</a></li>
-                <li class="'"><a href="">Chính sách & điều khoản</a></li>
-                <li class=""><a href="">Liên hệ</a></li>
-                <li class=""><a href="">Về chúng tôi</a></li>
-            </ul>
-        </nav>
-        <div id="mobile-menu-wrap"></div>
-        <div class="header__top__right__social">
-            <li><a href=""><i class="fa-brands fa-facebook-f"></i></a></li>
-            <li><a href=""><i class="fa-brands fa-twitter"></i></a></li>
-            <li style="margin:0;"><a href=""><i class="fa-brands fa-discord"></i></a></li>
-        </div>
-        <hr>
-        <div class="mobile__menu__contact">
-            <ul>
-                <li><i class="fa fa-envelope"></i> 4-2.group@gmail.com</li>
-                <li><i class="fa-solid fa-phone"></i>0123456789</li>
-            </ul>
-        </div>
-    </div>
-    <!-- Mobie Responsive End -->
-
-    <!-- Header -->
-    <!-- Top header -->
-    <header class="header">
-        <div class="header__top">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-6 col-md-6">
-                        <div class="header__top__left">
-                            <ul>
-                                <li><i class="fa fa-envelope"></i> 4-2.group@gmail.com</li>
-                                <li><i class="fa-solid fa-phone"></i>0123456789</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-6">
-                        <div class="header__top__right">
-                            <div class="header__top-icon header__top__right__social">
-                                <li><a href=""><i class="fa-brands fa-facebook-f"></i></a></li>
-                                <li><a href=""><i class="fa-brands fa-twitter"></i></a></li>
-                                <li style="margin:0;"><a href=""><i class="fa-brands fa-discord"></i></a></i></li>
-                            </div>
-
+    <!-- Breadcrumb Section Begin -->
+    <section class="breadcrumb-section set-bg" data-setbg="img/breadcrumb/classes-breadcrumb.jpg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumb-text">
+                        <h2>Chi tiết sản phẩm</h2>
+                        <div class="breadcrumb-option">
+                            <a href="./index.html"><i class="fa fa-home"></i> Trang chủ</a>
+                            <span>Chi tiết sản phẩm</span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- End top header -->
-
-        <!-- Mid_header -->
-        <div class="header__mid">
-            <div class="container">
-                <div class="row">
-                    <!-- Header logo -->
-                    <div class="col-lg-3 col-md-3">
-                        <div class="header__logo">
-                            <h3>LOGO</h3>
-                        </div>
-                    </div>
-
-                    <!-- SEARCH BAR -->
-                    <div class="col-lg-6 col-md-6">
-                        <form role="search" id="form">
-                            <input type="search" id="query" name="serach" placeholder="Tìm kiếm"
-                                aria-label="Search through site content">
-                            <button class="search-btn">
-                                <svg viewBox="0 0 1024 1024">
-                                    <path class="path1"
-                                        d="M848.471 928l-263.059-263.059c-48.941 36.706-110.118 55.059-177.412 55.059-171.294 0-312-140.706-312-312s140.706-312 312-312c171.294 0 312 140.706 312 312 0 67.294-24.471 128.471-55.059 177.412l263.059 263.059-79.529 79.529zM189.623 408.078c0 121.364 97.091 218.455 218.455 218.455s218.455-97.091 218.455-218.455c0-121.364-103.159-218.455-218.455-218.455-121.364 0-218.455 97.091-218.455 218.455z">
-                                    </path>
-                                </svg>
-                            </button>
-                        </form>
-                    </div>
-
-                    <!-- header-mid-side -->
-                    <div class="col-lg-3  col-md-3">
-                        <div class="header-mid-side">
-
-                            <div class="user-header">
-                                <a><i class=" user-icon-header fa-regular fa-user"></i></a>
-
-                                <div class="user-item">
-                                    <div class="dropdown-user-header">
-                                        <!-- <span>Xin chào</span> -->
-                                    </div>
-                                    <ul class="user-list">
-                                        <li>
-                                            <a href=""><i class="fa-solid fa-gear"></i>
-                                                <span>Tài khoản của tôi</span></a>
-                                        </li>
-                                        <li>
-                                            <a href="">
-                                                <i class="fa-solid fa-bag-shopping"></i>
-                                                <span>Đơn mua của tôi</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="">
-                                                <i class="fa-solid fa-lock"></i>
-                                                <span>Đổi mật khẩu</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href=""><i class="fa-solid fa-circle-info"></i>
-                                                <span>Thông tin cá nhân</span></a>
-                                        </li>
-
-                                    </ul>
-                                    <div class="bottom">
-                                        <!-- <div class="total">
-                                            <span>Đăng xuất</span>
-                                            <span>Đăng ký</span>
-
-                                        </div> -->
-                                        <a href="" class="btn animate">Đăng xuất</a>
-                                        <a href="" class="btn animate">Đăng nhập</a>
-
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Cart -->
-                            <div class="sinlge-bar shopping">
-                                <a href="#" class="single-icon"><i
-                                        class="header-mid-icon fa-solid fa-cart-shopping"></i> <span
-                                        class="total-count">2</span></a>
-
-                                <div class="shopping-item">
-                                    <div class="dropdown-cart-header">
-                                        <span>2 sản phẩm</span>
-                                        <a href="#">Xem giỏ hàng</a>
-                                    </div>
-                                    <ul class="shopping-list">
-                                        <li>
-                                            <div class="content-shopping-list-item">
-                                                <div class="remove-icon">
-                                                    <a href="#" class="remove" title="Xóa sản phẩm"><i
-                                                            class="fa fa-remove"></i></a>
-                                                </div>
-                                                <a class="cart-img" href="#"><img
-                                                        src="./assets/img/homepage/product01.png" alt="#"></a>
-                                                <div class="cart-product-deatil">
-                                                    <h4><a href="#">Tên sản phẩm</a></h4>
-                                                    <p class="quantity">1x - <span class="amount">100.000đ</span>
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="content-shopping-list-item">
-                                                <div class="remove-icon">
-                                                    <a href="#" class="remove" title="Xóa sản phẩm"><i
-                                                            class="fa fa-remove"></i></a>
-                                                </div>
-                                                <a class="cart-img" href="#"><img
-                                                        src="./assets/img/homepage/product01.png" alt="#"></a>
-                                                <div class="cart-product-deatil">
-                                                    <h4><a href="#">Tên sản phẩm</a></h4>
-                                                    <p class="quantity">1x - <span class="amount">100.000đ</span>
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                    <div class="bottom">
-                                        <div class="total">
-                                            <span>Tổng </span>
-                                            <span class="total-amount">235.000đ</span>
-                                        </div>
-                                        <a href="" class="btn animate">Thanh toán</a>
-                                    </div>
-                                </div>
-
-                            </div>
-                            <!-- /Cart -->
-                        </div>
-
-                    </div>
-                </div>
-
-                <!-- Icon nav mobie -->
-                <div class="mobile__open">
-                    <i class="fa fa-bars"></i>
-                </div>
-            </div>
-            <!-- end mid-header -->
-
-            <!-- divider -->
-            <hr>
-
-
-            <!-- hero section -->
-            <!-- WARING: add class hero-normal if u dont code for homepage -->
-            <section class="hero hero-normal">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-3">
-                            <!-- category  -->
-                            <div class="hero__categories">
-                                <div class="hero__categories__all">
-                                    <div>
-                                        <i class="fa fa-bars"></i>
-                                        <span>Danh mục</span>
-                                    </div>
-                                </div>
-                                <ul>
-                                    <li><a href="#">MainBoard</a></li>
-                                    <li><a href="#">Bộ nhớ HHD</a></li>
-                                    <li><a href="#">Bộ nhớ SSD</a></li>
-                                    <li><a href="#">CPU</a></li>
-                                    <li><a href="#">Fan CPU</a></li>
-                                    <li><a href="#">Case</a></li>
-                                    <li><a href="#">Power</a></li>
-                                    <li><a href="#">Sound Card</a></li>
-                                    <li><a href="#">VGA Card</a></li>
-                                    <li><a href="#">DVD</a></li>
-                                    <li><a href="#">Keo tản nhiệt</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <!-- header_menu -->
-                        <div class="col-lg-9">
-                            <nav class="header__menu">
-                                <ul class="header__menu--li">
-                                    <li class="active"><a href="">Trang chủ</a></li>
-                                    <li class="'"><a href="">Chính sách</a></li>
-                                    <li class=""><a href="">Liên hệ</a></li>
-                                    <li class=""><a href="">Về chúng tôi</a></li>
-                                </ul>
-                            </nav>
-                        </div>
-                    </div>
-                </div>
-                <!-- Breadcrumb Section Begin -->
-                <section class="breadcrumb-section set-bg" data-setbg="img/breadcrumb/classes-breadcrumb.jpg">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="breadcrumb-text">
-                                    <h2>Chi tiết sản phẩm</h2>
-                                    <div class="breadcrumb-option">
-                                        <a href="./index.html"><i class="fa fa-home"></i> Trang chủ</a>
-                                        <span>Chi tiết sản phẩm</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                <!-- Breadcrumb Section End -->
-            </section>
-            <!-- Hero Section End -->
-    </header>
-    <!-- Header Section End -->
+    </section>
+    <!-- Breadcrumb Section End -->
 
 
 
@@ -329,34 +30,23 @@
             <!-- <div class="container-fliud"> -->
             <div class="wrapper row">
                 <div class="preview col-xl-7 col-md-12">
-                    <div class="preview-pic tab-content" id="lightSlider">
-                        <div class="tab-pane active" id="pic-1"><img src="./assets/img/product/vga1.webp" alt="">
-                        </div>
-                        <div class="tab-pane" id="pic-2"><img src="./assets/img/product/vga2.webp" alt="">
-                        </div>
-                        <div class="tab-pane" id="pic-3"><img src="./assets/img/product/vga3.webp" alt="">
-                        </div>
-                        <div class="tab-pane" id="pic-4"><img src="./assets/img/product/vga4.webp" alt="">
-                        </div>
-                        <div class="tab-pane" id="pic-5"><img src="./assets/img/product/vga5.webp" alt="">
-                        </div>
-                    </div>
-                    <ul  id="lightSlider" class="preview-thumbnail nav nav-tabs ">
+                    
+                    <ul id="lightSlider">
 
-                        <li class="active">
-                            <a data-target="#pic-1" data-toggle="tab"><img src="./assets/img/product/vga1.webp" alt="">
+                        <li data-thumb="../assets/img/product/vga1.webp">
+                            <img src="../assets/img/product/vga1.webp" alt="">
                         </li>
-                        <li>
-                            <a data-target="#pic-2" data-toggle="tab"><img src="./assets/img/product/vga2.webp" alt="">
+                        <li data-thumb="../assets/img/product/vga2.webp">
+                            <img src="../assets/img/product/vga2.webp" alt="">
                         </li>
-                        <li>
-                            <a data-target="#pic-3" data-toggle="tab"><img src="./assets/img/product/vga3.webp" alt="">
+                        <li data-thumb="../assets/img/product/vga3.webp">
+                            ><img src="../assets/img/product/vga3.webp" alt="">
                         </li>
-                        <li>
-                            <a data-target="#pic-4" data-toggle="tab"><img src="./assets/img/product/vga4.webp" alt="">
+                        <li data-thumb="../assets/img/product/vga4.webp">
+                            <img src="../assets/img/product/vga4.webp" alt="">
                         </li>
-                        <li>
-                            <a data-target="#pic-5" data-toggle="tab"><img src="./assets/img/product/vga5.webp" alt=""></a>
+                        <li data-thumb="../assets/img/product/vga5.webp">
+                            <img src="../assets/img/product/vga5.webp" alt="">
                         </li>
                     </ul>
                 </div>
@@ -553,7 +243,7 @@
                                         <!--===================================================-->
                                         <div class="media-block">
                                             <a class="media-left" href="#"><img class="img-circle img-sm"
-                                                    alt="Profile Picture" src="./assets/img/icon/icon-1.png"></a>
+                                                    alt="Profile Picture" src="../assets/img/icon/icon-1.png"></a>
                                             <div class="media-body">
                                                 <div class="mar-btm">
                                                     <a href="#"
@@ -569,7 +259,7 @@
                                                 <div class="media-block">
                                                     <a class="media-left" href="#"><img class="img-circle img-sm"
                                                             alt="Profile Picture"
-                                                            src="./assets/img/icon/icon-1.png"></a>
+                                                            src="../assets/img/icon/icon-1.png"></a>
                                                     <div class="media-body">
                                                         <div class="mar-btm">
                                                             <a href="#"
@@ -587,7 +277,7 @@
 
                                                 <div class="media-block">
                                                     <a class="media-left" href="#"><img class="img-circle img-sm"
-                                                            alt="Profile Picture" src="./assets/img/icon/icon-1.png">
+                                                            alt="Profile Picture" src="../assets/img/icon/icon-1.png">
                                                     </a>
                                                     <div class="media-body">
                                                         <div class="mar-btm">
@@ -619,7 +309,7 @@
                                         <div>
                                             <div class="media-block pad-all">
                                                 <a class="media-left" href="#"><img class="img-circle img-sm"
-                                                        alt="Profile Picture" src="./assets/img/icon/icon-1.png"></a>
+                                                        alt="Profile Picture" src="../assets/img/icon/icon-1.png"></a>
                                                 <div class="media-body">
                                                     <div class="mar-btm">
                                                         <a href="#"
@@ -655,7 +345,7 @@
                 <div class="col-lg-4 col-xl-3">
                     <div class="product">
                         <div class="product-img">
-                            <img src="./assets/img/homepage/product-card.jpg" alt="">
+                            <img src="../assets/img/homepage/product-card.jpg" alt="">
                             <div class="product-label">
                                 <span class="sale">-30%</span>
                                 <span class="new">MỚI</span>
@@ -691,7 +381,7 @@
                 <div class="col-lg-4 col-xl-3">
                     <div class="product">
                         <div class="product-img">
-                            <img src="./assets/img/homepage/product-card.jpg" alt="">
+                            <img src="../assets/img/homepage/product-card.jpg" alt="">
                             <div class="product-label">
                                 <span class="sale">-30%</span>
                                 <span class="new">MỚI</span>
@@ -727,7 +417,7 @@
                 <div class="col-lg-4 col-xl-3">
                     <div class="product">
                         <div class="product-img">
-                            <img src="./assets/img/homepage/product-card.jpg" alt="">
+                            <img src="../assets/img/homepage/product-card.jpg" alt="">
                             <div class="product-label">
                                 <span class="sale">-30%</span>
                                 <span class="new">MỚI</span>
@@ -763,7 +453,7 @@
                 <div class="col-lg-4 col-xl-3">
                     <div class="product">
                         <div class="product-img">
-                            <img src="./assets/img/homepage/product-card.jpg" alt="">
+                            <img src="../assets/img/homepage/product-card.jpg" alt="">
                             <div class="product-label">
                                 <span class="sale">-30%</span>
                                 <span class="new">MỚI</span>
@@ -801,97 +491,18 @@
 
     </section>
 
-    <!-- <link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet"> -->
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"> -->
-    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> -->
-
-    <script src="js/jquery-1.11.1.min.js"></script>
-    <!-- Javascript -->
-    <script src="./assets/js/jquery-3.3.1.min.js"></script>
-    <script src="./assets/js/bootstrap.min.js"></script>
-    <script src="./assets/js/jquery.nice-select.min.js"></script>
-    <script src="./assets/js/jquery-ui.min.js"></script>
-    <script src="./assets/js/jquery.slicknav.js"></script>
-    <script src="./assets/js/mixitup.min.js"></script>
-    <script src="./assets/js/owl.carousel.min.js"></script>
-    <script src="./assets/js/main.js"></script>
-    <script src="./assets/js/popup.js"></script>
-    <script src="./assets/js/fitter.js"></script>
-</body>
-
-</html>
+    <?php
+    include("include/footer.php");
+?>
 
 <script type="text/javascript">
-    $(document).ready(function() {
-      $("#lightSlider").lightSlider(); 
-    });
+    $('#lightSlider').lightSlider({
+    gallery: true,
+    item: 1,
+    loop: true,
+    slideMargin: 0,
+    thumbItem: 6
+});
 </script>
 
-<script type="text/javascript">
-    $(document).ready(function() {
-        $("#lightSlider").lightSlider({
-            item: 3,
-            autoWidth: false,
-            slideMove: 1, // slidemove will be 1 if loop is true
-            slideMargin: 10,
-     
-            addClass: '',
-            mode: "slide",
-            useCSS: true,
-            cssEasing: 'ease', //'cubic-bezier(0.25, 0, 0.25, 1)',//
-            easing: 'linear', //'for jquery animation',////
-     
-            speed: 400, //ms'
-            auto: false,
-            loop: false,
-            slideEndAnimation: true,
-            pause: 2000,
-     
-            keyPress: false,
-            controls: true,
-            prevHtml: '',
-            nextHtml: '',
-     
-            rtl:false,
-            adaptiveHeight:false,
-     
-            vertical:false,
-            verticalHeight:500,
-            vThumbWidth:100,
-     
-            thumbItem:10,
-            pager: true,
-            gallery: false,
-            galleryMargin: 5,
-            thumbMargin: 5,
-            currentPagerPosition: 'middle',
-     
-            enableTouch:true,
-            enableDrag:true,
-            freeMove:true,
-            swipeThreshold: 40,
-     
-            responsive : [],
-     
-            onBeforeStart: function (el) {},
-            onSliderLoad: function (el) {},
-            onBeforeSlide: function (el) {},
-            onAfterSlide: function (el) {},
-            onBeforeNextSlide: function (el) {},
-            onBeforePrevSlide: function (el) {}
-        });
-    });
-    </script>
 
-<script type="text/javascript">
-    $(document).ready(function() {
-      var slider = $("#lightSlider").lightSlider();
-      slider.goToSlide(3);
-      slider.goToPrevSlide();
-      slider.goToNextSlide();
-      slider.getCurrentSlideCount();
-      slider.refresh();
-      slider.play(); 
-      slider.pause();    
-    });
-  </script>
