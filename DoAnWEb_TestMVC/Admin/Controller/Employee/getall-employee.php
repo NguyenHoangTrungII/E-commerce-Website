@@ -2,7 +2,7 @@
     
    
     // include('../Model/ModelAll.php');
-    include('../Controller/Controller.php');
+    // include('../Controller/Controller.php');
 
     // include('../../Controller/EmployeeController.php');
     // include("../../config/databse.php");
@@ -44,33 +44,20 @@
         
         
         
-        function getAllEmployee($limit, $start)
+        function getAll($limit, $start)
         {
-            // $controller = new Controller;
-            // $sql_code = 'SELECT * FROM `taikhoan` JOIN `nguoidung` ON taikhoan.id = nguoidung.id_taikhoan LIMIT '.(int)$start . ','.(int)$limit;
-            // $query = $controller->connection->prepare($sql_code);
-            
-            // $query->execute();
-            
-            // $dataList = $query->fetchAll(PDO::FETCH_ASSOC);
-            // $totalRowSelected = $query->rowCount();
-            
-            // if($totalRowSelected > 0)
-            //     return $dataList;
-            // else
-            //     return 0;
             $Model = new ModelAll;
 
-
-            $columnName = $tableName = null;
+            $columnName = $tableName = $limitPaging = $formatBy= $joinCondition = $whereValue = null;
             $columnName = "*";
             $tableName['MAIN'] = "taikhoan";
             $tableName['1'] ='nguoidung';
             $limitPaging['POINT'] = $start;
             $limitPaging['LIMIT'] = $limit;
-            $formatBy['ASC'] = "ID";
+            $formatBy['ASC'] = "nguoidung.ID";
             $joinCondition = array ("1"=>array ('taikhoan.id', 'nguoidung.id_taikhoan'));
-            $employeeList = $Model->selectJoinData($columnName, $tableName, null, $joinCondition, null, null,  $formatBy, $limitPaging);
+            $whereValue['vaitro'] ="2";
+            $employeeList = $Model->selectJoinData($columnName, $tableName, "inner", $joinCondition,  $whereValue, "=",  $formatBy, $limitPaging);
             return $employeeList;
         }
 ?>

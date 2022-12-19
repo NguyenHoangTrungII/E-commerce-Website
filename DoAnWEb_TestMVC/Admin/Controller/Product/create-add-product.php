@@ -57,7 +57,7 @@
     $columnName['anh'] = "Product_".$info_array['danhmuc']."_thub_".$_FILES['file_thumbail_img']['name'];
     $columnName['baohanh'] = $info_array['baohanh']; 
     $columnName['ngaysx'] = $info_array['ngaysx']; 
-    $columnName['ngaytao'] =  date("d/m/Y");
+    $columnName['ngaytao'] =  date("Y-m-d");
     $columNmame['tinhtrang'] = $info_array['tinhtrang'];
 
 
@@ -68,7 +68,9 @@
     $productInsert = $Model->insertData($tableName, $columnName);
     // var_dump($productInsert);
     // Thanhf công  tiến hành insert dữ liệu vào cấu hình, mô tả và ho hàng theo id(sp) mới nhất vừa được thêm vào
-    move_uploaded_file($_FILES['file_thumbail_img']['tmp_name'], $GLOBALS['PRODUCT_DIRECTORY']."thumbail/". $columnName['anh']);
+    // move_uploaded_file($_FILES['file_thumbail_img']['tmp_name'], $GLOBALS['PRODUCT_DIRECTORY']."thumbail/". $columnName['anh']);
+    move_uploaded_file($_FILES['file_thumbail_img']['tmp_name'], $GLOBALS['PRODUCT_DIRECTORY'].$info_array['tendanhmuc']."/"."thumbnail/". $columnName['anh']);
+
 
     if( isset($productInsert["NUMBER_OF_ROW_INSERTED"]) || $productInsert["NUMBER_OF_ROW_INSERTED"] > 0){
         
@@ -79,21 +81,21 @@
             $tableName4 = 'AnhSP';
             $columnName4['id'] = null;
             $columnName4['id_sp']= $productInsert["LAST_INSERT_ID"];
-            $columnName4['sothutu'] = $i+1;
-            $columnName4['anh'] = "Product_".$info_array['danhmuc']."_garelly_".$_FILES['file_garelly_img']['name'][$i];
+            // $columnName4['sothutu'] = $i+1;
+            $columnName4['anh'] = "Product_".$info_array['tendanhmuc']."_gallery_".$_FILES['file_garelly_img']['name'][$i];
             $columnName4['ngaytao'] = $columnName['ngaytao'];
 
 
             $imgInsert = $Model->insertData($tableName4, $columnName4);
-            // var_dump( $imgInsert);
+            // var_dump( $columnName4);
             if(!isset($imgInsert["NUMBER_OF_ROW_INSERTED"]) || $imgInsert["NUMBER_OF_ROW_INSERTED"] < 0){
-                $controller->unlinkProductImg($GLOBALS['PRODUCT_DIRECTORY']."garelly/", "Product_".$info_array['danhmuc']."_garelly_", $_FILES['file_garelly_img']['name'], $i);
+                $controller->unlinkProductImg($GLOBALS['PRODUCT_DIRECTORY'].$info_array['tendanhmuc']."/"."gallery/", "Product_".$info_array['tendanhmuc']."_gallery_", $_FILES['file_garelly_img']['name'], $i);
                 $Model->connection->rollBack();
                 echo -1;
                 exit();
             }
 
-            move_uploaded_file($_FILES['file_garelly_img']['tmp_name'][$i], $GLOBALS['PRODUCT_DIRECTORY']."garelly/". $columnName4['anh']);
+            move_uploaded_file($_FILES['file_garelly_img']['tmp_name'][$i], $GLOBALS['PRODUCT_DIRECTORY'].$info_array['tendanhmuc']."/"."gallery/". $columnName4['anh']);
 
         }
 

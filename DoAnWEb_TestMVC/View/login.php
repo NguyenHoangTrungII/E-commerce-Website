@@ -144,7 +144,7 @@ if(isset($_POST['customer_login']))
                                         </div>
 
 
-                                        <p class="text-center mt-4 mb-0"><a href="#"
+                                        <p class="text-center mt-4 mb-0"><a href="forgot-password.php"
                                                 class=" px-1 fst-italic text-body text-sm-start"><u>Quên mật
                                                     khẩu?</u></a></p>
                                         <div class="vr"></div>

@@ -84,65 +84,6 @@
           }
       }
 
-
-//       function UpdatePreview(){
-//     $('#frame').attr('src', URL.createObjectURL(event.target.files[0]));
-// };
-
-    //   window.onload = function(){
-        
-    //     //Check File API support
-    //     if(window.File && window.FileList && window.FileReader)
-    //     {
-    //         var filesInput = document.getElementById("formFile-review-image-label");
-            
-    //         $('#formFile-review-image-label').on("change", function(e){
-                
-    //             var files = e.target.files; //FileList object
-    //             var output = document.getElementById("Preview-filed");
-                
-    //             for(var i = 0; i< files.length; i++)
-    //             {
-    //                 var file = files[i];
-                    
-    //                 if(!file.type.match('image'))
-    //                   continue;
-                    
-    //                   var picReader = new FileReader();
-                      
-    //                   picReader.addEventListener("load",function(event){
-    //                       var picFile = event.target;
-                          
-    //                       var div = document.createElement("div");
-                          
-    //                       // div.atrr("class", "position-relative");
-    //                       // div.setAttribute("class", "position-relative ");
-    //                       // div.setAttribute("style", "width:200px;");
-    //                       div.setAttribute("display", "block");
-
-    //                       div.innerHTML = "<div class='position-absolute d-block' style='width:20%' > <img ;'src='" + picFile.result + "'" +
-    //                               "title='" + picFile.name + "'/> <i class='bx bx-x-circle position-absolute' style='right:0;'></i></div> ";
-                          
-    //                       output.insertBefore(div,null);   
-
-
-    //                       div.children[1].addEventListener("click", function(event){
-    //                         div.parentNode.removeChild(div);
-    //                       });         
-                      
-    //                   });
-                      
-    //                   //Read the image
-    //                   picReader.readAsDataURL(file);
-    //             }                               
-               
-    //         });
-    //     }
-    //     else
-    //     {
-    //         console.log("Your browser does not support File API");
-    //     }
-    // }
         
 		</script>
 

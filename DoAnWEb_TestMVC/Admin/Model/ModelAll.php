@@ -47,7 +47,7 @@ class ModelAll
 		catch(Exception $e) 
 		{
 			// $this->connection->rollBack();
-			return 0;
+			return -1;
 		}
 	}
 	
@@ -249,7 +249,7 @@ class ModelAll
 		}
 		catch(Exception $e) 
 		{
-			return 0;
+			return -1;
 		}
 	}
 	
@@ -316,7 +316,7 @@ class ModelAll
 		}
 		catch(Exception $e) 
 		{
-			return $preSQL;
+			return -1;
 		}
 	}
 	

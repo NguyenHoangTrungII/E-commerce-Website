@@ -52,7 +52,7 @@
     $columnName['tensp'] = $info_array['tensp']; 
     $columnName['giagoc'] = $info_array['giagoc']; 
     $columnName['phantram'] = $info_array['phantram']; 
-    @$columnName['anh'] = $controller->checkNewImgaie($_FILES['file_thumbail_img']['name'], $info_array['anh_cu'], "Product_thub_".$info_array['danhmuc']);
+    @$columnName['anh'] = $controller->checkNewImgaie($_FILES['file_thumbail_img']['name'], $info_array['anh_cu'], "Product_thub_".$info_array['tendanhmuc']);
     $columnName['baohanh'] = $info_array['baohanh']; 
     $columnName['ngaysx'] = $info_array['ngaysx']; 
     $columnName['ngaysua'] =  date("d/m/Y");
@@ -71,8 +71,8 @@
     //Nếu update ảnh
     if(isset($_FILES['file_thumbail_img'])){
     // {var_dump('có vào');
-        move_uploaded_file($_FILES['file_thumbail_img']['tmp_name'], $GLOBALS['PRODUCT_DIRECTORY']."thumbail/". $columnName['anh']);
-        unlink($GLOBALS['PRODUCT_DIRECTORY']."thumbail/". $info_array['anh_cu']);
+        move_uploaded_file($_FILES['file_thumbail_img']['tmp_name'], $GLOBALS['PRODUCT_DIRECTORY'].$info_array['tendanhmuc']."/"."thumbnail/". $columnName['anh']);
+        unlink($GLOBALS['PRODUCT_DIRECTORY'].$info_array['tendanhmuc']."/"."thumbnail/". $info_array['anh_cu']);
     }
 
     // var_dump($productUpdate);
@@ -87,7 +87,7 @@
             $garellyDelete = $Model->deleteData($tableName10, $whereValue10);
             if($garellyDelete == -1){
                 $Model->connection->rollBack();
-                echo (array('tinhtrang'=>-1, "anh_moi"=>$info_array['anh_cu'], "anh_garelly_cu"=>$old_thumbail, "anh_"));
+                echo json_encode(array('tinhtrang'=>-1, "anh_moi"=>$info_array['anh_cu'], "anh_garelly_cu"=>$old_thumbail));
                 exit();
 
             }
@@ -97,21 +97,21 @@
                 $tableName4 = 'AnhSP';
                 $columnName4['id'] = null;
                 $columnName4['id_sp']= $info_array['id'];
-                $columnName4['sothutu'] = $i+1;
-                $columnName4['anh'] = "Product_".$info_array['danhmuc']."_garelly_".$_FILES['file_garelly_img']['name'][$i];
+                // $columnName4['sothutu'] = $i+1;
+                $columnName4['anh'] = "Product_".$info_array['tendanhmuc']."_garelly_".$_FILES['file_garelly_img']['name'][$i];
                 $columnName4['ngaytao'] = date("d/m/Y");
 
 
                 $imgInsert = $Model->insertData($tableName4, $columnName4);
                 // var_dump( $imgInsert);
                 if(!isset($imgInsert["NUMBER_OF_ROW_INSERTED"]) || $imgInsert["NUMBER_OF_ROW_INSERTED"] < 0){
-                    $controller->unlinkProductImg($GLOBALS['PRODUCT_DIRECTORY']."garelly/", "Product_".$info_array['danhmuc']."_garelly_", $_FILES['file_garelly_img']['name'], $i);
+                    $controller->unlinkProductImg($GLOBALS['PRODUCT_DIRECTORY'].$info_array['tendanhmuc']."/"."gallery/", "Product_".$info_array['tendanhmuc']."_gallery_", $_FILES['file_garelly_img']['name'], $i);
                     $Model->connection->rollBack();
-                    echo (array('tinhtrang'=>-1, "anh_moi"=>$info_array['anh_cu'], "anh_garelly_cu"=>$old_thumbail, "anh_"));
+                    echo json_encode (array('tinhtrang'=>-1, "anh_moi"=>$info_array['anh_cu'], "anh_garelly_cu"=>$old_thumbail));
                     exit();
                 }
 
-                move_uploaded_file($_FILES['file_garelly_img']['tmp_name'][$i], $GLOBALS['PRODUCT_DIRECTORY']."garelly/". $columnName4['anh']);
+                move_uploaded_file($_FILES['file_garelly_img']['tmp_name'][$i], $GLOBALS['PRODUCT_DIRECTORY'].$info_array['tendanhmuc']."/"."gallery/". $columnName4['anh']);
 
             }
 
@@ -133,7 +133,7 @@
         $columnName3['noidung1'] = $_POST['specification'];
         $whereValue3['id_sp']= $info_array['id'];
 
-        
+        var_dump($columnName3);
         //Dữ liệu kho hàng
         // $tableName1 = $columnName1 = null;
         // $tableName1 = 'khohang';
@@ -143,13 +143,14 @@
         // $columnName1['soluongdaban'] = 0;
         // $columnName1['ngaysua'] = $columnName['ngaysua'];
 
-        $desInsert = $Model->updateData($tableName2, $columnName2, $whereValue3 );
+        $desInsert = $Model->updateData($tableName2, $columnName2, $whereValue2 );
         $specInsert = $Model->updateData($tableName3,  $columnName3, $whereValue3);
+        // $Model->connection->commit();
         // $wareHouseInsert = $Model->insertData($tableName1,  $columnName1);
 
-        // var_dump($columnName1);
+        // var_dump($desInsert);
 
-        if($desInsert == 1 || $specInsert == - 1 ){
+        if($desInsert == -1 || $specInsert == - 1 ){
             $Model->connection->rollBack();
             echo json_encode (array('tinhtrang'=>-1, "anh_moi"=>$info_array['anh_cu'], "anh_garelly_cu"=>$old_thumbail));
             exit();
@@ -164,7 +165,7 @@
     {
         if(isset($_FILES['file_thumbail_img']['tmp_name']))
         {
-            unlink($GLOBALS['PRODUCT_DIRECTORY']."thumbail/". $columnName['anh']);
+            unlink($GLOBALS['PRODUCT_DIRECTORY'].$info_array['tendanhmuc']."/"."thumbnail/". $columnName['anh']);
         }
 
         $Model->connection->rollBack();

@@ -2,7 +2,7 @@
     session_start();
     include("include/session.php");
     include("include/top.php");
-    include("include/menu.php");
+    
     include("../Model/ModelAll.php");
     include("../config/databse.php");
 	include("../config/site.php");
@@ -39,6 +39,8 @@
         ##=======LẤY DỮ LIỆU=======##
     }
 ?>
+
+<?php include("include/menu.php") ?>
 
                 <!-- Content wrapper -->
                 <div class="content-wrapper">
@@ -171,7 +173,7 @@
                                                     <div class="mb-3">
                                                         <label for="Provice_edit" class="form-label">Tỉnh/Thành
                                                             phố</label>
-                                                        <select id="Provice_edit" class="form-select">
+                                                        <select id="Provice_edit" class="form-select" style="width:100%">
                                                             <option value=0><?= $employeeInfo[0]['tinh_thanhpho']?></option>
                                                             <!-- <option value="1">1</option>
                                                             <option value="2">2</option>

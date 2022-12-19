@@ -11,6 +11,8 @@
         require_once($_SERVER['DOCUMENT_ROOT']."/DoAnWeb/DoAnWeb_TEstMVC/Controller/HomeController.php");
         require_once($_SERVER['DOCUMENT_ROOT']."/DoAnWeb/DoAnWeb_TEstMVC/Admin/Model/ModelAll.php");
         require_once($_SERVER['DOCUMENT_ROOT']."/DoAnWeb/DoAnWeb_TEstMVC/Controller/HeroBannerController.php");
+        date_default_timezone_set('Asia/Ho_Chi_Minh');
+
 
     ?>
 
@@ -38,7 +40,7 @@
         $columnName['5']="sanpham.anh anhsp";
         $columnName['6']="giohang.id_user";
         $columnName['7']="sanpham.id id_sp";
-        // $columnName['8']="sanpham.phantram";
+        $columnName['8']="danhmucsp.ten tendanhmuc";
         // $columnName['9']="sanpham.tinhtrang";
         // $columnName['10']="sanpham.id_danhmuc";
         // $columnName['11']="sanpham.id_thuonghieu";
@@ -47,14 +49,16 @@
         $tableName['MAIN'] = 'ct_giohang';
         $tableName['1'] = 'giohang';
         $tableName['2'] = 'sanpham';
-        $joinCondition = array ("1"=>array ('ct_giohang.id_giohang', 'giohang.id'), "2"=>array('ct_giohang.id_sp', 'sanpham.id'));
+        $tableName['3'] = 'danhmucsp';
+        $joinCondition = array ("1"=>array ('ct_giohang.id_giohang', 'giohang.id'), "2"=>array('ct_giohang.id_sp', 'sanpham.id'), "3"=>array('danhmucsp.id', 'sanpham.id_danhmuc'));
         @$whereValue['giohang.id_user']= $_SESSION['SSCF_login_id'];
 
         $cartDetail = $Model->selectJoinData($columnName, $tableName, null, $joinCondition, $whereValue);
 
 
+
+
         //Lấy dữ liệu cho giỏ hàng header, danh mục sản phẩm
-        $Model = new ModelAll;
         $tableName = $columnName= $whereValue = null;
         $columnName="*";
         $tableName = 'danhmucsp';
@@ -65,13 +69,15 @@
 
 
         //Lấy slider tho sothutu
-        $Model = new ModelAll;
-        $tableName = $columnName= $whereValue = null;
+        $tableName = $columnName= $whereValue = $whereCondition = null;
         $columnName['1'] = "url";
         $tableName = 'slider';
+        $whereValue['tinhtrang'] = 1;
+        $whereCondition = "=";
         $formatBy['ASC'] ="sothutu";
+       
 
-        $sliderList = $Model->selectData($columnName, $tableName, null, null, null, null, $formatBy, null);
+        $sliderList = $Model->selectData($columnName, $tableName, $whereValue, $whereCondition, null, null, $formatBy, null);
         // var_dump($sliderList);
 
 
@@ -137,17 +143,13 @@
     <link rel="stylesheet" href="../assets/css/css/owl.carousel.min.css">
     <link rel="stylesheet" href="../assets/css/css/slicknav.min.css">
     <link rel="stylesheet" href="../assets/css/base.css">
-    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="../assets/js/main.css">
     <link rel="stylesheet" href="../assets/css/reposive.css">
     <link rel="stylesheet" href="../assets/css/popup.css">
     <link rel="stylesheet" href="../assets/css/css/toggle-switchy.css">
     <link rel="stylesheet" href="../assets/css/range-srate.css">
     <link rel="stylesheet" href="../assets/css/add_css.css">
     <link rel="stylesheet" href="../assets/css/lightslider.css">
-    <link rel="stylesheet" href="../../Admin/public/assets/vendor/fonts/boxicons.css" />
-
-    <!-- <link rel="stylesheet" href="../public/assets/vendor/fonts/boxicons.css" /> -->
-
 
 
     
@@ -417,7 +419,7 @@
                                         foreach($categoryList as $eachRow){
                                             echo 
                                             '
-                                                <li><a href="">'.$eachRow['ten'].'</a></li>
+                                                <li><a href="productlist.php?id='.$eachRow['id'].'">'.$eachRow['ten'].'</a></li>
 
                                             ';
                                         }

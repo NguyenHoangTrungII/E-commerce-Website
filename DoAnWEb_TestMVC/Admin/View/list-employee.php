@@ -4,30 +4,20 @@
     include("include/top.php");
     include("include/menu.php");
     include("../Model/ModelAll.php");
+    include("../Controller/Controller.php");
     include("../config/databse.php");
 	  include("../config/site.php");
     include("../Model/Pagination.php");
     include("../Controller/Employee/getall-employee.php");
 ?>
-
-<!-- get role -->
 <?php
 
 $pagination = new Pagination;
 
-
-  if($_SESSION['SMC_login_admin_type']==1){
-    $_SESSION['SMC_login_admin_role']="Admin";
-  }
-  else {
-    $_SESSION['SMC_login_admin_role']="Quản lý";
-  }
-
-
   $config = array(
     'current_page'  => isset($_GET['page']) ? $_GET['page'] : 1,
     'total_record'  => count_all_member(), 
-    'limit'         => 5,
+    'limit'         => 2,
     'link_full'     => 'list-employee.php?page={page}',
     'link_first'    => 'list-employee.php',
     'range'         => 3
@@ -37,56 +27,16 @@ $pagination = new Pagination;
 $pagination->init($config);
 
 // Lấy limit, start
+$limit = $start= null;
 $limit = $pagination->get_config('limit');
 $start = $pagination->get_config('start');
 
-// var_dump($limit);
-
 
 // Lấy danh sách thành viên
-$employeeList = getAllEmployee($limit, $start);
+$employeeList = getAll($limit, $start);
 
 // var_dump($employeeList);
 
-?>
-
-<?php
-$Model = new ModelAll;
-
-// var_dump($_SESSION);
-##=======LẤY DỮ LIỆU=======##
-$columnName = $tableName = null;
-$columnName = "*";
-$tableName['MAIN'] = "taikhoan";
-$tableName['1'] ='nguoidung';
-$whereValue['nguoidung.id']=	$_SESSION['SMC_login_id'];
-// var_dump($whereValue['id']);
-$whereCondition ="!=";
-$joinCondition = array ("1"=>array ('taikhoan.id', 'nguoidung.id_taikhoan'));
-// $employeeList = $Model->selectJoinData($columnName, $tableName, null, $joinCondition, $whereValue, $whereCondition);
-// var_dump($employeeList);
-
-##=======LẤY DỮ LIỆU=======##
-
-  // Kiểm tra nếu là ajax request thì trả kết quả
-  // if(isset($_GET['page'])) {
-  //   // var_dump("chưa vào");
-  //   echo (json_encode(array(
-  //       'member' => $employeeList,
-  //       'paging' => $pagination->html()
-  //   )));
-  // }
-  
-
-
-
-// var_dump(();
-
-?>
-
-
-<?php 
-  include("include/menu.php")
 ?>
 
         <!-- Content wrapper -->

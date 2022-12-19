@@ -386,8 +386,8 @@
           min = Number($this.attr('min')),
           max = Number($this.attr('max'))
         if (min == 0) {
-          var d = 0
-        } else d = min
+          var d = parseInt($(this).val()) ;
+        } else d = parseInt($(this).val());
         $(qty).on('click', function() {
           if ($(this).hasClass('minus')) {
             if (d > min) d += -1
