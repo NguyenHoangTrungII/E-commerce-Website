@@ -13,7 +13,7 @@
     $homeCtrl = new HomeController;
     $Model = new ModelAll;
 
-    $tableName = $columnName =null;
+    $tableName = $columnName = $whereValue =null;
     $tableName ="danhmucsp";
     $columnName['1'] = "id";
     $whereValue['hienthi'] = "1";
@@ -42,9 +42,6 @@
     
     $menuMainProductList = $query->fetchAll(PDO::FETCH_ASSOC);
     $totalRowSelected = $query->rowCount();
-
-
-    // var_dump($menuMainProductList);
 
 
 		
@@ -149,7 +146,7 @@
 
                                             <ul class="product-chose">
                                                 <li><a href="#"><i class="add-to-wishlist fa fa-eye"></i></a></li>
-                                                <li><a onclick="cart.add('1000 ')"><i
+                                                <li><a onclick='cart.add("1000")'><i
                                                             class="add-to-wishlist fa-solid fa-cart-shopping"></i></a>
                                                 </li>
                                             </ul>
@@ -325,7 +322,7 @@
 
             echo '<div class="row property__gallery '."line_".''.($i+1).' owl-carousel  ">';
 
-            $homeCtrl->mainProduct(json_decode($productsListsMenu[$i], true));
+            echo $homeCtrl->mainProduct(json_decode($productsListsMenu[$i], true));
 
             echo ' </div> <div class="btn-all text-center pt-3"> <a href="homepage.html" class="primary-btn all-product"> Xem tất cả sản phẩm</a>
                 </div> </div> </section>';

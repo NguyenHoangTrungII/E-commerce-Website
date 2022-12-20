@@ -15,7 +15,7 @@
       $columnName = $tableName = null;
       // $columnName = "*";
       $columnName['1']="sanpham.id";
-      $columnName['2']="danhmucsp.ten";
+      $columnName['2']="danhmucsp.ten ten";
       $columnName['3']="nhacungcap.tenncc";
       $columnName['4']="sanpham.tensp";
       $columnName['5']="sanpham.anh";
@@ -46,7 +46,7 @@
 
       //Lấy ảnh thông tin cấu hình
       $tableName2 = "cauhinh";
-      $columnName2['1']='noidung1';
+      $columnName2 ='*';
       // $columnName2['2']='noidung2';
       $whereValue2['id_sp'] = $_GET['id'];
       $SpecInfo= $Model->selectData($columnName2, $tableName2,  $whereValue2);
@@ -63,7 +63,7 @@
 
       //Lấy ảnh mô tả cấu hình
       $tableName3 = "motakithuat";
-      $columnName3['1']='noidung1';
+      $columnName3='*';
       // $columnName2['2']='noidung2';
       $whereValue3['id_sp'] = $_GET['id'];
       $DesInfo= $Model->selectData($columnName3, $tableName3,  $whereValue3);
@@ -226,7 +226,7 @@
                                                           <div class="col-6">
                                                                 <label for="formFile" class="form-label">Xem trước</label>
                                                                   <div id="Preview-filed" >
-                                                                      <img src="<?= $GLOBALS['PRODUCT_DIRECTORY_SHOW']."thumbail/".$productInfo[0]['anh'] ?>"  class ="img-preview-product-edit" alt="<?=$productInfo[0]['anh'] ?>" id="div4" style="width: 20%;">
+                                                                      <img src="<?= $GLOBALS['PRODUCT_DIRECTORY_SHOW'].$productInfo[0]['ten']."/"."thumbnail/".$productInfo[0]['anh'] ?>"  class ="img-preview-product-edit" alt="<?=$productInfo[0]['anh'] ?>" id="div4" style="width: 20%;">
                                                                   </div>
                                                           </div>
                                                     </div>
@@ -249,7 +249,7 @@
                                                                           foreach($imgGarelly AS $eachRow){
                                                                             echo 
                                                                             '
-                                                                            <img src="'.$GLOBALS['PRODUCT_DIRECTORY_SHOW']."garelly/".$eachRow['anh'].'"  class ="img-preview-emp" alt="'.$eachRow['anh'].'"  style="width: 20%;">
+                                                                            <img src="'.$GLOBALS['PRODUCT_DIRECTORY_SHOW'].$productInfo[0]['ten']."/"."gallery/".$eachRow['anh'].'"  class ="img-preview-emp" alt="'.$eachRow['anh'].'"  style="width: 20%;">
                                                                             ';
                                                                           }
                                                                         ?>
@@ -302,9 +302,20 @@
                                             </tr>
                                         </thead>
                                         <tbody>  
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                            <td>
+                                                <a class="add" title="Add" data-toggle="tooltip"><i class="bx bx-list-plus" ></i></a>
+                                                <a class="edit" title="Edit" data-toggle="tooltip"><i class="bx bx-edit-alt"></i></a>
+                                                <a class="delete" title="Delete" data-toggle=""><i class="bx bxs-trash-alt"></i></a>
+                                            </td>
+                                          </tr>
                                           <?php 
                                             foreach($SpecInfo as $eachRow){
-                                              foreach(json_decode($eachRow['noidung1'], true) as $eachRow2){
+                                              // var_dump(json_decode(utf8_encode($eachRow['noidung2']), true));
+                                              foreach(json_decode(($eachRow['noidung1']), true) as $eachRow2){
+                                                
                                                 echo 
                                                   '
                                                   <tr>
@@ -421,7 +432,7 @@
     return data;
     }
 
-   $("#finish-edit").on("click", function(){
+   $("#finish").on("click", function(){
       var info={};
       info['id'] = $("#id-product-edit").val();
       info['tensp'] = $("#product-name-edit").val();
@@ -434,12 +445,14 @@
       info['ngaysx'] = $("#MFG-product-edit").val(); 
       info['tinhtrang'] = document.getElementById("product-status-edit").checked ? 1 : 0;
       info['anh_cu'] = $('.img-preview-product-edit').attr("alt");
+      info['tendanhmuc'] = $('#category_list_edit option:selected').text();
+
 
 
       var img_old_thumbail={};
       var img =$('#Preview-product-gallery-edit').find('img').each(function(index){
         img_old_thumbail[index] = $(this).attr('alt');
-        console.debug(img_old_thumbail);
+        // console.debug(img_old_thumbail);
       })
       
 
@@ -498,12 +511,12 @@
               $("html, body").animate({scrollTop: 0}, 1000);
               //Doi path cho anh, sau nay neu muon sua tiesp se khong bi loi
               //Anh thumbail
-              $(".img-preview-product-edit").attr("src", "../../public/uploads/products/thumbail/"+data['anh_moi']);
+              $(".img-preview-product-edit").attr("src", "../../public/uploads/products/ "+info['tendanhmuc']+"thumbnail/"+data['anh_moi']);
               $(".img-preview-product-edit").attr("alt", data['anh_moi']);
 
               //Anh garelly
               foreach(data['anh_thumbail_cu'])
-              $(".img-preview-product-edit").attr("src", "../../public/uploads/products/thumbail/"+data['anh_moi']);
+              $(".img-preview-product-edit").attr("src", "../../public/uploads/products/"+info['tendanhmuc']+"thumbnail/"+data['anh_moi']);
               $(".img-preview-product-edit").attr("alt", data['anh_moi']);
 
 

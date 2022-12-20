@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homepage</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Nunito:wght@200&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
+
+    <!-- oswal -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- csss -->
+    <link rel="stylesheet" href="./assests/css/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="./assets/css/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./assets/css/css/elegant-icons.css">
+    <link rel="stylesheet" href="./assets/css/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./assets/css/css/nice-select.css">
+    <link rel="stylesheet" href="./assets/css/css/jquery-ui.min.css">
+    <link rel="stylesheet" href="./assets/css/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="./assets/css/css/slicknav.min.css">
+    <link rel="stylesheet" href="./assets/css/base.css">
+    <link rel="stylesheet" href="./assets/css/main.css">
+    <link rel="stylesheet" href="./assets/css/reposive.css">
+</head>
+<body>
+    <div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="row">
+					<div class="col-lg-8">
+						<div class="mb-4">
+							<!-- CREATE A EMPTY SPACE BETWEEN CONTENT -->
+						</div>
+						
+						<h3 class="pb-5">THANH TOÁN TRỰC TUYẾN</h3>
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td style="width: 165px;">VN PAY</td>
+                                    <td style="width: 165px;">PAYPAL</td>
+                                    <td style="width: 165px;">MOMO</td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 165px;">
+                                        <a class="hvr-pop" href="https://sandbox.sslcommerz.com/gwprocess/v3/bankgw/indexhtml.php?mamount=3595.00&amp;ssl_id=221218181837AtUN1H70PWtN71o&amp;Q=REDIRECT&amp;SESSIONKEY=B4AB89F43EB034FA0D4B8E6815CF9FE3&amp;tran_type=success&amp;cardname=visacard">
+                                            <img style="width:60px; height:60px" src="https://sandbox.sslcommerz.com/gwprocess/v3/image/gw1/visa.png" alt="visacard">
+                                        </a>
+                                    </td>
+                                    <td style="width: 165px;">
+                                        <a class="hvr-pop" href="https://sandbox.sslcommerz.com/gwprocess/v3/bankgw/indexhtml.php?mamount=3595.00&amp;ssl_id=221218181837AtUN1H70PWtN71o&amp;Q=REDIRECT&amp;SESSIONKEY=B4AB89F43EB034FA0D4B8E6815CF9FE3&amp;tran_type=success&amp;cardname=mastercard">
+                                            <img style="width:60px; height:60px" src="https://sandbox.sslcommerz.com/gwprocess/v3/image/gw1/master.png" alt="mastercard">
+                                        </a>
+                                    </td>
+                                    <td style="width: 165px;"><a class="hvr-pop" href="https://sandbox.sslcommerz.com/gwprocess/v3/bankgw/indexhtml.php?mamount=3595.00&amp;ssl_id=221218181837AtUN1H70PWtN71o&amp;Q=REDIRECT&amp;SESSIONKEY=B4AB89F43EB034FA0D4B8E6815CF9FE3&amp;tran_type=success&amp;cardname=city_amex">
+                                            <img style="width:60px; height:60px" src="https://sandbox.sslcommerz.com/gwprocess/v3/image/gw1/amex.png" alt="city_amex">
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <hr>
+					</div>
+					<div class="col-lg-4">
+						<div class="mb-4">
+							<!-- CREATE A EMPTY SPACE BETWEEN CONTENT -->
+						</div>
+						<h3 class="pb-5"> Thanh toán khi nhận hàng </h3>
+						<table class="table-rowbreak" style="width:100%">
+							<tbody>
+                                <tr>
+                                    <td>
+                                        <form method="post" action="status.php">
+                                            <div class="form-group-custom-control pb-5" >
+                                                <div class="custom-control custom-checkbox pb-3">
+                                                    <input type="checkbox" name="payment_values" value="1" class="custom-control-input" id="address-save">
+                                                    <label class="custom-control-label" for="address-save">Thanh toán khi nhận hàng</label>
+                                                </div>
+                                                <button type="submit" name="cash_on_delivery" class="btn btn-block btn-sm btn-primary " style="width:100%;">Xác nhận</button>
+                                            </div>
+                                        </form>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+						
+						<div>
+							<h3 class="pb-3">Địa chỉ nhận hàng</h3>
+							<div class="shipping-step-addresses">
+								<div class="shipping-address-box active" style="width: 100%;">
+									<ul class="text-justify" style="font-size: 14px;">
+										<li></li>
+										<li></li>
+										<li>aaaaaaaaaa</li>
+										<li>aaaaaaaa aaaaaa</li>
+										<li>Bangladesh</li>
+										<li>aaaaaaaaaaa</li>
+										<br>
+										<li>
+										</li>										
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
+
+    <!-- Javascript -->
+    <script src="./assets/js/jquery-3.3.1.min.js"></script>
+    <script src="./assets/js/bootstrap.min.js"></script>
+    <script src="./assets/js/jquery.nice-select.min.js"></script>
+    <script src="./assets/js/jquery-ui.min.js"></script>
+    <script src="./assets/js/jquery.slicknav.js"></script>
+    <script src="./assets/js/mixitup.min.js"></script>
+    <script src="./assets/js/owl.carousel.min.js"></script>
+    <script src="./assets/js/popup.js"></script>
+    <script src="./assets/js/main.js"></script>
+    <script src="./assets/js/fitter.js"></script>
+
+<style>
+    .shipping-address-box.active {
+    border-color: #33A0FF;
+}
+</style>

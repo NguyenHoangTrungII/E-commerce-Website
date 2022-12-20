@@ -5,7 +5,18 @@ class HeroBannerController extends Controller
 
     public function cartDetailHeader($cartDetail2){
         $listProduct=" ";
+        // var_dump($cartDetail2);
         foreach($cartDetail2 as $eachRow){
+            $phantram = Controller::checkDiscountMoney($eachRow['phantram']);
+
+            if($eachRow['phantram'] == 0)
+            {
+                $price = Controller::currency_format($eachRow['giagoc']*$phantram);
+            }
+            else{
+                $price = Controller::currency_format($eachRow['giagoc']*$phantram);
+            }
+            
             $listProduct .= 
             '
                     <li>
@@ -15,10 +26,10 @@ class HeroBannerController extends Controller
                                         class="fa fa-remove"></i></a>
                             </div>
                             <a class="cart-img" href="#"><img
-                                    src="'.$GLOBALS['PRODUCT_DIRECTORY_SHOW']."thumbail/".$eachRow['anhsp'].'" alt="#"></a>
+                                    src="'.$GLOBALS['PRODUCT_DIRECTORY_SHOW'].$eachRow['tendanhmuc'] ."/"."thumbnail/".$eachRow['anhsp'].'" alt="#"></a>
                             <div class="cart-product-deatil">
-                                <h4><a href="productdetail.php?id='.$eachRow['id_sp'].'" style="overflow-wrap: break-word;">'.$eachRow['tensp'].'</a></h4>
-                                <p class="quantity">'.$eachRow['soluongsp'].'x- <span class="amount">.'.Controller::currency_format($eachRow['giagoc']*$eachRow['phantram'], "đ") .'</span>
+                                <h4><a class= "name-product" id="'.$eachRow['id_sp'].'"  href="productdetail.php?id='.$eachRow['id_sp'].'" style="overflow-wrap: break-word;">'.$eachRow['tensp'].'</a></h4>
+                                <p class="quantity"> <span class="qty-product"> '.$eachRow['soluongsp'].' </span>x- <span class="amount" style="font-size:14px">.'.$price .'</span>
                                 </p>
                             </div>
                         </div>
@@ -40,18 +51,23 @@ class HeroBannerController extends Controller
     }
 
     public function totalCart($cartDetail){
-        $total =0;
+        // $totalMoney = 0;
+        $price =0;
+
         foreach($cartDetail as $eachRow){
-            $total += $eachRow['giagoc']*$eachRow['phantram'];
+            $phantram = ($eachRow['phantram']);
+
+            $price +=  (int)($eachRow['giagoc']*$phantram*$eachRow['soluongsp']);
         }
 
-        return $total;
+        return $price;
     }
 
     public function checkLogIn($seasionUser, $cartDetail){
         $numberOfProduct = self::countProductInCart($cartDetail);
         $totalMoney = self::totalCart($cartDetail);
         if(!empty($seasionUser) && $numberOfProduct > 0){
+            
             echo 
             '
                 <div class="user-header">
@@ -63,7 +79,7 @@ class HeroBannerController extends Controller
                         </div>
                         <ul class="user-list">
                             <li>
-                                <a href=""><i class="fa-solid fa-gear"></i>
+                                <a href="accountdetails.php#ordered"><i class="fa-solid fa-gear"></i>
                                     <span>Tài khoản của tôi</span></a>
                             </li>
                             <li>
@@ -104,8 +120,8 @@ class HeroBannerController extends Controller
 
                     <div class="shopping-item">
                         <div class="dropdown-cart-header">
-                            <span>'. $numberOfProduct.' SẢN PHẨM</span>
-                            <a href="#">Xem giỏ hàng</a>
+                            <span class="total-count-cart">'. $numberOfProduct.' SẢN PHẨM </span>
+                            <a href="cart.php">Xem giỏ hàng</a>
                         </div>
                         <ul class="shopping-list" style="overflow-y: auto;height: 200px;word-break: break-all;">
                             '.self::cartDetailHeader($cartDetail).'
@@ -181,8 +197,8 @@ class HeroBannerController extends Controller
                             <a href="#">Xem giỏ hàng</a>
                         </div>
                         <ul class="shopping-list" style="overflow-y: auto;height: 200px;word-break: break-all;">
-                            <img src="../assets/img/cart/cart--empty.png" alt="#"></a>
-                            <div><span>Bạn chưa có gì trong giỏ hàng</span></div>
+                            <img class="img-when-no--cart" src="../assets/img/cart/cart--empty.png" alt="#"></a>
+                            <div><span class ="notify-when-no--cart">Bạn chưa có gì trong giỏ hàng</span></div>
                         </ul>
                         
                     </div>

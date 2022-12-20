@@ -90,6 +90,7 @@ class HomeController extends Controller
     }
 
     public function mainProduct($productList){
+        $textProduct ="";
         foreach($productList AS $eachProduct)
 		{
 
@@ -101,11 +102,11 @@ class HomeController extends Controller
                 $labelSale = "";
             }
 
-            $phantram = Controller::checkDiscountMoney($eachProduct['phantram']);
+            $phantram = ($eachProduct['phantram']);
 
             // var_dump($eachProduct['giagoc']*$phantram);
 
-            if($eachProduct['phantram'] == 0)
+            if($eachProduct['phantram'] == 1)
             {
                 $price = '<h4 class="product-price">'.Controller::currency_format($eachProduct['giagoc']*$phantram).'</h4>';
             }
@@ -115,19 +116,20 @@ class HomeController extends Controller
 
             // $phantram = Controller::checkDiscountMoney($eachProduct['phantram']);
 
-			echo 
+            $textProduct .= 
             '
                 <div class="col-lg-3 col-xl-3 col-md-6 item '.strtolower($eachProduct['tenncc']).' ">
                     <div class="product ">
                         <div class="product-img">
-                            <img src="'.$GLOBALS['PRODUCT_DIRECTORY_SHOW'].$eachProduct['tendanhmuc']."/"."Thumbnail/".$eachProduct['anh'].'" alt="">
+                            <img class = "product-img-link" src="'.$GLOBALS['PRODUCT_DIRECTORY_SHOW'].$eachProduct['tendanhmuc']."/"."Thumbnail/".$eachProduct['anh'].'" alt="">
                             <div class="product-label">
                                 '.$labelSale.'
                             </div>
 
                             <ul class="product-chose">
-                                <li><a ><i class="add-to-wishlist fa fa-eye"></i></a></li>
-                                <li><a  onclick="cart.add()" ><i class="add-to-wishlist fa-solid fa-cart-shopping"></i></a>
+                                <li><a href="productdetail.php?id='.$eachProduct['id_sp'].'" ><i class="add-to-wishlist fa fa-eye"></i></a></li>
+                                <input aria-label="quantity" class="input-qty" max="100" min="1" name="" type="number" value="100" hidden>
+                                <li><a class="add_to_cart" id="'.$eachProduct['id_sp'].'" ><i class="add-to-wishlist fa-solid fa-cart-shopping"></i></a>
                                 </li>
                             </ul>
                         </div>
@@ -154,6 +156,8 @@ class HomeController extends Controller
                 
             ';
 		}
+
+        return  $textProduct ;
     }
 
    

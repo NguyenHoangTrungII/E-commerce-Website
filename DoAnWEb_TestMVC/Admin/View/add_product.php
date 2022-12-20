@@ -330,6 +330,8 @@
       info['ngaysx'] = $("#MFG-product-add").val(); 
       info['tinhtrang'] = document.getElementById("product-status-add").checked ? 1 : 0;
       info['soluongton'] = $('#qty-product-add').val();
+      info['tendanhmuc'] = $('#category_list_add option:selected').text();
+
 
       var thongtincauhinh = [];
       var $headers = ["loai", "noidung"];
