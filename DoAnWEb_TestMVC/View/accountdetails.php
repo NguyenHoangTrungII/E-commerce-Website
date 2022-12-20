@@ -141,7 +141,31 @@
 
     $order_Cancel = $Model->selectJoinData($columnName, $tableName, "inner", $joinCondition,  $whereValue);
 
-    // var_dump($order_ConfirmWaitin/g);
+
+
+    //Lấy thông tin chủ tài khoản
+    $columnName = $tableName = $limitPaging = $formatBy= $joinCondition = $whereValue = null;
+    $columnName['1']= "nguoidung.anh anhnguoidung";
+    $columnName['2']= "nguoidung.hoten hoten";
+    $columnName['3']= "nguoidung.sdt sdt";
+    $columnName['4']= "nguoidung.tinh_thanhpho";
+    $columnName['5']= "nguoidung.quan_huyen";
+    $columnName['6']= "nguoidung.phuong_xa";
+    $columnName['7']= "nguoidung.diachi";
+    $columnName['8']= "taikhoan.email ";
+    $columnName['9']= "nguoidung.tenhienthi";
+
+
+    $tableName['MAIN'] = "taikhoan";
+    $tableName['1'] ='nguoidung';
+
+    $whereValue['nguoidung.id'] = $_SESSION['SSCF_login_id'];
+    $joinCondition = array ("1"=>array ('nguoidung.id_taikhoan', 'taikhoan.id'));
+
+    $userInfo = $Model->selectJoinData($columnName, $tableName, "inner", $joinCondition,  $whereValue);
+    // var_dump($userInfo);
+
+
 ?>
 
     <section class=" account-detail-section pt-5">
@@ -153,21 +177,21 @@
                         <div class="profile-tab-nav border">
                             <div class="profile-setting">
                                 <div class="img-circle text-center mb-3">
-                                    <img src="./assets/img/homepage/product-card.jpg" alt="Image" class="shadow">
+                                    <img src="<?= $GLOBALS['USER_DIRECTORY_SHOW'].$userInfo[0]['anhnguoidung'] ?>" alt="anh-dai-dien.jpg" class="shadow">
                                 </div>
-                                <h4 class="text-center">Nguyễn Hoàng Trung</h4>
+                                <h4 class="text-center"><?= $userInfo[0]['tenhienthi'] ?></h4>
                             </div>
                             <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist"
                                 aria-orientation="vertical">
                                 <a href="#info_account" class="nav-link active" id="account-tab" data-toggle="pill" 
                                     role="tab" aria-controls="account" aria-selected="true">
-                                    <i class="fa fa-home text-center mr-1"></i>
+                                    <i class='bx bxs-user-account' ></i>
                                     Tài khoản
                                 </a>
                                 <a class="nav-link" id="password-tab" data-toggle="pill" href="#password" role="tab"
                                     aria-controls="password" aria-selected="false">
-                                    <i class="fa fa-key text-center mr-1"></i>
-                                    Mật khẩu
+                                    <i class='bx bx-lock-open-alt' ></i>
+                                     Mật khẩu
                                 </a>
                                 <!-- <a class="nav-link" id="security-tab" data-toggle="pill" href="#security" role="tab"
                                     aria-controls="security" aria-selected="false">
@@ -176,14 +200,14 @@
                                 </a> -->
                                 <a class="nav-link" id="application-tab" data-toggle="pill" href="#ordered" role="tab"
                                     aria-controls="application" aria-selected="false">
-                                    <i class="fa fa-tv text-center mr-1"></i>
-                                    Đơn hàng
+                                    <i class='bx bx-history'></i>
+                                        Đơn hàng
                                 </a>
-                                <a class="nav-link" id="notification-tab" data-toggle="pill" href="#notification"
+                                <!-- <a class="nav-link" id="notification-tab" data-toggle="pill" href="#notification"
                                     role="tab" aria-controls="notification" aria-selected="false">
                                     <i class="fa fa-bell text-center mr-1"></i>
                                     Thông báo
-                                </a>
+                                </a> -->
                             </div>
                         </div>
                     </div>
@@ -194,91 +218,106 @@
                                 aria-labelledby="account-tab">
                                 <h3 class="mb-4">Cài đặt tài khoản</h3>
                                 <div class="row">
+
+                                    <div class="alert alert-info alert-dismissible" role="alert" hidden >
+                                                This is an info dismissible alert — check it out!
+                                    </div>
+
+                                    <div class="alert alert-danger alert-dismissible" role="alert" hidden>
+                                            This is a danger dismissible alert — check it out!
+                                    </div>
+
                                     <div class="col-md-6">
                                         <div class="form-group account-deatil">
-                                            <label class="form-label" for="basic-default-fullname">Họ
+                                            <label class="form-label" for="name-account">Họ
                                                 tên</label>
-                                            <input type="text" class="form-control" id="basic-default-fullname"
-                                                placeholder="Nhập họ và tên" />
+                                            <input type="text" class="form-control" id="name-account"
+                                                placeholder="Nhập họ và tên" value="<?= $userInfo[0]['hoten']?>"/>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group account-deatil">
-                                            <label class="form-label" for="basic-default-fullname">Tên hiển thị</label>
-                                            <input type="text" class="form-control" id="basic-default-fullname"
-                                                placeholder="Nhập họ và tên" />
+                                            <label class="form-label" for="name-show-account">Tên hiển thị</label>
+                                            <input type="text" class="form-control" id="name-show-account"
+                                                placeholder="Nhập nickname" value="<?= $userInfo[0]['tenhienthi']?>" />
                                         </div>
                                     </div>
 
                                     <div class="col-md-6">
-                                        <label class="form-label" for="basic-default-email">Email</label>
+                                        <label class="form-label" for="email-account">Email</label>
                                         <div class="input-group input-group-merge">
-                                            <input type="text" id="basic-default-email" class="form-control"
-                                                placeholder="diachimail@gmail.com" >
+                                            <input type="text" id="email-account" class="form-control"
+                                                placeholder="diachimail@gmail.com"  value="<?= $userInfo[0]['email']?>">
                                         </div>
                                     </div>
                                         <div class="col-md-6">
                                             <div class="form-group account-deatil">
-                                                <label class="form-label" for="basic-default-phone">Số điện
+                                                <label class="form-label" for="phone-account">Số điện
                                                     thoại</label>
-                                                <input type="text" id="basic-default-phone"
-                                                    class="form-control phone-mask" placeholder="0123456789" />
+                                                <input type="text" id="phone-account"
+                                                    class="form-control phone-mask" placeholder="0123456789"  value="<?= $userInfo[0]['sdt']?>" />
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="defaultSelect" class="form-label">Tỉnh/Thành
+                                                <label for="Provice-account" class="form-label">Tỉnh/Thành
                                                     phố</label>
-                                                <select id="defaultSelect" class="form-select">
-                                                    <option>Chọn tỉnh/thành phố</option>
-                                                    <option value="1">1</option>
+                                                <select id="Provice-account" class="form-select" style="width:100%">
+                                                    <option value="0"><?= $userInfo[0]['tinh_thanhpho']?></option>
+                                                    <!-- <option value="1">1</option>
                                                     <option value="2">2</option>
-                                                    <option value="3">3</option>
+                                                    <option value="3">3</option> -->
                                                 </select>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="defaultSelect" class="form-label">Quận/Huyện</label>
-                                                <select id="defaultSelect" class="form-select">
-                                                    <option>Chọn quận/huyên</option>
-                                                    <option value="1">1</option>
+                                                <label for="District-account" class="form-label">Quận/Huyện</label>
+                                                <select id="District-account" class="form-select" style="width:100%">
+                                                <option value="0"><?= $userInfo[0]['quan_huyen']?></option>
+                                                    <!-- <option value="1">1</option>
                                                     <option value="2">2</option>
-                                                    <option value="3">3</option>
+                                                    <option value="3">3</option> -->
                                                 </select>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="defaultSelect" class="form-label">Phường/Xã</label>
-                                                <select id="defaultSelect" class="form-select">
-                                                    <option>Chọn phường/xã</option>
-                                                    <option value="1">1</option>
+                                                <label for="Town-account" class="form-label">Phường/Xã</label>
+                                                <select id="Town-account" class="form-select" style="width:100%">
+                                                <option value="0"><?= $userInfo[0]['phuong_xa']?></option>
+                                                    <!-- <option value="1">1</option>
                                                     <option value="2">2</option>
-                                                    <option value="3">3</option>
+                                                    <option value="3">3</option> -->
                                                 </select>
                                             </div>
                                         </div>
                                         <div class="col-12">
                                             <div class="mb-3">
-                                                <label class="form-label" for="basic-default-message">Địa chỉ</label>
-                                                <textarea id="basic-default-message" class="form-control"
-                                                    placeholder="Địa chỉ" style="height: 150px;"></textarea>
+                                                <label class="form-label" for="address-account">Địa chỉ</label>
+                                                <textarea id="address-account" class="form-control"
+                                                    placeholder="Địa chỉ" style="height: 150px;"><?= $userInfo[0]['diachi'] ?></textarea>
                                             </div>
                                         </div>
                                     </div>
                                     <div>
-                                        <button class="btn btn-primary account-details">Cập nhật</button>
-                                        <button class="btn btn-light account-details">Hủy</button>
+                                        <button class="update-address btn btn-primary account-details" style="height:44px">Cập nhật</button>
                                     </div>
                                 </div>
                                 <div class="tab-pane fade" id="password" role="tabpanel" aria-labelledby="password-tab">
                                     <h3 class="mb-4">Đặt lại mặt khẩu</h3>
                                     <div class="row">
+                                    <div class="alert alert-info alert-dismissible" role="alert" hidden >
+                                                This is an info dismissible alert — check it out!
+                                    </div>
+
+                                    <div class="alert alert-danger alert-dismissible" role="alert" hidden>
+                                            This is a danger dismissible alert — check it out!
+                                    </div>
                                         <div class="col-md-6">
                                             <div class="form-group account-deatil">
                                                 <label>Mật khẩu cũ</label>
-                                                <input type="password" class="form-control">
+                                                <input type="password" id="passwordold-account" class="form-control">
                                             </div>
                                         </div>
                                     </div>
@@ -286,19 +325,18 @@
                                         <div class="col-md-6">
                                             <div class="form-group account-deatil">
                                                 <label>Mật khẩu mới</label>
-                                                <input type="password" class="form-control">
+                                                <input type="password" id="passwordnew-account" class="form-control">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group account-deatil">
                                                 <label>Xác nhận mật khẩu</label>
-                                                <input type="password" class="form-control">
+                                                <input type="password" id="passwordnew2-account" class="form-control">
                                             </div>
                                         </div>
                                     </div>
                                     <div>
-                                        <button class="btn btn-primary account-details">Đặt lại</button>
-                                        <button class="btn btn-light account-details">Hủy</button>
+                                        <button class=" update-pass btn btn-primary account-details" style="height:44px">Đặt lại</button>
                                     </div>
                                 </div>
                                 
@@ -401,6 +439,116 @@
 ?>
 
 <script>
+    $('.update-pass').on('click', function(){
+        var data = {};
+        data['matkhaucu'] = $('#passwordold-account').val();
+        data['matkhaumoi']= $('#passwordnew-account').val();
+        data['matkhaumoi2'] = $('#passwordnew2-account').val(); 
+
+        console.debug(data);
+
+        $.ajax({
+                url: 'http://localhost/DoAnWeb/DoAnWeb_testMVC/Controller/AccountDeatails/update-pass.php',
+                type: 'POST',
+                data: {
+                    data :JSON.stringify(data)
+                },
+                dataType:"text",
+                success: function(response) {
+                    if(response == 1){
+                        $('.alert.alert-info.alert-dismissible').text("Cập nhật thông tin thành công");
+                        $('.alert.alert-danger.alert-dismissible').prop('hidden', true);
+                        $('.alert.alert-info.alert-dismissible').prop('hidden', false);
+
+
+                        setTimeout(function(){
+                            $('.alert.alert-info.alert-dismissible').prop('hidden', true);
+                        }, 2000)
+
+                    }
+                    else if(response == -1){
+                        $('.alert.alert-danger.alert-dismissible').text("Đã có lỗi xảy ra !! vui lòng thử lại sau");
+                        $('.alert.alert-info.alert-dismissible').prop('hidden', true);
+                        $('.alert.alert-danger.alert-dismissible').prop('hidden', false);
+                        setTimeout(function(){
+                            $('.alert.alert-danger.alert-dismissible').prop('hidden', true);
+                        }, 2000)
+                    }
+                    else{
+                        $('.alert.alert-danger.alert-dismissible').text(response);
+                        $('.alert.alert-info.alert-dismissible').prop('hidden', true);
+                        $('.alert.alert-danger.alert-dismissible').prop('hidden', false);
+                        setTimeout(function(){
+                            $('.alert.alert-danger.alert-dismissible').prop('hidden', true);
+                        }, 2000)
+                    }
+                }
+            });
+
+
+    })
+</script>
+    
+<script>
+
+function checkAdress(data_value, data_text){
+        var data;
+        if(data_value == -1 ){
+            data="";
+        } else{
+            data= data_text;
+        }
+        return data;
+    }
+
+    $('.update-address').on('click', function(){
+        var data = {};
+        data['hoten'] = $('#name-account').val();
+        data['tenhienthi']= $('#name-show-account').val();
+        data['email'] = $('#email-account').val(); 
+        data['sdt'] = $('#phone-account').val();
+        data['tinh_thanhpho']  = checkAdress($( "#Provice-account option:selected" ).val(), $( "#Provice-account option:selected" ).text());
+        data['quan_huyen'] = checkAdress($( "#District-account  option:selected" ).val(), $( "#District-account option:selected" ).text());
+       data['phuong_xa'] = checkAdress($( "#Town-account  option:selected" ).val(), $( "#Town-account option:selected" ).text());
+        data['diachi'] = $('#address-account').val();
+
+        console.debug(data);
+
+        $.ajax({
+                url: 'http://localhost/DoAnWeb/DoAnWeb_testMVC/Controller/AccountDeatails/update-info.php',
+                type: 'POST',
+                data: {
+                    data :JSON.stringify(data)
+                },
+                dataType:"text",
+                success: function(response) {
+                    if(response['tinhtrang'] != -1){
+                        $('.alert.alert-info.alert-dismissible').text("Cập nhật thông tin thành công");
+                        $('.alert.alert-danger.alert-dismissible').prop('hidden', true);
+                        $('.alert.alert-info.alert-dismissible').prop('hidden', false);
+
+
+                        setTimeout(function(){
+                            $('.alert.alert-info.alert-dismissible').prop('hidden', true);
+                        }, 2000)
+
+                    }
+                    else{
+                        $('.alert.alert-danger.alert-dismissible').text("Đã có lỗi xảy ra !! vui lòng thử lại sau");
+                        $('.alert.alert-info.alert-dismissible').prop('hidden', true);
+                        $('.alert.alert-danger.alert-dismissible').prop('hidden', false);
+                        setTimeout(function(){
+                            $('.alert.alert-danger.alert-dismissible').prop('hidden', true);
+                        }, 2000)
+                    }
+                }
+            });
+
+
+    })
+</script>
+
+<script>
     $(document).ready(function() {
     if (location.hash) {
         $("a[href='" + location.hash + "']").tab("show");
@@ -479,25 +627,94 @@
     })
 </script>
 
-<!-- <script type="text/javascript">
-    $(function() {
-        $("a[data-tab-destination]").on('click', function(e) { 
-            e.preventDefault();
-            // Works
-            var tab = $(this).attr('data-tab-destination');
+<script>
+    $(document).ready(function() {
 
-            $("#" + tab).click();
+        $('#Provice-account').select2(
+        {
+            width: 'resolve'
+        }
+        );
 
-            // Doesn't work
-            var hashtag = $(this.hash);
+        $('#District-account').select2(
+        {
+            width: 'resolve'
+        }
+        );
 
-            var target = hashtag.length ? hashtag : $('[name=' + this.hash.slice(1) + ']');
+        $('#Town-account').select2(
+        {
+            width: 'resolve'
+        }
+        );
 
-            if (target.length) {
-                $("#B").removeClass("fade").addClass("active");
-                $('html, body').animate({scrollTop: target.offset().top}, 1000);
-                return false;
-            }
-        });
     });
-</script> -->
+</script>
+
+<script>
+    $.ajax({
+        url: "http://localhost/DoAnWeb/DoAnWeb_testMVC/admin/Controller/Formcheck/LayTinh.php",       
+        dataType:'json',         
+        success: function(data){     
+            // $("#Provice").html("");
+            $("#Provice-account").append($('<option>', {value:-1, text:"Chọn tỉnh/thành phố"}));
+            for (i=0; i<data.length; i++){            
+                var provice = data[i]; //vd  {idTinh:'6', loai:'Tỉnh', tenTinh:'Bắc Kạn'}
+                
+                // console.log(provice);
+                $('#Provice-account').append($('<option>', {value:provice['id'], text:provice['name']}));
+            }
+
+            $("#Provice-account").on("change", function(e){
+                $("#Town-account").html("");
+                $("#Town-account").append($('<option>', {value:-1, text:"Chọn Phường/xã"}));
+                var Provice_id = $( "#Provice-account option:selected" ).val();
+                console.log(Provice_id);
+                $.ajax({
+                    url: "http://localhost/DoAnWeb/DoAnWeb_testMVC/admin/Controller/Formcheck/GetDistrict.php?ProviceId=" + Provice_id,
+                    dataType:'json',         
+                    success: function(data){  
+                        $("#District-account").html("");
+                        $("#District-account").append($('<option>', {value:-1, text:"Chọn quận/huyện"}));
+                        
+                        for (i=0; i<data.length; i++){            
+                        var district = data[i]; //vd  {idTinh:'6', loai:'Tỉnh', tenTinh:'Bắc Kạn'}
+                        
+                        // console.log(district);
+                        $('#District-account').append($('<option>', {value:district['id'], text:district['name']}));
+                        }  
+
+                        // setPrice();
+                        // update_total_price();
+                        
+                        $("#District-account").on("change", function(e){
+                            var District_id = $( "#District-account option:selected" ).val();
+                            console.log(District_id);
+                            $.ajax({
+                                url: "http://localhost/DoAnWeb/DoAnWeb_testMVC/admin/Controller/Formcheck/GetTown.php?DistrictId=" + District_id,
+                                dataType:'json',         
+                                success: function(data){  
+                                    // console.log(data);
+                                    $("#Town-account").html("");
+                                    $("#Town-account").append($('<option>', {value:-1, text:"Chọn Phường/xã"}));
+                                    for (i=0; i<data.length; i++){            
+                                    var town = data[i]; //vd  {idTinh:'6', loai:'Tỉnh', tenTinh:'Bắc Kạn'}
+                                    
+                                    $('#Town-account').append($('<option>', {value:town['id'], text:town['name']}));
+                                    }                  
+                                }
+
+                    
+                             });
+                        });
+                    }
+
+                    
+                });
+            });
+
+        }
+    });
+
+</script>
+

@@ -416,7 +416,7 @@
     $("#phone-edit-value").on("focusout keyup keydown blur change",function(e){
         var phone_input = $("#phone-edit-value").val();
         //Tương tư như email
-        console.debug(phone_input_old);
+        // console.debug(phone_input_old);
         if(phone_input != phone_input_old){
             $.ajax({
             url: "http://localhost/DoAnWeb/DoAnWeb_testMVC/admin/Controller/Formcheck/phone.php",

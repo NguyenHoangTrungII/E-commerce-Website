@@ -63,6 +63,17 @@
 						
 						<h3 class="pb-5">THÔNG TIN ĐƠN HÀNG</h3>
 
+                        <div class="alert alert-danger alert-dismissible" role="alert" hidden>
+                                This is a danger dismissible alert — check it out!
+                        </div>
+
+
+
+                        <div class="alert alert-info alert-dismissible" role="alert" hidden >
+                                    This is an info dismissible alert — check it out!
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+
                         <table class="table table" >
                             <thead>
                                 <tr>
@@ -113,7 +124,7 @@
                             <h3 class="pb-3">Địa chỉ nhận hàng</h3>
                             <div class="shipping-step-addresses">
                                 <div class="shipping-address-box active" style="width: 100%;   height: 140px;">
-                                    <ul class="text-justify" style="font-size: 14px;">
+                                    <ul class="text-justify pt-3" style="font-size: 14px;">
                                         <li>
                                             <span class="address-provice">aaaaaaaaaa</span>
                                             <sapn class="address-district">aaaaaaaa aaaaaa</sapn>
@@ -156,6 +167,17 @@
                                     <div class="py-3">
                                         <form action="http://localhost/DoAnWeb/DoAnWeb_testMVC/Controller/Payment/VNPAY/create_payment.php" id="create_form" method="post">   
                                                 <input type="text" class="total-hidden" name="total-hidden" hidden>
+                                                <input type="text" class="shipfee-hidden" name="shipfee-hidden" hidden>
+                                                <input type="text" class="discount-hidden" name="discount-hidden" hidden>
+                                                <input type="text" class="total-producPrice-hidden" name="total-producPrice-hidden" hidden>
+                                                <input type="text" class="note-order" name="ghichu" hidden>
+                                                <input type="text" class="phone-number" name="sdt" hidden>
+                                                <input type="text" class="provice-order" name="tinh_thanhpho" hidden>
+                                                <input type="text" class="district-order" name="quan_huyen" hidden>
+                                                <input type="text" class="town-order" name="phuong_xa" hidden>
+                                                <input type="text" class="address-order" name="diachi" hidden>
+
+
                                                 <button type="submit" name="redirect" id="redirect" class="btn btn-primary btn-block" style="height:46px; font-size: 19px">Thanh toán</button>
                                         </form> 
                                     </div>
@@ -166,16 +188,29 @@
                                         Thanh toán bằng MOMO
                                     </span>
 
-                                    <form class="" method="POST" target="_blank" enctype="application/x-www-form-urlencoded"
-                                                        action="http://localhost/DoAnWeb/DoAnWeb_testMVC/Controller/Payment/MOMO/MOMO_QR.php">
-                                            <button type="submit" class="btn btn-primary btn-block" style="height:46px; font-size: 19px">Mã QR</button>
+                                    <form class="" method="POST" target="_blank" enctype="application/x-www-form-urlencoded" action="http://localhost/DoAnWeb/DoAnWeb_testMVC/Controller/Payment/MOMO/MOMO_QR.php">
+                                        <button type="submit" class="btn btn-primary btn-block" style="height:46px; font-size: 19px;background-color:#D82D88;border-color:#D82D88">
+                                        <!-- <img src="../assets//img/svg_momo/momo_circle_pinkbg.svg" alt="" style="width: 35px; padding-right:10px"> -->
+                                            Mã QR
+                                        </button>
                                     </form>
                                    
                                     <div class="py-3">
-                                        <form class="" method="POST" target="_blank" enctype="application/x-www-form-urlencoded"
-                                                        action="http://localhost/DoAnWeb/DoAnWeb_testMVC/Controller/Payment/MOMO/MOMO_ATM.php">
-                                            <button type="submit" class="btn btn-primary btn-block" style="height:46px; font-size: 19px">ATM</button>
+                                        <form class="" method="POST" target="_blank" enctype="application/x-www-form-urlencoded"  action="http://localhost/DoAnWeb/DoAnWeb_testMVC/Controller/Payment/MOMO/MOMO_ATM.php">
+                                                <input type="text" class="total-hidden" name="total-hidden" hidden>
+                                                <input type="text" class="shipfee-hidden" name="shipfee-hidden" hidden>
+                                                <input type="text" class="discount-hidden" name="discount-hidden" hidden>
+                                                <input type="text" class="total-producPrice-hidden" name="total-producPrice-hidden" hidden>
+                                                <input type="text" class="note-order" name="ghichu" hidden>
+                                                <input type="text" class="phone-number" name="sdt" hidden>
+                                                <input type="text" class="provice-order" name="tinh_thanhpho" hidden>
+                                                <input type="text" class="district-order" name="quan_huyen" hidden>
+                                                <input type="text" class="town-order" name="phuong_xa" hidden>
+                                                <input type="text" class="address-order" name="diachi" hidden>
+                                            <button type="submit" class="btn btn-primary btn-block" style="height:46px; font-size: 19px;background-color:#D82D88;border-color:#D82D88">ATM</button>
                                         </form>
+
+                                        
                                     </div>
                                     
                                 </tr>
@@ -184,16 +219,30 @@
                                 <tr>
                                     <td>
                                         <div class="pb-3">
-                                            <form method="post" action="status.php">
+                                            <!-- <form method="post" > -->
                                                 <div class="form-group-custom-control pb-5" >
                                                     <div class="custom-control custom-checkbox pb-3">
-                                                        <input type="checkbox" name="payment_values" value="1" class="custom-control-input" id="address-save">
+                                                        <!-- <input type="checkbox" name="payment_values" value="1" class="cash-on-dilevery-cb custom-control-input" id="address-save"> -->
                                                         <label class="custom-control-label" for="address-save">Thanh toán khi nhận hàng</label>
                                                     </div>
+
+                                                    <form class="" method="POST" target="_blank" enctype="application/x-www-form-urlencoded"  action="http://localhost/DoAnWeb/DoAnWeb_testMVC/Controller/Payment/COD/cash-on-delivery.php">
+                                                        <input type="text" class="total-hidden" name="total-hidden" hidden>
+                                                        <input type="text" class="shipfee-hidden" name="shipfee-hidden" hidden>
+                                                        <input type="text" class="discount-hidden" name="discount-hidden" hidden>
+                                                        <input type="text" class="total-producPrice-hidden" name="total-producPrice-hidden" hidden>
+                                                        <input type="text" class="note-order" name="ghichu" hidden>
+                                                        <input type="text" class="phone-number" name="sdt" hidden>
+                                                        <input type="text" class="provice-order" name="tinh_thanhpho" hidden>
+                                                        <input type="text" class="district-order" name="quan_huyen" hidden>
+                                                        <input type="text" class="town-order" name="phuong_xa" hidden>
+                                                        <input type="text" class="address-order" name="diachi" hidden>
+                                                        <button type="submit" name="cash_on_delivery" class="cash-on-dilevery btn btn-block btn-sm btn-primary " style="width:100%; height:46px;font-size:19px;">Xác nhận</button>
+                                                    </form>
                                                     
-                                                    <button type="submit" name="cash_on_delivery" class="btn btn-block btn-sm btn-primary " style="width:100%; height:46px;font-size:19px;">Xác nhận</button>
+                                                    <!-- <button type="button" name="cash_on_delivery" class="cash-on-dilevery btn btn-block btn-sm btn-primary " style="width:100%; height:46px;font-size:19px;">Xác nhận</button> -->
                                                 </div>
-                                            </form>
+                                            <!-- </form> -->
                                         </div>
                                     </td>
                                 </tr>
@@ -214,6 +263,22 @@
     include("include/footer.php");
 ?>
 
+
+<!-- <script>
+    $('.cash-on-dilevery').on('click', function(){
+        if($('.cash-on-dilevery-cb').checked){
+
+
+        }
+        else{
+            $('.alert.alert-danger.alert-dismissible').text("Vui lòng chọn hình thức thanh toán");
+            $('.alert.alert-info.alert-dismissible').prop('hidden', true);
+            $('.alert.alert-danger.alert-dismissible').prop('hidden', false);
+            $("html, body").animate({scrollTop: 0}, 10000);
+        }
+    })
+</script> -->
+
 <script>
     var myData = JSON.parse(localStorage['address_customer']);
     // localStorage.removeItem( 'address_customer' );
@@ -223,7 +288,12 @@
     $('.address-district').html(myData['quan_huyen']  + " - ");
     $('.address-town').html(myData['phuong_xa']);
     $('.address-detail').html(myData['diachi']);
-
+    $('.note-order').attr("value", myData['ghichu']);
+    $('.phone-number').attr("value", myData['sdt']);
+    $('.provice-order').attr("value", myData['tinh_thanhpho']);
+    $('.district-order').attr("value", myData['quan_huyen']);
+    $('.town-order').attr("value", myData['phuong_xa']);
+    $('.address-order').attr("value", myData['diachi']);
 
 </script>
 
@@ -236,9 +306,9 @@
     $('.discount-price').html(historyPrice['discount']);
     $('.total-order-finish').html(historyPrice['total_price_order']);
     $('.total-hidden').attr("value", historyPrice['total_price_order'].replace(/\D/g, ""));
-
-    
-
+    $('.shipfee-hidden').attr("value", historyPrice['ship_fee'].replace(/\D/g, ""));
+    $('.total-producPrice-hidden').attr("value", historyPrice['total_price_product'].replace(/\D/g, ""));
+    $('.iscount-hidden').attr("value", historyPrice['discount'].replace(/\D/g, ""));
 </script>
 
 <script>

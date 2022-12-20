@@ -143,7 +143,7 @@
     <link rel="stylesheet" href="../assets/css/css/owl.carousel.min.css">
     <link rel="stylesheet" href="../assets/css/css/slicknav.min.css">
     <link rel="stylesheet" href="../assets/css/base.css">
-    <link rel="stylesheet" href="../assets/js/main.css">
+    <link rel="stylesheet" href="../assets/css/main.css">
     <link rel="stylesheet" href="../assets/css/reposive.css">
     <link rel="stylesheet" href="../assets/css/popup.css">
     <link rel="stylesheet" href="../assets/css/css/toggle-switchy.css">
@@ -167,7 +167,7 @@
     <!-- Wrapper for mobile -->
     <div class="mobile__menu__wrapper">
         <div class="mobile__menu__logo">
-            <a href="#">LOGO</a>
+            <a href="index.php">LOGO</a>
         </div>
         <hr>
         <div class="mobile__menu__widget">
@@ -244,7 +244,7 @@
                     <!-- Header logo -->
                     <div class="col-lg-3 col-md-3">
                         <div class="header__logo">
-                            <h3>LOGO</h3>
+                            <h3> <a href="index.php">LOGO</a></h3>
                         </div>
                     </div>
 

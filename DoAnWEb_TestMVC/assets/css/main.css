@@ -4361,9 +4361,9 @@ input[type=range]::-webkit-slider-thumb {
 .action{
   margin-top: auto;
 }
-img {
+/* img {
 	max-width: 80%;
-}
+} */
 
 .preview {
 	display: -webkit-box;

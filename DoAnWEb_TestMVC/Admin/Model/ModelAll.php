@@ -47,7 +47,7 @@ class ModelAll
 		catch(Exception $e) 
 		{
 			// $this->connection->rollBack();
-			return -1;
+			return $e;
 		}
 	}
 	

@@ -102,11 +102,11 @@ class HomeController extends Controller
                 $labelSale = "";
             }
 
-            $phantram = Controller::checkDiscountMoney($eachProduct['phantram']);
+            $phantram = ($eachProduct['phantram']);
 
             // var_dump($eachProduct['giagoc']*$phantram);
 
-            if($eachProduct['phantram'] == 0)
+            if($eachProduct['phantram'] == 1)
             {
                 $price = '<h4 class="product-price">'.Controller::currency_format($eachProduct['giagoc']*$phantram).'</h4>';
             }

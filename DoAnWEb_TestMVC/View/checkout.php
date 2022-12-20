@@ -20,8 +20,6 @@
     $whereValue['id '] = $_SESSION['SSCF_login_id'];
 
     $adressUser = $Model->selectData($columnName, $tableName, $whereValue);
-    var_dump($adressUser);
-
 ?>
 
     <!-- Breadcrumb Section Begin -->
@@ -216,6 +214,7 @@
 <!-- set thông tin cho bảng giá -->
 <script>
      
+     setPrice();
 
     function total_AfterUpdate(){
         var total_product = parseInt($('.total-price-product').text().replace(/\D/g, "")); 
@@ -246,19 +245,17 @@
     }
 
 
-    if(localStorage['history-cart-price'] != "")
-    {
-        var historyPrice = JSON.parse(localStorage['history-cart-price']);
-        console.debug(historyPrice);
-        $('.total-price-product').html(historyPrice['total_price_product']);
-        $('.shipping-free').html(historyPrice['ship_fee']);
-        $('.discount-price').html(historyPrice['discount']);
-        $('.total-order-finish').html(historyPrice['total_price_order']);
-    }
-    else{
-        setPrice();
-        update_total_price();
-    }
+    // if(localStorage['history-cart-price'] != "")
+    // {
+    //     var historyPrice = JSON.parse(localStorage['history-cart-price']);
+    //     console.debug(historyPrice);
+    //     $('.total-price-product').html(historyPrice['total_price_product']);
+    //     $('.shipping-free').html(historyPrice['ship_fee']);
+    //     $('.discount-price').html(historyPrice['discount']);
+    //     $('.total-order-finish').html(historyPrice['total_price_order']);
+    // }
+    // else{
+    // }
 
 
 </script>
@@ -352,7 +349,7 @@
                         }  
 
                         setPrice();
-                        update_total_price();
+                        // update_total_price();
                         
                         $("#District").on("change", function(e){
                             var District_id = $( "#District option:selected" ).val();

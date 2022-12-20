@@ -14,6 +14,7 @@
     $flag1= false;
     $sql = "  ";
     $sql1=" ";
+    $sql2 =" ";
     $info_array = json_decode($_POST['brand'], true);
     $price_array = json_decode($_POST['price'], true);
 
