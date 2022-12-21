@@ -1,6 +1,6 @@
 <?php
-include('../../Model/ModelAll.php');
-include('../../Controller/Controller.php');
+require_once('../../Model/ModelAll.php');
+require_once('../../Controller/Controller.php');
 require("../../config/databse.php");
 require("../../config/site.php");
 

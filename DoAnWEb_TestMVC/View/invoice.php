@@ -1,10 +1,6 @@
 
 <?php
     include("include/top.php");
-
-
-
-
 ?>
 
 <?php
@@ -36,92 +32,14 @@
 	}
 
 	if(isset($_GET['partnerCode'])){
-		$columnName = $tableName = $whereValue = null;
-		$tableName = "donhang";
-		$columnName['id'] = $_GET['orderId'];;
-		$columnName['id_nguoidung'] = $_SESSION['SSCF_login_id'];
-		$columnName['giatri'] =$POST['total_hidden'];
-		$columnName['tongtienhang'] =(int) $POST['total_producPrice_hidden'] -(int) $POST['discount_hidden'];
-		$columnName['tienship'] =$POST['shipfee_hidden'];
-		$columnName['ngaydat'] = date("Y/m/d");
-		$columnName['pt_thanhtoan'] = 2;
-		$columnName['ghichu'] = $POST['ghichu'];
-		$columnName['sdt'] = $POST['sdt'];
 		
-		$insertOrder = $Model->insertData($tableName,$columnName );
-		
-		if($insertOrder ==-1){
-			var_dump("0");
-			exit();
-		}
-		
-		
-		$columnName = $tableName = $whereValue = null;
-		$tableName = "diachinhanhang";
-		$columnName['id_donhang'] = $_GET['orderId'];;
-		$columnName['id_nguoidung'] = $_SESSION['SSCF_login_id'];
-		$columnName['diachi'] =$POST['tinh_thanhpho']. ", ".$POST['quan_huyen']. ", ".$POST['phuong_xa']. ", ".$POST['diachi'];
-		
-		$insertOrderAddress = $Model->insertData($tableName,$columnName );
-		
-		if($insertOrderAddress == -1){
-			var_dump("1");
-			exit();
-		}
-		
-		//Lấy sản phẩm của đơn hàng của khách hàng trong giỏ hàng
-		$columnName = $tableName = $limitPaging = $formatBy= $joinCondition = $whereValue = null;
-		$columnName['1']= "sanpham.anh anhsp";
-		$columnName['2']= "sanpham.tensp tensp";
-		$columnName['3']= "sanpham.giagoc giagoc";
-		$columnName['4']= "sanpham.phantram phantram";
-		$columnName['5']= "danhmucsp.ten tendanhmuc";
-		$columnName['6']= "ct_giohang.soluong soluongsp";
-		$columnName['7']= "sanpham.id idsp";    
-		$tableName['MAIN'] = "giohang";
-		$tableName['1'] ='ct_giohang';
-		$tableName['2'] ='sanpham';
-		$tableName['3'] ='danhmucsp';
-		$whereValue['giohang.id_user'] = $_SESSION['SSCF_login_id'];
-		
-		$joinCondition = array ("1"=>array ('giohang.id', 'ct_giohang.id_giohang'), "2"=>array('ct_giohang.id_sp', 'sanpham.id'), "3"=>array('danhmucsp.id', 'sanpham.id_danhmuc'));
-		
-		$cartIntoOrder = $Model->selectJoinData($columnName, $tableName, "inner", $joinCondition,  $whereValue);
-		
-		foreach($cartIntoOrder as $eachProduct){
-			$columnName = $tableName = $whereValue = null;
-			$tableName = "ctdh";
-			$columnName['id_donhang'] = $_GET['orderId'];;
-			$columnName['id_sp'] =  $eachProduct['idsp'];
-			$columnName['soluong'] = $eachProduct['soluongsp'];
-			$columnName['giasp'] = $eachProduct['giagoc']*$eachProduct['phantram'];
-			$insertOrderDetail = $Model->insertData($tableName,$columnName );
-		
-			if($insertOrderDetail ==-1){
-				var_dump("3");
-				exit();
-			}
-		
-		}
-		
-		$columnName = $tableName = $whereValue = null;
-		$tableName = "giohang";
-		$whereValue['id_user']= $_SESSION['SSCF_login_id'];
-		$deleteCart = $Model->deleteData($tableName,$columnName );
-		
-		if($deleteCart ==-1){
-			var_dump("4");
-		
-			exit();
-		}
-
 		//Thêm dữ liệu vào bảng vnp
 		$columnName = $tableName = $whereValue = null;
-		$tableName = "vnpay";
+		$tableName = "momo";
 		$columnName['id_giaodich'] = $_GET['requestId'];
 		$columnName['id_donhang'] =  $_GET['orderId'];
 		$columnName['loai'] = $_GET['orderType'];
-		$columnName['trangthai'] =$_GET['resultCode'];
+		$columnName['tinhtrang'] =$_GET['resultCode'];
 		$dateTime = $_GET['extraData'];
 		$date = DateTime::createFromFormat('YmdHis', $dateTime);
 		$thoigian = $date->format('Y-m-d H:i:s');	
@@ -129,7 +47,10 @@
 		$columnName['tongtien'] = $_GET['amount'];
 		$columnName['noidung'] = $_GET['orderInfo'];
 
+		var_dump($columnName);
+
 		$insertMOMO= $Model->insertData($tableName,$columnName );
+
 		$Model->connection->commit();
 		$_SESSION['SSCF_order_id'] = $_GET['orderId'];
 
@@ -150,7 +71,7 @@
 	$joinCondition = array ("1"=>array ('donhang.id', 'ctdh.id_donhang'), "2"=>array ('ctdh.id_sp', 'sanpham.id'));
 
 	$OrderDetail = $Model->selectJoinData($columnName, $tableName, "inner", $joinCondition,  $whereValue);
-	var_dump($OrderDetail);
+	// var_dump($OrderDetail);
 ?>
 
     <!-- Breadcrumb Section Begin -->
@@ -349,57 +270,98 @@
 	var url = new URL(url_string);
 	var status = url.searchParams.get("vnp_ResponseCode");
 	var vnp_TxnRef = url.searchParams.get("vnp_TxnRef");
+	var orderId =  url.searchParams.get("orderId");
 
-	console.debug(vnp_TxnRef);
-
-	// var tvid = url.searchParams.get("id");	
-	//Gửi dữ liệu nhận đơn bằng ajax lên trang này
 	var myData = JSON.parse(localStorage['address_customer']);
-    var tinh_thanhpho = myData['tinh_thanhpho'];
-    var quan_huyen = myData['quan_huyen'];
-    var phuong_xa = (myData['phuong_xa']);
-   var diachi = (myData['diachi']);
-   var sdt = (myData['sdt']);
-   var ghichu = (myData['ghichu']);
-
-
-
+	var tinh_thanhpho = myData['tinh_thanhpho'];
+	var quan_huyen = myData['quan_huyen'];
+	var phuong_xa = (myData['phuong_xa']);
+	var diachi = (myData['diachi']);
+	var sdt = (myData['sdt']);
+	var ghichu = (myData['ghichu']);
 	var historyPrice = JSON.parse(localStorage['history-cart-price']);
     var giatri = (historyPrice['total_price_product'].replace(/\D/g, ""));
    	var phiship = (historyPrice['ship_fee'].replace(/\D/g, ""));
     var giamgia = (historyPrice['discount'].replace(/\D/g, ""));
     var giahang = (historyPrice['total_price_order'].replace(/\D/g, ""));
 
-	// console.debug(giatri);
+	console.debug(vnp_TxnRef);
 
 	var url = window.location.href;
 
 
-	// window.addEventListener('load', function () {
-			$.ajax({
-			url: "http://localhost/doanweb/DoAnWeb_testMVC/Controller/Payment/VNPAY/insert-order.php",
-			type: "POST",
-			data:{
-				ghichu: ghichu,
-				sdt: sdt,
-				tinh_thanhpho: tinh_thanhpho,
-				quan_huyen: quan_huyen,
-				phuong_xa: phuong_xa,
-				diachi:diachi,
-				total_hidden: giatri,
-				shipfee_hidden: phiship,
-				discount_hidden: giamgia,
-				total_producPrice_hidden: giahang,
-				status: status,
-				vnp_TxnRef: vnp_TxnRef,
-				url: url,
+	// var tvid = url.searchParams.get("id");	
+	//Gửi dữ liệu nhận đơn bằng ajax lên trang này
+	if(vnp_TxnRef != null){
+			// window.addEventListener('load', function () {
+		$.ajax({
+		url: "http://localhost/doanweb/DoAnWeb_testMVC/Controller/Payment/VNPAY/insert-order.php",
+		type: "POST",
+		data:{
+			ghichu: ghichu,
+			sdt: sdt,
+			tinh_thanhpho: tinh_thanhpho,
+			quan_huyen: quan_huyen,
+			phuong_xa: phuong_xa,
+			diachi:diachi,
+			total_hidden: giatri,
+			shipfee_hidden: phiship,
+			discount_hidden: giamgia,
+			total_producPrice_hidden: giahang,
+			status: status,
+			vnp_TxnRef: vnp_TxnRef,
+			url: url,
 
-			},
-			success: function(data){
-				
+		},
+		success: function(data){
+			if(data==1){
+				location.reload();
 			}
+		}
 
 	});
+		
+	}
+
+	if((orderId)!= null){
+		$.ajax({
+		url: "http://localhost/doanweb/DoAnWeb_testMVC/Controller/Payment/MOMO/insert-order.php",
+		type: "POST",
+		data:{
+			ghichu: ghichu,
+			sdt: sdt,
+			tinh_thanhpho: tinh_thanhpho,
+			quan_huyen: quan_huyen,
+			phuong_xa: phuong_xa,
+			diachi:diachi,
+			total_hidden: giatri,
+			shipfee_hidden: phiship,
+			discount_hidden: giamgia,
+			total_producPrice_hidden: giahang,
+			status: status,
+			orderId: orderId,
+			url: url,
+
+		},
+		success: function(data){
+			if(data==1){
+				location.reload();
+			}
+		}
+
+	});
+	}
+
+
+
+
+
+
+
+	
+
+
+
 
 
 

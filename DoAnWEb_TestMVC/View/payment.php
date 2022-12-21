@@ -264,6 +264,8 @@
 ?>
 
 
+
+
 <!-- <script>
     $('.cash-on-dilevery').on('click', function(){
         if($('.cash-on-dilevery-cb').checked){

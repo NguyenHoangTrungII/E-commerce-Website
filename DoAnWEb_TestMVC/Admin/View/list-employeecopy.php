@@ -1,14 +1,14 @@
 <?php
-    session_start();
-    include("include/session.php");
-    include("include/top.php");
-    include("include/menu.php");
-    include("../Model/ModelAll.php");
-    include("../Controller/Controller.php");
-    include("../config/databse.php");
-	  include("../config/site.php");
-    include("../Model/Pagination.php");
-    include("../Controller/Employee/getall-employee.php");
+    // session_start();
+    require_once("include/menu.php");
+    require_once("include/session.php");
+    require_once("include/top.php");
+    require_once("../Model/ModelAll.php");
+    require_once("../Controller/Controller.php");
+    require_once("../config/databse.php");
+	  require_once("../config/site.php");
+    require_once("../Model/Pagination.php");
+    require_once("../Controller/Employee/getall-employee.php");
 ?>
 <?php
 

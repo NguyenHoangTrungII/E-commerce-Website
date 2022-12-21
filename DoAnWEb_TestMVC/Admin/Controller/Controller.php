@@ -9,15 +9,6 @@
 		public $connection;
 		public function __construct()
 		{
-            // $dsn = 'mysql:dbname=web4.2;host=localhost:4000';
-			// $user = 'root';
-			// $password = '';
-
-			// $this->connection = new PDO($dsn, $user, $password);
-			// $GLOBALS['DBHOST'] = "localhost:4000";
-			// $GLOBALS['DBNAME'] = "web4.2";
-			// $GLOBALS['DBUSER'] = "root";
-			// $GLOBALS['DBPASS'] = "";
 
 			$this->connection = new PDO('mysql:host='.$GLOBALS['DBHOST'].';dbname='.$GLOBALS['DBNAME'].';charset=utf8', $GLOBALS['DBUSER'], $GLOBALS['DBPASS']);
 			$this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -120,6 +111,13 @@
 			}
 			else 
 			return 0;
+		}
+
+		public function checkprivilege($privilege, $linkPrivilege =false){
+			$uri = $linkPrivilege != false ? $linkPrivilege : $_SERVER['REQUEST_URI'];
+			$privilege = implode("|", $privilege);
+			preg_match('/'.$privilege.'/', $uri, $match);
+			return !empty($match);
 		}
 
 	}

@@ -1,6 +1,6 @@
 <?php
     
-    include('../Controller/Controller.php');
+    require_once('../Controller/Controller.php');
 
     $Model = new ModelAll;
     $controller = new Controller;

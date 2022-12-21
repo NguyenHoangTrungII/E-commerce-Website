@@ -1,13 +1,13 @@
 <?php
-    session_start();
-    include("include/session.php");
-    include("include/top.php");
-    include("include/menu.php");
-    include("../Model/ModelAll.php");
-    include("../config/databse.php");
-	  include("../config/site.php");
-    include("../Model/Pagination.php");
-    include("../Controller/Order/getall-order.php");
+    // session_start();
+    require_once("include/menu.php");
+    require_once("include/session.php");
+    require_once("include/top.php");
+    require_once("../Model/ModelAll.php");
+    require_once("../config/databse.php");
+	  require_once("../config/site.php");
+    require_once("../Model/Pagination.php");
+    require_once("../Controller/Order/getall-order.php");
 ?>
 
 <!-- get role -->
@@ -50,6 +50,40 @@ $orderList = getAll($limit, $start);
 
 ?>
 
+<?php
+  ?>
+
+  <?php 
+
+    // if(!$ctrl->checkprivilege( $privilegeUser_array, "delete_orderdetail.php")){
+    //   $edit_status = "hidden";
+    // }else{
+    //   $edit_status = "";
+    // }
+
+    if(!$ctrl->checkprivilege( $privilegeUser_array, "edit_order.php?id=4")){
+      $edit_order_status = "hidden";
+    }else{
+      $edit_order_status  = "";
+    }
+  
+    if(!$ctrl->checkprivilege( $privilegeUser_array, "delete_order.php")){
+      $delete_order_status = "hidden";
+    }else{
+      $delete_order_status = "";
+    }
+  
+    if($edit_order_status == "" || $delete_order_status == ""){
+      $dow_status ="";
+    }
+    else{
+      $dow_status ="hidden";
+    }
+  
+  
+  ?>
+?>
+
         <!-- Content wrapper -->
         <div class="content-wrapper">
           <!-- Content -->
@@ -84,7 +118,7 @@ $orderList = getAll($limit, $start);
                       <th class="ship-code order">Mã vận chuyện</th>
                       <th class="status order">Trạng thái</th>
                       <!-- <th class="payment order">Thanh toán</th> -->
-                      <th class="action order">Thao tác</th>
+                      <th class="action order" <?= $dow_status ?>>Thao tác</th>
 
                     </tr>
                   </thead>
@@ -167,18 +201,16 @@ $orderList = getAll($limit, $start);
                               </td>
                             
                             
-                            <td>
-                              <div class="dropdown">
+                            <td '.$dow_status.'>
+                              <div class="dropdown" '.$dow_status.'>
                                 <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
                                   <i class="bx bx-dots-vertical-rounded"></i>
                                 </button>
                                 <div class="dropdown-menu">
-                                  <a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modalLong"><i
-                                      class="bx bx-info-circle"></i> Xem thông tin chi tiết</a>
 
-                                  <a type="submit" class="dropdown-item" href="edit_order.php?id='.$eachRow['id'].'"><i class="bx bx-edit-alt me-1"></i>
+                                  <a type="submit" class="dropdown-item" href="edit_order.php?id='.$eachRow['id'].'" '.$edit_order_status.'><i class="bx bx-edit-alt me-1"></i>
                                     Sửa</a>
-                                  <p class="btn-delete dropdown-item" data-bs-toggle="modal" data-bs-target="#modalCenter" id='.$eachRow['id'].' href=""><i class="bx bx-trash me-1" ></i> Xóa</p>
+                                  <p class="btn-delete dropdown-item" data-bs-toggle="modal" data-bs-target="#modalCenter" id='.$eachRow['id'].' href="" '.$delete_order_status.'><i class="bx bx-trash me-1" ></i> Xóa</p>
                                 </div>
                               </div>
                             </td>
@@ -198,7 +230,7 @@ $orderList = getAll($limit, $start);
                       <th class="ship-code order">Mã vận chuyện</th>
                       <th class="status order">Trạng thái</th>
                       <!-- <th class="payment order">Thanh toán</th> -->
-                      <th class="action order">Thao tác</th>
+                      <th class="action order" <?= $dow_status ?>>Thao tác</th>
                     </tr>
                   </tfoot>
 

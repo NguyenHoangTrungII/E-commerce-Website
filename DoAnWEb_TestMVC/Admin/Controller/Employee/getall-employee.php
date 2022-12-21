@@ -1,14 +1,5 @@
 <?php
     
-   
-    // include('../Model/ModelAll.php');
-    // include('../Controller/Controller.php');
-
-    // include('../../Controller/EmployeeController.php');
-    // include("../../config/databse.php");
-	// include("../../config/site.php");
-
-
     $Model = new ModelAll;
     $controller = new Controller;
 
@@ -29,7 +20,7 @@
         try
         {
 
-            $query_code = "SELECT COUNT(*) FROM `taikhoan` JOIN `nguoidung` ON taikhoan.id = nguoidung.id_taikhoan";
+            $query_code = "SELECT COUNT(*) FROM `taikhoan` JOIN `nguoidung` ON taikhoan.id = nguoidung.id_taikhoan WHERE vaitro =2";
             $query = $controller->connection->prepare($query_code);
 			$query->execute();
 			$rowSelected = $query->fetchColumn(); 

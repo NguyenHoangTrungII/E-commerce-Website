@@ -3,8 +3,8 @@
     require_once("../../config/databse.php");
     require_once("../../Controller/Controller.php");
     require_once("../../Model/Pagination.php");
-    include("../../Model/ModelAll.php");
-    include("getall-employee.php");
+    require_once("../../Model/ModelAll.php");
+    require_once("getall-employee.php");
 ?>
 <?php
 

@@ -79,10 +79,6 @@
 
         $sliderList = $Model->selectData($columnName, $tableName, $whereValue, $whereCondition, null, null, $formatBy, null);
         // var_dump($sliderList);
-
-
-
-        
     ?>
 
     <meta charset="UTF-8">
@@ -117,22 +113,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap"
         rel="stylesheet">
-
-
-
-    <!-- csss -->
-    <!-- <link rel="stylesheet" href="../../assests/css/css/slicknav.min.css" type="text/css">
-    <link rel="stylesheet" href="../../assets/css/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../../assets/css/css/elegant-icons.css">
-    <link rel="stylesheet" href="../../assets/css/css/font-awesome.min.css">
-    <link rel="stylesheet" href="../../assets/css/css/nice-select.css">
-    <link rel="stylesheet" href="../../assets/css/css/jquery-ui.min.css">
-    <link rel="stylesheet" href="../../assets/css/css/owl.carousel.min.css">
-    <link rel="stylesheet" href="../../assets/css/css/slicknav.min.css">
-    <link rel="stylesheet" href="../../assets/css/base.css">
-    <link rel="stylesheet" href="../../assets/css/main.css">
-    <link rel="stylesheet" href="../../assets/css/reposive.css">
-    <link rel="stylesheet" href="../../assets/css/popup.css"> -->
+    <link rel="stylesheet" href="../../assets/css/popup.css">
 
     <link rel="stylesheet" href="../assets/css/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="../assets/css/css/bootstrap.min.css">
@@ -150,6 +131,7 @@
     <link rel="stylesheet" href="../assets/css/range-srate.css">
     <link rel="stylesheet" href="../assets/css/add_css.css">
     <link rel="stylesheet" href="../assets/css/lightslider.css">
+
 
 
     
@@ -283,105 +265,6 @@
                             <?php 
                                 $heroBannerController->checkLogIn($_SESSION, $cartDetail);
                             ?>
-                            <!-- <div class="header-mid-side--no-login font-weight-bold" style="padding-right: 100px;">
-                                    <a href="">Đăng nhập / Đăng ký</a>
-                            </div> -->
-
-                            <!-- <div class="user-header">
-                                <span>Nội dung</span>
-                                <a><i class=" user-icon-header fa-regular fa-user"></i></a>
-
-                                <div class="user-item">
-                                    <div class="dropdown-user-header">
-                                    </div>
-                                    <ul class="user-list">
-                                        <li>
-                                            <a href=""><i class="fa-solid fa-gear"></i>
-                                                <span>Tài khoản của tôi</span></a>
-                                        </li>
-                                        <li>
-                                            <a href="">
-                                                <i class="fa-solid fa-bag-shopping"></i>
-                                                <span>Đơn mua của tôi</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="">
-                                                <i class="fa-solid fa-lock"></i>
-                                                <span>Đổi mật khẩu</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href=""><i class="fa-solid fa-circle-info"></i>
-                                                <span>Thông tin cá nhân</span></a>
-                                        </li>
-
-                                    </ul>
-                                    <div class="bottom">
-                                        <a href="" class="btn animate">Đăng xuất</a>
-                                        <a href="" class="btn animate">Đăng nhập</a>
-
-                                    </div>
-                                </div>
-                            </div> -->
-
-                            <!-- Cart -->
-                            <!-- <div class="sinlge-bar shopping">
-                                <a href="#" class="single-icon"><i
-                                        class="header-mid-icon fa-solid fa-cart-shopping"></i> <span
-                                        class="total-count">2</span></a>
-
-                                <div class="shopping-item">
-                                    <div class="dropdown-cart-header">
-                                        <span>2 sản phẩm</span>
-                                        <a href="#">Xem giỏ hàng</a>
-                                    </div>
-                                    <ul class="shopping-list">
-                                        <li>
-                                            <div class="content-shopping-list-item">
-                                                <div class="remove-icon">
-                                                    <a href="#" class="remove" title="Xóa sản phẩm"><i
-                                                            class="fa fa-remove"></i></a>
-                                                </div>
-                                                <a class="cart-img" href="#"><img
-                                                        src="./assets/img/homepage/product01.png" alt="#"></a>
-                                                <div class="cart-product-deatil">
-                                                    <h4><a href="#">Tên sản phẩm</a></h4>
-                                                    <p class="quantity">1x - <span class="amount">100.000đ</span>
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="content-shopping-list-item">
-                                                <div class="remove-icon">
-                                                    <a href="#" class="remove" title="Xóa sản phẩm"><i
-                                                            class="fa fa-remove"></i></a>
-                                                </div>
-                                                <a class="cart-img" href="#"><img
-                                                        src="./assets/img/homepage/product01.png" alt="#"></a>
-                                                <div class="cart-product-deatil">
-                                                    <h4><a href="#">Tên sản phẩm</a></h4>
-                                                    <p class="quantity">1x - <span class="amount">100.000đ</span>
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                    <div class="bottom">
-                                        <div class="total">
-                                            <span>Tổng </span>
-                                            <span class="total-amount">235.000đ</span>
-                                        </div>
-                                        <a href="" class="btn animate">Thanh toán</a>
-                                    </div>
-                                </div>
-
-                            </div> -->
-                            <!-- /Cart -->
-
-                            
-
 
                         </div>
 
@@ -452,35 +335,7 @@
                                     ';
                                 }
                             ?>
-                            <!-- <div class="hero-silder owl-carousel">
-                                <div class="col-lg-12">
-                                    <div class="hero__item set-bg" data-setbg="img/hero/banner.jpg">
-                                        <div class="hero__text">
 
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-12">
-                                    <div class="hero__item set-bg" data-setbg="img/hero/banner.jpg">
-                                        <div class="hero__text">
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section> -->
-            <!-- Hero Section End -->
     </header>
-    <!-- Header Section End -->
-
-    <!-- <script>
-        $('#query').keyup(function(){
-				alert("cc");
-			});
-    </script> -->
 
 

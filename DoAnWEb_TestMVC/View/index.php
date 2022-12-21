@@ -44,6 +44,21 @@
     $totalRowSelected = $query->rowCount();
 
 
+    
+    //Sản phẩm gợi ý
+    $sql_code="SELECT sanpham.id id_sp, danhmucsp.ten tendanhmuc, nhacungcap.tenncc tenncc, sanpham.tensp tensp, sanpham.anh , sanpham.giagoc, sanpham.phantram, sanpham.tinhtrang, sanpham.id_danhmuc
+            
+    FROM `sanpham` inner join `nhacungcap` on sanpham.id_thuonghieu  = nhacungcap.id INNER JOIN `danhmucsp` on sanpham.id_danhmuc = danhmucsp.id ORDER BY RAND()  LIMIT 5";
+
+
+    $query = $controller->connection->prepare($sql_code);
+
+
+    $query->execute( );
+
+    $todayProduct = $query->fetchAll(PDO::FETCH_ASSOC);  
+
+
 		
 ?>
     <section class="section">
@@ -105,27 +120,27 @@
                 <div class="module deals-layout1">
                     <div class="head-title">
                         <div class="modtitle">
-                            <span>Flash Sale</span>
+                            <span>GỢI Ý HÔM NAY</span>
                             <div class="cslider-item-timer">
                                 <div class="product_time_maxprice">
                                     <div class="item-time">
                                         <div class="item-timer">
                                             <div class="defaultCountdown-30">
                                                 <div class="time-item time-day">
-                                                    <div class="num-time">00</div>
+                                                    <div class="num-time"><?= date("Y") ?></div>
                                                     <div class="name-time">Ngày </div>
                                                 </div>
                                                 <div class="time-item time-hour">
-                                                    <div class="num-time">00</div>
-                                                    <div class="name-time">Giờ </div>
+                                                    <div class="num-time"><?= date("m") ?></div>
+                                                    <div class="name-time">Tháng </div>
                                                 </div>
                                                 <div class="time-item time-min">
-                                                    <div class="num-time">00</div>
-                                                    <div class="name-time">Phút </div>
+                                                    <div class="num-time"><?= date("d") ?></div>
+                                                    <div class="name-time">Năm </div>
                                                 </div>
                                                 <div class="time-item time-sec">
-                                                    <div class="num-time">00</div>
-                                                    <div class="name-time">Giây </div>
+                                                    <div class="num-time"><?= date("H") ?> giờ</div>
+                                                    <div class="name-time">Giờ </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -137,143 +152,9 @@
                     <div class="modcontent">
                         <div id="so_deal_1" class="so-deal style1">
                             <div class="row property__gallery__flash-sale owl-carousel">
-                                <div class="col-lg-3 col-xl-3 col-md-6">
-                                    <div class="product product__hot--style">
-                                        <div class="product-img">
-                                            <img src="../assets/img/homepage/product-card.jpg" alt="">
-                                            <div class="product-label">
-                                            </div>
-
-                                            <ul class="product-chose">
-                                                <li><a href="#"><i class="add-to-wishlist fa fa-eye"></i></a></li>
-                                                <li><a onclick='cart.add("1000")'><i
-                                                            class="add-to-wishlist fa-solid fa-cart-shopping"></i></a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="product-body">
-                                            <div class="product-another ">
-                                                <p class="product-category">Loại sản phẩm</p>
-                                                <h3 class="product-name"><a href="#">Tên sản phẩm</a></h3>
-                                                <h4 class="product-price">1.000.000đ <del
-                                                        class="product-old-price">1.150.000đ</del>
-                                                </h4>
-                                                <div class="product-rating">
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-3 col-xl-3 col-md-6">
-                                    <div class="product product__hot--style">
-                                        <div class="product-img">
-                                            <img src="../assets/img/homepage/product-card.jpg" alt="">
-                                            <div class="product-label">
-                                                <!-- <span class="sale">-30%</span>
-                                                        <span class="new">MỚI</span> -->
-                                            </div>
-
-                                            <ul class="product-chose">
-                                                <li class="iframe-link btn-button quickview quickview_handler visible-lg" ><a title="Quick view" href="productdetail.html" data-fancybox-type="iframe"><i class="add-to-wishlist fa fa-eye"></i></a></li>
-                                                <li><a href="#"><i
-                                                            class="add-to-wishlist fa-solid fa-cart-shopping"></i></a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="product-body">
-                                            <div class="product-another ">
-                                                <p class="product-category">Loại sản phẩm</p>
-                                                <h3 class="product-name"><a href="#">Tên sản phẩm</a></h3>
-                                                <h4 class="product-price">1.000.000đ <del
-                                                        class="product-old-price">1.150.000đ</del>
-                                                </h4>
-                                                <div class="product-rating">
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-3 col-xl-3 col-md-6">
-                                    <div class="product product__hot--style">
-                                        <div class="product-img">
-                                            <img src="../assets/img/homepage/product-card.jpg" alt="">
-                                            <div class="product-label">
-                                                <!-- <span class="sale">-30%</span>
-                                                        <span class="new">MỚI</span> -->
-                                            </div>
-
-                                            <ul class="product-chose">
-                                                <li><a href="#"><i class="add-to-wishlist fa fa-eye"></i></a></li>
-                                                <li><a href="#"><i
-                                                            class="add-to-wishlist fa-solid fa-cart-shopping"></i></a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="product-body">
-                                            <div class="product-another ">
-                                                <p class="product-category">Loại sản phẩm</p>
-                                                <h3 class="product-name"><a href="#">Tên sản phẩm</a></h3>
-                                                <h4 class="product-price">1.000.000đ <del
-                                                        class="product-old-price">1.150.000đ</del>
-                                                </h4>
-                                                <div class="product-rating">
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-3 col-xl-3 col-md-6">
-                                    <div class="product product__hot--style">
-                                        <div class="product-img">
-                                            <img src="../assets/img/homepage/product-card.jpg" alt="">
-                                            <div class="product-label">
-                                                <!-- <span class="sale">-30%</span>
-                                                        <span class="new">MỚI</span> -->
-                                            </div>
-
-                                            <ul class="product-chose">
-                                                <li><a href="#"><i class="add-to-wishlist fa fa-eye"></i></a></li>
-                                                <li><a href="#"><i
-                                                            class="add-to-wishlist fa-solid fa-cart-shopping"></i></a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="product-body">
-                                            <div class="product-another ">
-                                                <p class="product-category">Loại sản phẩm</p>
-                                                <h3 class="product-name"><a href="#">Tên sản phẩm</a></h3>
-                                                <h4 class="product-price">1.000.000đ <del
-                                                        class="product-old-price">1.150.000đ</del>
-                                                </h4>
-                                                <div class="product-rating">
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                <?php 
+                                    echo $homeCtrl->mainProductToday($todayProduct);
+                                ?>
                             </div>
                         </div>
                     </div>
@@ -324,7 +205,8 @@
 
             echo $homeCtrl->mainProduct(json_decode($productsListsMenu[$i], true));
 
-            echo ' </div> <div class="btn-all text-center pt-3"> <a href="homepage.html" class="primary-btn all-product"> Xem tất cả sản phẩm</a>
+
+            echo ' </div> <div class="btn-all text-center pt-3"> <a href="productlist.php?id='.$decode_category[0]['id'].'" class="primary-btn all-product"> Xem tất cả sản phẩm</a>
                 </div> </div> </section>';
         }
     ?>
@@ -371,190 +253,6 @@
         </div>
     </section>
     <!-- Discount Section End -->
-
-
-    <!-- <section class="choose-product pt-5">
-        <div class="container">
-            <div class="row">
-                <div class="ltabs-wrap">
-                    <div class="ltabs-tabs-container" data-delay="300" data-duration="600" data-effect="starwars"
-                        data-ajaxurl="" data-type_source="0" data-lg="5" data-md="3" data-sm="2" data-xs="1"
-                        data-margin="30">
-                        <div class="ltabs-tabs-wrap">
-                            <span class="ltabs-tab-selected">Mới về</span> <span class="ltabs-tab-arrow">▼</span>
-                            <div class="item-sub-cat">
-                                <ul class="ltabs-tabs cf">
-                                    <li class="ltabs-tab" data-category-id="20"
-                                        data-active-content=".items-category-20"> <span class="ltabs-tab-label">Bán
-                                            chạy</span> </li>
-                                    <li class="ltabs-tab tab-sel" data-category-id="18"
-                                        data-active-content=".items-category-18">
-                                        <span class="ltabs-tab-label">Mới về</span>
-                                    </li>
-                                    <li class="ltabs-tab" data-category-id="25"
-                                        data-active-content=".items-category-25"> <span class="ltabs-tab-label">Nhiều
-                                            đánh giá</span> </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="ltabs-items-container products-list grid">
-                        <div class="ltabs-items ltabs-items-selected items-category-20" data-total="16">
-                            <div class="row">
-                                <div class="col-xl-3">
-                                    <div class="product product__hot--style">
-                                        <div class="product-img">
-                                            <img src="../assets/img/homepage/product-card.jpg" alt="">
-                                            <div class="product-label">
-                                               
-                                            </div>
-
-                                            <ul class="product-chose">
-                                                <li><a href="#"><i class="add-to-wishlist fa fa-eye"></i></a></li>
-                                                <li><a href="#"><i
-                                                            class="add-to-wishlist fa-solid fa-cart-shopping"></i></a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="product-body">
-                                            <div class="product-another ">
-                                                <p class="product-category">Loại sản phẩm</p>
-                                                <h3 class="product-name"><a href="#">Tên sản phẩm</a></h3>
-                                                <h4 class="product-price">1.000.000đ <del
-                                                        class="product-old-price">1.150.000đ</del>
-                                                </h4>
-                                                <div class="product-rating">
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-xl-3">
-                                    <div class="product product__hot--style">
-                                        <div class="product-img">
-                                            <img src="../assets/img/homepage/product-card.jpg" alt="">
-                                            <div class="product-label">
-                                                
-                                            </div>
-
-                                            <ul class="product-chose">
-                                                <li><a href="#"><i class="add-to-wishlist fa fa-eye"></i></a></li>
-                                                <li><a href="#"><i
-                                                            class="add-to-wishlist fa-solid fa-cart-shopping"></i></a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="product-body">
-                                            <div class="product-another ">
-                                                <p class="product-category">Loại sản phẩm</p>
-                                                <h3 class="product-name"><a href="#">Tên sản phẩm</a></h3>
-                                                <h4 class="product-price">1.000.000đ <del
-                                                        class="product-old-price">1.150.000đ</del>
-                                                </h4>
-                                                <div class="product-rating">
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-xl-3">
-                                    <div class="product product__hot--style">
-                                        <div class="product-img">
-                                            <img src="../assets/img/homepage/product-card.jpg" alt="">
-                                            <div class="product-label">
-                                                
-                                            </div>
-
-                                            <ul class="product-chose">
-                                                <li><a href="#"><i class="add-to-wishlist fa fa-eye"></i></a></li>
-                                                <li><a href="#"><i
-                                                            class="add-to-wishlist fa-solid fa-cart-shopping"></i></a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="product-body">
-                                            <div class="product-another ">
-                                                <p class="product-category">Loại sản phẩm</p>
-                                                <h3 class="product-name"><a href="#">Tên sản phẩm</a></h3>
-                                                <h4 class="product-price">1.000.000đ <del
-                                                        class="product-old-price">1.150.000đ</del>
-                                                </h4>
-                                                <div class="product-rating">
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-xl-3">
-                                    <div class="product product__hot--style">
-                                        <div class="product-img">
-                                            <img src="../assets/img/homepage/product-card.jpg" alt="">
-                                            <div class="product-label">
-                                                
-                                            </div>
-
-                                            <ul class="product-chose">
-                                                <li><a href="#"><i class="add-to-wishlist fa fa-eye"></i></a></li>
-                                                <li><a href="#"><i
-                                                            class="add-to-wishlist fa-solid fa-cart-shopping"></i></a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="product-body">
-                                            <div class="product-another ">
-                                                <p class="product-category">Loại sản phẩm</p>
-                                                <h3 class="product-name"><a href="#">Tên sản phẩm</a></h3>
-                                                <h4 class="product-price">1.000.000đ <del
-                                                        class="product-old-price">1.150.000đ</del>
-                                                </h4>
-                                                <div class="product-rating">
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-
-                    </div>
-                    <div class="ltabs-items items-category-18 grid" data-total="16">
-                        <div class="ltabs-loading"></div>
-
-                    </div>
-                    <div class="ltabs-items  items-category-25 grid" data-total="16">
-                        <div class="ltabs-loading"></div>
-                    </div>
-                
-
-                </div>
-            </div>
-        </div>
-    </section> -->
 
     <section class="choosen-product pt-5 pb-5">
         <div class="container">

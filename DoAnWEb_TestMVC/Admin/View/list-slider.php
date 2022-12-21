@@ -1,17 +1,18 @@
 <?php
-    session_start();
-    include("include/session.php");
-    include("include/top.php");
-    include("include/menu.php");
-    include("../Model/ModelAll.php");
-    include("../config/databse.php");
-	  include("../config/site.php");
-    include("../Model/Pagination.php");
-    include("../Controller/Slider/getall-slider.php");
+    // session_start();
+    require_once("include/menu.php");
+    require_once("include/session.php");
+    require_once("include/top.php");
+    require_once("../Model/ModelAll.php");
+    require_once("../config/databse.php");
+	  require_once("../config/site.php");
+    require_once("../Model/Pagination.php");
+    require_once("../Controller/Slider/getall-slider.php");
+
 ?>
 
-<!-- get role -->
 <?php
+
 
 $pagination = new Pagination;
 
@@ -50,6 +51,35 @@ $sliderList = getAll($limit, $start);
 
 ?>
 
+<?php 
+  if(!$ctrl->checkprivilege( $privilegeUser_array, "add_slider.php")){
+    $add_status = "hidden";
+  }else{
+    $add_status = "";
+  }
+
+  if(!$ctrl->checkprivilege( $privilegeUser_array, "edit_slider.php?id=4")){
+    $edit_status = "hidden";
+  }else{
+    $edit_status = "";
+  }
+
+  if(!$ctrl->checkprivilege( $privilegeUser_array, "delete_slider.php")){
+    $delete_status = "hidden";
+  }else{
+    $delete_status = "";
+  }
+
+  if($delete_status == "" || $edit_status == ""){
+    $dow_status ="";
+  }
+  else{
+    $dow_status ="hidden";
+  }
+
+
+?>
+
 
 
         <!-- Content wrapper -->
@@ -74,7 +104,7 @@ $sliderList = getAll($limit, $start);
             <div class="card">
               <div class="card-header header table-user">
                 <h5 class=" card-header">Thông tin silder</h5>
-                <a href="add_slider.php"><button class="btn btn-primary add-btn user" type="button">THÊM</button></a>
+                <a href="add_slider.php"><button class="btn btn-primary add-btn user" type="button" <?= $add_status ?>>THÊM</button></a>
               </div>
               <div class="table-responsive text-nowrap">
                 <table class="table user">
@@ -85,7 +115,7 @@ $sliderList = getAll($limit, $start);
                       <th class="img slider">Ảnh</th>
                       <th class="satus slider">Tình trạng</th>
                       <th class="number slider">Thứ tự</th>
-                      <th class="action slider">Thao tác</th>
+                      <th class="action slider" <?= $dow_status ?>>Thao tác</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -140,18 +170,15 @@ $sliderList = getAll($limit, $start);
                           ' . $eachRow['sothutu'] . '
                           </td>
 
-                        <td>
-                        <div class="dropdown">
+                        <td '.$dow_status.'>
+                        <div class="dropdown" '.$dow_status.'>
                         <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
                           <i class="bx bx-dots-vertical-rounded"></i>
                         </button>
                         <div class="dropdown-menu">
-                          <a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modalLong"><i
-                              class="bx bx-info-circle"></i> Xem thông tin chi tiết</a>
-
-                          <a type="button" class="dropdown-item" href="edit_slider.php?id=' . $eachRow['id'] . '"><i class="bx bx-edit-alt me-1"></i>
+                          <a type="button" class="dropdown-item" href="edit_slider.php?id=' . $eachRow['id'] . '" '.$edit_status.'><i class="bx bx-edit-alt me-1"></i>
                             Sửa</a>
-                          <p class="btn-delete dropdown-item" data-bs-toggle="modal" data-bs-target="#modalCenter" id=' . $eachRow['id'] . ' href=""><i class="bx bx-trash me-1" ></i> Xóa</p>
+                          <p class="btn-delete dropdown-item" data-bs-toggle="modal" data-bs-target="#modalCenter" id=' . $eachRow['id'] . ' href="" '.$delete_status.'><i class="bx bx-trash me-1" ></i> Xóa</p>
                         </div>
                         </div>
                       </td>
@@ -206,7 +233,7 @@ $sliderList = getAll($limit, $start);
                       <th class="img slider">Ảnh</th>
                       <th class="satus slider">Tình trạng</th>
                       <th class="number slider">Thứ tự</th>
-                      <th class="action slider">Thao tác</th>
+                      <th class="action slider" <?= $dow_status ?>>Thao tác</th>
                     </tr>
                   </tfoot>
 

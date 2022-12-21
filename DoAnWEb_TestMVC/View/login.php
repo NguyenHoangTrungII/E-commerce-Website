@@ -110,13 +110,6 @@ if(isset($_POST['customer_login']))
                                         </div>
                                     </div>
 
-                                    <!-- <div class="alert alert-danger alert-dismissible" id ="login-info-error" role="alert" >
-                                        Thông báo realtime login
-                                    </div>
-                                    <div class="alert alert-info alert-dismissible" id ="login-info-success" role="alert" hidden >
-                                        Thông báo realtime login
-                                    </div> -->
-
                                     <form>
 
                                         <div class="form-outline mb-1">

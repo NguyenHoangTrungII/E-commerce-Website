@@ -24,7 +24,7 @@ $paginate['LIMIT']=1;
 $lastID = $Model->selectData($columnName,$tableName, NULL, NULL, NULL, NULL,$formatBy, $paginate );
 
 
-$vnp_TxnRef = ($lastID[0]['id'] +5); //Mã đơn hàng. Trong thực tế Merchant cần insert đơn hàng vào DB và gửi mã này sang VNPAY
+$vnp_TxnRef = ($lastID[0]['id'] +15); //Mã đơn hàng. Trong thực tế Merchant cần insert đơn hàng vào DB và gửi mã này sang VNPAY
 $vnp_OrderInfo = "Thanh toán đơn hàng ".($lastID[0]['id']+1)."";
 $vnp_OrderType = "billpayment";
 $vnp_Amount = $_POST['total-hidden']* 100;

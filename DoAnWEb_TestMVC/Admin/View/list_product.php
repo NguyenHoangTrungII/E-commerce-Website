@@ -1,12 +1,14 @@
 <?php
-    session_start();
-    include("include/session.php");
-    include("include/top.php");
-    include("../Model/ModelAll.php");
-    include("../config/databse.php");
-	  include("../config/site.php");
-    include("../Model/Pagination.php");
-    include("../Controller/product/getall-product.php");
+    // session_start();
+    require_once("include/menu.php");
+
+    require_once("include/session.php");
+    require_once("include/top.php");
+    require_once("../Model/ModelAll.php");
+    require_once("../config/databse.php");
+	  require_once("../config/site.php");
+    require_once("../Model/Pagination.php");
+    require_once("../Controller/product/getall-product.php");
 ?>
 
 <!-- get role -->
@@ -50,7 +52,32 @@ $productList = getAll($limit, $start);
 ?>
 
 <?php 
-  include("include/menu.php")
+  if(!$ctrl->checkprivilege( $privilegeUser_array, "add_product.php")){
+    $add_status = "hidden";
+  }else{
+    $add_status = "";
+  }
+
+  if(!$ctrl->checkprivilege( $privilegeUser_array, "edit_product.php?id=4")){
+    $edit_status = "hidden";
+  }else{
+    $edit_status = "";
+  }
+
+  if(!$ctrl->checkprivilege( $privilegeUser_array, "delete_product.php")){
+    $delete_status = "hidden";
+  }else{
+    $delete_status = "";
+  }
+
+  if($delete_status == "" || $edit_status == ""){
+    $dow_status ="";
+  }
+  else{
+    $dow_status ="hidden";
+  }
+
+
 ?>
 
 
@@ -82,7 +109,7 @@ $productList = getAll($limit, $start);
                             <div class="card-header header table-user">
                                 <h5 class=" card-header">Danh sách sản phẩm</h5>
                                 <a href="add_product.php"><button class="btn btn-primary add-btn user"
-                                        type="button">THÊM</button></a>
+                                        type="button" <?=  $add_status  ?>>THÊM</button></a>
                             </div>
                             <div class="table-responsive text-nowrap">
                                 <table class="table user">
@@ -96,7 +123,7 @@ $productList = getAll($limit, $start);
                                         <th class="cost product">Giá gốc</th>
                                         <th class="percent-reduce product">Phần trăm giảm</th>
                                         <th class="status product">Tình trạng</th>
-                                        <th class="action product">Thao tác</th>
+                                        <th class="action product" <?= $dow_status ?>>Thao tác</th>
 
                                       </tr>
                                     </thead>
@@ -148,17 +175,17 @@ $productList = getAll($limit, $start);
                                                 </span>
                                               </label>
                                             </td>
-                                            <td class="action product">
-                                            <div class="dropdown">
+                                            <td class="action product" '.$dow_status.'>
+                                            <div class="dropdown" '.$dow_status.'>
                                                         <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
                                                             data-bs-toggle="dropdown">
                                                             <i class="bx bx-dots-vertical-rounded"></i>
                                                         </button>
                                                         <div class="dropdown-menu action--none">
-                                                        <a class="dropdown-item" href="edit_product.php?id='.$eachRow['id'].'"><i
+                                                        <a class="dropdown-item" href="edit_product.php?id='.$eachRow['id'].'" '.$edit_status.'><i
                                                                     class="bx bx-trash me-1"></i> sửa</a>
                                                             
-                                                            <a class="dropdown-item" href="javascript:void(0);"><i
+                                                            <a class="dropdown-item" href="javascript:void(0);" '.$delete_status.'><i
                                                                     class="bx bx-trash me-1"></i> Xóa</a>
                                                         </div>
                                                     </div>
@@ -173,54 +200,6 @@ $productList = getAll($limit, $start);
 
 
                                       ?>
-                                      <!-- <tr>
-                                        <td class="id-header product">
-                                          100
-                                        </td>
-                                        <td class="category product">
-                                          Danh mục
-                                        </td>
-                                        <td class="companny product">
-                                          Hãng
-                                        </td>
-                                        <td class="name product">
-                                          Tên sản phẩm aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-                                        </td>
-                                        <td class="img product">
-                                          <img src="../../public/uploads/users/User_admin_anh-dai-dien.jpg" alt="" class="photo-product">
-                                        </td>
-                                        <td class="cost product">
-                                          Giá gốc
-                                        </td>
-                                        <td class="percent-reduce product">
-                                          Phần trăm giảm
-                                        </td>
-                                        <td class="status product">
-                                          <label class="toggle-switchy pl-2" for="status-product-check" data-size="sm" data-text="false"
-                                            data-style="rounded" data-toggle="collapse" data-target="#filterbar" aria-expanded="true"
-                                            aria-controls="filterbar" id="filter-btn" onclick="changeBtnTxt()">
-                                            <input checked="" type="checkbox" id="status-product-check">
-                                            <span class="toggle">
-                                              <span class="switch"></span>
-                                            </span>
-                                          </label>
-                                        </td>
-                                        <td class="action product">
-                                        <div class="dropdown">
-                                                    <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
-                                                        data-bs-toggle="dropdown">
-                                                        <i class="bx bx-dots-vertical-rounded"></i>
-                                                    </button>
-                                                    <div class="dropdown-menu action--none">
-                                                    <a class="dropdown-item" href="edit_product.php"><i
-                                                                class="bx bx-trash me-1"></i> sửa</a>
-                                                        
-                                                        <a class="dropdown-item" href="javascript:void(0);"><i
-                                                                class="bx bx-trash me-1"></i> Xóa</a>
-                                                    </div>
-                                                </div>
-                                        </td>
-                                      </tr> -->
                                     </tbody>
                                     <tfoot class="table-border-bottom-0">
                                       <tr>
@@ -232,7 +211,7 @@ $productList = getAll($limit, $start);
                                         <th class="cost product">Giá gốc</th>
                                         <th class="percent-reduce product">Phần trăm giảm</th>
                                         <th class="status product">Tình trạng</th>
-                                        <th class="action product">Thao tác</th>
+                                        <th class="action product" <?= $dow_status ?>>Thao tác</th>
                                       </tr>
                                     </tfoot>
                                         <div class="modal fade" id="modalLong" tabindex="-1" aria-hidden="true">

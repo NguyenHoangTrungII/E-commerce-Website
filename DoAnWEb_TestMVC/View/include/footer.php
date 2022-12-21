@@ -29,9 +29,9 @@
             }
         }
 
-        var wishlist = {
-            'add': function (product_id) {
-                addProductNotice('Product added to Wishlist', '<img src="image/demo/shop/product/e11.jpg" alt="">', '<h3>You must <a href="#">login</a>  to save <a href="#">Apple Cinema 30"</a> to your <a href="#">wish list</a>!</h3>', 'success');
+        var warning = {
+            'warrning': function () {
+                addProductNotice('Bạn chưa đăng nhập', '', '<h3>Vui lòng đăng nhâp để mua hàng</h3>', 'warning');
             }
         }
         var compare = {
@@ -112,6 +112,9 @@
                 if(response != -1){
                     cart.add(product_name, product_img  );
                     addProductCart(id_product, product_name, product_img, product_price);
+                }
+                else{
+                    warning.warrning();
                 }
             }
 		});

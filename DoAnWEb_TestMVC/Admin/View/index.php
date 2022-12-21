@@ -1,8 +1,8 @@
 <?php
-    session_start();
+    // session_start();
+    include("include/menu.php");
     include("include/session.php");
     include("include/top.php");
-    include("include/menu.php");
 ?>
 
 <!-- get role -->

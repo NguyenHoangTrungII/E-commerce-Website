@@ -1,8 +1,8 @@
 <?php
 
-    include('../../Model/ModelAll.php');
-    include("../../config/databse.php");
-	include("../../config/site.php");
+    require_once('../../Model/ModelAll.php');
+    require_once("../../config/databse.php");
+	require_once("../../config/site.php");
 
 
     // $controller = new Controller;

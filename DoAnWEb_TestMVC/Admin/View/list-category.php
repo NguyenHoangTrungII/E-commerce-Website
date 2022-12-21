@@ -1,13 +1,13 @@
 <?php
-    session_start();
-    include("include/session.php");
-    include("include/top.php");
-    include("include/menu.php");
-    include("../Model/ModelAll.php");
-    include("../config/databse.php");
-	  include("../config/site.php");
-    include("../Model/Pagination.php");
-    include("../Controller/Category/getall-category.php");
+    // session_start();
+    require_once("include/menu.php");
+    require_once("include/session.php");
+    require_once("include/top.php");
+    require_once("../Model/ModelAll.php");
+    require_once("../config/databse.php");
+	  require_once("../config/site.php");
+    require_once("../Model/Pagination.php");
+    require_once("../Controller/Category/getall-category.php");
 ?>
 
 <!-- get role -->
@@ -50,6 +50,35 @@ var_dump($categoryList);
 
 ?>
 
+<?php 
+  if(!$ctrl->checkprivilege( $privilegeUser_array, "add_category.php")){
+    $add_status = "hidden";
+  }else{
+    $add_status = "";
+  }
+
+  if(!$ctrl->checkprivilege( $privilegeUser_array, "edit_category.php?id=4")){
+    $edit_status = "hidden";
+  }else{
+    $edit_status = "";
+  }
+
+  if(!$ctrl->checkprivilege( $privilegeUser_array, "delete_category.php")){
+    $delete_status = "hidden";
+  }else{
+    $delete_status = "";
+  }
+
+  if($delete_status == "" || $edit_status == ""){
+    $dow_status ="";
+  }
+  else{
+    $dow_status ="hidden";
+  }
+
+
+?>
+
 
         <!-- Content wrapper -->
         <div class="content-wrapper">
@@ -74,7 +103,7 @@ var_dump($categoryList);
             <div class="card">
               <div class="card-header header table-user">
                 <h5 class=" card-header">Thông tin danh mục</h5>
-                <a href="add_category.php"><button class="btn btn-primary add-btn user" type="button">THÊM</button></a>
+                <a href="add_category.php"><button class="btn btn-primary add-btn user" type="button" <?= $add_status ?>>THÊM</button></a>
               </div>
               <div class="table-responsive text-nowrap">
                 <table class="table user">
@@ -86,7 +115,7 @@ var_dump($categoryList);
                       <th class="img category">Ảnh</th>
                       <th class="descript category">số thứ tự</th>
                       <th class="show category">Hiển thị</th>
-                      <th class="action category">Thao tác</th>
+                      <th class="action category" <?= $dow_status ?>>Thao tác</th>
 
                     </tr>
                   </thead>
@@ -114,7 +143,7 @@ var_dump($categoryList);
                           <td class="descript category">
                             Số thứ tự
                           </td>
-                          <td class="show category">
+                          <td class="show category" >
                               <label class="toggle-switchy pl-2" for="category-list_'.$number.'" data-size="sm"
                               data-text="false" data-style="rounded" data-toggle="collapse"
                               data-target="#filterbar" aria-expanded="true"
@@ -125,18 +154,16 @@ var_dump($categoryList);
                               </span>
                           </label>
                           </td>
-                          <td class="action category flex">
-                            <div class="dropdown">
+                          <td class="action category flex" '.$dow_status.'>
+                            <div class="dropdown" '.$dow_status.'>
                               <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
                                 <i class=" bx bx-dots-vertical-rounded"></i>
                               </button>
                               <div class="dropdown-menu action--none">
-                                <a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modalLong"><i
-                                    class="bx bx-info-circle"></i> Xem thông tin chi tiết</a>
 
-                                <a class="dropdown-item" href="edit_category.php?id='.$eachRow['id'].'"><i class="bx bx-edit-alt me-1"></i>
+                                <a class="dropdown-item" href="edit_category.php?id='.$eachRow['id'].'" '.$edit_status .'><i class="bx bx-edit-alt me-1" ></i>
                                   Sửa</a>
-                                  <p class="btn-delete dropdown-item" data-bs-toggle="modal" data-bs-target="#modalCenter" id=' . $eachRow['id'] . ' href=""><i class="bx bx-trash me-1" ></i> Xóa</p>
+                                  <p class="btn-delete dropdown-item" data-bs-toggle="modal" data-bs-target="#modalCenter" id=' . $eachRow['id'] . ' href="" '.$delete_status.'><i class="bx bx-trash me-1" ></i> Xóa</p>
                               </div>
                             </div>
                           </td>
@@ -147,41 +174,6 @@ var_dump($categoryList);
 
                       
                     ?>
-                      
-                      
-
-                    <!-- <tr>
-                      <td class="id-header category">
-                        1
-                      </td>
-                      <td class="name category">
-                        Bộ nhớ SSD
-                      </td>
-                      <td class="slug category">
-                        Bo-nho-ssd
-                      </td>
-                      <td class="img category">
-                        <img src="../assets/img/avatars/1.png" alt="Anh dai dien" class="photo-category">
-                      </td>
-                      <td class="descript category">
-                        Danh mục bộ nhớ ssd
-                      </td>
-                      <td class="action category flex">
-                        <div class="dropdown">
-                          <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
-                            <i class=" bx bx-dots-vertical-rounded"></i>
-                          </button>
-                          <div class="dropdown-menu action--none">
-                            <a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modalLong"><i
-                                class="bx bx-info-circle"></i> Xem thông tin chi tiết</a>
-
-                            <a class="dropdown-item" href="edit_category.php"><i class="bx bx-edit-alt me-1"></i>
-                              Sửa</a>
-                            <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1"></i> Xóa</a>
-                          </div>
-                        </div>
-                      </td>
-                    </tr> -->
 
                   </tbody>
                   <tfoot class="table-border-bottom-0">
@@ -192,67 +184,9 @@ var_dump($categoryList);
                       <th class="img category">Ảnh</th>
                       <th class="descript category">số thứ tự</th>
                       <th class="show category">Hiển thị</th>
-                      <th class="action category">Thao tác</th>
+                      <th class="action category" <?= $dow_status ?>>Thao tác</th>
                     </tr>
                   </tfoot>
-
-                  <div class="modal fade" id="modalLong" tabindex="-1" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h5 class="modal-title" id="modalLongTitle">Thông tin chi tiết</h5>
-                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                          <div class="row">
-                            <div class="col-xl">
-                              <div class="card mb-4">
-                                <div class="card-header d-flex justify-content-between align-items-center">
-                                  <h5 class="mb-0">Thông tin <span>Danh mục</span></h5>
-                                  <small class="text-muted float-end">Xem thông tin</small>
-                                </div>
-                                <div class="card-body">
-                                  <form>
-                                    <div class="row">
-                                      <div class="mb-3 col-xl-6">
-                                        <label class="form-label" for="basic-default-fullname">Tên danh mục</label>
-                                        <input type="text" class="form-control" id="basic-default-fullname"
-                                          placeholder="Nhập tên danh mục" disabled/>
-                                      </div>
-                                      <div class="mb-3 col-xl-6">
-                                        <label class="form-label" for="basic-default-slug">Slug</label>
-                                        <input type="text" class="form-control" id="basic-default-slug"
-                                          placeholder="Nhập slug tên miền" disabled/>
-                                      </div>
-                                    </div>
-              
-                                    <div class="mb-3">
-                                      <label class="form-label" for="basic-default-message">Mô tả</label>
-                                      <textarea id="basic-default-message" class="form-control" placeholder="Nhập mô tả cho danh mục" disabled></textarea>
-                                    </div>
-              
-                                    <div class="mb-5">
-                                      <label for="formFile" class="form-label">Ảnh</label>
-                                      <div class="fileupload fileupload-new border-5" data-provides="fileupload">
-                                        <div class="fileupload-new thumbnail" style="width: 300px; height: 160px;">
-                                          <img src="../assets/img/avatars/1.png" alt="">
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </form>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="modal-footer">
-                          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
-                            Đóng
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
 
 
                 </table>

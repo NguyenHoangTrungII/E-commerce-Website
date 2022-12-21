@@ -1,14 +1,14 @@
 <?php
-    session_start();
-    include("include/session.php");
-    include("include/top.php");
-    include("include/menu.php");
-    include("../Model/ModelAll.php");
-    include("../Controller/Controller.php");
-    include("../config/databse.php");
-	  include("../config/site.php");
-    include("../Model/Pagination.php");
-    include("../Controller/Employee/getall-employee.php");
+    // session_start();
+    require_once("include/menu.php");
+    require_once("include/session.php");
+    require_once("include/top.php");
+    require_once("../Model/ModelAll.php");
+    require_once("../Controller/Controller.php");
+    require_once("../config/databse.php");
+	  require_once("../config/site.php");
+    require_once("../Model/Pagination.php");
+    require_once("../Controller/Employee/getall-employee.php");
 ?>
 <?php
 
@@ -39,6 +39,43 @@ $employeeList = getAll($limit, $start);
 
 ?>
 
+<?php 
+  if(!$ctrl->checkprivilege( $privilegeUser_array, "add_employee.php")){
+    $add_status = "hidden";
+  }else{
+    $add_status = "";
+  }
+
+  if(!$ctrl->checkprivilege( $privilegeUser_array, "edit_employee.php?id=4")){
+    $edit_status = "hidden";
+  }else{
+    $edit_status = "";
+  }
+
+  if(!$ctrl->checkprivilege( $privilegeUser_array, "delete_employee.php")){
+    $delete_status = "hidden";
+  }else{
+    $delete_status = "";
+  }
+
+  if($delete_status == "" || $edit_status == ""){
+    $dow_status ="";
+  }
+  else{
+    $dow_status ="hidden";
+  }
+
+  if($_SESSION['SMC_login_admin_type'] == 1){
+    $role = "";
+
+  }
+  else{
+    $role = "hidden";
+  }
+
+
+?>
+
         <!-- Content wrapper -->
         <div class="content-wrapper">
           <!-- Content -->
@@ -52,7 +89,7 @@ $employeeList = getAll($limit, $start);
             <div class="card">
               <div class="card-header header table-user">
                 <h5 class=" card-header">Thông tin nhân viên</h5>
-                <a href="add_employee.php"><button class="btn btn-primary add-btn user" type="button">THÊM</button></a>
+                <a href="add_employee.php"><button class="btn btn-primary add-btn user" type="button" <?= $add_status  ?>>THÊM</button></a>
               </div>
               <div class="table-responsive text-nowrap">
                 <table id="content-table" class="table user">
@@ -65,7 +102,7 @@ $employeeList = getAll($limit, $start);
                       <th class="email user">Email</th>
                       <th class="phone user">Số điện thoại</th>
                       <th class="address user">Địa chỉ</th>
-                      <th class="action user">Thao tác</th>
+                      <th class="action user" <?= $dow_status ?>>Thao tác</th>
 
                     </tr>
                   </thead>
@@ -111,18 +148,18 @@ $employeeList = getAll($limit, $start);
                             <td class="address user">
                               '.$eachRow['diachi'].'
                             </td>
-                            <td>
-                              <div class="dropdown">
+                            <td '.$dow_status.'>
+                              <div class="dropdown" '.$dow_status.'>
                                 <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
                                   <i class="bx bx-dots-vertical-rounded"></i>
                                 </button>
                                 <div class="dropdown-menu">
-                                  <a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modalLong"><i
-                                      class="bx bx-info-circle"></i> Xem thông tin chi tiết</a>
+                                  <a class="dropdown-item" href="privilege.php?id='.$eachRow['id_taikhoan'].'" '.$role.' ><i
+                                      class="bx bx-info-circle"></i> Phân quyền</a>
 
-                                  <a type="submit" class="dropdown-item" href="edit_employee.php?id='.$eachRow['id'].'"><i class="bx bx-edit-alt me-1"></i>
+                                  <a type="submit" class="dropdown-item" href="edit_employee.php?id='.$eachRow['id'].'" '. $edit_status.'><i class="bx bx-edit-alt me-1"></i>
                                     Sửa</a>
-                                  <p class="btn-delete dropdown-item" data-bs-toggle="modal" data-bs-target="#modalCenter" id='.$eachRow['id_taikhoan'].' href=""><i class="bx bx-trash me-1" ></i> Xóa</p>
+                                  <p class="btn-delete dropdown-item" data-bs-toggle="modal" data-bs-target="#modalCenter" id='.$eachRow['id_taikhoan'].' href="" '. $delete_status.'><i class="bx bx-trash me-1" ></i> Xóa</p>
                                 </div>
                               </div>
                             </td>
@@ -135,48 +172,6 @@ $employeeList = getAll($limit, $start);
 
                       
                     ?>
-
-
-
-                            <td class="id-header user"> 
-                              1
-                            </td>
-                            <td class="name user">
-                             Nguyễn Hoàng Trung
-                            </td>
-                            <td class="img user">
-                              
-                                  <img src="../../public/uploads/users/User_Employee_20221205152204_banner-person.png" alt="Anh dai dien" class="photo-user">
-                              
-                            </td>
-                            <td class="birthday user">
-                              <span>13/02/2022</span>
-                            </td>
-                            <td class="email user">
-                              nguyenhoangtrunghs@gmail.com
-                            </td>
-                            <td class="phone user">
-                              091911275178
-                            </td>
-                            <td class="address user">
-                              'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-                            </td>
-                            <td>
-                              <div class="dropdown">
-                                <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
-                                  <i class="bx bx-dots-vertical-rounded"></i>
-                                </button>
-                                <div class="dropdown-menu">
-                                  <a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modalLong"><i
-                                      class="bx bx-info-circle"></i> Xem thông tin chi tiết</a>
-
-                                  <a class="dropdown-item" href="edit_employee.php?id='.$eachRow['id'].'"><i class="bx bx-edit-alt me-1"></i>
-                                    Sửa</a>
-                                  <p class="btn-delete dropdown-item" data-bs-toggle="modal" data-bs-target="#modalCenter" id="bt" href=""><i class="bx bx-trash me-1" ></i> Xóa</p>
-                                </div>
-                              </div>
-                            </td>
-                          </tr>
                   </tbody>
                   <tfoot class="table-border-bottom-0">
                     <tr>
@@ -187,7 +182,7 @@ $employeeList = getAll($limit, $start);
                       <th class="email user">Email</th>
                       <th class="phone user">Số điện thoại</th>
                       <th class="address user">Địa chỉ</th>
-                      <th class="action user">Thao tác</th>
+                      <th class="action user" <?= $dow_status ?>>Thao tác</th>
                     </tr>
                           
                   </tfoot>
@@ -196,7 +191,7 @@ $employeeList = getAll($limit, $start);
                     <div class="modal-dialog" role="document">
                       <div class="modal-content">
                         <div class="modal-header">
-                          <h5 class="modal-title" id="modalLongTitle">Thông tin chi tiết</h5>
+                          <h5 class="modal-title" id="modalLongTitle">Phân quyền</h5>
                           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
@@ -204,7 +199,7 @@ $employeeList = getAll($limit, $start);
                             <div class="col-xl">
                               <div class="card mb-4">
                                 <div class="card-header d-flex justify-content-between align-items-center">
-                                  <h5 class="mb-0">Thông tin <span>nhân viên</span></h5>
+                                  <h5 class="mb-0">Thông tin <span>quyền của nhân viên</span></h5>
                                   <small class="text-muted float-end">Thêm thông tin</small>
                                 </div>
                                 <div class="card-body">

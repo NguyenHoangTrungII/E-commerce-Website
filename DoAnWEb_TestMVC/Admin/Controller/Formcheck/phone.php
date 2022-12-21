@@ -1,9 +1,9 @@
 <?php
 
-    include('../../Model/ModelAll.php');
-    include('../../Controller/EmployeeController.php');
-    include("../../config/databse.php");
-	include("../../config/site.php");
+    require_once('../../Model/ModelAll.php');
+    require_once('../../Controller/EmployeeController.php');
+    require_once("../../config/databse.php");
+	require_once("../../config/site.php");
 
     $employeeCtroller = new EmployeeController;
 

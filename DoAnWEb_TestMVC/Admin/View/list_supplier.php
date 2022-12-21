@@ -1,7 +1,40 @@
 <?php
-  include("include/top.php");
   include("include/menu.php");
+
+  include("include/top.php");
 ?>
+
+<?php 
+  if(!$ctrl->checkprivilege( $privilegeUser_array, "add_supplier.php")){
+    $add_status = "hidden";
+  }else{
+    $add_status = "";
+  }
+
+  if(!$ctrl->checkprivilege( $privilegeUser_array, "edit_supplier.php?id=4")){
+    $edit_status = "hidden";
+  }else{
+    $edit_status = "";
+  }
+
+  if(!$ctrl->checkprivilege( $privilegeUser_array, "delete_supplier.php")){
+    $delete_status = "hidden";
+  }else{
+    $delete_status = "";
+  }
+
+  if($delete_status == "" || $edit_status == ""){
+    $dow_status ="";
+  }
+  else{
+    $dow_status ="hidden";
+  }
+
+
+?>
+
+
+
 
                 <!-- Content wrapper -->
                 <div class="content-wrapper">

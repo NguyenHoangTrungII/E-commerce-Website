@@ -20,10 +20,6 @@ if($lastID ==-1){
     exit();
 }
 
-// var_dump($_POST['total-hidden-abc']);
-// var_dump($lastID[0]['id']);
-// exit();
-
 
 function execPostRequest($url, $data)
 {
@@ -54,10 +50,10 @@ $accessKey = 'klm05TvNBzhg7h7j';
 $secertKey = 'at67qH6mk8w5Y1nAyMoYKMWACiEi2bsa';
 $orderInfo = "Thanh toán qua MoMo";
 $amount = 1000000;
-$orderId = (($lastID[0]['id']+338));
+$orderId = (($lastID[0]['id']+349));
 $redirectUrl = "http://localhost/DoAnWeb/DoAnWeb_testMVC/View/invoice.php";
 $ipnUrl = "http://localhost/DoAnWeb/DoAnWeb_testMVC/View/invoice.php";
-$extraData = "";
+$extraData = date('YmdHis');
 $adressInfo = $_POST['tinh_thanhpho']. ", ".$_POST['quan_huyen']. ", ".$_POST['phuong_xa']. ", ".$_POST['diachi'];
 
 

@@ -1,13 +1,13 @@
 <?php
-    session_start();
-    include("include/session.php");
-    include("include/top.php");
-    include("include/menu.php");
-    include("../Model/ModelAll.php");
-    include("../config/databse.php");
-	  include("../config/site.php");
-    include("../Model/Pagination.php");
-    include("../Controller/Warehouse/getall-warehouse.php");
+    // session_start();
+    require_once("include/menu.php");
+    require_once("include/session.php");
+    require_once("include/top.php");
+    require_once("../Model/ModelAll.php");
+    require_once("../config/databse.php");
+	  require_once("../config/site.php");
+    require_once("../Model/Pagination.php");
+    require_once("../Controller/Warehouse/getall-warehouse.php");
 ?>
 
 <!-- get role -->
@@ -50,6 +50,20 @@ $warehouseList = getAll($limit, $start);
 
 ?>
 
+
+?>
+
+<?php 
+
+  if(!$ctrl->checkprivilege( $privilegeUser_array, "update_qty.php")){
+    $edit_status = "onkeydown='return false'";
+  }else{
+    $edit_status = "";
+  }
+
+
+
+?>
 
 
                 <!-- Content wrapper -->
@@ -104,7 +118,7 @@ $warehouseList = getAll($limit, $start);
                                                 '.$eachRow['tensp'].'
                                               </td>
                                               <td class="stock warehouse">
-                                              <input type="number" class="form-control"   placeholder="nhap so luong ton"  value="'.(int)$eachRow['soluongton'].'" 
+                                              <input type="number" class="form-control"   placeholder="nhap so luong ton"  value="'.(int)$eachRow['soluongton'].'"  '.$edit_status.'>
                                               
                                               </td>
                                               <td class ="buyed warehouse">

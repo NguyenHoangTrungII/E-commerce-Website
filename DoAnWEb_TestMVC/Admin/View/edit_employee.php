@@ -1,7 +1,8 @@
 <?php
-    session_start();
-    include("include/session.php");
+    // session_start();
+    include("include/menu.php");
     include("include/top.php");
+    include("include/session.php");
     
     include("../Model/ModelAll.php");
     include("../config/databse.php");
@@ -39,8 +40,6 @@
         ##=======LẤY DỮ LIỆU=======##
     }
 ?>
-
-<?php include("include/menu.php") ?>
 
                 <!-- Content wrapper -->
                 <div class="content-wrapper">

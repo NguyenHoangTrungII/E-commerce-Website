@@ -1,7 +1,7 @@
 <?php
-include('../../Model/ModelAll.php');
-require("../../config/databse.php");
-require("../../config/site.php");
+require_once('../../Model/ModelAll.php');
+require_once("../../config/databse.php");
+require_once("../../config/site.php");
 
 $Model= new ModelAll;
 

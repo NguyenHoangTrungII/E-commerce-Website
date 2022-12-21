@@ -1,9 +1,36 @@
 <?php
-  include("include/top.php");
   include("include/menu.php");
+  include("include/top.php");
 ?>
 
+<?php 
+  if(!$ctrl->checkprivilege( $privilegeUser_array, "add_discount.php")){
+    $add_status = "hidden";
+  }else{
+    $add_status = "";
+  }
 
+  if(!$ctrl->checkprivilege( $privilegeUser_array, "edit_discount.php?id=4")){
+    $edit_status = "hidden";
+  }else{
+    $edit_status = "";
+  }
+
+  if(!$ctrl->checkprivilege( $privilegeUser_array, "delete_discount.php")){
+    $delete_status = "hidden";
+  }else{
+    $delete_status = "";
+  }
+
+  if($delete_status == "" || $edit_status == ""){
+    $dow_status ="";
+  }
+  else{
+    $dow_status ="hidden";
+  }
+
+
+?>
                 <!-- Content wrapper -->
                 <div class="content-wrapper">
                     <!-- Content -->
@@ -32,7 +59,7 @@
                                             <th class="begin discount">Từ ngày</th>
                                             <th class="end discount">Đến ngày</th>
                                             <th class="status discount">Tình trạng</th>
-                                            <th class="action discount">Thao tác</th>
+                                            <th class="action discount" <?= $dow_status ?>>Thao tác</th>
 
                                         </tr>
                                     </thead>
@@ -93,7 +120,7 @@
                                             <th class="cost product">Từ ngày</th>
                                             <th class="percent-reduce product">Đến ngày</th>
                                             <th class="status product">Tình trạng</th>
-                                            <th class="action product">Thao tác</th>
+                                            <th class="action product" <?= $dow_status ?>>Thao tác</th>
                                       </tr>
                                     </tfoot>
                   

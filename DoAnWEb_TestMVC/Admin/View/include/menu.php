@@ -1,3 +1,36 @@
+<?php
+
+use FTP\Connection;
+
+  session_start();
+  include("session.php");
+  require_once($_SERVER['DOCUMENT_ROOT']."/DoAnWeb/DoAnWeb_TEstMVC/Admin/Model/ModelAll.php");
+  require_once($_SERVER['DOCUMENT_ROOT']."/DoAnWeb/DoAnWeb_TEstMVC/Admin/config/databse.php");
+  require_once($_SERVER['DOCUMENT_ROOT']."/DoAnWeb/DoAnWeb_TEstMVC/Admin/Controller/Controller.php");
+
+
+  $Model = new ModelAll;
+  $ctrl = new Controller;
+
+
+   $columnName = $tableName = $whereValue = null;
+   $columnName['1'] = "url";
+   $columnName['2'] = "quyen.id tenquyen";
+   $tableName['MAIN'] = "ct_quyen";
+   $tableName['2'] ='nhomquyen';
+   $tableName['1'] ='quyen';
+   $whereValue['id_taikhoan']= $_SESSION['SMC_login_account_id'];
+   $joinCondition = array ("1"=>array ('ct_quyen.id_quyen', 'quyen.id'), "2"=> array('ct_quyen.id_nhomquyen', 'nhomquyen.id'));
+   $privilegeUser = $Model->selectJoinData($columnName, $tableName, null, $joinCondition, $whereValue);
+   $privilegeUser_array = array();
+   foreach($privilegeUser as $eachRow){
+    array_push($privilegeUser_array, $eachRow['url']);
+  }
+
+  // var_dump($privilegeUser_array);
+
+
+?>
 <body>
     <!-- Layout wrapper -->
     <div class="layout-wrapper layout-content-navbar">
@@ -64,105 +97,227 @@
                   <!-- Manament -->
                   <li class="menu-header small text-uppercase"><span class="menu-header-text">Quản lý</span></li>
                   <!-- Cards -->
-                  <li class="menu-item">
-                    <a href="javascript:void(0)" class="menu-link menu-toggle">
-                      <i class="menu-icon tf-icons bx bx-box"></i>
-                      <div data-i18n="">Nhân lực</div>
-                    </a>
-                    <ul class="menu-sub">
-                      <li class="menu-item" id="list-employee">
-                        <a href="list-employee.php" class="menu-link">
-                          <div data-i18n="">Nhân viên</div>
-                        </a>
-                      </li>
-                      <li class="menu-item" id="list-customer">
-                        <a href="list_customer.php" class="menu-link">
-                          <div data-i18n="Alerts">Khách hàng</div>
-                        </a>
-                      </li>
-                    </ul>
-                  </li>
+                  <?php 
+                    if($ctrl->checkprivilege(  $privilegeUser_array, "list-employee.php") ||  $ctrl->checkprivilege(  $privilegeUser_array, "list-customer.php")){
+
+                      $string =
+                        '<li class="menu-item">
+                            <a href="javascript:void(0)" class="menu-link menu-toggle">
+                              <i class="menu-icon tf-icons bx bx-box"></i>
+                              <div data-i18n="">Nhân lực</div>
+                            </a>
+                            <ul class="menu-sub">
+                            
+                          
+                        ';
+
+                      if($ctrl->checkprivilege(  $privilegeUser_array, "list-employee.php")){
+                        $string .= '
+                        <li class="menu-item" id="list-employee">
+                          <a href="list-employee.php" class="menu-link">
+                            <div data-i18n="">Nhân viên</div>
+                          </a>
+                        </li>';
+                        
+                      }
+
+                      if($ctrl->checkprivilege(  $privilegeUser_array, "list-customer.php")){
+                        $string .= '
+                        
+                        <li class="menu-item" id="list-customer">
+                          <a href="list_customer.php" class="menu-link">
+                            <div data-i18n="Alerts">Khách hàng</div>
+                          </a>
+                        </li>'
+                      ;
+                      }
+
+                      $string .= '</ul> </li>';
+                      
+                      echo $string;
+                      
+                    }
+                  ?>
 
                   <!-- website -->
-                  <li class="menu-item">
-                    <a href="javascript:void(0)" class="menu-link menu-toggle">
-                      <i class="menu-icon tf-icons bx bx-box"></i>
-                      <div data-i18n="">Website</div>
-                    </a>
-                    <ul class="menu-sub">
-                      <li class="menu-item" id="list-category">
-                        <a href="list-category.php" class="menu-link">
-                          <div data-i18n="">Danh mục</div>
-                        </a>
-                      </li>
-                      <li class="menu-item" id="list-slider">
-                        <a href="list-slider.php" class="menu-link">
-                          <div data-i18n="Alerts">Slider</div>
-                        </a>
-                      </li>
-                    </ul>
-                  </li>
+                  <?php 
+
+                  // if(){
+
+                    if($ctrl->checkprivilege(  $privilegeUser_array, "list-category.php") ||  $ctrl->checkprivilege(  $privilegeUser_array, "list-slider.php")){
+
+                      $string =
+                        '<li class="menu-item">
+                          <a href="javascript:void(0)" class="menu-link menu-toggle">
+                            <i class="menu-icon tf-icons bx bx-box"></i>
+                            <div data-i18n="">Website</div>
+                          </a>
+                          <ul class="menu-sub">
+                        ';
+
+                      if($ctrl->checkprivilege(  $privilegeUser_array, "list-category.php")){
+                        $string .= '
+                          <li class="menu-item" id="list-category">
+                            <a href="list-category.php" class="menu-link">
+                              <div data-i18n="">Danh mục</div>
+                            </a>
+                          </li>';
+                        
+                      }
+
+                      if($ctrl->checkprivilege(  $privilegeUser_array, "list-slider.php")){
+                        $string .= '
+                        
+                          <li class="menu-item" id="list-slider">
+                            <a href="list-slider.php" class="menu-link">
+                              <div data-i18n="Alerts">Slider</div>
+                            </a>
+                          </li>'
+                      ;
+                      }
+
+                      $string .= '</ul> </li>';
+                      
+                      echo $string;
+
+                    }
+                  ?>
 
                   <!-- Feedback -->
-                  <li class="menu-item">
-                    <a href="javascript:void(0)" class="menu-link menu-toggle">
-                      <i class="menu-icon tf-icons bx bx-box"></i>
-                      <div data-i18n="">Phản hồi</div>
-                    </a>
-                    <ul class="menu-sub" id="list-rate">
-                      <li class="menu-item">
-                        <a href="list-rate.php" class="menu-link">
-                          <div data-i18n="">Đánh giá</div>
-                        </a>
-                      </li>
-                      <li class="menu-item" id="list-question">
+                  <?php 
+
+                  // if(){
+
+                    if($ctrl->checkprivilege(  $privilegeUser_array, "list-rate.php") ||  $ctrl->checkprivilege(  $privilegeUser_array, "list-question.phplist")){
+
+                      $string =
+                        '<li class="menu-item">
+                          <a href="javascript:void(0)" class="menu-link menu-toggle">
+                            <i class="menu-icon tf-icons bx bx-box"></i>
+                            <div data-i18n="">Phản hồi</div>
+                          </a>
+                          <ul class="menu-sub" id="list-rate">
+                        ';
+
+                      if($ctrl->checkprivilege(  $privilegeUser_array, "list-rate.php")){
+                        $string .= '
+                        <li class="menu-item">
+                          <a href="list-rate.php" class="menu-link">
+                            <div data-i18n="">Đánh giá</div>
+                          </a>
+                        </li>';
+                        
+                      }
+
+                      if($ctrl->checkprivilege(  $privilegeUser_array, "list-question.php")){
+                        $string .= '
+                        
+                        <li class="menu-item" id="list-question">
                         <a href="list-question.php" class="menu-link">
                           <div data-i18n="Alerts">Thắc mắc</div>
                         </a>
-                      </li>
-                    </ul>
-                  </li>
+                      </li>'
+                      ;
+                      }
+
+                      $string .= '</ul> </li>';
+                      
+                      echo $string;
+
+                    }
+                  ?>
 
                   <!-- Buying -->
-                  <li class="menu-item">
-                    <a href="javascript:void(0)" class="menu-link menu-toggle">
-                      <i class="menu-icon tf-icons bx bx-box"></i>
-                      <div data-i18n="">Bán hàng</div>
-                    </a>
-                    <ul class="menu-sub">
-                      <li class="menu-item" id="list-products">
-                        <a href="list_product.php" class="menu-link" >
-                          <div data-i18n="">Sản phẩm</div>
-                        </a>
-                      </li>
-                      <li class="menu-item" id="list-discount">
-                        <a href="list_discount.php" class="menu-link">
-                          <div data-i18n="Alerts">Mã giảm giá</div>
-                        </a>
-                      </li>
-                      <li class="menu-item" id="list-warehouse">
-                        <a href="list_warehouse.php" class="menu-link">
-                          <div data-i18n="Alerts">Kho hàng</div>
-                        </a>
-                      </li>
-                    </ul>
-                  </li>
+                  <?php 
+
+                    // if(){
+
+                      if($ctrl->checkprivilege(  $privilegeUser_array, "list_product.php") ||  $ctrl->checkprivilege(  $privilegeUser_array, "list_discount.php")  ||  $ctrl->checkprivilege(  $privilegeUser_array, "list_warehouse.php")){
+
+                        $string =
+                          '<li class="menu-item">
+                            <a href="javascript:void(0)" class="menu-link menu-toggle">
+                              <i class="menu-icon tf-icons bx bx-box"></i>
+                              <div data-i18n="">Bán hàng</div>
+                            </a>
+                            <ul class="menu-sub">
+                          ';
+
+                        if($ctrl->checkprivilege(  $privilegeUser_array, "list_product.php")){
+                          $string .= '
+                          <li class="menu-item" id="list-products">
+                            <a href="list_product.php" class="menu-link" >
+                              <div data-i18n="">Sản phẩm</div>
+                            </a>
+                          </li>';
+                          
+                        }
+
+                        if($ctrl->checkprivilege(  $privilegeUser_array, "list_discount.php")){
+                          $string .= '
+                          
+                          <li class="menu-item" id="list-discount">
+                            <a href="list_discount.php" class="menu-link">
+                              <div data-i18n="Alerts">Mã giảm giá</div>
+                            </a>
+                          </li>'
+                        ;
+                        }
+
+                        if($ctrl->checkprivilege(  $privilegeUser_array, "list_warehouse.php")){
+                          $string .= '
+                          
+                          <li class="menu-item" id="list-warehouse">
+                            <a href="list_warehouse.php" class="menu-link">
+                              <div data-i18n="Alerts">Kho hàng</div>
+                            </a>
+                          </li>'
+                        ;
+                        }
+
+                        $string .= '</ul> </li>';
+                        
+                        echo $string;
+
+                      }
+                    ?>
 
                   <!-- Order -->
-                  <li class="menu-item" >
-                    <a href="list-order.php" class="menu-link">
-                      <i class="menu-icon tf-icons bx bx-box"></i>
-                      <div data-i18n="">Đơn hàng</div>
-                    </a>
-                  </li>
+                  <?php 
 
-                  <!-- Brand -->
-                  <li class="menu-item one" id="list-brand">
-                    <a href="list_supplier.php" class="menu-link">
-                      <i class="menu-icon tf-icons bx bx-box"></i>
-                      <div data-i18n="">Thương hiệu</div>
-                    </a>
-                  </li>
+                    // if(){
+
+                      if($ctrl->checkprivilege(  $privilegeUser_array, "list-order.php") ){
+
+                        $string =
+                          '<li class="menu-item" >
+                              <a href="list-order.php" class="menu-link">
+                                <i class="menu-icon tf-icons bx bx-box"></i>
+                                <div data-i18n="">Đơn hàng</div>
+                              </a>
+                            </li>';                        
+                        echo $string;
+
+                      }
+                    ?>
+
+                    <!-- Brand -->
+
+                    <?php 
+                      if($ctrl->checkprivilege(  $privilegeUser_array, "list_supplier.php") ){
+
+                        $string =
+                          ' 
+                          <li class="menu-item one" id="list-brand">
+                            <a href="list_supplier.php" class="menu-link">
+                              <i class="menu-icon tf-icons bx bx-box"></i>
+                              <div data-i18n="">Thương hiệu</div>
+                            </a>
+                          </li>';                        
+                        echo $string;
+
+                      }
+                    ?>
 
 
                   <!-- Forms & Tables -->
@@ -242,7 +397,7 @@
                                         <div class="dropdown-divider"></div>
                                     </li>
                                     <li>
-                                        <a class="dropdown-item" href="auth-login-basic.php">
+                                        <a class="dropdown-item" href="index.php?exit=yes">
                                             <i class="bx bx-power-off me-2"></i>
                                             <span class="align-middle">Đăng xuất</span>
                                         </a>
