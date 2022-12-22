@@ -121,11 +121,11 @@
                         <h3>Mã giảm giá</h3>
                         <form action="#" class="info">
                             <div class="form-group">
-                                <input type="text" class="form-control text-left px-3" placeholder="">
+                                <input type="text" class="coupon-code-customer form-control text-left px-3" placeholder="Nhập mã giảm giá">
                             </div>
                         </form>
                     </div>
-                    <p><a href="checkout.html" class="btn btn-primary btn-cart">Áp dụng</a></p>
+                    <p><a  class="apply-coupon btn btn-primary btn-cart" style="color:#FFFF">Áp dụng</a></p>
                 </div>
                 <div class="col-lg-4 mt-5 cart-wrap ftco-animate">
                     <div class="cart-total mb-3">
@@ -141,17 +141,9 @@
                                 </select>
 
                             </div>
-                            <!-- <div class="form-group">
-                                <label for="country">State/Province</label>
-                                <input type="text" class="form-control text-left px-3" placeholder="">
-                            </div>
-                            <div class="form-group">
-                                <label for="country">Zip/Postal Code</label>
-                                <input type="text" class="form-control text-left px-3" placeholder="">
-                            </div> -->
                         </form>
                     </div>
-                    <p><a href="checkout.html" class="btn btn-primary py-3 px-4">Estimate</a></p>
+                    <p><a href="checkout.html" class="btn btn-primary py-3 px-4">Ưowsc tính</a></p>
                 </div>
                 <div class="col-lg-4 mt-5 cart-wrap ftco-animate">
                     <div class="cart-total mb-3">
@@ -184,6 +176,45 @@
 <?php
     include("include/footer.php");
 ?>
+
+<script>
+    function checkCoupon(){
+        var makm = $('.coupon-code-customer').val();
+        var tongtien = $('.total-order-finish').val();
+        $.ajax({
+            url: 'http://localhost/DoAnWeb/DoAnWeb_testMVC/Controller/Coupon/processConpon.php',
+            type: 'POST',
+            data: {makm: makm,
+                    tongtien: tongtien},
+            success: function(response) {
+                if(response == 1){
+                    $('.shipping-free').html("0đ")
+                    update_total_price();
+                    $('.alert.alert-info.alert-dismissible').text("Đơn của bạn đã được miễn phí vận chuyển");
+                    $('.alert.alert-danger.alert-dismissible').prop('hidden', true);
+                    $('.alert.alert-info.alert-dismissible').prop('hidden', false);
+                    setTimeout(function(){
+                        $('.alert.alert-info.alert-dismissible').prop('hidden', true);
+                    }, 2000);
+                   
+                }
+                else{
+                    $('.alert.alert-danger.alert-dismissible').text("Đã có lỗi xảy ra !! vui lòng thử lại sau");
+                    $('.alert.alert-info.alert-dismissible').prop('hidden', true);
+                    $('.alert.alert-danger.alert-dismissible').prop('hidden', false);
+                    // $("html, body").animate({scrollTop: 50}, 1000);
+                    setTimeout(function(){
+                        $('.alert.alert-danger.alert-dismissible').prop('hidden', true);
+                    }, 2000);
+                }
+            }
+		});
+    }
+
+    $('.apply-coupon ').on('click', function(){
+        checkCoupon();
+    })
+</script>
 
 <script>
     update_total_price();
@@ -304,6 +335,8 @@
             $('.shipping-free').html(free_ship_money);
             $('.total-order-finish').html(total_order_money);
         }
+
+        checkCoupon();
     })
 
     $('.checkout-btn').on('click', function(){

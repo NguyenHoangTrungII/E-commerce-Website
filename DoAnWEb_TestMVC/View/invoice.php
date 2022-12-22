@@ -285,13 +285,8 @@
     var giamgia = (historyPrice['discount'].replace(/\D/g, ""));
     var giahang = (historyPrice['total_price_order'].replace(/\D/g, ""));
 
-	console.debug(vnp_TxnRef);
-
 	var url = window.location.href;
 
-
-	// var tvid = url.searchParams.get("id");	
-	//Gửi dữ liệu nhận đơn bằng ajax lên trang này
 	if(vnp_TxnRef != null){
 			// window.addEventListener('load', function () {
 		$.ajax({

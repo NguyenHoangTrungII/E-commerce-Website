@@ -194,7 +194,7 @@ class HeroBannerController extends Controller
                     <div class="shopping-item">
                         <div class="dropdown-cart-header">
                             <span>'. $numberOfProduct.' SẢN PHẨM</span>
-                            <a href="#">Xem giỏ hàng</a>
+                            <a compare.cart_empty() >Xem giỏ hàng</a>
                         </div>
                         <ul class="shopping-list" style="overflow-y: auto;height: 200px;word-break: break-all;">
                             <img class="img-when-no--cart" src="../assets/img/cart/cart--empty.png" alt="#"></a>

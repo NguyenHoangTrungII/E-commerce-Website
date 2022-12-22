@@ -26,20 +26,22 @@ $pagination = new Pagination;
   $Model = new ModelAll;
 
 
-  $columnName = $tableName = null;
+  $columnName = $tableName = $whereValue = null;
   // $columnName = "*";
   $columnName['1']="sanpham.id";
   $columnName['2']="sanpham.tensp";
   $columnName['3']="sanpham.anh";
   $columnName['4']="ctdh.giasp";
   $columnName['5']="ctdh.soluong";
+  $columnName['6']="danhmucsp.ten tendanhmuc";
   
   $tableName['MAIN'] = "ctdh";
   $tableName['1'] ='sanpham';
   $tableName['2'] ='donhang';
+  $tableName['3'] ='danhmucsp';
   $whereValue['ctdh.id_donhang']= $_GET['id'];
 
-  $joinCondition = array ("1"=>array ('sanpham.id', 'ctdh.id_sp'), "2"=>array ('donhang.id', 'ctdh.id_donhang'));
+  $joinCondition = array ("1"=>array ('sanpham.id', 'ctdh.id_sp'), "2"=>array ('donhang.id', 'ctdh.id_donhang'), "3"=>array ('sanpham.id_danhmuc', 'danhmucsp.id'));
   $cthdList = $Model->selectJoinData($columnName, $tableName, null, $joinCondition, $whereValue);
 //  var_dump($cthdList);
 
@@ -80,8 +82,6 @@ $pagination = new Pagination;
                   foreach($cthdList AS $eachRow)
                   {
                     $id_order=$_GET['id'];
-                    // var_dump($id_order);
-                    // var_dump($eachRow['id']);
                       echo '
                       <tr>
                         <td id='.$eachRow['id'].' class="id-header order-detail">
@@ -93,7 +93,7 @@ $pagination = new Pagination;
                         <td class="img order-detail">
                           <ul class="list-unstyled users-list m-0 avatar-group d-flex align-items-center">
                           <li>
-                            <img src="'.$GLOBALS['PRODUCT_DIRECTORY_SHOW'].$eachRow['anh'].'" alt="Anh-sp.jpg" class="photo-product">
+                            <img src="'.$GLOBALS['PRODUCT_DIRECTORY_SHOW'].$eachRow['tendanhmuc']."/"."Thumbnail/".$eachRow['anh'].'" alt="Anh-sp.jpg" class="photo-product">
                           </li>
                         </ul>
                         </td>

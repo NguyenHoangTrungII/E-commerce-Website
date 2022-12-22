@@ -70,7 +70,7 @@
                 <div class="col-md-3 col-xs-6">
                     <div class="shop">
                         <div class="shop-img" style="background-color: #33A0FF; height: 180px;">
-                            <img src="" alt="">
+                            <img src="../public/uploads/Banner/Banner_2.webp" alt="">
                         </div>
                     </div>
                 </div>
@@ -80,7 +80,7 @@
                 <div class="col-md-3 col-xs-6">
                     <div class="shop">
                         <div class="shop-img" style="background-color: #33A0FF; height: 180px;">
-                            <img src="" alt="">
+                            <img src="../public/uploads/Banner/Banner_1.webp" alt="" class="pt-2">
                         </div>
                     </div>
                 </div>
@@ -90,7 +90,7 @@
                 <div class="col-md-3 col-xs-6">
                     <div class="shop">
                         <div class="shop-img" style="background-color: #33A0FF; height: 180px;">
-                            <img src="" alt="">
+                            <img src="../public/uploads/Banner/Banner_4.webp" alt="" class="pt-4">
                         </div>
                     </div>
                 </div>
@@ -100,7 +100,7 @@
                 <div class="col-md-3 col-xs-6">
                     <div class="shop">
                         <div class="shop-img" style="background-color: #33A0FF; height: 180px;">
-                            <img src="" alt="">
+                            <img src="../public/uploads/Banner/Banner_6.png" alt="" class="pt-4">
                         </div>
                     </div>
                 </div>
@@ -165,19 +165,19 @@
     <!-- End Deals -->
 
     <!-- Banner Section Begin -->
-    <section class="banner set-bg" data-setbg="">
-        <div class="container">
+    <section class="banner set-bg" data-setbg="../public/uploads/Banner/Banner_discount2.jpg" style="height:200px">
+        <!-- <div class="container">
             <div class="row">
                 <div class="col-xl-7 col-lg-8 m-auto">
                     <div class="banner__slider owl-carousel">
                         <div class="banner__item">
                             <div class="banner__text">
-                                <span>Siêu khuyến mãi 11.11</span>
+                                <span style="font-size: 40px">Siêu khuyến mãi tết dương lịch</span>
                             </div>
                         </div>
                         <div class="banner__item">
                             <div class="banner__text">
-                                <span>Sự kiện siêu giảm giá 11.11</span>
+                                <span>Sự kiện hoàn thành thành đồ án của nhóm 4.2</span>
                             </div>
                         </div>
                         <div class="banner__item">
@@ -188,7 +188,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
     </section>
     <!-- Banner Section End -->
 
@@ -206,7 +206,7 @@
             echo $homeCtrl->mainProduct(json_decode($productsListsMenu[$i], true));
 
 
-            echo ' </div> <div class="btn-all text-center pt-3"> <a href="productlist.php?id='.$decode_category[0]['id'].'" class="primary-btn all-product"> Xem tất cả sản phẩm</a>
+            echo ' </div> <div class="btn-all text-center pt-3"> <a href="productlist.php?id='.json_decode($productsListsMenu[$i], true)[0]['id_danhmuc'].'" class="primary-btn all-product"> Xem tất cả sản phẩm</a>
                 </div> </div> </section>';
         }
     ?>
@@ -218,7 +218,7 @@
             <div class="row">
                 <div class="col-lg-6 p-0">
                     <div class="discount__pic">
-                        <img src="" alt="">
+                        <img src="../public/uploads/Banner/Banner_discount_end.png" alt="">
                     </div>
                 </div>
                 <div class="col-lg-6 p-0">

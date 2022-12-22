@@ -152,7 +152,7 @@
 						<div class="mb-4">
 							<!-- CREATE A EMPTY SPACE BETWEEN CONTENT -->
 						</div>
-						<h3 class="pb-5"> Thanh toán khi nhận hàng </h3>
+						<h3 class="pb-5"> Phương thức thanh toán</h3>
 						<table  class="table-rowbreak" style="width:100%">
 							<tbody>
                                 <tr>
@@ -285,7 +285,7 @@
     var myData = JSON.parse(localStorage['address_customer']);
     // localStorage.removeItem( 'address_customer' );
     // JSON.parse(data)
-    console.debug(myData['diachi']);
+    // console.debug(myData['diachi']);
     $('.address-provice').html(myData['tinh_thanhpho'] + " - ");
     $('.address-district').html(myData['quan_huyen']  + " - ");
     $('.address-town').html(myData['phuong_xa']);
@@ -314,52 +314,62 @@
 </script>
 
 <script>
-    // update_total_price();
-
-// function update_total_price(){
-//     var total = 0;
-//     $('#cart-table-detail').find('.total').each(function(i, elm){
-//         total += parseInt($(elm).text().replace(/\D/g, ""));
-//     })
-
-//     const config = { style: 'currency', currency: 'VND', maximumFractionDigits: 9}
-//     const total_money = new Intl.NumberFormat('vi-VN', config).format(total);
-
-//     $('.total-price-product').html(total_money);
-
-//     var discount  =  parseInt($('.discount-price').text().replace(/\D/g, ""));
-//     var shipp = parseInt($('.shipping-free').text().replace(/\D/g, ""));
-//     total_other_fee = discount + shipp;
-//     const total_order_money = new Intl.NumberFormat('vi-VN', config).format(total+total_other_fee);
-//     $('.total-order-finish').html(total_order_money);
-
-// }
-// </script>
+</script>
 
 <script>
+
+    var   tongtien = parseFloat($('.total-order-finish').text().replace(/\D/g, "")) ;
     paypal.Buttons({
       // Sets up the transaction when a payment button is clicked
       createOrder: (data, actions) => {
         return actions.order.create({
           purchase_units: [{
             amount: {
-              value: '77.44' // Can also reference a variable or function
+              value: tongtien/24000
             }
           }]
         });
       },
-      // Finalize the transaction after payer approval
       onApprove: (data, actions) => {
         return actions.order.capture().then(function(orderData) {
-          // Successful capture! For dev/demo purposes:
           console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
           const transaction = orderData.purchase_units[0].payments.captures[0];
-          alert(`Transaction ${transaction.status}: ${transaction.id}\n\nSee console for all available details`);
-          window.location.href="http://localhost/DoAnWeb/DoAnWeb_testMVC/View/invoice.php";
-          // When ready to go live, remove the alert and show a success message within this page. For example:
-          // const element = document.getElementById('paypal-button-container');
-          // element.innerHTML = '<h3>Thank you for your payment!</h3>';
-          // Or go to another URL:  actions.redirect('thank_you.html');
+        //   alert(`Transaction ${transaction.status}: ${transaction.id}\n\nSee console for all available details`);
+
+          //Lấy giá trị cần thiết để insert vào đơn hàng
+          var total_hidden = $('.total-hidden').val();
+          var total_producPrice_hidden = $('.total-producPrice-hidden').val();
+          var  discount_hidden = $('.discount-hidden').val();
+          var  shipfee_hidden = $('.shipfee-hidden').val();
+          var  ghichu = $('.note-order').val();
+          var sdt = $('.phone-number').val();
+          var tinh_thanhpho = $('.provice-order').text();
+          var quan_huyen = $('.district-order').text();
+          var phuong_xa = $('.town-order').text();
+
+          $.ajax({
+            url: "http://localhost/DoAnWeb/DoAnWeb_testMVC/Controller/Payment/PAYPAL/create_order.php",
+            type: 'POST',
+            data:{
+                total_hidden:total_hidden,
+                total_producPrice_hidden: total_producPrice_hidden,
+                discount_hidden: discount_hidden,
+                shipfee_hidden:shipfee_hidden,
+                ghichu: ghichu,
+                sdt:sdt,
+                tinh_thanhpho:tinh_thanhpho,
+                quan_huyen: quan_huyen,
+                phuong_xa:phuong_xa
+            },
+            dataType: "text",
+            success: function(data){ 
+                if(data==1){
+                    window.location.href="http://localhost/DoAnWeb/DoAnWeb_testMVC/View/invoice.php";
+                }
+            } 
+        });
+
+          
         });
       }
     }).render('#paypal-button-container');

@@ -246,9 +246,8 @@
 
 
                     <div class="action">
-                        <a> <button class=" add-to-cart" type="button">Thêm vào giỏ hàng
+                        <a> <button class=" add-to-cart" type="button" id="<?= $productDetail[0]['idsp'] ?>">Thêm vào giỏ hàng
                                 <span class="fa fa-shopping-cart"></span></button> </a>
-                        <!-- <a href="#" target="_blank"> <button class="buy-now" type="button">Mua ngay</button> -->
                         </a>
                     </div>
                 </div>
@@ -307,13 +306,6 @@
                         ?>
                     </div>
                     <div role="tabpanel" class="tab-pane" id="messages">
-
-
-
-
-
-
-
                         <div class="container bootdey">
                             <div class="col-md-12 bootstrap snippets">
                                 <div class="panel comment">

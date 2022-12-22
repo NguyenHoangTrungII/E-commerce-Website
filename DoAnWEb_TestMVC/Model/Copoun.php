@@ -1,19 +1,4 @@
 <?php
-// $today = date("Y-m-d");
-
-// $date = new DateTime(date("Y-m-d"));
-// $date->modify('+7 day');
-// $tomorrowDATE = $date->format('Y-m-d');
-
-
-// if($today > $tomorrowDATE) {
-//     echo "đúng";
-// }
-// else{
-//     echo "sai";
-// }
-
-
 /**
  * Class to handle coupon operations
  * Changes by Alex Rabinovich (@putchi)
@@ -153,8 +138,3 @@ class coupon {
         }
     }
 }
-
-
-echo Coupon::generate(10, "4-2GRP");
-
-?>

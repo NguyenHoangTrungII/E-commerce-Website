@@ -165,38 +165,6 @@
         }
     });
 
-    // $(".account-details.order-details").owlCarousel({
-    //     loop: true,
-    //     margin: 0,
-    //     items: 4,
-    //     dots: true,
-    //     nav: false,
-    //     animateOut: 'fadeOut',
-    //     animateIn: 'fadeIn',
-    //     smartSpeed: 1200,
-    //     autoHeight: false,
-    //     autoplay: false,
-    //     responsive: {
-    //         320: {
-    //             items: 1,
-    //         },
-
-    //         480: {
-    //             items: 2,
-    //         },
-
-    //         768: {
-    //             items: 3,
-    //         },
-
-    //         992: {
-    //             items: 4,
-    //         }
-    //     }
-    // });
-
-
-
     $(".latest-product__slider").owlCarousel({
         loop: true,
         margin: 0,

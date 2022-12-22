@@ -249,7 +249,7 @@ class ModelAll
 		}
 		catch(Exception $e) 
 		{
-			return -1;
+			return $e;
 		}
 	}
 	

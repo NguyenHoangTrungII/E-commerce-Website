@@ -396,9 +396,6 @@ $productList = getAll($limit, $start, $_SESSION['category_id']);
     {
     e.preventDefault();
 
-    // $('.page-item').removeClass('active');
-    // $(this).closest('li').addClass('active');
-
     var url = $(this).attr('href');
     var flag = true;
     var matchedPos =  url.search("page=\\d");

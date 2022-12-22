@@ -35,8 +35,8 @@
             }
         }
         var compare = {
-            'add': function (product_id) {
-                addProductNotice('Product added to compare', '<img src="image/demo/shop/product/e11.jpg" alt="">', '<h3>Success: You have added <a href="#">Apple Cinema 30"</a> to your <a href="#">product comparison</a>!</h3>', 'success');
+            'cart_empty': function () {
+                addProductNotice('Giỏ hàng bạn không có gì', '', '<h3>Vui lòng vui thêm sản phẩm</h3>', 'success');
             }
         }
 
@@ -106,6 +106,33 @@
         // console.debug(product_img, product_img );
         $.ajax({
             url: 'http://localhost/DoAnWeb/DoAnWeb_testMVC/Controller/HomePage/add-to-cart.php',
+            type: 'POST',
+            data: {id_product: id_product},
+            success: function(response) {
+                if(response != -1){
+                    cart.add(product_name, product_img  );
+                    addProductCart(id_product, product_name, product_img, product_price);
+                }
+                else{
+                    warning.warrning();
+                }
+            }
+		});
+    });
+</script>
+
+
+<!-- add to cart khi ở chi tiết giỏ hàng -->
+<script>
+    $(document).on("click", ".add-to-cart", function(){
+        var id_product = $(this).attr('id');
+        var product_name = $(this).parent().parent().parent().parent().find('.product-name').text();
+        var product_img = $(this).parent().parent().parent().find('.product-img-link').attr('src');
+        var product_price =( $(this).parent().parent().parent().parent().find('.product-price').text());
+        product_price = product_price.substring(0, product_price.indexOf('đ'));
+
+        $.ajax({
+            url: 'http://localhost/DoAnWeb/DoAnWeb_testMVC/Controller/HomePage/add-to-cart-detail.php',
             type: 'POST',
             data: {id_product: id_product},
             success: function(response) {

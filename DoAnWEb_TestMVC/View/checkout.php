@@ -146,37 +146,12 @@
                                     <span>Tổng</span>
                                     <span class="total-order-finish">150.000đ</span>
                                 </p>
+
+                                <p><a class="next-payment btn btn-primary btn-cart py-3 px-4" style="color:#FFF">THANH TOÁN</a></p>
+
                             </div>
                         </div>
-                        <div class="col-md-12">
-                            <div class="cart-detail p-3 p-md-4">
-                                <h3 class="billing-heading payment mb-4">Phương thức thanh toán</h3>
-                                <div class="form-group">
-                                    <div class="col-md-12">
-                                        <div class="radio">
-                                            <label><input type="radio" name="optradio" class="mr-2"> Trực tiếp thẻ tín
-                                                dụng</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-md-12">
-                                        <div class="radio">
-                                            <label><input type="radio" name="optradio" class="mr-2"> Trả sau</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-md-12">
-                                        <div class="checkbox">
-                                            <label><input type="checkbox" value="" class="mr-2"> Tôi chấp nhận với mọi
-                                                điều khoản</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <p><a class="next-payment btn btn-primary btn-cart py-3 px-4" style="color:#FFF">Đặt hàng</a></p>
-                            </div>
-                        </div>
+
                     </div>
                 </div>
                 <!-- .col-md-8 -->
@@ -224,10 +199,24 @@
         const total = new Intl.NumberFormat('vi-VN', config).format(total_product + total_discount + total_ship);
         return total;
     }
+
+
+
     function setPrice(){
-        // console.debug(empty(localStorage['history-cart-price']));
         var tinh_thanhpho = ($( "#Provice option:selected" ).text());
-        if(tinh_thanhpho=="Thành phố Hồ Chí Minh" ){
+        if(localStorage['history-cart-price'] != undefined){
+            var historyPrice = JSON.parse(localStorage['history-cart-price']);
+            $('.total-price-product').html(historyPrice['total_price_product']);
+            $('.shipping-free').html(historyPrice['ship_fee']);
+            $('.discount-price').html(historyPrice['discount']);
+            $('.total-order-finish').html(historyPrice['total_price_order']);
+            localStorage.removeItem("history-cart-price");
+
+            
+
+        }
+        else{
+            if(tinh_thanhpho=="Thành phố Hồ Chí Minh" ){
             const config = { style: 'currency', currency: 'VND', maximumFractionDigits: 9}
             const fee_ship = new Intl.NumberFormat('vi-VN', config).format(50000);
            
@@ -242,7 +231,10 @@
             $('.shipping-free').html(fee_ship);
             $('.total-order-finish').html(total_AfterUpdate());
         }
+        }
     }
+
+   
 
 
     // if(localStorage['history-cart-price'] != "")
@@ -320,12 +312,10 @@
         url: "http://localhost/DoAnWeb/DoAnWeb_testMVC/admin/Controller/Formcheck/LayTinh.php",       
         dataType:'json',         
         success: function(data){     
-            // $("#Provice").html("");
             $("#Provice").append($('<option>', {value:-1, text:"Chọn tỉnh/thành phố"}));
             for (i=0; i<data.length; i++){            
-                var provice = data[i]; //vd  {idTinh:'6', loai:'Tỉnh', tenTinh:'Bắc Kạn'}
+                var provice = data[i]; 
                 
-                // console.log(provice);
                 $('#Provice').append($('<option>', {value:provice['id'], text:provice['name']}));
             }
 
@@ -344,12 +334,10 @@
                         for (i=0; i<data.length; i++){            
                         var district = data[i]; //vd  {idTinh:'6', loai:'Tỉnh', tenTinh:'Bắc Kạn'}
                         
-                        // console.log(district);
                         $('#District').append($('<option>', {value:district['id'], text:district['name']}));
                         }  
 
                         setPrice();
-                        // update_total_price();
                         
                         $("#District").on("change", function(e){
                             var District_id = $( "#District option:selected" ).val();
