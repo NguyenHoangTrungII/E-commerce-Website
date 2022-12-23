@@ -88,11 +88,11 @@ if(isset($_POST['load_login']))
                                     <h5 class="header__title-login text-uppercase text-center pb-2">ĐĂNG NHẬP</h5>
 
                                     <div class="login__with-gg text-center ">
-                                        <div class="btn btn-with fw-bold" style="border: 1px solid #9999; width: 100%;">
+                                        <!-- <div class="btn btn-with fw-bold" style="border: 1px solid #9999; width: 100%;">
                                             <img class="login__with-gg-img" src="../../assets/img/login/Google__G__Logo.svg"
                                                 alt="">
                                             Đăng nhập với google
-                                        </div>
+                                        </div> -->
 
                                         <div class="login__another fw-bold">
 

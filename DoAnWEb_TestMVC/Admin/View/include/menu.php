@@ -56,15 +56,15 @@ use FTP\Connection;
 
             <ul class="menu-inner py-1">
               <!-- Dashboard -->
-              <li class="menu-item one" id="index">
+              <!-- <li class="menu-item one" id="index">
                 <a href="index.php" class="menu-link">
                   <i class="menu-icon tf-icons bx bx-home-circle"></i>
                   <div data-i18n="Analytics">Dashboard</div>
                 </a>
-              </li>
+              </li> -->
 
                   <!-- Account -->
-                  <li class="menu-header small text-uppercase">
+                  <!-- <li class="menu-header small text-uppercase">
                     <span class="menu-header-text">TÀI KHOẢN</span>
                   </li>
                   <li class="menu-item">
@@ -95,7 +95,7 @@ use FTP\Connection;
                         </a>
                       </li>
                     </ul>
-                  </li>
+                  </li> -->
 
                   <!-- Manament -->
                   <li class="menu-header small text-uppercase"><span class="menu-header-text">Quản lý</span></li>
