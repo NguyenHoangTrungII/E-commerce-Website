@@ -15,7 +15,7 @@ include("../config/site.php");
 
 if(isset($_GET['id'])){
   ##=======LẤY DỮ LIỆU=======##
-  $columnName = $tableName = null;
+  $columnName = $tableName = $whereValue =   $joinCondition = $employeeInfo = null;
   $columnName = "*";
   $tableName = "danhmucsp";
   // $categoryList = $Model->selectData($columnName, $tableName);

@@ -14,7 +14,7 @@
 
     if(isset($_GET['id'])){
         ##=======LẤY DỮ LIỆU=======##
-        $columnName = $tableName = null;
+        $columnName = $tableName = $whereValue =   $joinCondition = $employeeInfo = null;
         $columnName = "*";
         $tableName = "slider";
         $sliderList = $Model->selectData($columnName, $tableName);

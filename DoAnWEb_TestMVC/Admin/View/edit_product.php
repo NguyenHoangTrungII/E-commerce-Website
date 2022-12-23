@@ -12,7 +12,7 @@
     // $Model = new ModelAll;
 
     if(isset($_GET['id'])){
-      $columnName = $tableName = null;
+      $columnName = $tableName = $whereValue =   $joinCondition = $employeeInfo = null;
       // $columnName = "*";
       $columnName['1']="sanpham.id";
       $columnName['2']="danhmucsp.ten ten";

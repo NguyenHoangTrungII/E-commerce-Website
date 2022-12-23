@@ -26,7 +26,8 @@ $pagination = new Pagination;
   // $Model = new ModelAll;
 
 
-  $columnName = $tableName = $whereValue = null;
+  $columnName = $tableName = $whereValue =   $joinCondition = $employeeInfo = null;
+
   // $columnName = "*";
   $columnName['1']="sanpham.id";
   $columnName['2']="sanpham.tensp";
