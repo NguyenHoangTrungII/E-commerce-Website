@@ -1,26 +1,24 @@
 <?php
     // session_start();
-    include("include/menu.php");
-    include("include/top.php");
-    include("include/session.php");
+   include("include/menu.php");
+   include("include/top.php");
+   include("include/session.php");
     
-    include("../Model/ModelAll.php");
-    include("../config/databse.php");
-	include("../config/site.php");
+//    include("../Model/ModelAll.php");
+   include("../config/databse.php");
+    include("../config/site.php");
 ?>
 
 <?php
-    $Model = new ModelAll;
+    // $Model = new ModelAll;
 
     if(isset($_GET['id'])){
-        ##=======LẤY DỮ LIỆU=======##
-        $columnName = $tableName = null;
+        $columnName = $tableName = $whereValue =   $joinCondition = $employeeInfo = null;
         $columnName = "*";
         $tableName['MAIN'] = "taikhoan";
         $tableName['1'] ='nguoidung';
         $whereValue['nguoidung.id']= $_GET['id'];
-        // var_dump($whereValue['id']);
-        // $whereCondition ="!=";
+
         $joinCondition = array ("1"=>array ('taikhoan.id', 'nguoidung.id_taikhoan'));
         $employeeInfo = $Model->selectJoinData($columnName, $tableName, null, $joinCondition, $whereValue);
         // var_dump($employeeInfo);

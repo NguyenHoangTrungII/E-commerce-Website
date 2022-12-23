@@ -3,13 +3,13 @@
   include("include/menu.php");
   include("include/session.php");
   include("include/top.php");
-  include("../Model/ModelAll.php");
+  // include("../Model/ModelAll.php");
   include("../config/databse.php");
 	include("../config/site.php");
 ?>
 
 <?php
-    $Model = new ModelAll;
+    // $Model = new ModelAll;
 
     if(isset($_GET['id'])){
       $columnName = $tableName = null;

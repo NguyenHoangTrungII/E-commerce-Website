@@ -34,7 +34,7 @@ if(isset($_POST['load_login']))
 		
         // var_dump($_SESSION);
         //Chuyển hướng đến dashboard
-		header("Location: index.php");
+		header("Location: list-employee.php");
 	}
 }
 ?>

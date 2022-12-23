@@ -3,7 +3,7 @@
     require_once("include/menu.php");
     require_once("include/session.php");
     require_once("include/top.php");
-    require_once("../Model/ModelAll.php");
+    // require_once("../Model/ModelAll.php");
     require_once("../config/databse.php");
 	  require_once("../config/site.php");
     require_once("../Model/Pagination.php");
@@ -23,7 +23,7 @@ $pagination = new Pagination;
   }
 
 
-  $Model = new ModelAll;
+  // $Model = new ModelAll;
 
 
   $columnName = $tableName = $whereValue = null;
