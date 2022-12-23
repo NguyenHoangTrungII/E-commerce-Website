@@ -119,7 +119,7 @@
     <link rel="stylesheet" href="../assets/css/css/owl.carousel.min.css">
     <link rel="stylesheet" href="../assets/css/css/slicknav.min.css">
     <link rel="stylesheet" href="../assets/css/base.css">
-    <link rel="stylesheet" href="../assets/js/main.css">
+    <link rel="stylesheet" href="../assets/css/main.css">
     <link rel="stylesheet" href="../assets/css/reposive.css">
     <link rel="stylesheet" href="../assets/css/popup.css">
     <link rel="stylesheet" href="../assets/css/css/toggle-switchy.css">
