@@ -52,19 +52,19 @@ $productList = getAll($limit, $start);
 ?>
 
 <?php 
-  if(!$ctrl->checkprivilege( $privilegeUser_array, "add_product.php")){
+  if(!$ctrl->checkprivilege( $privilegeUser_array, "add_product.php", $role)){
     $add_status = "hidden";
   }else{
     $add_status = "";
   }
 
-  if(!$ctrl->checkprivilege( $privilegeUser_array, "edit_product.php?id=4")){
+  if(!$ctrl->checkprivilege( $privilegeUser_array, "edit_product.php?id=4", $role)){
     $edit_status = "hidden";
   }else{
     $edit_status = "";
   }
 
-  if(!$ctrl->checkprivilege( $privilegeUser_array, "delete_product.php")){
+  if(!$ctrl->checkprivilege( $privilegeUser_array, "delete_product.php", $role)){
     $delete_status = "hidden";
   }else{
     $delete_status = "";

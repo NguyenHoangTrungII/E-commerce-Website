@@ -8,7 +8,7 @@
 
 <?php 
 
-  if(!$ctrl->checkprivilege( $privilegeUser_array, "delete_rate.php")){
+  if(!$ctrl->checkprivilege( $privilegeUser_array, "delete_rate.php", $role)){
     $delete_status = "hidden";
   }else{
     $delete_status = "";

@@ -55,7 +55,7 @@ $warehouseList = getAll($limit, $start);
 
 <?php 
 
-  if(!$ctrl->checkprivilege( $privilegeUser_array, "update_qty.php")){
+  if(!$ctrl->checkprivilege( $privilegeUser_array, "update_qty.php", $role)){
     $edit_status = "onkeydown='return false'";
   }else{
     $edit_status = "";

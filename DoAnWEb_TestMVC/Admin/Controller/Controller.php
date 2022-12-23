@@ -1,7 +1,3 @@
-<?php
-	// include("../config/databse.php");
-	// include("../config/site.php");
-?>
 
 <?php 
 	class Controller
@@ -57,7 +53,6 @@
 			}
 		}
 		
-		// MAKE PASSWORD // RETURN TO USER for SIGNUP //
 		public function makePass() 
 		{
 			$alphabet = "56789abcdefghijklmnopqrstuwxyz@#%#@ABCDEFGHIJKLMNOPQRSTUWXYZ01234";
@@ -97,7 +92,6 @@
 
 		public function checkImage($fileType, $fileSize, $fileError)
 		{
-			// 50 MB = 52428800 Bytes //
 			if ((($fileType == "image/gif")
 			|| ($fileType == "image/jpeg")
 			|| ($fileType == "image/jpg")
@@ -113,11 +107,22 @@
 			return 0;
 		}
 
-		public function checkprivilege($privilege, $linkPrivilege =false){
+		public function checkprivilege($privilege, $linkPrivilege =false, $role){
 			$uri = $linkPrivilege != false ? $linkPrivilege : $_SERVER['REQUEST_URI'];
+			if($role == 1){
+				return true;
+				exit();
+			}
+
+			if(empty($privilege)){
+				return false;
+				exit();
+			}
+			
 			$privilege = implode("|", $privilege);
-			preg_match('/'.$privilege.'/', $uri, $match);
-			return !empty($match);
+				preg_match('/'.$privilege.'/', $uri, $match);
+				return !empty($match);
+			
 		}
 
 	}

@@ -50,19 +50,19 @@ $categoryList = getAll($limit, $start);
 ?>
 
 <?php 
-  if(!$ctrl->checkprivilege( $privilegeUser_array, "add_category.php")){
+  if(!$ctrl->checkprivilege( $privilegeUser_array, "add_category.php", $role)){
     $add_status = "hidden";
   }else{
     $add_status = "";
   }
 
-  if(!$ctrl->checkprivilege( $privilegeUser_array, "edit_category.php?id=4")){
+  if(!$ctrl->checkprivilege( $privilegeUser_array, "edit_category.php?id=4", $role)){
     $edit_status = "hidden";
   }else{
     $edit_status = "";
   }
 
-  if(!$ctrl->checkprivilege( $privilegeUser_array, "delete_category.php")){
+  if(!$ctrl->checkprivilege( $privilegeUser_array, "delete_category.php", $role)){
     $delete_status = "hidden";
   }else{
     $delete_status = "";

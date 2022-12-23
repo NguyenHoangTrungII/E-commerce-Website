@@ -1,5 +1,4 @@
 <?php
-    // session_start();
     require_once("include/menu.php");
     require_once("include/session.php");
     require_once("include/top.php");
@@ -34,13 +33,6 @@ $start = $pagination->get_config('start');
 
 // Lấy danh sách thành viên
 $employeeList = getAll($limit, $start);
-
-
-// var_dump($_POST['flag']==true);
-
-
-
-// var_dump($employeeList);
 
 ?>
 

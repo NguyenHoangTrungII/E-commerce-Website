@@ -40,14 +40,10 @@
         }
         
         public function checkPhoneNumberValiation($phoneNumber){
-            //Loại bỏ kí tự không cần thiết
             $phoneNumber= str_replace(array('-', '.', ' '), '', $phoneNumber);
-
-            // var_dump($phoneNumber);
 
             $phoneNumber = Controller::test_input($phoneNumber);
 
-            //kiểm tra số theo đầu số nhà mạng việt nam
             if(!isset($phoneNumber)){
                 return 'Không được bỏ trống số điện thoại';
             }

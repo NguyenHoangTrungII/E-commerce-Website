@@ -288,7 +288,6 @@
                       </div>
                     </div>
                     
-                    <!-- Circles which indicates the steps of the form: -->
                     <div style="text-align:center;margin-top:20px; margin-bottom: 20px;">
                       <span class="step"></span>
                       <span class="step"></span>
@@ -297,8 +296,6 @@
                     
                 </form>
 
-
-                
             </div>
             <!-- / Layout page -->
         </div>

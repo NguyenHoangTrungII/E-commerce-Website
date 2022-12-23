@@ -6,13 +6,10 @@
   require_once($_SERVER['DOCUMENT_ROOT']."/DoAnWeb/DoAnWeb_TEstMVC/Admin/Model/ModelAll.php");
   require_once($_SERVER['DOCUMENT_ROOT']."/DoAnWeb/DoAnWeb_TEstMVC/Admin/config/databse.php");
   require_once($_SERVER['DOCUMENT_ROOT']."/DoAnWeb/DoAnWeb_TEstMVC/Admin/Controller/Controller.php");
-
-
   $Model = new ModelAll;
   $ctrl = new Controller;
 
-
-   $columnName100 = $tableName100 = $whereValue100 = $joinCondition100 = null;
+   $columnName100 = $tableName100 = $whereValue100 = $joinCondition100 = $privilegeUser=$privilegeUser_array= null;
    $columnName100['1'] = "url";
    $columnName100['2'] = "quyen.id tenquyen";
    $tableName100['MAIN'] = "ct_quyen";
@@ -26,8 +23,16 @@
     array_push($privilegeUser_array, $eachRow['url']);
   }
 
+  $role = $_SESSION['SMC_login_admin_type'];
+  if(!$ctrl->checkprivilege($privilegeUser_array, false,  $role)){
+    echo "Bạn không có quyền truy cập trang web này";
+    exit();
+  }
+  
 
 
+  
+  // var_dump($_SESSION['SMC_login_account_id']);
 ?>
 
 
@@ -58,7 +63,7 @@
                   <li class="menu-header small text-uppercase"><span class="menu-header-text">Quản lý</span></li>
                   <!-- Cards -->
                   <?php 
-                    if($ctrl->checkprivilege(  $privilegeUser_array, "list-employee.php") ||  $ctrl->checkprivilege(  $privilegeUser_array, "list-customer.php")){
+                    if($ctrl->checkprivilege(  $privilegeUser_array, "list-employee.php", $role) ||  $ctrl->checkprivilege(  $privilegeUser_array, "list-customer.php", $role)){
 
                       $string =
                         '<li class="menu-item">
@@ -71,7 +76,7 @@
                           
                         ';
 
-                      if($ctrl->checkprivilege(  $privilegeUser_array, "list-employee.php")){
+                      if($ctrl->checkprivilege(  $privilegeUser_array, "list-employee.php", $role)){
                         $string .= '
                         <li class="menu-item" id="list-employee">
                           <a href="list-employee.php" class="menu-link">
@@ -81,7 +86,8 @@
                         
                       }
 
-                      if($ctrl->checkprivilege(  $privilegeUser_array, "list-customer.php")){
+                      if($ctrl->checkprivilege(  $privilegeUser_array, "list-customer.php", $role)){
+                        // var_dump($ctrl->checkprivilege(  $privilegeUser_array, "list-customer.php"));
                         $string .= '
                         
                         <li class="menu-item" id="list-customer">
@@ -104,7 +110,7 @@
 
                   // if(){
 
-                    if($ctrl->checkprivilege(  $privilegeUser_array, "list-category.php") ||  $ctrl->checkprivilege(  $privilegeUser_array, "list-slider.php")){
+                    if($ctrl->checkprivilege(  $privilegeUser_array, "list-category.php", $role) ||  $ctrl->checkprivilege(  $privilegeUser_array, "list-slider.php", $role)){
 
                       $string =
                         '<li class="menu-item">
@@ -115,7 +121,7 @@
                           <ul class="menu-sub">
                         ';
 
-                      if($ctrl->checkprivilege(  $privilegeUser_array, "list-category.php")){
+                      if($ctrl->checkprivilege(  $privilegeUser_array, "list-category.php", $role)){
                         $string .= '
                           <li class="menu-item" id="list-category">
                             <a href="list-category.php" class="menu-link">
@@ -125,7 +131,7 @@
                         
                       }
 
-                      if($ctrl->checkprivilege(  $privilegeUser_array, "list-slider.php")){
+                      if($ctrl->checkprivilege(  $privilegeUser_array, "list-slider.php", $role)){
                         $string .= '
                         
                           <li class="menu-item" id="list-slider">
@@ -148,7 +154,7 @@
 
                   // if(){
 
-                    if($ctrl->checkprivilege(  $privilegeUser_array, "list-rate.php") ||  $ctrl->checkprivilege(  $privilegeUser_array, "list-question.phplist")){
+                    if($ctrl->checkprivilege(  $privilegeUser_array, "list-rate.php", $role) ||  $ctrl->checkprivilege(  $privilegeUser_array, "list-question.phplist", $role)){
 
                       $string =
                         '<li class="menu-item">
@@ -159,7 +165,7 @@
                           <ul class="menu-sub" id="list-rate">
                         ';
 
-                      if($ctrl->checkprivilege(  $privilegeUser_array, "list-rate.php")){
+                      if($ctrl->checkprivilege(  $privilegeUser_array, "list-rate.php", $role)){
                         $string .= '
                         <li class="menu-item">
                           <a href="list-rate.php" class="menu-link">
@@ -169,7 +175,7 @@
                         
                       }
 
-                      if($ctrl->checkprivilege(  $privilegeUser_array, "list-question.php")){
+                      if($ctrl->checkprivilege(  $privilegeUser_array, "list-question.php", $role)){
                         $string .= '
                         
                         <li class="menu-item" id="list-question">
@@ -192,7 +198,7 @@
 
                     // if(){
 
-                      if($ctrl->checkprivilege(  $privilegeUser_array, "list_product.php") ||  $ctrl->checkprivilege(  $privilegeUser_array, "list_discount.php")  ||  $ctrl->checkprivilege(  $privilegeUser_array, "list_warehouse.php")){
+                      if($ctrl->checkprivilege(  $privilegeUser_array, "list_product.php", $role) ||  $ctrl->checkprivilege(  $privilegeUser_array, "list_discount.php", $role)  ||  $ctrl->checkprivilege(  $privilegeUser_array, "list_warehouse.php", $role)){
 
                         $string =
                           '<li class="menu-item">
@@ -203,7 +209,7 @@
                             <ul class="menu-sub">
                           ';
 
-                        if($ctrl->checkprivilege(  $privilegeUser_array, "list_product.php")){
+                        if($ctrl->checkprivilege(  $privilegeUser_array, "list_product.php", $role)){
                           $string .= '
                           <li class="menu-item" id="list-products">
                             <a href="list_product.php" class="menu-link" >
@@ -213,7 +219,7 @@
                           
                         }
 
-                        if($ctrl->checkprivilege(  $privilegeUser_array, "list_discount.php")){
+                        if($ctrl->checkprivilege(  $privilegeUser_array, "list_discount.php", $role)){
                           $string .= '
                           
                           <li class="menu-item" id="list-discount">
@@ -224,7 +230,7 @@
                         ;
                         }
 
-                        if($ctrl->checkprivilege(  $privilegeUser_array, "list_warehouse.php")){
+                        if($ctrl->checkprivilege(  $privilegeUser_array, "list_warehouse.php", $role)){
                           $string .= '
                           
                           <li class="menu-item" id="list-warehouse">
@@ -247,7 +253,7 @@
 
                     // if(){
 
-                      if($ctrl->checkprivilege(  $privilegeUser_array, "list-order.php") ){
+                      if($ctrl->checkprivilege(  $privilegeUser_array, "list-order.php", $role) ){
 
                         $string =
                           '<li class="menu-item" >
@@ -264,7 +270,7 @@
                     <!-- Brand -->
 
                     <?php 
-                      if($ctrl->checkprivilege(  $privilegeUser_array, "list_supplier.php") ){
+                      if($ctrl->checkprivilege(  $privilegeUser_array, "list_supplier.php", $role) ){
 
                         $string =
                           ' 

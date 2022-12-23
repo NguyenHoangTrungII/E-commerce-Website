@@ -1,5 +1,5 @@
 <?php
-    
+    // session_start();
     $Model = new ModelAll;
     $controller = new Controller;
 
@@ -20,11 +20,17 @@
         try
         {
 
-            $query_code = "SELECT COUNT(*) FROM `taikhoan` JOIN `nguoidung` ON taikhoan.id = nguoidung.id_taikhoan WHERE vaitro =2";
+            $query_code = "SELECT COUNT(*) FROM `taikhoan` JOIN `nguoidung` ON taikhoan.id = nguoidung.id_taikhoan WHERE vaitro =:VALUE1 AND taikhoan.id!=:VALUE2";
             $query = $controller->connection->prepare($query_code);
-			$query->execute();
+            $values = array(
+				':VALUE1' => 2,
+                ':VALUE2' =>  $_SESSION['SMC_login_account_id'],
+				);
+			$query->execute($values);
 			$rowSelected = $query->fetchColumn(); 
 			return $rowSelected ;
+
+            // var_dump($query_code);
 		}
 		catch(Exception $e) 
 		{
@@ -37,18 +43,33 @@
         
         function getAll($limit, $start)
         {
-            $Model = new ModelAll;
+            $controller = new Controller;
 
-            $columnName = $tableName = $limitPaging = $formatBy= $joinCondition = $whereValue = null;
-            $columnName = "*";
-            $tableName['MAIN'] = "taikhoan";
-            $tableName['1'] ='nguoidung';
-            $limitPaging['POINT'] = $start;
-            $limitPaging['LIMIT'] = $limit;
-            $formatBy['ASC'] = "nguoidung.ID";
-            $joinCondition = array ("1"=>array ('taikhoan.id', 'nguoidung.id_taikhoan'));
-            $whereValue['vaitro'] ="2";
-            $employeeList = $Model->selectJoinData($columnName, $tableName, "inner", $joinCondition,  $whereValue, "=",  $formatBy, $limitPaging);
-            return $employeeList;
-        }
+
+        try
+        {
+
+            $query_code = "SELECT * FROM `taikhoan` JOIN `nguoidung` ON taikhoan.id = nguoidung.id_taikhoan WHERE vaitro =:VALUE1 AND taikhoan.id !=:VALUE2 LIMIT ".$start ." ,". $limit;
+            $query = $controller->connection->prepare($query_code);
+
+            // var_dump($query_code);
+            $values = array(
+				':VALUE1' => 2,
+                ':VALUE2' =>  $_SESSION['SMC_login_account_id'],
+				);
+			$query->execute($values);
+			$dataList = $query->fetchAll(PDO::FETCH_ASSOC);
+            $totalRowSelected = $query->rowCount();
+            
+            if($totalRowSelected > 0)
+                return $dataList;
+            else
+                return 0;
+            }
+		catch(Exception $e) 
+		{
+			return 0;
+		}
+            return 0;
+    }
 ?>

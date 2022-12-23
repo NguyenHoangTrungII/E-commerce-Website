@@ -61,13 +61,13 @@ $orderList = getAll($limit, $start);
     //   $edit_status = "";
     // }
 
-    if(!$ctrl->checkprivilege( $privilegeUser_array, "edit_order.php?id=4")){
+    if(!$ctrl->checkprivilege( $privilegeUser_array, "edit_order.php?id=4", $role)){
       $edit_order_status = "hidden";
     }else{
       $edit_order_status  = "";
     }
   
-    if(!$ctrl->checkprivilege( $privilegeUser_array, "delete_order.php")){
+    if(!$ctrl->checkprivilege( $privilegeUser_array, "delete_order.php", $role)){
       $delete_order_status = "hidden";
     }else{
       $delete_order_status = "";

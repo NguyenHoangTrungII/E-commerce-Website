@@ -11,7 +11,6 @@
     require_once("../Controller/Employee/getall-employee.php");
 ?>
 <?php
-var_dump($_SESSION['SMC_login_admin_type']);
 $pagination = new Pagination;
 
   $config = array(
@@ -40,19 +39,19 @@ $employeeList = getAll($limit, $start);
 ?>
 
 <?php 
-  if(!$ctrl->checkprivilege( $privilegeUser_array, "add_employee.php")){
+  if(!$ctrl->checkprivilege( $privilegeUser_array, "add_employee.php",$role)){
     $add_status = "hidden";
   }else{
     $add_status = "";
   }
 
-  if(!$ctrl->checkprivilege( $privilegeUser_array, "edit_employee.php?id=4")){
+  if(!$ctrl->checkprivilege( $privilegeUser_array, "edit_employee.php?id=4", $role)){
     $edit_status = "hidden";
   }else{
     $edit_status = "";
   }
 
-  if(!$ctrl->checkprivilege( $privilegeUser_array, "delete_employee.php")){
+  if(!$ctrl->checkprivilege( $privilegeUser_array, "delete_employee.php", $role)){
     $delete_status = "hidden";
   }else{
     $delete_status = "";
@@ -329,9 +328,6 @@ $employeeList = getAll($limit, $start);
                       </div>
                     </div>
                   </div>
-
-                  
-
                 </table>
 
                 <div class="paging d-flex justify-content-end px-5 py-4">
