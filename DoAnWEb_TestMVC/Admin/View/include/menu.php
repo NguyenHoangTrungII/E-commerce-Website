@@ -1,7 +1,5 @@
 <?php
 
-use FTP\Connection;
-
   session_start();
   include("session.php");
   require_once($_SERVER['DOCUMENT_ROOT']."/DoAnWeb/DoAnWeb_TEstMVC/Admin/config/site.php");
@@ -14,21 +12,20 @@ use FTP\Connection;
   $ctrl = new Controller;
 
 
-   $columnName = $tableName = $whereValue = null;
-   $columnName['1'] = "url";
-   $columnName['2'] = "quyen.id tenquyen";
-   $tableName['MAIN'] = "ct_quyen";
-   $tableName['2'] ='nhomquyen';
-   $tableName['1'] ='quyen';
-   $whereValue['id_taikhoan']= $_SESSION['SMC_login_account_id'];
-   $joinCondition = array ("1"=>array ('ct_quyen.id_quyen', 'quyen.id'), "2"=> array('ct_quyen.id_nhomquyen', 'nhomquyen.id'));
-   $privilegeUser = $Model->selectJoinData($columnName, $tableName, null, $joinCondition, $whereValue);
-   $privilegeUser_array = array();
+   $columnName100 = $tableName100 = $whereValue100 = $joinCondition100 = null;
+   $columnName100['1'] = "url";
+   $columnName100['2'] = "quyen.id tenquyen";
+   $tableName100['MAIN'] = "ct_quyen";
+   $tableName100['2'] ='nhomquyen';
+   $tableName100['1'] ='quyen';
+   $whereValue100['id_taikhoan']= $_SESSION['SMC_login_account_id'];
+   $joinCondition100 = array ("1"=>array ('ct_quyen.id_quyen', 'quyen.id'), "2"=> array('ct_quyen.id_nhomquyen', 'nhomquyen.id'));
+   $privilegeUser = $Model->selectJoinData($columnName100, $tableName100, null, $joinCondition100, $whereValue100);
+   $privilegeUser_array= array();
    foreach($privilegeUser as $eachRow){
     array_push($privilegeUser_array, $eachRow['url']);
   }
 
-  // var_dump($privilegeUser_array);
 
 
 ?>
@@ -55,47 +52,7 @@ use FTP\Connection;
             <div class="menu-inner-shadow"></div>
 
             <ul class="menu-inner py-1">
-              <!-- Dashboard -->
-              <!-- <li class="menu-item one" id="index">
-                <a href="index.php" class="menu-link">
-                  <i class="menu-icon tf-icons bx bx-home-circle"></i>
-                  <div data-i18n="Analytics">Dashboard</div>
-                </a>
-              </li> -->
 
-                  <!-- Account -->
-                  <!-- <li class="menu-header small text-uppercase">
-                    <span class="menu-header-text">TÀI KHOẢN</span>
-                  </li>
-                  <li class="menu-item">
-                    <a href="javascript:void(0);" class="menu-link menu-toggle">
-                      <i class="menu-icon tf-icons bx bx-dock-top"></i>
-                      <div data-i18n="Account Settings">Cài đặt tài khoản</div>
-                    </a>
-                    <ul class="menu-sub">
-                      <li class="menu-item">
-                        <a href="pages-account-settings-account.php" class="menu-link">
-                          <div data-i18n="Account">Tài khoản</div>
-                        </a>
-                      </li>
-                      <li class="menu-item">
-                        <a href="pages-account-settings-notifications.php" class="menu-link">
-                          <div data-i18n="Notifications">Đổi mật khẩu</div>
-                        </a>
-                      </li>
-
-                      <li class="menu-item">
-                        <a href="auth-login-basic.php" class="menu-link" target="_blank">
-                          <div data-i18n="Basic">Đăng nhập</div>
-                        </a>
-                      </li>
-                      <li class="menu-item">
-                        <a href="auth-register-basic.php" class="menu-link" target="_blank">
-                          <div data-i18n="Basic">Đăng xuất</div>
-                        </a>
-                      </li>
-                    </ul>
-                  </li> -->
 
                   <!-- Manament -->
                   <li class="menu-header small text-uppercase"><span class="menu-header-text">Quản lý</span></li>

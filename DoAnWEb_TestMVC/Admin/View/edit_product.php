@@ -511,12 +511,12 @@
               $("html, body").animate({scrollTop: 0}, 1000);
               //Doi path cho anh, sau nay neu muon sua tiesp se khong bi loi
               //Anh thumbail
-              $(".img-preview-product-edit").attr("src", "../../public/uploads/products/ "+info['tendanhmuc']+"thumbnail/"+data['anh_moi']);
+              $(".img-preview-product-edit").attr("src", "../../public/uploads/products/ "+trim(info['tendanhmuc'])+"/"+"Thumbnail/"+data['anh_moi']);
               $(".img-preview-product-edit").attr("alt", data['anh_moi']);
 
               //Anh garelly
               foreach(data['anh_thumbail_cu'])
-              $(".img-preview-product-edit").attr("src", "../../public/uploads/products/"+info['tendanhmuc']+"thumbnail/"+data['anh_moi']);
+              $(".img-preview-product-edit").attr("src", "../../public/uploads/products/"+info['tendanhmuc']+"/"+"Gallery/"+data['anh_moi']);
               $(".img-preview-product-edit").attr("alt", data['anh_moi']);
 
 

@@ -133,7 +133,7 @@
         $columnName3['noidung1'] = $_POST['specification'];
         $whereValue3['id_sp']= $info_array['id'];
 
-        var_dump($columnName3);
+        // var_dump($columnName3);
         //Dữ liệu kho hàng
         // $tableName1 = $columnName1 = null;
         // $tableName1 = 'khohang';
@@ -165,7 +165,7 @@
     {
         if(isset($_FILES['file_thumbail_img']['tmp_name']))
         {
-            unlink($GLOBALS['PRODUCT_DIRECTORY'].$info_array['tendanhmuc']."/"."thumbnail/". $columnName['anh']);
+            @unlink($GLOBALS['PRODUCT_DIRECTORY'].$info_array['tendanhmuc']."/"."thumbnail/". $columnName['anh']);
         }
 
         $Model->connection->rollBack();

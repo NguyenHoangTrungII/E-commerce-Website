@@ -11,7 +11,7 @@
     require_once("../Controller/Employee/getall-employee.php");
 ?>
 <?php
-
+var_dump($_SESSION['SMC_login_admin_type']);
 $pagination = new Pagination;
 
   $config = array(
@@ -154,7 +154,7 @@ $employeeList = getAll($limit, $start);
                                   <i class="bx bx-dots-vertical-rounded"></i>
                                 </button>
                                 <div class="dropdown-menu">
-                                  <a class="dropdown-item" href="privilege.php?id='.$eachRow['id_taikhoan'].'" '.$role.' ><i
+                                  <a class="dropdown-item" href="privilege.php?id='.$eachRow['id_taikhoan'].'" ><i
                                       class="bx bx-info-circle"></i> Phân quyền</a>
 
                                   <a type="submit" class="dropdown-item" href="edit_employee.php?id='.$eachRow['id'].'" '. $edit_status.'><i class="bx bx-edit-alt me-1"></i>
