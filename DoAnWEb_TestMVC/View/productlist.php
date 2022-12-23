@@ -26,6 +26,8 @@
     $tableName['MAIN']= "ct_danhmuc";
     $tableName['1'] = 'nhacungcap';
     $columnName['1'] = "ct_danhmuc.id_thuonghieu id_thuonghieu";
+    $columnName['1'] = "ct_danhmuc.id_thuonghieu id_thuonghieu";
+
     $columnName['2'] = "nhacungcap.tenncc tenncc";
     $whereValue['id_danhmuc']=$_SESSION['category_id'];
     $joinCondition = array("1"=>array("ct_danhmuc.id_thuonghieu", "nhacungcap.id"));
@@ -37,6 +39,7 @@
     $tableName['MAIN']= "danhmucsp";
     $tableName['1'] = 'sanpham';
     $columnName['1'] = "giagoc";
+    $columnName['2'] = "danhmucsp.ten tendanhmuc";
     // $columnName['2'] = "nhacungcap.tenncc tenncc";
     $whereValue['id_danhmuc']=$_SESSION['category_id'];
     $paginate["POINT"]=0;
@@ -72,13 +75,10 @@ $start = $pagination->get_config('start');
 // Lấy danh sách sản phẩm
 $productList = getAll($limit, $start, $_SESSION['category_id']);
 
-// var_dump($config);
-
-
 ?>
 
      <!-- Breadcrumb Section Begin -->
-     <section class="breadcrumb-section set-bg" data-setbg="img/breadcrumb/classes-breadcrumb.jpg">
+     <section class="breadcrumb-section set-bg" data-setbg="../assets/img/login/backgroup_login_SignUp.jpg">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -86,7 +86,7 @@ $productList = getAll($limit, $start, $_SESSION['category_id']);
                         <h2>SẢN PHẨM</h2>
                         <div class="breadcrumb-option">
                             <a href="./index.html"><i class="fa fa-home"></i> Trang chủ</a>
-                            <a>Sản phẩm</a><span>tên sản phẩm</span>
+                            <a>Sản phẩm </a><span style="color: #fff"><?= $maxPriceList[0]['tendanhmuc']?></span>
                         </div>
                     </div>
                 </div>
@@ -137,7 +137,9 @@ $productList = getAll($limit, $start, $_SESSION['category_id']);
 
             </div>
             <div id="content" class="my-5">
-                <div id="filterbar" class="collapse">
+                <div id="filterbar" class="collapse" style="
+    PADDING-BOTTOM: 40PX;
+">
                     <div class="box border-bottom">
                         <div class="form-group text-center">
                             <div class="btn-group" data-toggle="buttons">
@@ -424,6 +426,12 @@ $productList = getAll($limit, $start, $_SESSION['category_id']);
             }
         });
         
+    })
+</script>
+
+<script>
+    $('#filtter-reset').on('click', function(){
+        location.reload();
     })
 </script>
 

@@ -23,7 +23,7 @@
 ?>
 
     <!-- Breadcrumb Section Begin -->
-    <section class="breadcrumb-section set-bg" data-setbg="img/breadcrumb/classes-breadcrumb.jpg">
+    <section class="breadcrumb-section set-bg" data-setbg="../assets/img/login/backgroup_login_SignUp.jpg">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -193,10 +193,10 @@
 
     function total_AfterUpdate(){
         var total_product = parseInt($('.total-price-product').text().replace(/\D/g, "")); 
-        var total_discount = parseInt($('.shipping-free').text().replace(/\D/g, "")); 
-        var total_ship= parseInt($('.discount-price').text().replace(/\D/g, "")); 
+        var total_ship = parseInt($('.shipping-free').text().replace(/\D/g, "")); 
+        var  total_discount= parseInt($('.discount-price').text().replace(/\D/g, "")); 
         const config = { style: 'currency', currency: 'VND', maximumFractionDigits: 9}
-        const total = new Intl.NumberFormat('vi-VN', config).format(total_product + total_discount + total_ship);
+        const total = new Intl.NumberFormat('vi-VN', config).format(total_product  + total_ship - total_discount);
         return total;
     }
 
@@ -204,12 +204,35 @@
 
     function setPrice(){
         var tinh_thanhpho = ($( "#Provice option:selected" ).text());
-        if(localStorage['history-cart-price'] != undefined){
+        let fee_ship;
+        var historyPrice = JSON.parse(localStorage['history-cart-price']);
+        
+        if(parseFloat(historyPrice['ship_fee'].replace(/\D/g, ""))  >  0){
+            if(tinh_thanhpho=="Thành phố Hồ Chí Minh" ){
+                const config = { style: 'currency', currency: 'VND', maximumFractionDigits: 9}
+                fee_ship = new Intl.NumberFormat('vi-VN', config).format(50000);}
+            else{
+                const config = { style: 'currency', currency: 'VND', maximumFractionDigits: 9}
+                 fee_ship = new Intl.NumberFormat('vi-VN', config).format(60000);
+            }
+
+
             var historyPrice = JSON.parse(localStorage['history-cart-price']);
             $('.total-price-product').html(historyPrice['total_price_product']);
-            $('.shipping-free').html(historyPrice['ship_fee']);
+            $('.shipping-free').html(fee_ship);
             $('.discount-price').html(historyPrice['discount']);
-            $('.total-order-finish').html(historyPrice['total_price_order']);
+            $('.total-order-finish').html(total_AfterUpdate());
+            localStorage.removeItem("history-cart-price");
+
+            
+
+        }
+        else if(parseFloat(historyPrice['ship_fee'].replace(/\D/g, ""))  ==0 ){
+            var historyPrice = JSON.parse(localStorage['history-cart-price']);
+            $('.total-price-product').html(historyPrice['total_price_product']);
+            $('.shipping-free').html("0đ");
+            $('.discount-price').html(historyPrice['discount']);
+            $('.total-order-finish').html(total_AfterUpdate());
             localStorage.removeItem("history-cart-price");
 
             

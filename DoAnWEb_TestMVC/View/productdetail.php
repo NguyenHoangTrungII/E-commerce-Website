@@ -124,7 +124,7 @@
 
 
     <!-- Breadcrumb Section Begin -->
-    <section class="breadcrumb-section set-bg" data-setbg="img/breadcrumb/classes-breadcrumb.jpg">
+    <section class="breadcrumb-section set-bg" data-setbg="../assets/img/login/backgroup_login_SignUp.jpg">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -161,7 +161,7 @@
                                     echo 
                                     '
                                         <li data-thumb="'.$GLOBALS['PRODUCT_DIRECTORY_SHOW'].$productDetail[0]['tendanhmuc']."/"."gallery/".$eachRow['anh'].'">
-                                            <img src="'.$GLOBALS['PRODUCT_DIRECTORY_SHOW'].$productDetail[0]['tendanhmuc']."/"."gallery/".$eachRow['anh'].'" alt="">
+                                            <img class="img-product-detail" src="'.$GLOBALS['PRODUCT_DIRECTORY_SHOW'].$productDetail[0]['tendanhmuc']."/"."gallery/".$eachRow['anh'].'" alt="">
                                         </li>
 
                                     ';
@@ -171,7 +171,7 @@
                     </ul>
                 </div>
                 <div class="details col-xl-5 col-md-12">
-                    <h3 class="product-title"><?= $productDetail[0]['tensp'] ?></h3>
+                    <h3 class="name-product-detail product-title"><?= $productDetail[0]['tensp'] ?></h3>
                     <div class="review-product">
                         <div class="row rating">
                             <div class="col-3 stars"> <span class="fa fa-star checked"></span> <span
@@ -203,7 +203,7 @@
                         <div class="col-md-6 col-8">
                             <div>
                                 <div class=" bd-hghliight text-info h5">
-                                    <strong><?= $currentPrice ?></strong>
+                                    <strong class="price-product-detail"><?= $currentPrice ?></strong>
                                 </div>
                                 <span>
                                     <div class=" bd-highlight h6"><strong>Tình trạng</strong></div>
@@ -246,7 +246,7 @@
 
 
                     <div class="action">
-                        <a> <button class=" add-to-cart" type="button" id="<?= $productDetail[0]['idsp'] ?>">Thêm vào giỏ hàng
+                        <a> <button class=" add-to-cart" type="button" id="<?= $_SESSION['SSCF_product_id'] ?>">Thêm vào giỏ hàng
                                 <span class="fa fa-shopping-cart"></span></button> </a>
                         </a>
                     </div>

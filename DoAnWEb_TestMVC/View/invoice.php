@@ -83,7 +83,7 @@
                         <h2>XÁC NHẬN</h2>
                         <div class="breadcrumb-option">
                             <a href="./index.html"><i class="fa fa-home"></i> Trang chủ</a>
-                            <a>Giỏ hàng</a><span>Xác nhận đơn hàng</span>
+                            <a>Giỏ hàng</a><span>Hóa đơn</span>
                         </div>
                     </div>
                 </div>
@@ -258,11 +258,6 @@
     include("include/footer.php");
 ?>
 
-<!-- <script>
-	window.onload = function(){
- 	document.forms['tesstttt'].submit();
-}
-</script> -->
 
 <script>
 
@@ -271,6 +266,7 @@
 	var status = url.searchParams.get("vnp_ResponseCode");
 	var vnp_TxnRef = url.searchParams.get("vnp_TxnRef");
 	var orderId =  url.searchParams.get("orderId");
+	var vnp_TransactionStatus =  url.searchParams.get("vnp_TransactionStatus");
 
 	var myData = JSON.parse(localStorage['address_customer']);
 	var tinh_thanhpho = myData['tinh_thanhpho'];
@@ -287,7 +283,7 @@
 
 	var url = window.location.href;
 
-	if(vnp_TxnRef != null){
+	if(vnp_TxnRef != null  && vnp_TransactionStatus == 0 ){
 			// window.addEventListener('load', function () {
 		$.ajax({
 		url: "http://localhost/doanweb/DoAnWeb_testMVC/Controller/Payment/VNPAY/insert-order.php",
@@ -316,6 +312,10 @@
 
 	});
 		
+	}
+	else if(vnp_TxnRef != null  && vnp_TransactionStatus != 0){
+		window.location.href = 'http://localhost/DoAnWeb/DoAnWeb_testMVC/View/payment.php';
+
 	}
 
 	if((orderId)!= null){

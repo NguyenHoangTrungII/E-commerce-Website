@@ -41,11 +41,6 @@
         $columnName['6']="giohang.id_user";
         $columnName['7']="sanpham.id id_sp";
         $columnName['8']="danhmucsp.ten tendanhmuc";
-        // $columnName['9']="sanpham.tinhtrang";
-        // $columnName['10']="sanpham.id_danhmuc";
-        // $columnName['11']="sanpham.id_thuonghieu";
-        // $columnName['12']="sanpham.baohanh";
-        // $columnName['13']="sanpham.ngaysx";
         $tableName['MAIN'] = 'ct_giohang';
         $tableName['1'] = 'giohang';
         $tableName['2'] = 'sanpham';
@@ -131,10 +126,7 @@
     <link rel="stylesheet" href="../assets/css/range-srate.css">
     <link rel="stylesheet" href="../assets/css/add_css.css">
     <link rel="stylesheet" href="../assets/css/lightslider.css">
-
-
-
-    
+    <link rel="stylesheet" href="../assets/js/footer.css">
 </head>
 
 <body>
@@ -154,13 +146,35 @@
         <hr>
         <div class="mobile__menu__widget">
             <div class="header__top__right__auth">
-                <a href="#"><i class="user-icon fa fa-user"></i> Đăng nhập</a>
+                <?php 
+                    if(isset($_SESSION['SSCF_login_id'])){
+                        echo '<a href="accountdetail.php"><i class="user-icon fa fa-user"></i>'. $_SESSION['SSCF_login_user_showname'].'</a>
+
+                        ';
+                    }
+                    else
+                    {
+                        echo '<a href="#"><i class="user-icon fa fa-user"></i> Đăng nhập</a>
+
+                        ';
+                    }
+                ?>
             </div>
         </div>
         <div class="mobile__menu__cart">
             <ul>
-                <li><a href=""><i class="header-notify-icon fa-solid fa-bell"></i></a></li>
-                <li><a href=""><i class="header-cart-icon fa-solid fa-cart-shopping"></i></a></li>
+                <?php 
+                
+                if(isset($cartDetail)){
+                    echo '<li><a href="cart.php"><i class="header-cart-icon fa-solid fa-cart-shopping"></i></a></li>
+                    ';
+                }
+                else
+                {
+                    echo '<li><a href="cart.php"><i class="header-cart-icon fa-solid fa-cart-shopping"></i></a></li>
+                    ';
+                }
+                ?>
             </ul>
         </div>
 

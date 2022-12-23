@@ -31,7 +31,7 @@
 
 ?>
     <!-- Breadcrumb Section Begin -->
-    <section class="breadcrumb-section set-bg" data-setbg="img/breadcrumb/classes-breadcrumb.jpg">
+    <section class="breadcrumb-section set-bg" data-setbg="../assets/img/login/backgroup_login_SignUp.jpg">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -143,7 +143,6 @@
                             </div>
                         </form>
                     </div>
-                    <p><a href="checkout.html" class="btn btn-primary py-3 px-4">Ưowsc tính</a></p>
                 </div>
                 <div class="col-lg-4 mt-5 cart-wrap ftco-animate">
                     <div class="cart-total mb-3">
@@ -198,6 +197,20 @@
                     }, 2000);
                    
                 }
+                else if( response > 1){
+                    //Cập nhật lại tiền
+                    const config = { style: 'currency', currency: 'VND', maximumFractionDigits: 9}
+                    const money_format_discount = new Intl.NumberFormat('vi-VN', config).format(parseFloat(response));
+                    $('.discount-price').html(money_format_discount);
+                    update_total_price();
+                    $('.alert.alert-info.alert-dismissible').text("Đơn của bạn đã được trừ "+money_format_discount+" vào đơn hàng");
+                    $('.alert.alert-danger.alert-dismissible').prop('hidden', true);
+                    $('.alert.alert-info.alert-dismissible').prop('hidden', false);
+                    setTimeout(function(){
+                        $('.alert.alert-info.alert-dismissible').prop('hidden', true);
+                    }, 2000);
+                    
+                }
                 else{
                     $('.alert.alert-danger.alert-dismissible').text("Đã có lỗi xảy ra !! vui lòng thử lại sau");
                     $('.alert.alert-info.alert-dismissible').prop('hidden', true);
@@ -212,6 +225,7 @@
     }
 
     $('.apply-coupon ').on('click', function(){
+        
         checkCoupon();
     })
 </script>
@@ -244,8 +258,8 @@
         //update tổng hàng
         var discount  =  parseInt($('.discount-price').text().replace(/\D/g, ""));
         var shipp = parseInt($('.shipping-free').text().replace(/\D/g, ""));
-        total_other_fee = discount + shipp;
-        const total_order_money = new Intl.NumberFormat('vi-VN', config).format(total-total_other_fee);
+        total_other_fee = shipp - discount;
+        const total_order_money = new Intl.NumberFormat('vi-VN', config).format(total+total_other_fee);
         $('.total-order-finish').html(total_order_money);
 
     }
@@ -295,7 +309,6 @@
                     $('.alert.alert-danger.alert-dismissible').text("Đã có lỗi xảy ra !! vui lòng thử lại sau");
                     $('.alert.alert-info.alert-dismissible').prop('hidden', true);
                     $('.alert.alert-danger.alert-dismissible').prop('hidden', false);
-                    // $("html, body").animate({scrollTop: 50}, 1000);
                     setTimeout(function(){
                         $('.alert.alert-danger.alert-dismissible').prop('hidden', true);
                     }, 2000);
@@ -307,13 +320,16 @@
 
 <script>
     $('.selected-arrive').on('change', function(){
+        // checkCoupon();
         var selected_elm = $(".selected-arrive option:selected" ).val() ;
+        var discount = $('.discount-price').text().replace(/\D/g, "");
         if(selected_elm == 1){
             var free_ship = 50000;
             var total_order = parseInt($('.total-price-product').text().replace(/\D/g, ""));
             const config = { style: 'currency', currency: 'VND', maximumFractionDigits: 9}
             const free_ship_money = new Intl.NumberFormat('vi-VN', config).format(free_ship);
-            const total_order_money = new Intl.NumberFormat('vi-VN', config).format(total_order + parseInt(free_ship));
+            const discount_money = new Intl.NumberFormat('vi-VN', config).format(discount);
+            const total_order_money = new Intl.NumberFormat('vi-VN', config).format(total_order + parseInt(free_ship) );
             $('.shipping-free').html(free_ship_money);
             $('.total-order-finish').html(total_order_money);
         }
@@ -322,6 +338,7 @@
             var total_order = parseInt($('.total-price-product').text().replace(/\D/g, ""));
             const config = { style: 'currency', currency: 'VND', maximumFractionDigits: 9}
             const free_ship_money = new Intl.NumberFormat('vi-VN', config).format(free_ship);
+            const discount_money = new Intl.NumberFormat('vi-VN', config).format(discount);
             const total_order_money = new Intl.NumberFormat('vi-VN', config).format(total_order + parseInt(free_ship));
             $('.shipping-free').html(free_ship_money);
             $('.total-order-finish').html(total_order_money);
@@ -331,12 +348,13 @@
             var total_order = parseInt($('.total-price-product').text().replace(/\D/g, ""));
             const config = { style: 'currency', currency: 'VND', maximumFractionDigits: 9}
             const free_ship_money = new Intl.NumberFormat('vi-VN', config).format(free_ship);
+            const discount_money = new Intl.NumberFormat('vi-VN', config).format(discount);
             const total_order_money = new Intl.NumberFormat('vi-VN', config).format(total_order + parseInt(free_ship));
             $('.shipping-free').html(free_ship_money);
             $('.total-order-finish').html(total_order_money);
         }
 
-        checkCoupon();
+        update_total_price();
     })
 
     $('.checkout-btn').on('click', function(){

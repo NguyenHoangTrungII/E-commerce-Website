@@ -40,7 +40,7 @@
         echo 1;
     }
     else{
-        echo  2;
+        echo  $hasCoupoun[0]['chietkhau'] ;
     }
 
 

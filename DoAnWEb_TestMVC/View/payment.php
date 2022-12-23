@@ -34,7 +34,7 @@
 
 ?>
     <!-- Breadcrumb Section Begin -->
-    <section class="breadcrumb-section set-bg" data-setbg="img/breadcrumb/classes-breadcrumb.jpg">
+    <section class="breadcrumb-section set-bg" data-setbg="../assets/img/login/backgroup_login_SignUp.jpg">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -42,7 +42,7 @@
                         <h2>XÁC NHẬN</h2>
                         <div class="breadcrumb-option">
                             <a href="./index.html"><i class="fa fa-home"></i> Trang chủ</a>
-                            <a>Giỏ hàng</a><span>Xác nhận đơn hàng</span>
+                            <a>Giỏ hàng</a><span>Thanh toán</span>
                         </div>
                     </div>
                 </div>
