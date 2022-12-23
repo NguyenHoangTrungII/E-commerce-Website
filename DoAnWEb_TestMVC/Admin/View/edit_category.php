@@ -11,10 +11,8 @@ include("../config/site.php");
 
 
 <?php
-// $Model = new ModelAll;
 
 if(isset($_GET['id'])){
-  ##=======LẤY DỮ LIỆU=======##
   $columnName = $tableName = $whereValue =   $joinCondition = $employeeInfo = null;
   $columnName = "*";
   $tableName = "danhmucsp";
@@ -119,7 +117,6 @@ if(isset($_GET['id'])){
             </div>
 
           </div>
-          <!-- / Content -->
 
 <?php
     include("include/tail.php");
