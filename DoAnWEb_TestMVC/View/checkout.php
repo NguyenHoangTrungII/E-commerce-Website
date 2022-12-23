@@ -203,57 +203,57 @@
 
 
     function setPrice(){
+        console.debug(localStorage['history-cart-price'] );
         var tinh_thanhpho = ($( "#Provice option:selected" ).text());
         let fee_ship;
-        var historyPrice = JSON.parse(localStorage['history-cart-price']);
-        
-        if(parseFloat(historyPrice['ship_fee'].replace(/\D/g, ""))  >  0){
-            if(tinh_thanhpho=="Thành phố Hồ Chí Minh" ){
-                const config = { style: 'currency', currency: 'VND', maximumFractionDigits: 9}
-                fee_ship = new Intl.NumberFormat('vi-VN', config).format(50000);}
-            else{
-                const config = { style: 'currency', currency: 'VND', maximumFractionDigits: 9}
-                 fee_ship = new Intl.NumberFormat('vi-VN', config).format(60000);
+
+        if(localStorage['history-cart-price'] != undefined ){
+            var historyPrice = JSON.parse(localStorage['history-cart-price']);
+            if( parseFloat(historyPrice['ship_fee'].replace(/\D/g, ""))  >  0){
+                if(tinh_thanhpho=="Thành phố Hồ Chí Minh" ){
+                    const config = { style: 'currency', currency: 'VND', maximumFractionDigits: 9}
+                    fee_ship = new Intl.NumberFormat('vi-VN', config).format(50000);}
+                else{
+                    const config = { style: 'currency', currency: 'VND', maximumFractionDigits: 9}
+                    fee_ship = new Intl.NumberFormat('vi-VN', config).format(60000);
+                }
+
+
+                var historyPrice = JSON.parse(localStorage['history-cart-price']);
+                $('.total-price-product').html(historyPrice['total_price_product']);
+                $('.shipping-free').html(fee_ship);
+                $('.discount-price').html(historyPrice['discount']);
+                $('.total-order-finish').html(total_AfterUpdate());
+                localStorage.removeItem("history-cart-price");
+
+                
+
             }
+            else if( parseFloat(historyPrice['ship_fee'].replace(/\D/g, "")) ==0 ){
+                var historyPrice = JSON.parse(localStorage['history-cart-price']);
+                $('.total-price-product').html(historyPrice['total_price_product']);
+                $('.shipping-free').html("0đ");
+                $('.discount-price').html(historyPrice['discount']);
+                $('.total-order-finish').html(total_AfterUpdate());
+                localStorage.removeItem("history-cart-price");
 
+                
 
-            var historyPrice = JSON.parse(localStorage['history-cart-price']);
-            $('.total-price-product').html(historyPrice['total_price_product']);
-            $('.shipping-free').html(fee_ship);
-            $('.discount-price').html(historyPrice['discount']);
-            $('.total-order-finish').html(total_AfterUpdate());
-            localStorage.removeItem("history-cart-price");
-
-            
-
+            }
         }
-        else if(parseFloat(historyPrice['ship_fee'].replace(/\D/g, ""))  ==0 ){
-            var historyPrice = JSON.parse(localStorage['history-cart-price']);
-            $('.total-price-product').html(historyPrice['total_price_product']);
-            $('.shipping-free').html("0đ");
-            $('.discount-price').html(historyPrice['discount']);
-            $('.total-order-finish').html(total_AfterUpdate());
-            localStorage.removeItem("history-cart-price");
-
-            
-
-        }
-        else{
+         else{
             if(tinh_thanhpho=="Thành phố Hồ Chí Minh" ){
             const config = { style: 'currency', currency: 'VND', maximumFractionDigits: 9}
             const fee_ship = new Intl.NumberFormat('vi-VN', config).format(50000);
-           
             $('.shipping-free').html(fee_ship);
             $('.total-order-finish').html(total_AfterUpdate());
-
-
-        }
-        else{
-            const config = { style: 'currency', currency: 'VND', maximumFractionDigits: 9}
-            const fee_ship = new Intl.NumberFormat('vi-VN', config).format(60000);
-            $('.shipping-free').html(fee_ship);
-            $('.total-order-finish').html(total_AfterUpdate());
-        }
+            }
+            else{
+                const config = { style: 'currency', currency: 'VND', maximumFractionDigits: 9}
+                const fee_ship = new Intl.NumberFormat('vi-VN', config).format(60000);
+                $('.shipping-free').html(fee_ship);
+                $('.total-order-finish').html(total_AfterUpdate());
+            }
         }
     }
 
