@@ -39,7 +39,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="breadcrumb-text">
-                        <h2>XÁC NHẬN</h2>
+                        <h2>THANH TOÁN</h2>
                         <div class="breadcrumb-option">
                             <a href="./index.html"><i class="fa fa-home"></i> Trang chủ</a>
                             <a>Giỏ hàng</a><span>Thanh toán</span>
@@ -79,7 +79,7 @@
                                 <tr>
                                     <th>#</th>
                                     <th>Sản phẩm</th>
-                                    <th class="text-center">Gía</th>
+                                    <th class="text-center">Giá</th>
                                     <th class="text-center">Số lượng</th>
                                     <th class="text-center">Tổng tiền</th>
                                 </tr>

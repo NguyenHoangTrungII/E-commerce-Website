@@ -119,7 +119,7 @@
     <link rel="stylesheet" href="../assets/css/css/owl.carousel.min.css">
     <link rel="stylesheet" href="../assets/css/css/slicknav.min.css">
     <link rel="stylesheet" href="../assets/css/base.css">
-    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="../assets/js/main.css">
     <link rel="stylesheet" href="../assets/css/reposive.css">
     <link rel="stylesheet" href="../assets/css/popup.css">
     <link rel="stylesheet" href="../assets/css/css/toggle-switchy.css">
@@ -182,10 +182,10 @@
 
         <nav class="mobile__menu__nav mobile-menu">
             <ul>
-                <li class="active"><a href="">Trang chủ</a></li>
+                <li class="active"><a href="index.php">Trang chủ</a></li>
                 <li class="'"><a href="">Chính sách & điều khoản</a></li>
-                <li class=""><a href="">Liên hệ</a></li>
-                <li class=""><a href="">Về chúng tôi</a></li>
+                <li class=""><a href="contact.php">Liên hệ</a></li>
+                <li class=""><a href="about-us.php">Về chúng tôi</a></li>
             </ul>
         </nav>
         <div id="mobile-menu-wrap"></div>
@@ -240,7 +240,7 @@
                     <!-- Header logo -->
                     <div class="col-lg-3 col-md-3">
                         <div class="header__logo">
-                            <h3> <a href="index.php">LOGO</a></h3>
+                            <h3> <a href="index.php"><img src="../public/uploads/logo/z3981326372782_609beeb43778012128067c888231f4fe.jpg" alt="" style="width:40px"><span>4.2GRP</span></a></h3>
                         </div>
                     </div>
 
@@ -328,10 +328,10 @@
                         <div class="col-lg-9">
                             <nav class="header__menu">
                                 <ul class="header__menu--li">
-                                    <li class="active"><a href="">Trang chủ</a></li>
+                                    <li class="active"><a href="index,php">Trang chủ</a></li>
                                     <li class="'"><a href="">Chính sách</a></li>
-                                    <li class=""><a href="">Liên hệ</a></li>
-                                    <li class=""><a href="">Về chúng tôi</a></li>
+                                    <li class=""><a href="contact.php">Liên hệ</a></li>
+                                    <li class=""><a href="about-us.php">Về chúng tôi</a></li>
                                 </ul>
                             </nav>
 

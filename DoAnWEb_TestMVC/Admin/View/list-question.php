@@ -313,9 +313,7 @@
                                                 </label>
                                             </td>
                                             <td class="content question">
-                                                aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-                                                aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-                                                aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+                                                Tôi muốn hỏi sản phẩm Itel còn không? Nếu hết thì  khi nào sản phẩm sẽ có hàng lại vậy? Cảm ơn.
                                             </td>
                                             <td class="action question">
                                                 <div class="dropdown">

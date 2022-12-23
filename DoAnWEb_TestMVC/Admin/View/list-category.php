@@ -45,7 +45,6 @@ $start = $pagination->get_config('start');
 // Lấy danh sách thành viên
 $categoryList = getAll($limit, $start);
 
-var_dump($categoryList);
 
 
 ?>

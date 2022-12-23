@@ -3,12 +3,14 @@
 {
 	public function loadLogin($email, $password)
 	{
-		$sql_code = "SELECT * FROM `taikhoan` JOIN `nguoidung` ON taikhoan.id = nguoidung.id_taikhoan WHERE `email`=:VALUE1 AND `matkhau`=:VALUE2";
+		$sql_code = "SELECT * FROM `taikhoan` JOIN `nguoidung` ON taikhoan.id = nguoidung.id_taikhoan WHERE `email`=:VALUE1 AND `matkhau`=:VALUE2 AND (`vaitro` =:VALUE3 OR `vaitro` =:VALUE4)";
 		$query = $this->connection->prepare($sql_code);
 		
 		$values = array(
 			':VALUE1' => $email,
-			':VALUE2' => $password
+			':VALUE2' => $password,
+			':VALUE3' => 1,
+			':VALUE4' => 2
 			);
 		$query->execute($values);
 		

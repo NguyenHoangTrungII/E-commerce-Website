@@ -75,12 +75,12 @@
 ?>
 
     <!-- Breadcrumb Section Begin -->
-    <section class="breadcrumb-section set-bg " data-setbg="img/breadcrumb/classes-breadcrumb.jpg">
+    <section class="breadcrumb-section set-bg " data-setbg="../assets/img/login/backgroup_login_SignUp.jpg">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="breadcrumb-text">
-                        <h2>XÁC NHẬN</h2>
+                        <h2>HÓA ĐƠN</h2>
                         <div class="breadcrumb-option">
                             <a href="./index.html"><i class="fa fa-home"></i> Trang chủ</a>
                             <a>Giỏ hàng</a><span>Hóa đơn</span>
@@ -107,17 +107,13 @@
 					<div class="row">
 						<div class="col-md-3 col-xs-2">
 							<div class="invoice-title">
-								<h1>HÓA ĐƠN</h1>
-								<img class="logo-print" src="" alt="" style="width: 220px; height: 60px;">
+								<h1 style="font-weight:700">HÓA ĐƠN</h1>
+								<img class="logo-print"  alt="" style="width: 220px; height: 60px;">
 							</div>
 						</div>
 						<div class="invoice-info  col-md-9 col-xs-10">
 							<div style="padding-left: 320px;">
 								<div class="row">
-									<!-- <div class="col-md-6 col-sm-6 text-left">
-									<span>Người nhận hàng</span>
-										<p>Số điện thoại: 01654952508<br></p>	
-									</div> -->
 									<div class="col-md-6 col-sm-6 text-left">
 										<span>SHOP LINH KIỆN MÁY TÍNH 4.2GRP</span>
 										<p>Số điện thoại: 0123456789<br> Email :  4-2.group@gmail.com</p>											
@@ -165,7 +161,7 @@
 						<tr>
 							<th>#</th>
 							<th>Sản phẩm</th>
-							<th class="text-center">Gía</th>
+							<th class="text-center">Giá</th>
 							<th class="text-center">Số lượng</th>
 							<th class="text-center">Tổng tiền</th>
 						</tr>
@@ -214,8 +210,8 @@
 
 						<p style="font-style: normal; font-size: 17px;" class="inv-label mt-1 mb-2"> 
 							<span style="color: orange; font-weight: bold;">BẰNG CHỮ: </span>
-							MỘT TRIỆU BỐM TRĂM NĂM MUOI NGHÌN ĐỒNG								</p>
-						<h3 class="inv-label itatic">Cảm ơn vì đã mua hàng của chúng tôi</h3>
+							<!-- MỘT TRIỆU BỐM TRĂM NĂM MUOI NGHÌN ĐỒNG								</p>
+						<h3 class="inv-label itatic">Cảm ơn vì đã mua hàng của chúng tôi</h3> -->
 					</div>
 					<div class="col-md-4 col-xs-5 invoice-block pull-right">
 						<ul class="unstyled amounts">

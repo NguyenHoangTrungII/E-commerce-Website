@@ -4996,3 +4996,166 @@ ul.amounts li.grand-total
   right: 12px;
 }
 
+
+
+/*---------------------
+  Contact Section
+-----------------------*/
+.contact-option span {
+  font-size: 14px;
+  color: #f15d44;
+}
+
+.contact-option p {
+  font-size: 16px;
+  color: #ffffff;
+  margin-top: 15px;
+}
+
+.contact-info h4 {
+  font-weight: 600;
+  color: #111111;
+  text-transform: uppercase;
+  margin-bottom: 47px;
+}
+
+.contact-info .contact-address .ca-widget {
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+
+.contact-info .contact-address .ca-widget .cw-icon {
+  height: 74px;
+  width: 74px;
+  border: 1px solid #ebebeb;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 74px;
+  float: left;
+  margin-right: 28px;
+}
+
+.contact-info .contact-address .ca-widget .cw-text {
+  padding-top: 12px;
+}
+
+.contact-info .contact-address .ca-widget .cw-text h5 {
+  color: #bdbdbd;
+  margin-bottom: 5px;
+}
+
+.contact-info .contact-address .ca-widget .cw-text p {
+  margin-bottom: 0;
+  color: #111111;
+  font-size: 18px;
+}
+
+.contact-form h4 {
+  font-weight: 600;
+  color: #111111;
+  text-transform: uppercase;
+  margin-bottom: 47px;
+}
+
+.contact-form form input {
+  width: 100%;
+  height: 51px;
+  border: 1px solid #e1e1e1;
+  padding-left: 20px;
+  font-size: 16px;
+  margin-bottom: 30px;
+}
+
+.contact-form form input::-webkit-input-placeholder {
+  color: #9a9a9a;
+}
+
+.contact-form form input::-moz-placeholder {
+  color: #9a9a9a;
+}
+
+.contact-form form input:-ms-input-placeholder {
+  color: #9a9a9a;
+}
+
+.contact-form form input::-ms-input-placeholder {
+  color: #9a9a9a;
+}
+
+.contact-form form input::placeholder {
+  color: #9a9a9a;
+}
+
+.contact-form form input:focus {
+  color: #111111;
+}
+
+.contact-form form textarea {
+  width: 100%;
+  height: 150px;
+  border: 1px solid #e1e1e1;
+  padding-left: 20px;
+  font-size: 16px;
+  padding-top: 10px;
+  margin-bottom: 42px;
+  resize: none;
+}
+
+.contact-form form textarea::-webkit-input-placeholder {
+  color: #9a9a9a;
+}
+
+.contact-form form textarea::-moz-placeholder {
+  color: #9a9a9a;
+}
+
+.contact-form form textarea:-ms-input-placeholder {
+  color: #9a9a9a;
+}
+
+.contact-form form textarea::-ms-input-placeholder {
+  color: #9a9a9a;
+}
+
+.contact-form form textarea::placeholder {
+  color: #9a9a9a;
+}
+
+.contact-form form textarea:focus {
+  color: #111111;
+}
+
+.contact-form form button {
+  font-size: 14px;
+  color: #ffffff;
+  padding: 10px 33px;
+  display: inline-block;
+  background: -webkit-gradient(linear, left top, right top, from(#3c56eb), to(#31abf6));
+  background: -o-linear-gradient(left, #3c56eb, #31abf6);
+  background: linear-gradient(to right, #3c56eb, #31abf6);
+  border: none;
+  text-transform: uppercase;
+}
+
+/*---------------------
+  Map Section
+-----------------------*/
+
+.map {
+  height: 612px;
+  position: relative;
+}
+
+.map iframe {
+  width: 100%;
+}
+
+.map img {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-14px, -21px);
+  -ms-transform: translate(-14px, -21px);
+  transform: translate(-14px, -21px);
+}
+

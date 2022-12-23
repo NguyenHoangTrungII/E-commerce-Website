@@ -106,7 +106,7 @@ $productList = getAll($limit, $start, $_SESSION['category_id']);
 
                 <div class="toolbox-left pl-3">
 
-                    <span>Lọc:</span>
+                    <span>Bỏ lọc:</span>
                     <label class="toggle-switchy pl-2" for="fitter-product" data-size="sm" data-text="false"
                         data-style="rounded" data-toggle="collapse" data-target="#filterbar" aria-expanded="false"
                         aria-controls="filterbar" id="filter-btn">

@@ -79,23 +79,23 @@ class HeroBannerController extends Controller
                         </div>
                         <ul class="user-list">
                             <li>
-                                <a href="accountdetails.php#ordered"><i class="fa-solid fa-gear"></i>
+                                <a href="accountdetails.php"><i class="fa-solid fa-gear"></i>
                                     <span>Tài khoản của tôi</span></a>
                             </li>
                             <li>
-                                <a href="">
-                                    <i class="fa-solid fa-bag-shopping"></i>
+                                <a href ="accountdetails.php#ordered">
+                                    <i   class="fa-solid fa-bag-shopping"></i>
                                     <span>Đơn mua của tôi</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="">
-                                    <i class="fa-solid fa-lock"></i>
+                                <a href="accountdetails.php#password">
+                                    <i  class="fa-solid fa-lock"></i>
                                     <span>Đổi mật khẩu</span>
                                 </a>
                             </li>
                             <li>
-                                <a href=""><i class="fa-solid fa-circle-info"></i>
+                                <a href="accountdetails.php#info_account"><i class="fa-solid fa-circle-info"></i>
                                     <span>Thông tin cá nhân</span></a>
                             </li>
 
@@ -151,26 +151,26 @@ class HeroBannerController extends Controller
                         <div class="dropdown-user-header">
                         </div>
                         <ul class="user-list">
-                            <li>
-                                <a href=""><i class="fa-solid fa-gear"></i>
-                                    <span>Tài khoản của tôi</span></a>
-                            </li>
-                            <li>
-                                <a href="">
-                                    <i class="fa-solid fa-bag-shopping"></i>
-                                    <span>Đơn mua của tôi</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="">
-                                    <i class="fa-solid fa-lock"></i>
-                                    <span>Đổi mật khẩu</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href=""><i class="fa-solid fa-circle-info"></i>
-                                    <span>Thông tin cá nhân</span></a>
-                            </li>
+                        <li>
+                            <a href="accountdetails.php"><i class="fa-solid fa-gear"></i>
+                                <span>Tài khoản của tôi</span></a>
+                        </li>
+                        <li>
+                            <a href ="accountdetails.php#ordered">
+                                <i   class="fa-solid fa-bag-shopping"></i>
+                                <span>Đơn mua của tôi</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="accountdetails.php#password">
+                                <i  class="fa-solid fa-lock"></i>
+                                <span>Đổi mật khẩu</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="accountdetails.php#info_account"><i class="fa-solid fa-circle-info"></i>
+                                <span>Thông tin cá nhân</span></a>
+                        </li>
 
                         </ul>
                         <div class="bottom">

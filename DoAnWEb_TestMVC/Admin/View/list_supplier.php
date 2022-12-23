@@ -70,10 +70,10 @@
                                               1000
                                             </td>
                                             <td class="name brand">
-                                                Iaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+                                                Intel
                                             </td>
                                             <td class="img brand">
-                                              <img src="../../public/uploads/users/User_admin_anh-dai-dien.jpg" alt="Anh dai dien" class="photo-brand">
+                                              <img src="" alt="Anh dai dien" class="photo-brand">
                                             </td> 
                                             <td class="category brand">
                                                 CPU, VGA

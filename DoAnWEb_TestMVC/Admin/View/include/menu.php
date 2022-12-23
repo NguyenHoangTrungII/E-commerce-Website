@@ -4,6 +4,7 @@ use FTP\Connection;
 
   session_start();
   include("session.php");
+  require_once($_SERVER['DOCUMENT_ROOT']."/DoAnWeb/DoAnWeb_TEstMVC/Admin/config/site.php");
   require_once($_SERVER['DOCUMENT_ROOT']."/DoAnWeb/DoAnWeb_TEstMVC/Admin/Model/ModelAll.php");
   require_once($_SERVER['DOCUMENT_ROOT']."/DoAnWeb/DoAnWeb_TEstMVC/Admin/config/databse.php");
   require_once($_SERVER['DOCUMENT_ROOT']."/DoAnWeb/DoAnWeb_TEstMVC/Admin/Controller/Controller.php");
@@ -31,6 +32,8 @@ use FTP\Connection;
 
 
 ?>
+
+
 <body>
     <!-- Layout wrapper -->
     <div class="layout-wrapper layout-content-navbar">
@@ -41,7 +44,7 @@ use FTP\Connection;
               <a href="index.php" class="app-brand-link">
                 <span class="app-brand-logo demo">
                 </span>
-                <span class="app-brand-text demo menu-text fw-bolder ms-2">LOGO</span>
+                <span class="app-brand-text demo menu-text fw-bolder ms-2"><img src="./../../public/uploads/logo/z3981326372782_609beeb43778012128067c888231f4fe.jpg" alt="" style="width:60px;padding-left:10px"><span style="  text-transform: uppercase;color:#33A0FF;font:40px">4.2GRP</span></span>
               </a>
 
               <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
@@ -357,8 +360,8 @@ use FTP\Connection;
                                 <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);"
                                     data-bs-toggle="dropdown">
                                     <div class="avatar avatar-online">
-                                        <img src="../assets/img/avatars/1.png" alt
-                                            class="w-px-40 h-auto rounded-circle" />
+                                        <img src= "<?= $GLOBALS['USER_DIRECTORY_SHOW']."User_employee_file1.jpg"?>" alt
+                                            class="set-height-avatar w-px-40  rounded-circle" style="height:44px" />
                                     </div>
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-end">
@@ -367,7 +370,7 @@ use FTP\Connection;
                                             <div class="d-flex">
                                                 <div class="flex-shrink-0 me-3">
                                                     <div class="avatar avatar-online">
-                                                        <img src="../assets/img/avatars/1.png" alt
+                                                        <img src="" alt
                                                             class="w-px-40 h-auto rounded-circle" />
                                                     </div>
                                                 </div>
@@ -408,3 +411,6 @@ use FTP\Connection;
                         </ul>
                     </div>
                 </nav>
+
+
+    
