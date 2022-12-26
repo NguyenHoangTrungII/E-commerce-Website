@@ -29,7 +29,6 @@
     $dow_status ="hidden";
   }
 
-
 ?>
                 <!-- Content wrapper -->
                 <div class="content-wrapper">
@@ -224,15 +223,12 @@
                                 </table>
                             </div>
                         </div>
-                        <!-- Bootstrap Table with Header - Footer -->
                     </div>
                     <!-- / Content -->
 
                     <div class="content-backdrop fade"></div>
                 </div>
-                <!-- Content wrapper -->
             </div>
-            <!-- / Layout page -->
         </div>
 
 <?php

@@ -104,7 +104,6 @@
     include("include/tail.php");
 ?>
 
-
 <script>
   $("#file-slider-add").on("change", function(){ 
     var file_name = $('input[type=file]').val().split('\\').pop();
@@ -143,13 +142,11 @@
     info['sothutu'] = $("#category-number-add").val();
     info['hienthi'] =  document.getElementById("status-sli-add").checked ? 1 : 0;
 
+    // sử lý file dữ liệu
     var file_a = $('#file-category-add').prop('files')[0];  
-    // console.debug(file_a);
     var form_data = new FormData();  
     form_data.append("other_data", JSON.stringify(info))  ;
     form_data.append("file_arr", file_a) ;
-
-    // console.debug(...form_data);
       $.ajax({
         url: "http://localhost/DoAnWeb/DoAnWEb_TestMVC/Admin/Controller/Category/create-add-category.php",
         data: form_data,

@@ -35,7 +35,6 @@
         $whereCondition ="LIKE";
         $employeeInfo_Provice = $Model->selectData($columnName, $tableName, $whereValue, $whereCondition);
         // var_dump($employeeInfo[0]['tinh_thanhpho']    );
-        ##=======LẤY DỮ LIỆU=======##
     }
 ?>
 
@@ -126,19 +125,6 @@
                                                                 ';
                                                             }
                                                         ?>
-                                                        <!-- <div class="col-6">
-                                                            <input name=" GioiTinh" class="form-check-input"
-                                                                type="radio" value="" checked>
-                                                            <label class="form-check-label" for="defaultRadio2"> Nam
-                                                            </label>
-                                                        </div>
-
-                                                        <div class="col-6">
-                                                            <input name="GioiTinh" class="form-check-input"
-                                                                type="radio" value="" >
-                                                            <label class="form-check-label" for="defaultRadio1">
-                                                                Nữ </label>
-                                                        </div> -->
                                                     </div>
                                                 </div> 
                                                 

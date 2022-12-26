@@ -54,7 +54,7 @@
                         0123456789
                       </td>
                       <td class="address user">
-                        Dắk lắk, Buôn Ma Thuột, xã Hòa Phú, đường nào đaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+                        Dắk lắk, Buôn Ma Thuột, xã Hòa Phú, đường nào đó 
                       </td>
                       <td class="action user">
                         <div class="dropdown">

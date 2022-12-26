@@ -143,11 +143,6 @@
                                                         </div>
                                                     </div>
                                             </div>
-
-
-
-
-
                                             <button type="submit" class="btn btn-primary">Lưu</button>
                                         </form>
                                     </div>
@@ -156,13 +151,9 @@
                         </div>
 
                     </div>
-                    <!-- / Content -->
-
                     <div class="content-backdrop fade"></div>
                 </div>
-                <!-- Content wrapper -->
             </div>
-            <!-- / Layout page -->
         </div>
 
 

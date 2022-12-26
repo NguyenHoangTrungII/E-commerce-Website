@@ -3,17 +3,13 @@
   include("include/menu.php");
   include("include/session.php");
   include("include/top.php");
-  // include("../Model/ModelAll.php");
   include("../config/databse.php");
 	include("../config/site.php");
 ?>
 
 <?php
-    // $Model = new ModelAll;
-
     if(isset($_GET['id'])){
       $columnName = $tableName = $whereValue =   $joinCondition = $employeeInfo = null;
-      // $columnName = "*";
       $columnName['1']="sanpham.id";
       $columnName['2']="danhmucsp.ten ten";
       $columnName['3']="nhacungcap.tenncc";
@@ -27,8 +23,6 @@
       $columnName['10']="sanpham.id_thuonghieu";
       $columnName['12']="sanpham.baohanh";
       $columnName['13']="sanpham.ngaysx";
-      // $columnName['14']="cauhinh.noidung1";
-      // $columnName['15']="cauhinh.noidung2";
       $tableName['MAIN'] = "sanpham";
       $tableName['1'] ='danhmucsp';
       $tableName['2'] ='nhacungcap';
@@ -50,15 +44,6 @@
       // $columnName2['2']='noidung2';
       $whereValue2['id_sp'] = $_GET['id'];
       $SpecInfo= $Model->selectData($columnName2, $tableName2,  $whereValue2);
-      // var_dump(($SpecInfo));
-      // $a = json_decode($SpecInfo, true);
-      // var_dump($a);
-      // foreach($SpecInfo as $eachRow){
-      //   foreach(json_decode($eachRow['noidung1'], true) as $eachRow2){
-      //     echo $eachRow2['loai'];
-      //     echo $eachRow2['noidung'];
-      //   }
-      // }
 
 
       //Lấy ảnh mô tả cấu hình
@@ -75,8 +60,6 @@
 
                 <!-- Content wrapper -->
                 <form id="regForm" action="">
-                    
-                    <!-- One "tab" for each step in the form: -->
                     <div class="tab">
                         <div class="content-wrapper">
                             <!-- Content -->

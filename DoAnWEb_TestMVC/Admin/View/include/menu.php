@@ -28,11 +28,8 @@
     echo "Bạn không có quyền truy cập trang web này";
     exit();
   }
-  
 
 
-  
-  // var_dump($_SESSION['SMC_login_account_id']);
 ?>
 
 
@@ -323,7 +320,7 @@
                                 <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);"
                                     data-bs-toggle="dropdown">
                                     <div class="avatar avatar-online">
-                                        <img src= "<?= $GLOBALS['USER_DIRECTORY_SHOW']."User_employee_file1.jpg"?>" alt
+                                        <img src= "<?= $GLOBALS['USER_DIRECTORY_SHOW'].$_SESSION['SMC_login_admin_image']?>" alt
                                             class="set-height-avatar w-px-40  rounded-circle" style="height:44px" />
                                     </div>
                                 </a>
@@ -333,13 +330,13 @@
                                             <div class="d-flex">
                                                 <div class="flex-shrink-0 me-3">
                                                     <div class="avatar avatar-online">
-                                                        <img src="" alt
-                                                            class="w-px-40 h-auto rounded-circle" />
+                                                        <img src="<?= $GLOBALS['USER_DIRECTORY_SHOW'].$_SESSION['SMC_login_admin_image'] ?>" alt
+                                                            class="w-px-40  rounded-circle" style="height:44px" />
                                                     </div>
                                                 </div>
                                                 <div class="flex-grow-1">
                                                     <span class="fw-semibold d-block">Nguyễn Hoàng Trung</span>
-                                                    <small class="text-muted">Admin</small>
+                                                    <small class="text-muted"><?= $_SESSION['SMC_login_admin_type'] == 1? "Admin" : "Nhân viên" ?></small>
                                                 </div>
                                             </div>
                                         </a>

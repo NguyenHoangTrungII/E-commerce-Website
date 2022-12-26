@@ -49,6 +49,7 @@ $categoryList = getAll($limit, $start);
 
 ?>
 
+<!-- Phân quyền -->
 <?php 
   if(!$ctrl->checkprivilege( $privilegeUser_array, "add_category.php", $role)){
     $add_status = "hidden";
@@ -77,8 +78,6 @@ $categoryList = getAll($limit, $start);
 
 
 ?>
-
-
         <!-- Content wrapper -->
         <div class="content-wrapper">
           <!-- Content -->
@@ -202,6 +201,7 @@ $categoryList = getAll($limit, $start);
     include("include/tail.php");
 ?>
 
+<!-- Xóa danh mục -->
 <script type="text/javascript">
 $(".btn-delete").click(function(e){
   var del_id = $(this).attr('id');

@@ -212,7 +212,6 @@
 ?>  
 
 <script>
-
         $(document).ready(function() {
 
             $('#Provice').select2(

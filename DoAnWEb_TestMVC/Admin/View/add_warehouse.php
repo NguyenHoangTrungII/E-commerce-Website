@@ -2,10 +2,6 @@
   include("include/menu.php");
   include("include/top.php");
 ?>
-
-
-
-
                 <!-- Content wrapper -->
                 <div class="content-wrapper">
                     <!-- Content -->

@@ -4,6 +4,7 @@
   include("include/top.php");
 ?>
 
+<!-- Phân quyền -->
 <?php 
   if(!$ctrl->checkprivilege( $privilegeUser_array, "add_supplier.php", $role)){
     $add_status = "hidden";
@@ -32,8 +33,6 @@
 
 
 ?>
-
-
                 <!-- Content wrapper -->
                 <div class="content-wrapper">
                     <!-- Content -->

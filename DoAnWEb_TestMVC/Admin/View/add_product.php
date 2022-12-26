@@ -5,13 +5,7 @@
 
                 <!-- Content wrapper -->
                 <form id="regForm" action="">
-
-                
-
-                    <!-- One "tab" for each step in the form: -->
                     <div class="tab">
-
-                 
                         <div class="content-wrapper">
                             <!-- Content -->
         
@@ -142,22 +136,6 @@
                                                             </label>
                                                         </div>
                                                     </div>
-        
-        
-                                                    <!-- <div class="row">
-                                                        
-        
-                                                        <div class="col-xl-4">
-                                                            <div class="mb-3">
-                                                                <label for="defaultSelect" class="form-label">Ngày tạo</label>
-                                                                <input type="text" class="form-control" id="date-time-create" value="">
-                                                                <p class="mt-1" id="date-time-create"></p>
-                                                            </div>
-                                                        </div>
-        
-        
-                                                        
-                                                    </div> -->
                                                     <div class="row">
                                                           <label for="formFile" class="form-label ">Ảnh thumbail</label> <span class="upload-notify-thub"></span>
                                                           <div class="input-group">
@@ -342,15 +320,6 @@
       // console.debug(JSON.stringify(thongtincauhinh));
 
       var plainText = $("#summernote").summernote('code');
-      // console.log(plainText);
-
-
-
-      
-
-
-    //  console.log(info);
-      //lấy ảnh thumbail
       var file_thumbail_img = $('#file-product-add').prop('files')[0]; 
 
       //Lấy ảnh liên quan
@@ -369,8 +338,6 @@
       form_data.append("specification", JSON.stringify(thongtincauhinh));
       form_data.append("summarynote_content", plainText);
       // console.debug(...form_data);
-
-
         $.ajax({
           url: "http://localhost/DoAnWeb/DoAnWeb_testMVC/admin/Controller/Product/create-add-product.php",
           data: form_data,

@@ -28,9 +28,6 @@ if(isset($_POST['load_login']))
 		$_SESSION['SMC_login_admin_image'] = $adminData[0]['anh'];
 		$_SESSION['SMC_login_admin_status'] = $adminData[0]['trangthai'];
 		$_SESSION['SMC_login_admin_type'] = $adminData[0]['vaitro'];
-		
-        // var_dump($_SESSION);
-        //Chuyển hướng đến dashboard
 		header("Location: list-employee.php");
 	}
 }

@@ -263,24 +263,6 @@
     include("include/footer.php");
 ?>
 
-
-
-
-<!-- <script>
-    $('.cash-on-dilevery').on('click', function(){
-        if($('.cash-on-dilevery-cb').checked){
-
-
-        }
-        else{
-            $('.alert.alert-danger.alert-dismissible').text("Vui lòng chọn hình thức thanh toán");
-            $('.alert.alert-info.alert-dismissible').prop('hidden', true);
-            $('.alert.alert-danger.alert-dismissible').prop('hidden', false);
-            $("html, body").animate({scrollTop: 0}, 10000);
-        }
-    })
-</script> -->
-
 <script>
     var myData = JSON.parse(localStorage['address_customer']);
     // localStorage.removeItem( 'address_customer' );

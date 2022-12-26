@@ -83,30 +83,16 @@
                                                 <textarea id="basic-default-message" class="form-control"
                                                     placeholder="Nhập nội dung mã khuyến mãi"></textarea>
                                             </div>
-
-                                            
-
-
-
-
-
                                             <button type="submit" class="btn btn-primary">Lưu</button>
                                         </form>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
                     </div>
-                    <!-- / Content -->
-
                     <div class="content-backdrop fade"></div>
                 </div>
-
-
-
             </div>
-            <!-- / Layout page -->
         </div>
 
 

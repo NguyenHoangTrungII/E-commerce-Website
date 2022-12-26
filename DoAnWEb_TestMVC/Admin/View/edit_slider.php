@@ -19,18 +19,9 @@
         $tableName = "slider";
         $sliderList = $Model->selectData($columnName, $tableName);
         $whereValue['id']= $_GET['id'];
-        // var_dump($whereValue['id']);
-        // $whereCondition ="!=";
         $sliderInfo = $Model->selectData($columnName, $tableName,  $whereValue);
-        // var_dump($sliderInfo);
-       
-       
-        ##=======LẤY DỮ LIỆU=======##
     }
 ?>
-
-
-
 
         <!-- Content wrapper -->
         <div class="content-wrapper">
@@ -110,17 +101,6 @@
                                       </div>
                                   <!-- </div> -->
                           </div>
-
-                        
-
-                        <!-- <div class="mb-5">
-                          <label for="formFile" class="form-label">Xem trước</label>
-                          <div class="fileupload fileupload-new border-5" data-provides="fileupload">
-                            <div class="fileupload-new thumbnail" style="width: 300px; height: 160px;">
-                              <img src="../assets/img/avatars/1.png" alt="">
-                            </div>
-                          </div>
-                        </div> -->
 
                       </div>
 

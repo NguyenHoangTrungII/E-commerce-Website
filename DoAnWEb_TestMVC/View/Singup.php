@@ -32,89 +32,77 @@
       background-image: url('../assets/img/login/backgroup_login_SignUp.jpg');
     }
 
-    /* MỚI */
+    input#input-img {
+      padding: 10px;
+      width: 100%;
+      font-size: 17px;
+      /* font-family: Raleway; */
+      border: 1px solid #aaaaaa;
+    }
+
+    input.invalid {
+      background-color: red;
+    }
 
 
-input#input-img {
-  padding: 10px;
-  width: 100%;
-  font-size: 17px;
-  /* font-family: Raleway; */
-  border: 1px solid #aaaaaa;
-}
+    .tab {
+      display: none;
+    }
 
-input.invalid {
-  background-color: red;
-}
+    .steptab {
+      height: 15px;
+      width: 15px;
+      margin: 0 2px;
+      background-color: #bbbbbb;
+      border: none;
+      border-radius: 50%;
+      display: inline-block;
+      opacity: 0.5;
+    }
 
+    .steptab.active {
+      opacity: 1;
+    }
 
-.tab {
-  display: none;
-}
+    .steptab.finish {
+      background-color: #04AA6D;
+    }
 
-.steptab {
-  height: 15px;
-  width: 15px;
-  margin: 0 2px;
-  background-color: #bbbbbb;
-  border: none;
-  border-radius: 50%;
-  display: inline-block;
-  opacity: 0.5;
-}
+    #avatar {
+      background-color: antiquewhite;
+      height: 200px;
+      width: 200px;
+      border: 3px solid #0af;
+      border-radius: 50%;
+      transition: background ease-out 200ms;
+    }
 
-.steptab.active {
-  opacity: 1;
-}
+    #preview {
+      padding: 0 0 0 40px;
+      position: relative;
+    }
 
-.steptab.finish {
-  background-color: #04AA6D;
-}
+    input[type="file"] {
+      display: none;
+    }
 
-/* body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-} */
+    #upload-button {
+      padding: 10px;
+      border-radius: 90%;
+      border: none;
+      cursor: pointer;
+      background-color: #08f;
+      box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2),
+        0px 6px 10px 0px rgba(0, 0, 0, 0.14), 0px 1px 18px 0px rgba(0, 0, 0, 0.12);
+      transition: background-color ease-out 120ms;
+      position: absolute;
+      right: 35%;
+      bottom: 0%;
+    }
 
-#avatar {
-  background-color: antiquewhite;
-  height: 200px;
-  width: 200px;
-  border: 3px solid #0af;
-  border-radius: 50%;
-  transition: background ease-out 200ms;
-}
-
-#preview {
-  padding: 0 0 0 40px;
-  position: relative;
-}
-
-input[type="file"] {
-  display: none;
-}
-
-#upload-button {
-  padding: 10px;
-  border-radius: 90%;
-  border: none;
-  cursor: pointer;
-  background-color: #08f;
-  box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2),
-    0px 6px 10px 0px rgba(0, 0, 0, 0.14), 0px 1px 18px 0px rgba(0, 0, 0, 0.12);
-  transition: background-color ease-out 120ms;
-  position: absolute;
-  right: 35%;
-  bottom: 0%;
-}
-
-#upload-button:hover {
-  background-color: #45a;
-}
-
-
+    #upload-button:hover {
+      background-color: #45a;
+    }
   </style>
 </head>
 
@@ -199,11 +187,9 @@ input[type="file"] {
                     <h2 class="header__title-login text-uppercase text-center pb-4">Thông tin cá nhân</h2>
 
                     <div class="alert alert-info alert-dismissible" role="alert" hidden >
-                                                This is an info dismissible alert — check it out!
                     </div>
 
                     <div class="alert alert-danger alert-dismissible" role="alert" hidden>
-                            This is a danger dismissible alert — check it out!
                     </div>
 
                     <div class="container">
@@ -342,8 +328,6 @@ input[type="file"] {
     <script src="../Admin/public/js/select2.min.js"></script>
     <link href="../Admin/public/assets/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-
-
     <script>
 
 $('.next-singup').on('click', function(){

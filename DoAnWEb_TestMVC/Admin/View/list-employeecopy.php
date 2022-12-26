@@ -35,7 +35,6 @@ $start = $pagination->get_config('start');
 $employeeList = getAll($limit, $start);
 
 ?>
-
         <!-- Content wrapper -->
         <div class="content-wrapper">
           <!-- Content -->

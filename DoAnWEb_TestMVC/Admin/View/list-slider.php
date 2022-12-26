@@ -79,9 +79,6 @@ $sliderList = getAll($limit, $start);
 
 
 ?>
-
-
-
         <!-- Content wrapper -->
         <div class="content-wrapper">
           <!-- Content -->
